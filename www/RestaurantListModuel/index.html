@@ -10,7 +10,7 @@
 <body>
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
-    <p>Search</p>
+      <p>Search</p>
     <select name="singleSelect" ng-model="singleSelect">
       <option ng-repeat="item in SearchOptions" value="{{item.value}}"> {{item.optionName}}
       </option>
@@ -46,8 +46,38 @@
         <td>{{restaurant.tel}}</td>
         <td>{{restaurant.openhour}}</td>
         <td>{{restaurant.area}}</td>
+        <td><button ng-click= "GetItem(restaurant)">edit</button>
       </tr>
-    </table>
-  </div>
+
 </div>
+<br>
+<label>
+    RID:
+      <input type="text" value={{showitem.rd}}>
+</label>
+<br>
+<label>
+    Name:
+    <input type="text" value={{showitem.name}}>
+</label>
+<br>
+<label>
+    Address:
+    <input type="text" value={{showitem.address}}>
+</label>
+<br>
+<label>
+    Telephone:
+    <input type="text" value={{showitem.tel}}>
+</label>
+<br>
+<label>
+    Open Hour:
+    <input type="text" value={{showitem.openhour}}>
+</label>
+<br>
+<label>
+    Area:
+      <input type="text" value={{showitem.area}}>
+</label>
 </body>

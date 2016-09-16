@@ -187,6 +187,17 @@ function RestaurantsCtrl($scope, Restaurants) {
     $scope.search = {};
   }
 
+ $scope.GetItem=function(restaurant){
+  var showitem ='123';
+  showitem={};
+  showitem.rd= restaurant.rd;
+  showitem.name= restaurant.name;
+  showitem.address= restaurant.address;
+  showitem.tel= restaurant.tel;
+  showitem.openhour= restaurant.openhour;
+  showitem.area= restaurant.area;
+  $scope.showitem=showitem;
+ }
 
   $scope.restaurants = [];
   for (i = 0; i < Restaurants.item.length; i++) {
@@ -198,10 +209,12 @@ function RestaurantsCtrl($scope, Restaurants) {
     data.openhour = Restaurants.item[i].openhour;
     data.area = Restaurants.item[i].area;
     $scope.restaurants.push(data)
+
   }
   var isClicked;
   var Highlightarea;
   $scope.addBackGroundColor = function(area) {
+    console.log($scope.showitem)
     if (!isClicked) {
       isClicked = true;
       Highlightarea = area;
@@ -227,4 +240,5 @@ function RestaurantsCtrl($scope, Restaurants) {
         }
     }
   }
+
 }
