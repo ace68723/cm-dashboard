@@ -99,7 +99,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END SIDEBAR -->
 
              <!-- BEGIN SIDEBAR -->
-            <div class="page-sidebar-wrapper">
+            <div class="page-sidebar-wrapper" data-ng-controller="SidebarController as sc">
                 <!-- BEGIN SIDEBAR -->
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
@@ -116,7 +116,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         <li class="nav-item  active">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-home"></i>
+                                <i class="icon-home" ng-click="sc.ChangeToHome()"></i>
                                 <span class="title">主页</span>
                                 <!-- <span class="selected"></span> -->
                                 <span class="arrow"></span>
@@ -125,7 +125,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         <li class="nav-item  active">
                             <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-home" ng-click=""></i>
+                                <i class="icon-home" ng-click="sc.ChangeToSearchRes()"></i>
                                 <span class="title">查询</span>
                                 <!-- <span class="selected"></span> -->
                                 <span class="arrow"></span>
@@ -160,7 +160,9 @@ License: You must have a valid license purchased only from themeforest(the above
             <a href="javascript:;" class="page-quick-sidebar-toggler">
                 <i class="icon-login"></i>
             </a>
-            <div data-ng-include="'tpl/quick-sidebar.html'" data-ng-controller="QuickSidebarController as qc" class="page-quick-sidebar-wrapper"></div>
+            <div data-ng-include="'tpl/quick-sidebar.html'" 
+                 data-ng-controller="QuickSidebarController as qc" 
+                 class="page-quick-sidebar-wrapper"></div>
             <!-- END QUICK SIDEBAR -->
              
 
@@ -222,7 +224,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="js/controllers/QuickSidebarController.js" type="text/javascript"></script> 
       
         <script src="js/controllers/popUpCtrl.js" type="text/javascript"></script>     
-          <script src="js/controllers/NotesController.js" type="text/javascript"></script>    
+        <script src="js/controllers/NotesController.js" type="text/javascript"></script>    
+        <script src="js/controllers/SidebarController.js" type="text/javascript"></script>
         <!-- END CONTROLLERS -->  
 
 
