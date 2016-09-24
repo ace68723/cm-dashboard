@@ -35,7 +35,7 @@
 .nonepadding{
     padding-left: 0px;
     padding-right: 0px;
-    
+
     height: 100%;
 }
 .border-left{
@@ -59,8 +59,8 @@
     padding: 6px;
 
 }
-.order_col_box::-webkit-scrollbar { 
-    display: none; 
+.order_col_box::-webkit-scrollbar {
+    display: none;
 }
 .order_header{
     margin-bottom: 0px;
@@ -106,6 +106,6 @@
     color: #FAFAFA;
 }
 .order_header.alert{
-    background-color: #F9FD0A;
+    background-color: #F3C200;
     color: #FAFAFA;
 }
