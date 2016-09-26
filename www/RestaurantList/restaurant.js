@@ -159,6 +159,28 @@ angular.module('MetronicApp')
   return RestaurantList;
   //return RestaurantList.item;
 })
+function setCurrentArea(area){
+  $scope.currentArea= area;
+}
+
+function isCurrentCateArea(area){
+  return $scope.currentArea!== null  && restaurant.area===area;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
