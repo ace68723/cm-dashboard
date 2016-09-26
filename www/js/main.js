@@ -1,3 +1,5 @@
+
+
 /***
 Metronic AngularJS App Main Script
 ***/
@@ -250,6 +252,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
 
 
 }]);
+
 
 /* Init global settings and run the app */
 MetronicApp.run(["$rootScope", "settings", "$state","dashboardService", function($rootScope, settings, $state,dashboardService) {
