@@ -14,7 +14,7 @@ angular.module('MetronicApp')
       });
           RestaurantListCtrl.SearchOptions = [{
             "optionName": "RID",
-            "value": "rd"
+            "value": "rid"
           }, {
             "optionName": "Restaurant Name",
             "value": "name"
@@ -26,7 +26,7 @@ angular.module('MetronicApp')
             "value": "tel"
           }, {
             "optionName": "Open Hour",
-            "value": "openhour"
+            "value": "hour"
           }, {
             "optionName": "Area",
             "value": "area"
@@ -82,12 +82,12 @@ angular.module('MetronicApp')
             console.log("GetItem",restaurant);
             // var showitem ='123';
             RestaurantListCtrl.showitem={};
-            RestaurantListCtrl.showitem.rd= restaurant.rid;
+            RestaurantListCtrl.showitem.rid= restaurant.rid;
             // console.log(restaurant.rid);
             RestaurantListCtrl.showitem.name= restaurant.name;
             RestaurantListCtrl.showitem.address= restaurant.address;
             RestaurantListCtrl.showitem.tel= restaurant.tel;
-            RestaurantListCtrl.showitem.openhour= restaurant.hour;
+            RestaurantListCtrl.showitem.hour= restaurant.hour;
             RestaurantListCtrl.showitem.area= restaurant.area;
             // RestaurantListCtrl.showitem=showitem;
            }

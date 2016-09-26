@@ -9,52 +9,26 @@
                 </div>
                 <div class="tools"> </div>
       </div>
-      <select name="singleSelect" ng-model="singleSelect">
-        <option ng-repeat="item in rlc.SearchOptions" value="{{item.value}}"> {{item.optionName}}
+      <select name="singleSelect" class="btn green-haze btn-outline btn-circle btn-sm" ng-model="singleSelect" style="margin-right: 40px;">
+        <option ng-repeat="item in rlc.SearchOptions" value="{{item.value}}" > {{item.optionName}}
         </option>
       </select>
-      <p>
-        <input type="text" ng-model="rlc.search[singleSelect]">
-      </p>
+     
+        <input type="text" ng-model="rlc.search[singleSelect]" style="margin-right: 40px;">
+      
       <button ng-click="rlc.clearSearch()">Clear</button>
-      <br>
-        <table class="table table-striped table-bordered table-hover" id="sample_1">
-            <thead>
-                <tr>
-                    <th> RID </th>
-                    <th> Name </th>
-                    <th> Address </th>
-                    <th> Telephone </th>
-                    <th> Open Hour </th>
-                    <th> Area </th>
-                    <th> 修改 </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td><input type="text" value={{rlc.showitem.rd}}></td>
-                  <td><input type="text" value={{rlc.showitem.name}}></td>
-                  <td><input type="text" value={{rlc.showitem.address}}></td>
-                  <td><input type="text" value={{rlc.showitem.tel}}></td>
-                  <td><input type="text" value={{rlc.showitem.openhour}}></td>
-                  <td><input type="text" value={{rlc.showitem.area}}></td>
-                  <td><button ng-click= "rlc.GetItem(restaurant)">完成</button>
-                </tr>
-          
-            </tbody>
-        </table>
-      </br>
+      
       <div class="portlet-body">
           <br>
           <table>
             
-            <button type="button" ng-click="rlc.addBackGroundColor('Scarborough')">Scarborough</button> &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('North York')">North York</button> &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('Markham')">Markham</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('Downtown')">Downtown</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('Richmond Hill')">Richmond Hill</button>
+            <button type="button" ng-click="rlc.addBackGroundColor('Scarborough')"class="btn btn-circle blue btn-outline" style="margin-right: 40px;">Scarborough</button> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="rlc.addBackGroundColor('North York')" class="btn btn-circle green btn-outline" style="margin-right: 40px;">North York</button> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="rlc.addBackGroundColor('Markham')" class="btn btn-circle yellow btn-outline" style="margin-right: 40px;">Markham</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="rlc.addBackGroundColor('Downtown')" class="btn btn-circle purple btn-outline" style="margin-right: 40px;">Downtown</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="rlc.addBackGroundColor('Richmond Hill')" class="btn btn-circle red btn-outline" style="margin-right: 40px;">Richmond Hill</button>
 
-          <table class="table table-striped table-bordered table-hover" id="sample_1">
+          <table class="table table-striped table-bordered table-hover" id="sample_1" style="margin-top: 20px;">
               <thead>
                   <tr>
                       <th> RID </th>
@@ -81,7 +55,33 @@
           </table>
       </div>
 
-
+      <br>
+        <table class="table table-striped table-bordered table-hover" id="sample_1">
+            <thead>
+                <tr>
+                    <th> RID </th>
+                    <th> Name </th>
+                    <th> Address </th>
+                    <th> Telephone </th>
+                    <th> Open Hour </th>
+                    <th> Area </th>
+                    <th> 修改 </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td><input type="text" value={{rlc.showitem.rid}}></td>
+                  <td><input type="text" value={{rlc.showitem.name}}></td>
+                  <td><input type="text" value={{rlc.showitem.address}}></td>
+                  <td><input type="text" value={{rlc.showitem.tel}}></td>
+                  <td><input type="text" value={{rlc.showitem.hour}}></td>
+                  <td><input type="text" value={{rlc.showitem.area}}></td>
+                  <td><button ng-click= "rlc.GetItem(restaurant)">完成</button>
+                </tr>
+          
+            </tbody>
+        </table>
+      </br>
 
     </div>
   </div>
