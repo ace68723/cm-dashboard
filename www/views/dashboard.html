@@ -10,14 +10,14 @@
 <!-- BEGIN MAIN CONTENT -->
 
 <div >
-  
+
 
 	<!-- BEGIN DASHBOARD COLUMN -->
-	<div class="row">
+	<div class="row" style="margin-right:0px;">
 
 		<div class="col-md-15 col-sm-3 nonepadding border-left">
 
-			 
+
 				<div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #f7ca18;color: #ffffff;">
 					改运费
 				<span ng-if="dc.f_data.change_addr_order.length > 0">{{dc.f_data.change_addr_order.length}}单 </span>
@@ -32,12 +32,12 @@
 						   <div class=" order_title"
 						   		style="cursor:pointer"
 						   		data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
-					  
+
 						  <i class="icon-pin" style="color: #ffffff"
-							class="dropdown-toggle"  
-							data-hover="dropdown" 
+							class="dropdown-toggle"
+							data-hover="dropdown"
 							data-close-others="true"></i>
-						  
+
 							   <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
 							   <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
 							   <!-- <span class="caption-helper">送餐</span> -->
@@ -46,12 +46,12 @@
 							   <a class="btn btn-circle btn-default "
 							      style="font-size: 12px;"
 							   		data-ng-click="dc.openOrderChange(order.oid,2,order.c_addr)">
-								   {{order.dltype}} 
-							   </a> 
+								   {{order.dltype}}
+							   </a>
 						   </div>
 					   </div>
 						 <div class="portlet-body order_body">
-							  
+
 							   <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 								   <div class="col-md-2 nonepadding">
@@ -60,7 +60,7 @@
 								   <div class="col-md-9 nonepadding">
 									  {{order.rrname}}
 								   </div>
-							   </div> 
+							   </div>
 
 							   <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
@@ -76,8 +76,8 @@
 								   <div class="col-md-2 nonepadding">
 									   {{order.dlexp | currency}}
 								   </div>
-							   </div> 
-							  
+							   </div>
+
 							  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 								  <div class="col-md-2 nonepadding">
@@ -92,7 +92,7 @@
 								  <div class="col-md-2 nonepadding">
 									  {{order.channel}}
 								  </div>
-							  </div> 
+							  </div>
 							  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 								  <div class="col-md-2 nonepadding">
@@ -104,11 +104,11 @@
 								   <div class="col-md-3 nonepadding "
 								   		style="cursor:pointer"
 									  	data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
-									  订单详情 
+									  订单详情
 									  <i class=" icon-note">
 									  </i>
 									</div>
-							  </div> 
+							  </div>
 							 <!-- </div> -->
 						 </div>
 					</div>
@@ -129,24 +129,24 @@
 							   <div class=" order_title"
 							   		style="cursor:pointer"
 							   		data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
-					  
+
 						  <i class="icon-pin" style="color: #ffffff"
-							class="dropdown-toggle"  
-							data-hover="dropdown" 
+							class="dropdown-toggle"
+							data-hover="dropdown"
 							data-close-others="true"></i>
-						  
+
 								   <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
 								   <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
 								   <!-- <span class="caption-helper">送餐</span> -->
 							   </div>
 							   <div class="actions">
 								   <a class="btn btn-circle btn-default "style="font-size: 12px;"data-ng-click="dc.openOrderChange(order.oid,1,order.c_addr)">
-									   {{order.dltype}} 
-								   </a> 
+									   {{order.dltype}}
+								   </a>
 							   </div>
 						   </div>
 							 <div class="portlet-body order_body">
-								  
+
 								   <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 									   <div class="col-md-2 nonepadding">
@@ -155,7 +155,7 @@
 									   <div class="col-md-9 nonepadding">
 										  {{order.rrname}}
 									   </div>
-								   </div> 
+								   </div>
 
 								   <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
@@ -171,8 +171,8 @@
 									   <div class="col-md-2 nonepadding">
 										   {{order.dlexp | currency}}
 									   </div>
-								   </div> 
-								  
+								   </div>
+
 								  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 									  <div class="col-md-2 nonepadding">
@@ -187,7 +187,7 @@
 									  <div class="col-md-2 nonepadding">
 										  {{order.channel}}
 									  </div>
-								  </div> 
+								  </div>
 								  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 									  <div class="col-md-2 nonepadding">
@@ -199,19 +199,19 @@
 									  <div class="col-md-3 nonepadding "
 									  		style="cursor:pointer"
 									  		data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
-										订单详情 
+										订单详情
 										<i class=" icon-note">
 										</i>
 									  </div>
-					 
-								  </div> 
+
+								  </div>
 								 <!-- </div> -->
 							 </div>
 					   </div>
 				</div>
 				<!-- END 新用户-->
 			<!-- </div> -->
-		</div>   
+		</div>
 	<!-- BEGIN 新订单 COLUMN -->
 		<div class="col-md-15 col-sm-3 nonepadding border-left">
 		  <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #32c5d2;color: #ffffff;">
@@ -228,12 +228,12 @@
 					  <div class=" order_title"
 							style="cursor:pointer"
 					  		data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
-					  
+
 						  <i class="icon-pin" style="color: #ffffff"
-							class="dropdown-toggle"  
-							data-hover="dropdown" 
+							class="dropdown-toggle"
+							data-hover="dropdown"
 							data-close-others="true"></i>
-						  
+
 						  <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
 
 						  <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
@@ -241,12 +241,12 @@
 					  </div>
 					  <div class="actions">
 						  <a class="btn btn-circle btn-default "style="font-size: 12px;"data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)">
-							  {{order.dltype}} 
-						  </a> 
+							  {{order.dltype}}
+						  </a>
 					  </div>
 				  </div>
 					<div class="portlet-body order_body">
-						 
+
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 							  <div class="col-md-2 nonepadding">
@@ -255,7 +255,7 @@
 							  <div class="col-md-9 nonepadding">
 								 {{order.rrname}}
 							  </div>
-						  </div> 
+						  </div>
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
@@ -271,8 +271,8 @@
 							  <div class="col-md-2 nonepadding">
 								  {{order.dlexp | currency}}
 							  </div>
-						  </div> 
-						 
+						  </div>
+
 						 <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 							 <div class="col-md-2 nonepadding">
@@ -287,7 +287,7 @@
 							 <div class="col-md-2 nonepadding">
 								 {{order.channel}}
 							 </div>
-						 </div> 
+						 </div>
 						 <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 							 <div class="col-md-2 nonepadding">
@@ -302,7 +302,7 @@
 							   订单详情 <i class=" icon-note"></i>
 							 </div>
 
-						 </div> 
+						 </div>
 						<!-- </div> -->
 					</div>
 			  </div>
@@ -310,112 +310,6 @@
 			<!-- END ORDER BOX-->
 		</div>
 	<!-- END 新订单 COLUMN -->
-
-	<!-- BEGIN 已接单 COLUMN -->
-		<div class="col-md-15 col-sm-3 nonepadding border-left">
-		  <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #67809f; color: #ffffff;">
-				已接单
-			<span ng-if="dc.f_data.confirm_order.length > 0">{{dc.f_data.confirm_order.length}}单 </span>
-			</div>
-			<!-- BEGIN ORDER BOX-->
-
-			<div class="order_col_box"style="height:{{dc.h}}px;">
-			  <div  class="portlet order_box "
-					ng-repeat="(id,order) in dc.f_data.confirm_order">
-				  <div  class="portlet-title order_header darkblue"
-						ng-class="{warning:order.warning==1,alert:order.alert==1}">
-					  <div  class=" order_title"
-					  		style="cursor:pointer"
-							data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
-					  
-						  <i class="icon-pin" style="color: #ffffff"
-							class="dropdown-toggle"  
-							data-hover="dropdown" 
-							data-close-others="true"></i>
-						  
-						  <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
-						  <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
-
-						  <!-- <span class="caption-helper">送餐</span> -->
-					  </div>
-					  <div class="actions">
-						  <a  class="btn btn-circle btn-default dropdown-toggle"
-							  data-hover="dropdown" 
-							  data-close-others="true"
-							  style="font-size: 12px;"
-							  data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)"> 
-							{{order.dltype}} 
-						</a>
-					   
-					  </div>
-				   
-				  </div>
-					<div class="portlet-body order_body">
-						 
-						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-							  <div class="col-md-2 nonepadding">
-								  餐馆
-							  </div>
-							  <div class="col-md-9 nonepadding">
-								 {{order.rrname}}
-							  </div>
-						  </div> 
-
-						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-							  <div class="col-md-2 nonepadding">
-								  总价
-							  </div>
-							  <div class="col-md-5 nonepadding">
-								  {{order.total | currency}}
-							  </div>
-							  <div class="col-md-2 nonepadding">
-								  运费
-							  </div>
-							  <div class="col-md-2 nonepadding">
-								  {{order.dlexp | currency}}
-							  </div>
-
-						  </div> 
-						 
-						 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-							 <div class="col-md-2 nonepadding">
-								 状态
-							 </div>
-							 <div class="col-md-5 nonepadding">
-								 {{order.status_txt}}
-							 </div>
-							 <div class="col-md-2 nonepadding">
-								平台
-							 </div>
-							 <div class="col-md-2 nonepadding">
-								 {{order.channel}}
-							 </div>
-						 </div> 
-						 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-							 <div class="col-md-2 nonepadding">
-								 时间
-							 </div>
-							 <div class="col-md-5 nonepadding">
-								 {{order.created}}
-							 </div>
-							 <div class="col-md-3 nonepadding "
-							 		style="cursor:pointer"
-							 		data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
-								订单详情 <i class=" icon-note"></i>
-							  </div>
-			
-						 </div> 
-						<!-- </div> -->
-					</div>
-			  </div>
-			</div>
-			<!-- END ORDER BOX-->
-		</div>
-	<!-- END 已接单 COLUMN -->
 
 	<!-- BEGIN 拒单 COLUMN -->
 		<div class="col-md-15 col-sm-3 nonepadding border-left">
@@ -433,12 +327,12 @@
 					  <div class=" order_title"
 					  		style="cursor:pointer"
 						   data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
-					  
+
 						  <i class="icon-pin" style="color: #ffffff"
-							class="dropdown-toggle"  
-							data-hover="dropdown" 
+							class="dropdown-toggle"
+							data-hover="dropdown"
 							data-close-others="true"></i>
-						  
+
 
 						  <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
 						  <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
@@ -450,17 +344,17 @@
 							 data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)"
 							 ng-if="order.status == 5">
 							  拒单
-						  </a> 
+						  </a>
 						  <a class="btn btn-circle btn-default "
 							 style="font-size: 12px;"
 							 data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)"
 							 ng-if="order.status == 90">
 							  取消
-						  </a> 
+						  </a>
 					  </div>
 				  </div>
 					<div class="portlet-body order_body">
-						 
+
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 							  <div class="col-md-2 nonepadding">
@@ -469,7 +363,7 @@
 							  <div class="col-md-9 nonepadding">
 								 {{order.rrname}}
 							  </div>
-						  </div> 
+						  </div>
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
@@ -485,8 +379,8 @@
 							  <div class="col-md-2 nonepadding">
 								  {{order.dlexp | currency}}
 							  </div>
-						  </div> 
-						 
+						  </div>
+
 						 <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 							 <div class="col-md-2 nonepadding">
@@ -501,7 +395,7 @@
 							 <div class="col-md-2 nonepadding">
 								 {{order.channel}}
 							 </div>
-						 </div> 
+						 </div>
 						 <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
 							 <div class="col-md-2 nonepadding">
@@ -515,8 +409,8 @@
 									data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
 							   订单详情 <i class=" icon-note" ></i>
 							 </div>
-			
-						 </div> 
+
+						 </div>
 						<!-- </div> -->
 					</div>
 			  </div>
@@ -524,7 +418,114 @@
 			<!-- END ORDER BOX-->
 		</div>
 	<!-- END 拒单 COLUMN -->
-		 
+
+
+   <!-- BEGIN 已接单 COLUMN -->
+     <div class="col-md-15 col-sm-3 nonepadding border-left">
+       <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #67809f; color: #ffffff;">
+         已接单
+       <span ng-if="dc.f_data.confirm_order.length > 0">{{dc.f_data.confirm_order.length}}单 </span>
+       </div>
+       <!-- BEGIN ORDER BOX-->
+
+       <div class="order_col_box"style="height:{{dc.h}}px;">
+         <div  class="portlet order_box "
+           ng-repeat="(id,order) in dc.f_data.confirm_order">
+           <div  class="portlet-title order_header darkblue"
+             ng-class="{warning:order.warning==1,alert:order.alert==1}">
+             <div  class=" order_title"
+                 style="cursor:pointer"
+               data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
+
+               <i class="icon-pin" style="color: #ffffff"
+               class="dropdown-toggle"
+               data-hover="dropdown"
+               data-close-others="true"></i>
+
+               <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
+               <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+
+               <!-- <span class="caption-helper">送餐</span> -->
+             </div>
+             <div class="actions">
+               <a  class="btn btn-circle btn-default dropdown-toggle"
+                 data-hover="dropdown"
+                 data-close-others="true"
+                 style="font-size: 12px;"
+                 data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)">
+               {{order.dltype}}
+             </a>
+
+             </div>
+
+           </div>
+           <div class="portlet-body order_body">
+
+               <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                 <div class="col-md-2 nonepadding">
+                   餐馆
+                 </div>
+                 <div class="col-md-9 nonepadding">
+                  {{order.rrname}}
+                 </div>
+               </div>
+
+               <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                 <div class="col-md-2 nonepadding">
+                   总价
+                 </div>
+                 <div class="col-md-5 nonepadding">
+                   {{order.total | currency}}
+                 </div>
+                 <div class="col-md-2 nonepadding">
+                   运费
+                 </div>
+                 <div class="col-md-2 nonepadding">
+                   {{order.dlexp | currency}}
+                 </div>
+
+               </div>
+
+              <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                <div class="col-md-2 nonepadding">
+                  状态
+                </div>
+                <div class="col-md-5 nonepadding">
+                  {{order.status_txt}}
+                </div>
+                <div class="col-md-2 nonepadding">
+                 平台
+                </div>
+                <div class="col-md-2 nonepadding">
+                  {{order.channel}}
+                </div>
+              </div>
+              <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                <div class="col-md-2 nonepadding">
+                  时间
+                </div>
+                <div class="col-md-5 nonepadding">
+                  {{order.created}}
+                </div>
+                <div class="col-md-3 nonepadding "
+                   style="cursor:pointer"
+                   data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
+                 订单详情 <i class=" icon-note"></i>
+                 </div>
+
+              </div>
+             <!-- </div> -->
+           </div>
+         </div>
+       </div>
+       <!-- END ORDER BOX-->
+     </div>
+   <!-- END 已接单 COLUMN -->
+
 	<!-- BEGIN 司机 COLUMN -->
 		<div class="col-md-15 col-sm-3 nonepadding border-left ">
 		   <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #5c9bd1;color: #ffffff;">
@@ -534,27 +535,32 @@
 		   <div style="height:{{dc.h}}px;width:100%;border:0px ;overflow:auto;">
 			  <div class="portlet-body">
 				 <div class="panel-group accordion" id="accordion3" >
+           <div class="btn-group btn-group-circle btn-group-justified">
+               <a href="javascript:;" class="btn green btn-outline"> Left </a>
+               <a href="javascript:;" class="btn green btn-outline"> Middle </a>
+               <a href="javascript:;" class="btn green btn-outline"> Right </a>
+           </div>
 					<div class="panel panel-default"
 						 ng-repeat="(id,driver) in dc.f_data.drivers | orderBy:'deliver'"
 						 overflow="hidden"
 						 style="margin-top: 0px;">
 					   <div class=" driver_heading" >
 						  <h4 class="panel-title">
-							<a class="accordion-toggle collapsed" 
-							   data-toggle="collapse" 
-							   data-parent="#accordion3" 
-							   href="#{{id}}" 
-							   aria-expanded="false"> 
+							<a class="accordion-toggle collapsed"
+							   data-toggle="collapse"
+							   data-parent="#accordion3"
+							   href="#{{id}}"
+							   aria-expanded="false">
 							<span style="float: left;font-size: 29px;margin-top: -7px;padding-right: 10px;">+</span>
-							司机: {{driver.deliver}}
-							<span style="float: right;">{{driver.orders.length}}单</span> 
+							{{driver.deliver}}
+							<span style="float: right;">{{driver.orders.length}}单</span>
 							</a>
 						  </h4>
 					   </div>
 					   <div id="{{id}}" class="panel-collapse collapse" aria-expanded="false">
 
 
-						  <div class="panel-body" 
+						  <div class="panel-body"
 							   style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 11px;">
 						<!-- BEGIN ORDER BOX-->
 							<div class="portlet light"
@@ -575,13 +581,13 @@
 								   </div>
 									<div class="actions">
 									   <a  class="btn btn-circle btn-default dropdown-toggle"
-										   data-hover="dropdown" 
+										   data-hover="dropdown"
 										   data-close-others="true"
 										   style="font-size: 12px;"
-										   data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)"> 
-										 {{order.dltype}} 
+										   data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)">
+										 {{order.dltype}}
 										</a>
-									
+
 									</div>
 								</div>
 								<div class="portlet-body"style="font-size: 10px;border-style: solid;border-width: 0px 1px 1px 1px;">
@@ -629,10 +635,10 @@
 										 <div class="col-md-5 nonepadding">
 											  {{order.created}}
 										 </div>
-										 <div 	class="col-md-3 nonepadding " 
+										 <div 	class="col-md-3 nonepadding "
 										 		style="cursor:pointer"
 										 		data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
-											订单详情 
+											订单详情
 											<i class=" icon-note" >
 											</i>
 										 </div>
@@ -650,10 +656,10 @@
 		   <!-- END 司机 -->
 		</div>
 	<!-- END 司机 COLUMN -->
-	
+
 	</div>
 	<!-- END DASHBOARD COLUMN -->
-   
+
 </div>
 <!-- END MAIN CONTENT -->
 <!-- BEGIN MAIN JS & CSS -->
