@@ -1,10 +1,19 @@
 
 
+/* Setup blank page controller */
+angular.module('MetronicApp')
+	.controller('RestaurantListController', ['$rootScope', '$scope', 'settings', function($rootScope, $scope, settings) {
+	    $scope.$on('$viewContentLoaded', function() {   
+	        // initialize core components
+	        App.initAjax();
 
-
-var myApp = angular.module('myApp', []);
-
-myApp.factory('Restaurants', function() {
+	        // set default layout mode
+	        // $rootScope.settings.layout.pageContentWhite = true;
+	        // $rootScope.settings.layout.pageBodySolid = false;
+	        // $rootScope.settings.layout.pageSidebarClosed = true;
+	    });
+}])
+.factory('Restaurants', function() {
   var RestaurantList = {};
   RestaurantList.item = [{
     rd: "139",
@@ -150,6 +159,10 @@ myApp.factory('Restaurants', function() {
   return RestaurantList;
   //return RestaurantList.item;
 })
+
+
+
+
 
 function RestaurantsCtrl($scope, Restaurants) {
   //
