@@ -150,6 +150,28 @@ myApp.factory('Restaurants', function() {
   return RestaurantList;
   //return RestaurantList.item;
 })
+function setCurrentArea(area){
+  $scope.currentArea= area;
+}
+
+function isCurrentCateArea(area){
+  return $scope.currentArea!== null  && restaurant.area===area;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function RestaurantsCtrl($scope, Restaurants) {
   //

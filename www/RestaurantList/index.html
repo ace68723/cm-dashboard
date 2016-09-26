@@ -11,7 +11,7 @@
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
       <p>Search</p>
-    <select name="singleSelect" ng-model="singleSelect">
+    <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
       <option ng-repeat="item in SearchOptions" value="{{item.value}}"> {{item.optionName}}
       </option>
     </select>
@@ -20,8 +20,9 @@
 
     <p>
       <input type="text" ng-model="search[singleSelect]">
-
     </p>
+
+
     <button ng-click="clearSearch()">Clear</button>
     <br>
     <br>
