@@ -159,7 +159,6 @@ angular.module('MetronicApp')
 		}
 	}
   dashboardService.find_order = function  (oid) {
-    console.log(oid,lo_data)
     serach_order = _.find(lo_data.orders, function(order){
         return order.oid == oid;
     });
