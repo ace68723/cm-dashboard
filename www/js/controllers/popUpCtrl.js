@@ -1,7 +1,7 @@
 
 angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$modal, $modalInstance, data,dashboardService) {
     var popUpCtrl = this;
-    
+
     popUpCtrl.lv_c_addr = data.c_addr;
     popUpCtrl.oid    = data.oid;
     popUpCtrl.c_lat  = data.c_lat;
@@ -27,6 +27,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         var oid = data.oid
         var port = data.port
         popUpCtrl.oid = oid
+        console.log("https://www.chanmao.ca/monitor/#/" + port + "/"+ oid +"/e")
         popUpCtrl.url= $sce.trustAsResourceUrl("https://www.chanmao.ca/monitor/#/" + port + "/"+ oid +"/e");
     }
     function maps (data) {
@@ -38,21 +39,22 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         var oid = data.oid;
         popUpCtrl.oid = oid;
         console.log("data:",data);
-      
+
         popUpCtrl.url= $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/"+
             "directions?"+"&key=AIzaSyByXgKTkpmXMPmodZjyeHJbHe6R0JdcdeY" +
-            "&origin="+ lv_r_lat + ',+' + lv_r_lng + 
-            "&destination=" + lv_c_lat + ',+' + lv_c_lng + 
+            "&origin="+ lv_r_lat + ',+' + lv_r_lng +
+            "&destination=" + lv_c_lat + ',+' + lv_c_lng +
             "&mode=driving"+
             "&avoid=tolls"
 
         );
     }
-        
+
     function orderDetial (argument) {
         var oid = data.oid
         var port = data.port
         popUpCtrl.oid = oid
+          console.log("https://www.chanmao.ca/monitor/#/" + port + "/"+ oid)
         popUpCtrl.url= $sce.trustAsResourceUrl("https://www.chanmao.ca/monitor/#/" + port + "/"+ oid);
     }
     function search_orderDetial (argument) {
@@ -104,8 +106,8 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
       };
 
       popUpCtrl.openPopup(size,eo_data);
-      
-      
+
+
     };
     popUpCtrl.openMap = function (oid,c_lat,c_lng,r_lat,r_lng,c_addr) {
         // r_addr,c_addr
@@ -120,7 +122,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
       // eo_data.r_addr= r_addr;
       // eo_data.c_addr=c_addr;
       eo_data.type = "maps";
-      popUpCtrl.openPopup(size,eo_data);  
+      popUpCtrl.openPopup(size,eo_data);
     };
     popUpCtrl.openPopup = function (size,eo_data) {
       var modalInstance = $modal.open(
@@ -136,7 +138,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
               }
           }
       });
-          
+
       modalInstance.result.then(function()
       {
         // promise 成功完成后call get init 刷新数据

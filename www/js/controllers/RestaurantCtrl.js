@@ -99,7 +99,6 @@ angular.module('MetronicApp')
             restaurantService.get_rrlist()
             .then(function (result) {
               RestaurantListCtrl.restaurants = result;
-              console.log("100",RestaurantListCtrl.restaurants)
             })
             .catch(function (error) {
               console.log(error)

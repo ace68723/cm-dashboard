@@ -13,13 +13,9 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 	// $rootScope.settings.layout.pageSidebarClosed = true;
 
 	SidebarCtrl.ChangeToHome = function () {
-		// console.log("ChangeToHome");
-
 		$state.go('dashboard');
-
 	};
 	SidebarCtrl.ChangeToSearchRes = function () {
-		console.log('here')
 		 $state.go('searchRes');
 	};
 

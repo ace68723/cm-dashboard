@@ -15,13 +15,14 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 	$rootScope.settings.layout.pageBodySolid = false;
 	$rootScope.settings.layout.pageSidebarClosed = true;
 
-	$timeout(function() {
-		// console.log("get data from dashboard service",dashboardService.get_orders())
+
 		DashCtrl.order_data = dashboardService.get_orders();
 		// console.log("test get",DashCtrl.order_data);
 		DashCtrl.f_data = dashboardService.get_fomat();
-		// console.log("test fomat", DashCtrl.f_data.reject_order);
-	}, 1000);
+	 $timeout(function() {
+			console.log(DashCtrl.f_data)
+			// console.log("test fomat", DashCtrl.f_data.reject_order);
+		}, 1000);
 
 
 	DashCtrl.openOrderChange = function (oid,port,c_addr) {

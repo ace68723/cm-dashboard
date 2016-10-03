@@ -1,41 +1,35 @@
-Name,Hour,Area
-Marley,,非North York区
-Ryan,12:00-22:00,非North York区
-WilsonFeng,,非North York区
-EasonLi,12:00-22:00,非North York区
-JayYang,,非North York区
-Rex,,非North York区
-YouPeng,12:00-22:00,非North York区
-KevinYang,12:00-24:00,非North York区
-Mike,12:00-17:00,非North York区
-JayGu,12:00-17:00,非North York区
-Nathan,17:00-24:00,非North York区
-Enze,12:00-22:00,非North York区
-Kyle,,非North York区
-Willian,,非North York区
-Ben,宵夜17:00-02:00,非North York区
-Bently,12:00-22:00,NorthYork区
-Addison,,NorthYork区
-Helios,,NorthYork区
-Calvin,宵夜19:00-2:00,NorthYork区
-Richard,12:00-18:00,NorthYork区
-LouisLu,,NorthYork区
-Mikewang,12:00-22:00,NorthYork区
-Michael,12:00-22:00,NorthYork区
-Jason,12:00-24:00,NorthYork区
-Ray,12:00-22:00,NorthYork区
-Andrew,12:00-24:00,NorthYork区
-JackyHua,18:00-2:00,NorthYork区
-Jing,,NorthYork区
-Kyle,,NorthYork区
-Willian,,NorthYork区
-Jimmy,,NorthYork区
-Sean,,DownTown区
-AdamJ,12:00-22:00,DownTown区
-JayYang,12:00-22:00,DownTown区
-Jason,,DownTown区
-Ben,,DownTown区
-Helios,,DownTown区
-Mike,,DownTown区
-Nathan,,DownTown区
-Willian,,DownTown区
+driver_id,name,hour,area
+117,Addision,,
+159,Andrew,12:00-22:00,ny
+165,Adam J.,,
+174,bai,12:00-15:00,ny
+128,Bently,12:00-22:00,ny
+163,Ben,,
+86,Calvin,,
+171,cheney,15:00-22:00,ny
+135,Eason Li,宵夜17:00-02:00,sc
+97,Helios,,
+44,James ,,
+120,Jay Gu,,
+152,Jason,12:00-22:00,ny
+162,JackyHua,19:00-24:00,ny
+153,Jimmy,,
+167,Jing Wen,宵夜21:30-2:00,ny
+169,Kyle,12:00-22:00,sc
+100,Kelvin Y.,,
+94,Louis Lu,19:00-24:00,ny
+130,Marley,12:00-22:00,sc
+142,Michael,12:00-22:00,ny
+112,Mike,12:00-17:00,sc
+134,MikeWang,12:00-22:00,ny
+161,Nathan,12:00-22:00,sc
+102,Phil,12:00-17:00,dt
+154,RayChen,,
+151,Rex,17:00-22:00,dt
+123,Richard,宵夜19:00-2:00,ny
+179,Rio,17:00-24:00,sc
+88,Ryan,,
+160,Sean,,
+170,William,,
+140,Wilson,12:00-22:00,sc
+155,YouPeng,12:00-22:00,sc

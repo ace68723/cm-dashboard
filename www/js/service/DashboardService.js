@@ -3,10 +3,8 @@ angular.module('MetronicApp')
   var dashboardService = {};
   var lo_data  ={};
   var lo_fdata ={};
-  var la_deliver;
+  var la_delivers;
   	// dashboardService.timeout = 0;
-
-  	lo_fdata.drivers = [];
   	var stop;
 	dashboardService.get_init = function  () {
 		get_API();
@@ -16,12 +14,12 @@ angular.module('MetronicApp')
 		}
 		stop = $interval(function() {
 			get_API();
-		},500)
+		},30000)
 
     // get driver list from local csv file
     json2csv.ConvertToJSON()
     .then(function (result) {
-      la_deliver = result.data
+      la_delivers = result.data
     })
 	}
 	function get_API() {
@@ -29,15 +27,15 @@ angular.module('MetronicApp')
 		  method: 'GET',
 		  url: API_URL+'MobMonitor/OrderList',
 		}).then(function successCallback(response) {
-			// console.log(response)
 			lo_data.orders = response.data.ea_orders;
-			// dashboardService.save(lo_data.orders);
-			// var ll = dashboardService.get();
-			// console.log("liangliang",ll);
 			lo_data.statas = response.data.ea_stats;
-			// lo_data.account +=1;
-			 setOrders();
-			 //dashboardService.save(lo_data.orders);
+      json2csv.ConvertToJSON()
+      .then(function (result) {
+        lo_fdata.delivers = result.data;
+        _.remove(lo_fdata.delivers, function(n) {return !n.area});
+         setOrders();
+      })
+
 		}, function errorCallback(response) {
 		   // alertService.alert(response);
 		});
@@ -52,11 +50,8 @@ angular.module('MetronicApp')
 			lo_fdata.confirm_order = [];
 			lo_fdata.delivering_order = [];
 			lo_fdata.complete_order = [];
-		   // var ia_drivers = [];
-      //  console.log(lo_data.orders)
+
 			_.forEach( lo_data.orders, function(order, key) {
-			  // console.log(order, key);
-        // console.log(order.status)
 				switch(order.status) {
 				  case '0':
 					  lo_fdata.new_order.push(order)
@@ -88,25 +83,41 @@ angular.module('MetronicApp')
 				}
       });
 
+      _.forEach(lo_fdata.delivering_order, function (order, key) {
+        var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
+          return deliver.driver_id == order.driver_id;
+        });
+        if(deliver_index == -1){
+          alert("Can't find deliver "+ order.deliver);
+        }else{
+          if(!lo_fdata.delivers[deliver_index].orders){
+              lo_fdata.delivers[deliver_index].orders = [];
+              lo_fdata.delivers[deliver_index].orders.push(order)
+          }else{
+            lo_fdata.delivers[deliver_index].orders.push(order)
+          }
+        }
+      })
+      console.log(lo_fdata.delivers)
 			// console.log(lo_fdata.delivering_order)
 
 			// 初始化司机order list
-			_.forEach(la_deliver,function(driver) {
-				driver.orders = [];
-			})
-
-
-      _.forEach(lo_fdata.delivering_order,function(order) {
-
-        // console.log(la_deliver)
-        // la_deliver.find(findDeliver).orders.push(order)
-        // console.log()
-        if(_.findIndex(la_deliver, function(o) { return o.Name == order.deliver; }) == -1){
-          // console.log(order.deliver)
-        }
-
-      })
-      // console.log(la_deliver)
+			// _.forEach(delivers,function(driver) {
+			// 	driver.orders = [];
+			// })
+      //
+      //
+      // _.forEach(lo_fdata.delivering_order,function(order) {
+      //   console.log(order)
+      //   // console.log(delivers)
+      //   // delivers.find(findDeliver).orders.push(order)
+      //   // console.log()
+      //   // if(_.findIndex(delivers, function(o) { return o.Name == order.deliver; }) == -1){
+      //     // console.log(order.deliver)
+      //   // }
+      //
+      // })
+      // console.log(delivers)
 
       // 初始化司机order list
       // _.forEach(lo_fdata.drivers,function(driver) {
@@ -142,6 +153,9 @@ angular.module('MetronicApp')
 			// 	}
 			// });
 		};
+    function setDriverArea(){
+
+    }
 	};
 
 
@@ -177,7 +191,6 @@ angular.module('MetronicApp')
 		// 	// console.log(dashboardService.timeout)
 		// },1000)
 		// audio.play();
-    console.log(lo_fdata.new_order)
 		// $interval(function() {
 		// 	if(lo_fdata.new_order.length + lo_fdata.change_addr_order.length + lo_fdata.new_user_order.length > 0 ){
 		// 			audio.play();
