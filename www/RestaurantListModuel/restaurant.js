@@ -1,9 +1,10 @@
+<<<<<<< HEAD:www/RestaurantList/restaurant.js
 
 
 /* Setup blank page controller */
 angular.module('MetronicApp')
 	.controller('RestaurantListController', ['$rootScope', '$scope', 'settings', function($rootScope, $scope, settings) {
-	    $scope.$on('$viewContentLoaded', function() {   
+	    $scope.$on('$viewContentLoaded', function() {
 	        // initialize core components
 	        App.initAjax();
 
@@ -14,6 +15,11 @@ angular.module('MetronicApp')
 	    });
 }])
 .factory('Restaurants', function() {
+=======
+var myApp = angular.module('myApp', []);
+
+myApp.factory('Restaurants', function() {
+>>>>>>> 52dfd7a3372f09ad07fc8fe3b8f6a9d691c201c9:www/RestaurantListModuel/restaurant.js
   var RestaurantList = {};
   RestaurantList.item = [{
     rd: "139",
@@ -160,98 +166,135 @@ angular.module('MetronicApp')
   //return RestaurantList.item;
 })
 
+  function isCurrentCateArea(area){
+    return $scope.currentArea!== null  && restaurant.area===area;
+  }
+
+<<<<<<< HEAD:www/RestaurantList/restaurant.js
 
 
 
 
 function RestaurantsCtrl($scope, Restaurants) {
+=======
+  function RestaurantsCtrl($scope, Restaurants) {
+>>>>>>> 52dfd7a3372f09ad07fc8fe3b8f6a9d691c201c9:www/RestaurantListModuel/restaurant.js
   //
-  $scope.search = {};
-  $scope.SearchOptions = [{
-    "optionName": "RID",
-    "value": "rd"
-  }, {
-    "optionName": "Restaurant Name",
-    "value": "name"
-  }, {
-    "optionName": "Restaurant Address",
-    "value": "address"
-  }, {
-    "optionName": "Telephone",
-    "value": "tel"
-  }, {
-    "optionName": "Open Hour",
-    "value": "openhour"
-  }, {
-    "optionName": "Area",
-    "value": "area"
-  }, ];
-  $scope.change = function(selected) {
-    //do if's in case you use null or empty values
-    console.log(selected)
-    if (selected == Select) {}
-    if (selected = SearchOption.optionName) {
-      return selected;
-    }
-  }
-
-  $scope.clearSearch = function() {
-    $scope.search = null;
     $scope.search = {};
-  }
 
- $scope.GetItem=function(restaurant){
-  var showitem ='123';
-  showitem={};
-  showitem.rd= restaurant.rd;
-  showitem.name= restaurant.name;
-  showitem.address= restaurant.address;
-  showitem.tel= restaurant.tel;
-  showitem.openhour= restaurant.openhour;
-  showitem.area= restaurant.area;
-  $scope.showitem=showitem;
- }
+    $scope.SearchOptions = [{
+      "optionName": "RID",
+      "value": "rd"
+    }, {
+      "optionName": "Restaurant Name",
+      "value": "name"
+    }, {
+      "optionName": "Restaurant Address",
+      "value": "address"
+    }, {
+      "optionName": "Telephone",
+      "value": "tel"
+    }, {
+      "optionName": "Open Hour",
+      "value": "openhour"
+    }, {
+      "optionName": "Area",
+      "value": "area"
+    },
+    ];
+    $scope.singleSelect = $scope.SearchOptions[1].value;
+    $scope.change = function(selected) {
+      //do if's in case you use null or empty values
+      console.log(selected)
+      if (selected == Select) {}
+      if (selected = SearchOption.optionName) {
+        return selected;
+      }
+    }
 
-  $scope.restaurants = [];
-  for (i = 0; i < Restaurants.item.length; i++) {
-    var data = {}
-    data.rd = Restaurants.item[i].rd;
-    data.name = Restaurants.item[i].name;
-    data.address = Restaurants.item[i].address;
-    data.tel = Restaurants.item[i].tel;
-    data.openhour = Restaurants.item[i].openhour;
-    data.area = Restaurants.item[i].area;
-    $scope.restaurants.push(data)
+    $scope.clearSearch = function() {
+      $scope.search = null;
+      $scope.search = {};
+    }
+    var showitem ={};
+    var reset= {};
+    $scope.GetItem=function(restaurant){
+      showitem.rd= restaurant.rd;
+      showitem.name= restaurant.name;
+      showitem.address= restaurant.address;
+      showitem.tel= restaurant.tel;
+      showitem.openhour= restaurant.openhour;
+      showitem.area= restaurant.area;
+      reset.rd= restaurant.rd;
+      reset.name= restaurant.name;
+      reset.address= restaurant.address;
+      reset.tel= restaurant.tel;
+      reset.openhour= restaurant.openhour;
+      reset.area= restaurant.area;
+      $scope.showitem=showitem;
+      $scope.reset = resetiem;
+   }
+     $scope.ResetItem = function(restaurant){
+       showitem.rd=reset.rd;
+       showitem.name= reset.name;
+       showitem.address=reset.address;
+       showitem.tel= reset.tel;
+       showitem.openhour=reset.openhour;
+       showitem.area= reset.area;
+     }
 
-  }
-  var isClicked;
-  var Highlightarea;
-  $scope.addBackGroundColor = function(area) {
-    console.log($scope.showitem)
-    if (!isClicked) {
-      isClicked = true;
-      Highlightarea = area;
-      for (i = 0; i < $scope.restaurants.length; i++) {
-        if ($scope.restaurants[i].area == area) {
-          $scope.restaurants[i].style = {
-            "background-color": "#ff0000",
-            "color": "#ffffff",
+      $scope.restaurants = [];
+      for (i = 0; i < Restaurants.item.length; i++) {
+        var data = {}
+        data.rd = Restaurants.item[i].rd;
+        data.name = Restaurants.item[i].name;
+        data.address = Restaurants.item[i].address;
+        data.tel = Restaurants.item[i].tel;
+        data.openhour = Restaurants.item[i].openhour;
+        data.area = Restaurants.item[i].area;
+        $scope.restaurants.push(data)
+
+      }
+
+      $scope.selectArea = function(area){
+        for (i=0; i< $scope.restaurants.length; i++){
+          if ($scope.restaurants[i].area !=area){
+            $scope.restaurants[i]=[];
           }
         }
       }
-    } else {
-      isClicked = false;
-      for (i = 0; i < $scope.restaurants.length; i++) {
-        if ($scope.restaurants[i].area == Highlightarea) {
-          $scope.restaurants[i].style = {}
-        }
+      $scope.editandSubmit = function(){
 
       }
-      if (Highlightarea != area)
-        for (i = 0; i < $scope.restaurants.length; i++) {
-          $scope.addBackGroundColor(area)
-        }
-    }
-  }
 
+
+      var isClicked;
+      var Highlightarea;
+      $scope.addBackgroudColor = function(area) {
+      console.log($scope.showitem)
+      if (!isClicked) {
+        isClicked = true;
+        Highlightarea = area;
+        for (i = 0; i < $scope.restaurants.length; i++) {
+          if ($scope.restaurants[i].area== area) {
+            $scope.restaurants[i].style= {
+              "background-color": "#ff0000",
+              "color": "#ffffff",
+            }
+          }
+        }
+      } else {
+        isClicked = false;
+        for (i = 0; i < $scope.restaurants.length; i++) {
+          if ($scope.restaurants[i].area == Highlightarea) {
+            $scope.restaurants[i].style={}
+          }
+
+        }
+        if (Highlightarea != area)
+          for (i = 0; i < $scope.restaurants.length; i++) {
+            $scope.addBackgroudColor(area)
+          }
+        }
+      }
 }
