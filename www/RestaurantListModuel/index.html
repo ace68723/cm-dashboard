@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>RestaurantList</title>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+  <script type="text/javascript" src="./restaurant.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+  <div ng-controller="RestaurantsCtrl">
+    <p>Search</p>
+    <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
+      <option ng-repeat="option in SearchOptions"
+              value="{{option.value}}"
+              ng-selected= "{{option.value == singleSelect}}"> {{option.optionName}}
+      </option>
+    </select>
+    <p>
+      <input type="text" ng-model="search[singleSelect]">
+    </p>
+    <button ng-click="clearSearch()">Clear</button>
+    <br>
+    <br>
+    <form ng-submit='editandSubmit()'>
+      <div>
+        <label>
+          RID:
+          <input type="text" ng-model="showitem.rd">
+        </label>
+        <br>
+        <label>
+          Name:
+          <input type="text" ng-model="showitem.name">
+        </label>
+        <br>
+        <label>
+          Address:
+          <input type="text" ng-model="showitem.address">
+        </label>
+        <br>
+        <label>
+          Telephone:
+          <input type="text" ng-model="showitem.tel">
+        </label>
+        <br>
+        <label>
+          Open Hour:
+          <input type="text" ng-model="showitem.openhour">
+        </label>
+        <br>
+        <label>
+          Area:
+          <input type="text" ng-model="showitem.area">
+        </label>
+        <br>
+        <br>
+        <button type = "submit"> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type = 'button' ng-click = "ResetItem(restaurant)">Reset </button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type = 'button' ng-click = "GetItem('null')">Cancel </button>
+      </div>
+    </form>
+    <br>
+    <table>
+      <input value="North York" ng-click="areaSelect = {area: 'North York'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Markham" ng-click="areaSelect = {area: 'Markham'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="All" ng-click="areaSelect = null; clearSearch()" type="button"/>
+      <tr>
+        <th>RID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Tel</th>
+        <th>Open Hour</th>
+        <th>Area</th>
+      </tr>
+
+      <tr ng-repeat="(id,restaurant) in restaurants|filter: search|filter:areaSelect" ng-style="restaurant.style">
+        <td>{{restaurant.rd}}</td>
+        <td>{{restaurant.name}}</td>
+        <td>{{restaurant.address}}</td>
+        <td>{{restaurant.tel}}</td>
+        <td>{{restaurant.openhour}}</td>
+        <td>{{restaurant.area}}</td>
+        <td><button ng-click= "GetItem(restaurant)">edit</button>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
