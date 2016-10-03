@@ -98,7 +98,7 @@ angular.module('MetronicApp')
           }
         }
       })
-      console.log(lo_fdata.delivers)
+      // console.log(lo_fdata.delivers)
 			// console.log(lo_fdata.delivering_order)
 
 			// 初始化司机order list

@@ -11,7 +11,7 @@
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
     <p>Search</p>
-    <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
+    <select name="singleSelect" ng-model="singleSelect"  ng-change="rlc.clearSearch()">
       <option ng-repeat="option in SearchOptions"
               value="{{option.value}}"
               ng-selected= "{{option.value == singleSelect}}"> {{option.optionName}}
@@ -20,10 +20,10 @@
     <p>
       <input type="text" ng-model="search[singleSelect]">
     </p>
-    <button ng-click="clearSearch()">Clear</button>
+    <button ng-click="rlc.clearSearch()">Clear</button>
     <br>
     <br>
-    <form ng-submit='editandSubmit()'>
+    <form ng-submit='rlc.editandSubmit()'>
       <div>
         <label>
           RID:
@@ -57,8 +57,8 @@
         <br>
         <br>
         <button type = "submit"> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type = 'button' ng-click = "ResetItem(restaurant)">Reset </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type = 'button' ng-click = "GetItem('null')">Cancel </button>
+        <button type = 'button' ng-click = "rlc.ResetItem(restaurant)">Reset </button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type = 'button' ng-click = "rlc.GetItem('null')">Cancel </button>
       </div>
     </form>
     <br>
@@ -67,7 +67,7 @@
       <input value="Markham" ng-click="areaSelect = {area: 'Markham'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input value="All" ng-click="areaSelect = null; clearSearch()" type="button"/>
+      <input value="All" ng-click="areaSelect = null; rlc.clearSearch()" type="button"/>
       <tr>
         <th>RID</th>
         <th>Name</th>
@@ -84,7 +84,7 @@
         <td>{{restaurant.tel}}</td>
         <td>{{restaurant.openhour}}</td>
         <td>{{restaurant.area}}</td>
-        <td><button ng-click= "GetItem(restaurant)">edit</button>
+        <td><button ng-click= "rlc.GetItem(restaurant)">edit</button>
       </tr>
     </table>
   </div>

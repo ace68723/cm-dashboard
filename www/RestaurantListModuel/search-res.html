@@ -22,12 +22,15 @@
           <br>
           <table>
 
-            <button type="button" ng-click="rlc.addBackGroundColor('Scarborough')"class="btn btn-circle blue btn-outline" style="margin-right: 40px;">Scarborough</button> &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('North York')" class="btn btn-circle green btn-outline" style="margin-right: 40px;">North York</button> &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('Markham')" class="btn btn-circle yellow btn-outline" style="margin-right: 40px;">Markham</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('Downtown')" class="btn btn-circle purple btn-outline" style="margin-right: 40px;">Downtown</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" ng-click="rlc.addBackGroundColor('Richmond Hill')" class="btn btn-circle red btn-outline" style="margin-right: 40px;">Richmond Hill</button>
-
+            <button type="button" ng-click="areaSelect = {area: 'Scarborough'}"class="btn btn-circle blue btn-outline" style="margin-right: 40px;">Scarborough</button> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="areaSelect = {area: 'North York'}" class="btn btn-circle green btn-outline" style="margin-right: 40px;">North York</button> &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="areaSelect = {area: 'Markham'}" class="btn btn-circle yellow btn-outline" style="margin-right: 40px;">Markham</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="areaSelect = {area: 'Downtown'}" class="btn btn-circle purple btn-outline" style="margin-right: 40px;">Downtown</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn btn-circle red btn-outline" style="margin-right: 40px;">Richmond Hill</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" ng-click="areaSelect = null; rlc.clearSearch()" class="btn btn-circle dark btn-outline" style="margin-right: 40px;">All</button>
+            
+           <!--  <input value="All" ng-click="areaSelect = null; rlc.clearSearch()" type="button"/>
+ -->
           <table class="table table-striped table-bordered table-hover" id="sample_1" style="margin-top: 20px;">
               <thead>
                   <tr>
@@ -41,7 +44,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr ng-repeat="(id,restaurant) in rlc.restaurants|filter: rlc.search" ng-style="restaurant.style">
+                  <tr ng-repeat="(id,restaurant) in rlc.restaurants|filter: rlc.search|filter:areaSelect" ng-style="restaurant.style">
                     <td>{{restaurant.rid}}</td>
                     <td>{{restaurant.name}}</td>
                     <td>{{restaurant.address}}</td>
@@ -81,6 +84,11 @@
 
             </tbody>
         </table>
+          <br>
+          <button type = "submit"> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type = 'button' ng-click = "rlc.ResetItem(restaurant)">Reset </button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type = 'button' ng-click = "rlc.GetItem('null')">Cancel </button>
+        </div>
       </br>
 
     </div>

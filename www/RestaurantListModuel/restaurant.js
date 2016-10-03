@@ -1,25 +1,7 @@
-<<<<<<< HEAD:www/RestaurantList/restaurant.js
 
-
-/* Setup blank page controller */
-angular.module('MetronicApp')
-	.controller('RestaurantListController', ['$rootScope', '$scope', 'settings', function($rootScope, $scope, settings) {
-	    $scope.$on('$viewContentLoaded', function() {
-	        // initialize core components
-	        App.initAjax();
-
-	        // set default layout mode
-	        // $rootScope.settings.layout.pageContentWhite = true;
-	        // $rootScope.settings.layout.pageBodySolid = false;
-	        // $rootScope.settings.layout.pageSidebarClosed = true;
-	    });
-}])
-.factory('Restaurants', function() {
-=======
 var myApp = angular.module('myApp', []);
 
 myApp.factory('Restaurants', function() {
->>>>>>> 52dfd7a3372f09ad07fc8fe3b8f6a9d691c201c9:www/RestaurantListModuel/restaurant.js
   var RestaurantList = {};
   RestaurantList.item = [{
     rd: "139",
@@ -170,15 +152,9 @@ myApp.factory('Restaurants', function() {
     return $scope.currentArea!== null  && restaurant.area===area;
   }
 
-<<<<<<< HEAD:www/RestaurantList/restaurant.js
 
-
-
-
-function RestaurantsCtrl($scope, Restaurants) {
-=======
   function RestaurantsCtrl($scope, Restaurants) {
->>>>>>> 52dfd7a3372f09ad07fc8fe3b8f6a9d691c201c9:www/RestaurantListModuel/restaurant.js
+
   //
     $scope.search = {};
 
