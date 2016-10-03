@@ -10,27 +10,64 @@
 <body>
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
-      <p>Search</p>
+    <p>Search</p>
     <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
-      <option ng-repeat="item in SearchOptions" value="{{item.value}}"> {{item.optionName}}
+      <option ng-repeat="option in SearchOptions"
+              value="{{option.value}}"
+              ng-selected= "{{option.value == singleSelect}}"> {{option.optionName}}
       </option>
     </select>
-
-
-
     <p>
       <input type="text" ng-model="search[singleSelect]">
     </p>
-
-
     <button ng-click="clearSearch()">Clear</button>
     <br>
     <br>
+    <form ng-submit='editandSubmit()'>
+      <div>
+        <label>
+          RID:
+          <input type="text" ng-model="showitem.rd">
+        </label>
+        <br>
+        <label>
+          Name:
+          <input type="text" ng-model="showitem.name">
+        </label>
+        <br>
+        <label>
+          Address:
+          <input type="text" ng-model="showitem.address">
+        </label>
+        <br>
+        <label>
+          Telephone:
+          <input type="text" ng-model="showitem.tel">
+        </label>
+        <br>
+        <label>
+          Open Hour:
+          <input type="text" ng-model="showitem.openhour">
+        </label>
+        <br>
+        <label>
+          Area:
+          <input type="text" ng-model="showitem.area">
+        </label>
+        <br>
+        <br>
+        <button type = "submit"> Submit </button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type = 'button' ng-click = "ResetItem(restaurant)">Reset </button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type = 'button' ng-click = "GetItem('null')">Cancel </button>
+      </div>
+    </form>
+    <br>
     <table>
-      <button type="button" ng-click="addBackGroundColor('North York')">North York</button> &nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" ng-click="addBackGroundColor('Markham')">Markham</button>&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" ng-click="addBackGroundColor('Downtown')">Downtown</button>&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" ng-click="addBackGroundColor('Richmond Hill')">Richmond Hill</button>
+      <input value="North York" ng-click="areaSelect = {area: 'North York'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Markham" ng-click="areaSelect = {area: 'Markham'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="All" ng-click="areaSelect = null; clearSearch()" type="button"/>
       <tr>
         <th>RID</th>
         <th>Name</th>
@@ -40,7 +77,7 @@
         <th>Area</th>
       </tr>
 
-      <tr ng-repeat="(id,restaurant) in restaurants|filter: search" ng-style="restaurant.style">
+      <tr ng-repeat="(id,restaurant) in restaurants|filter: search|filter:areaSelect" ng-style="restaurant.style">
         <td>{{restaurant.rd}}</td>
         <td>{{restaurant.name}}</td>
         <td>{{restaurant.address}}</td>
@@ -49,36 +86,7 @@
         <td>{{restaurant.area}}</td>
         <td><button ng-click= "GetItem(restaurant)">edit</button>
       </tr>
-
+    </table>
+  </div>
 </div>
-<br>
-<label>
-    RID:
-      <input type="text" value={{showitem.rd}}>
-</label>
-<br>
-<label>
-    Name:
-    <input type="text" value={{showitem.name}}>
-</label>
-<br>
-<label>
-    Address:
-    <input type="text" value={{showitem.address}}>
-</label>
-<br>
-<label>
-    Telephone:
-    <input type="text" value={{showitem.tel}}>
-</label>
-<br>
-<label>
-    Open Hour:
-    <input type="text" value={{showitem.openhour}}>
-</label>
-<br>
-<label>
-    Area:
-      <input type="text" value={{showitem.area}}>
-</label>
 </body>
