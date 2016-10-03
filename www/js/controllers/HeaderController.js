@@ -1,9 +1,9 @@
 
-angular.module('MetronicApp').controller('HeaderController', function(dashboardService,$rootScope, $scope, $http, $location,$timeout,$interval,$modal, $log,AlertService,auth,dashboardService) {
+angular.module('MetronicApp').controller('HeaderController', function(dashboardService,$rootScope, $scope, $http,$timeout,$interval,$modal, $log,AlertService,auth,dashboardService) {
     var HeaderController = this;
     // var ll = dashboardService.get();
-   
-    $scope.$on('$viewContentLoaded', function() {   
+
+    $scope.$on('$viewContentLoaded', function() {
         // initialize core components
         App.initAjax();
     });
@@ -12,21 +12,21 @@ angular.module('MetronicApp').controller('HeaderController', function(dashboardS
     $rootScope.settings.layout.pageContentWhite = true;
     $rootScope.settings.layout.pageBodySolid = false;
     $rootScope.settings.layout.pageSidebarClosed = true;
-    
+
     $timeout(function() {
         HeaderController.order_data = dashboardService.get_orders();
-        
+
     }, 1000);
     get_notes();
     function get_notes() {
         $http({
           method: 'GET',
           url: 'https://www.chanmao.ca/index.php?r=MobMonitor/CsLoad',
-          
+
         }).then(function successCallback(response) {
-            
-            HeaderController.notes = response.data.ea_cate; 
-            
+
+            HeaderController.notes = response.data.ea_cate;
+
           }, function errorCallback(response) {
            // alertService.alert(response);
           });
@@ -48,19 +48,19 @@ angular.module('MetronicApp').controller('HeaderController', function(dashboardS
           },
           data:CsNotes
         })  .then(function successCallback(response) {
-              
-              
+
+
               var data = response.data
               // console.log('success:',data)
 
             }, function errorCallback(response) {
-              
+
               // console.log('error:',response)
 
             });
 
     };
-      
+
     $scope.open = function(size){
         var modalInstance = $modal.open(
         {
@@ -75,7 +75,7 @@ angular.module('MetronicApp').controller('HeaderController', function(dashboardS
                 }
             }
         });
-          
+
         modalInstance.result.then(function(notes_data)
         {
             $scope.data = notes_data;
@@ -87,8 +87,11 @@ angular.module('MetronicApp').controller('HeaderController', function(dashboardS
         });
     };
     HeaderController.logout = function() {
-    // console.log("log out");
         auth.logout()
     };
+    $interval(function () {
+        HeaderController.currentTime = moment().format('HH:mm:ss ');
+    }, 1000);
+
 
 });

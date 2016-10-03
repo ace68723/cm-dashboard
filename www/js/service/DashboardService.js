@@ -7,7 +7,7 @@ angular.module('MetronicApp')
   	// dashboardService.timeout = 0;
   	var stop;
 	dashboardService.get_init = function  () {
-		get_API();
+
 		// lo_data.account = 0;
 		if(stop){
 			$interval.cancel(stop);
@@ -19,9 +19,12 @@ angular.module('MetronicApp')
     // get driver list from local csv file
     json2csv.ConvertToJSON()
     .then(function (result) {
-      la_delivers = result.data
+      lo_fdata.delivers = result.data;
+      _.remove(lo_fdata.delivers, function(n) {return !n.area});
+       get_API();
     })
 	}
+
 	function get_API() {
 		$http({
 		  method: 'GET',
@@ -29,19 +32,11 @@ angular.module('MetronicApp')
 		}).then(function successCallback(response) {
 			lo_data.orders = response.data.ea_orders;
 			lo_data.statas = response.data.ea_stats;
-      json2csv.ConvertToJSON()
-      .then(function (result) {
-        lo_fdata.delivers = result.data;
-        _.remove(lo_fdata.delivers, function(n) {return !n.area});
          setOrders();
-      })
-
 		}, function errorCallback(response) {
 		   // alertService.alert(response);
 		});
-    function findDeliver(deliver) {
-        return deliver.Name === "Nathan";
-    }
+
 		function setOrders() {
 			lo_fdata.new_order = [];
 			lo_fdata.change_addr_order = [];
@@ -82,80 +77,25 @@ angular.module('MetronicApp')
 					  break;
 				}
       });
-
+      _.forEach(lo_fdata.delivers,function (deliver,key) {
+        deliver.orders = [];
+        deliver.alert = 0;
+      })
       _.forEach(lo_fdata.delivering_order, function (order, key) {
         var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
           return deliver.driver_id == order.driver_id;
         });
         if(deliver_index == -1){
-          alert("Can't find deliver "+ order.deliver);
+          // alert("Can't find deliver "+ order.deliver);
         }else{
-          if(!lo_fdata.delivers[deliver_index].orders){
-              lo_fdata.delivers[deliver_index].orders = [];
-              lo_fdata.delivers[deliver_index].orders.push(order)
-          }else{
-            lo_fdata.delivers[deliver_index].orders.push(order)
+          lo_fdata.delivers[deliver_index].orders.push(order)
+          if(order.alert == 1){
+            lo_fdata.delivers[deliver_index].alert += 1
           }
         }
       })
-      console.log(lo_fdata.delivers)
-			// console.log(lo_fdata.delivering_order)
-
-			// 初始化司机order list
-			// _.forEach(delivers,function(driver) {
-			// 	driver.orders = [];
-			// })
-      //
-      //
-      // _.forEach(lo_fdata.delivering_order,function(order) {
-      //   console.log(order)
-      //   // console.log(delivers)
-      //   // delivers.find(findDeliver).orders.push(order)
-      //   // console.log()
-      //   // if(_.findIndex(delivers, function(o) { return o.Name == order.deliver; }) == -1){
-      //     // console.log(order.deliver)
-      //   // }
-      //
-      // })
-      // console.log(delivers)
-
-      // 初始化司机order list
-      // _.forEach(lo_fdata.drivers,function(driver) {
-      //   driver.orders = [];
-      // })
-
-
-			// 分配order到司机 order list
-			// _.forEach(lo_fdata.delivering_order,function(order) {
-			//    	var driver_index = _.findIndex(lo_fdata.drivers, function(driver) {
-			// 	  return driver.deliver == order.deliver;
-			// 	});
-			// 	if(driver_index == '-1'){
-			// 		var driver = {}
-			// 		driver.deliver = order.deliver;
-			// 		driver.orders = [];
-			// 		driver.orders.push(order)
-			// 		lo_fdata.drivers.push(driver)
-			// 	}else{
-			// 		var driver_order_index = _.findIndex(lo_fdata.drivers, function(driver) {
-			// 			return driver.deliver == order.deliver;
-			// 		});
-			// 		lo_fdata.drivers[driver_index].orders.push(order)
-			// 	}
-			// });
-
-
-
-			// 从司机表中移除无单的司机
-			// _.forEach(lo_fdata.drivers,function(driver,key) {
-			// 	if(driver.orders.length == 0){
-			// 		lo_fdata.drivers.splice(key,1);
-			// 	}
-			// });
 		};
-    function setDriverArea(){
 
-    }
 	};
 
 

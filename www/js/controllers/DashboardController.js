@@ -21,7 +21,6 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 		DashCtrl.f_data = dashboardService.get_fomat();
 	 $timeout(function() {
 			console.log(DashCtrl.f_data)
-			// console.log("test fomat", DashCtrl.f_data.reject_order);
 		}, 1000);
 
 

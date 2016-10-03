@@ -534,14 +534,17 @@
 		   <!-- BEGIN 司机  -->
 		   <div style="height:{{dc.h}}px;width:100%;border:0px ;overflow:auto;">
 			  <div class="portlet-body">
-				 <div class="panel-group accordion" id="accordion3" >
-           <div class="btn-group btn-group-circle btn-group-justified">
-               <a href="javascript:;" class="btn green btn-outline"> Left </a>
-               <a href="javascript:;" class="btn green btn-outline"> Middle </a>
-               <a href="javascript:;" class="btn green btn-outline"> Right </a>
+				 <div class="panel-group accordion" id="accordion3">
+           <div class="btn-group btn-group-circle btn-group-justified"
+					 			style="margin-top: 14px;margin-bottom: 10px;"
+					      ng-init="selectedArea.area = 'ny'">
+               <a  ng-class="{'active':selectedArea.area == 'ny'}" ng-click="selectedArea = {area: 'ny'}" class=" btn green btn-outline"> NY </a>
+               <a  ng-class="{'active':selectedArea.area == 'sc'}" ng-click="selectedArea = {area: 'sc'}"class="btn green btn-outline"> SC </a>
+               <a  ng-class="{'active':selectedArea.area == 'dt'}" ng-click="selectedArea = {area: 'dt'}"class="btn green btn-outline"> DT </a>
+							 <a  ng-class="{'active':selectedArea.area == null}" ng-click="selectedArea = {}"class="btn green btn-outline"> ALL </a>
            </div>
 					<div class="panel panel-default"
-						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:'hour'"
+						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:'hour'|filter:selectedArea"
 						 overflow="hidden"
 						 style="margin-top: 0px;">
 						   <div class=" driver_heading" >
@@ -554,7 +557,7 @@
 								<span style="float: left;font-size: 29px;margin-top: -7px;padding-right: 10px;">+</span>
 								{{deliver.name}}
 								<span style="float: center;">{{deliver.hour}}</span>
-
+								<span ng-if="deliver.alert>0">超时:{{deliver.alert}}单</span>
 								<span ng-if="deliver.orders.length>0"style="float: right;">{{deliver.orders.length}}单</span>
 								<span ng-if="!deliver.orders.length"style="float: right;">0单</span>
 								</a>
