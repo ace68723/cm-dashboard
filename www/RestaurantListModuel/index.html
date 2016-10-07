@@ -10,7 +10,7 @@
 <body>
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
-    <p>Search</p>
+    <p>Search {{singleSelect}}</p>
     <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
       <option ng-repeat="option in SearchOptions"
               value="{{option.value}}"
@@ -67,7 +67,8 @@
       <input value="Markham" ng-click="areaSelect = {area: 'Markham'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input value="All" ng-click="areaSelect = null; clearSearch()" type="button"/>
+      {{areaSelect}}
+      <input value="All" ng-click="areaSelect =null; clearSearch()" type="button"/>
       <tr>
         <th>RID</th>
         <th>Name</th>
@@ -85,6 +86,7 @@
         <td>{{restaurant.openhour}}</td>
         <td>{{restaurant.area}}</td>
         <td><button ng-click= "GetItem(restaurant)">edit</button>
+          {{restaurant.id}}
       </tr>
     </table>
   </div>

@@ -147,10 +147,6 @@ myApp.factory('Restaurants', function() {
   //return RestaurantList.item;
 })
 
-  function isCurrentCateArea(area){
-    return $scope.currentArea!== null  && restaurant.area===area;
-  }
-
   function RestaurantsCtrl($scope, Restaurants) {
   //
     $scope.search = {};
@@ -192,6 +188,7 @@ myApp.factory('Restaurants', function() {
     var showitem ={};
     var reset= {};
     $scope.GetItem=function(restaurant){
+      console.log(showitem.rd)
       showitem.rd= restaurant.rd;
       showitem.name= restaurant.name;
       showitem.address= restaurant.address;
@@ -205,7 +202,9 @@ myApp.factory('Restaurants', function() {
       reset.openhour= restaurant.openhour;
       reset.area= restaurant.area;
       $scope.showitem=showitem;
-      $scope.reset = resetiem;
+      $scope.reset = reset;
+      console.log(showitem.rd)
+
    }
      $scope.ResetItem = function(restaurant){
        showitem.rd=reset.rd;
@@ -228,7 +227,6 @@ myApp.factory('Restaurants', function() {
         $scope.restaurants.push(data)
 
       }
-
       $scope.selectArea = function(area){
         for (i=0; i< $scope.restaurants.length; i++){
           if ($scope.restaurants[i].area !=area){
@@ -236,10 +234,6 @@ myApp.factory('Restaurants', function() {
           }
         }
       }
-      $scope.editandSubmit = function(){
-
-      }
-
 
       var isClicked;
       var Highlightarea;
