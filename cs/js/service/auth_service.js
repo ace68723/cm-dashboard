@@ -16,14 +16,13 @@ angular.module('MetronicApp')
     var res_code;
     var cachedState_key;
 
-   
+
     auth.setToken = function(token) {
         cachedToken = token;
         storage.setItem('userToken', token);
     };
     auth.setState_key = function (token) {
         cachedState_key = '\"' + token + '\"' ;
-        console.log(cachedState_key)
         storage.setItem('state.key_-userToken', cachedState_key);
     }
 
@@ -40,7 +39,7 @@ angular.module('MetronicApp')
         cachedToken = null;
     };
 
-    
+
     auth.doAuth = function() {
         var $http =  $injector.get('$http')
         $http.get(API_URL + 'MobMonitor/Auth').
@@ -55,17 +54,17 @@ angular.module('MetronicApp')
                     // window.location="../cs/index.html"
                 }else{
                     console.log('remove token')
-                    auth.removeToken(); 
-                     window.location="./login.html"
+                    auth.removeToken();
+                     window.location="login.html"
                 }
-                
+
             })
             .error(function(data, status, headers,conifg) {
                 console.log('error send res code')
             });
 
     }
-    
+
     auth.login = function (username,password) {
         var $http =  $injector.get('$http')
         var eo_data = {};
@@ -77,16 +76,16 @@ angular.module('MetronicApp')
           url: API_URL+'/MobMonitor/Login',
           data:eo_data
         }).then(function successCallback(response) {
-            
+
             console.log(response);
             var lo_data = response.data;
-            
-            
+
+
             if(lo_data.ev_result==0){
                 auth.setToken(lo_data.ev_token);
                  auth.setState_key(lo_data.ev_token);
-                 // window.location="../cs/index.html"
-                 window.location="./index.html"
+                 // window.location=".cs/index.html"
+                 window.location="index.html"
 
             }else{
                 console.log('用户名或密码错误')
@@ -101,8 +100,8 @@ angular.module('MetronicApp')
     }
     auth.logout = function() {
         auth.removeToken();
-        // window.location="../cs/login.html"
-        window.location="./login.html"
+        // window.location=".cs/login.html"
+        window.location="login.html"
     };
     auth.authenticaton = function () {
         var $http =  $injector.get('$http')
@@ -114,10 +113,10 @@ angular.module('MetronicApp')
             if(lo_data.ev_result==0){
                 $location.path('/dashboard.html');
             }else{
-               
+
                 auth.removeToken();
                 // window.location="../cs/login.html"
-                window.location="../login.html"
+                window.location="login.html"
                 alert("请重新输入用户名和密码");
             }
 

@@ -6,6 +6,7 @@ angular.module('MetronicApp')
   var la_delivers;
   	// dashboardService.timeout = 0;
   	var stop;
+
 	dashboardService.get_init = function  () {
 
 		// lo_data.account = 0;
@@ -17,12 +18,7 @@ angular.module('MetronicApp')
 		},30000)
 
     // get driver list from local csv file
-    json2csv.ConvertToJSON()
-    .then(function (result) {
-      lo_fdata.delivers = result.data;
-      _.remove(lo_fdata.delivers, function(n) {return !n.area});
-       get_API();
-    })
+    get_API();
 	}
 
 	function get_API() {
@@ -32,7 +28,13 @@ angular.module('MetronicApp')
 		}).then(function successCallback(response) {
 			lo_data.orders = response.data.ea_orders;
 			lo_data.statas = response.data.ea_stats;
-         setOrders();
+
+         json2csv.ConvertToJSON()
+         .then(function (result) {
+           lo_fdata.delivers = result.data;
+           _.remove(lo_fdata.delivers, function(n) {return !n.area});
+            setOrders();
+         })
 		}, function errorCallback(response) {
 		   // alertService.alert(response);
 		});
@@ -120,23 +122,22 @@ angular.module('MetronicApp')
 	}
 	var audio = new Audio('audio/pikapi.wav');
 	function play_audio () {
-		// dashboardService.timeout = 30;
-		// var timeout = $interval(function() {
-		// 	if(dashboardService.timeout > 0){
-		// 		dashboardService.timeout  -= 1
+		dashboardService.timeout = 30;
+		var timeout = $interval(function() {
+			if(dashboardService.timeout > 0){
+				dashboardService.timeout  -= 1
 
-		// 	}else{
-		// 		$interval.cancel(timeout);
-		// 	}
-		// 	// console.log(dashboardService.timeout)
-		// },1000)
-		// audio.play();
-		// $interval(function() {
-		// 	if(lo_fdata.new_order.length + lo_fdata.change_addr_order.length + lo_fdata.new_user_order.length > 0 ){
-		// 			audio.play();
-    //
-		// 	}
-		// },30000)
+			}else{
+				$interval.cancel(timeout);
+			}
+			// console.log(dashboardService.timeout)
+		},1000)
+		audio.play();
+		$interval(function() {
+			if(lo_fdata.new_order.length + lo_fdata.change_addr_order.length + lo_fdata.new_user_order.length > 0 ){
+					audio.play();
+			}
+		},30000)
 	}
 	play_audio();
   return dashboardService

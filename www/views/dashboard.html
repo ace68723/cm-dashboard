@@ -53,12 +53,11 @@
 						 <div class="portlet-body order_body">
 
 							   <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-								   <div class="col-md-2 nonepadding">
-									   餐馆
-								   </div>
-								   <div class="col-md-9 nonepadding">
+								   <div class="col-md-7 nonepadding">
 									  {{order.rrname}}
+								   </div>
+									 <div class="col-md-5 nonepadding">
+									  {{order.r_cell}}
 								   </div>
 							   </div>
 
@@ -149,12 +148,12 @@
 
 								   <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-									   <div class="col-md-2 nonepadding">
-										   餐馆
-									   </div>
-									   <div class="col-md-9 nonepadding">
-										  {{order.rrname}}
-									   </div>
+										 <div class="col-md-7 nonepadding">
+											{{order.rrname}}
+										 </div>
+										 <div class="col-md-5 nonepadding">
+											{{order.r_cell}}
+										 </div>
 								   </div>
 
 								   <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -249,12 +248,12 @@
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-							  <div class="col-md-2 nonepadding">
-								  餐馆
-							  </div>
-							  <div class="col-md-9 nonepadding">
+								<div class="col-md-7 nonepadding">
 								 {{order.rrname}}
-							  </div>
+								</div>
+								<div class="col-md-5 nonepadding">
+								 {{order.r_cell}}
+								</div>
 						  </div>
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -357,12 +356,12 @@
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-							  <div class="col-md-2 nonepadding">
-								  餐馆
-							  </div>
-							  <div class="col-md-9 nonepadding">
+								<div class="col-md-7 nonepadding">
 								 {{order.rrname}}
-							  </div>
+								</div>
+								<div class="col-md-5 nonepadding">
+								 {{order.r_cell}}
+								</div>
 						  </div>
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -463,12 +462,12 @@
 
                <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-                 <div class="col-md-2 nonepadding">
-                   餐馆
-                 </div>
-                 <div class="col-md-9 nonepadding">
-                  {{order.rrname}}
-                 </div>
+								 <div class="col-md-7 nonepadding">
+								 {{order.rrname}}
+								</div>
+								<div class="col-md-5 nonepadding">
+								 {{order.r_cell}}
+								</div>
                </div>
 
                <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -541,7 +540,7 @@
                <a  ng-class="{'active':selectedArea.area == 'ny'}" ng-click="selectedArea = {area: 'ny'}" class=" btn green btn-outline"> NY </a>
                <a  ng-class="{'active':selectedArea.area == 'sc'}" ng-click="selectedArea = {area: 'sc'}"class="btn green btn-outline"> SC </a>
                <a  ng-class="{'active':selectedArea.area == 'dt'}" ng-click="selectedArea = {area: 'dt'}"class="btn green btn-outline"> DT </a>
-							 <a  ng-class="{'active':selectedArea.area == null}" ng-click="selectedArea = {}"class="btn green btn-outline"> ALL </a>
+							 <a  ng-class="{'active':selectedArea.area == ''}" ng-click="selectedArea = {}"class="btn green btn-outline"> ALL </a>
            </div>
 					<div class="panel panel-default"
 						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:'hour'|filter:selectedArea"
@@ -554,12 +553,15 @@
 								   data-parent="#accordion3"
 								   href="#{{id}}"
 								   aria-expanded="false">
-								<span style="float: left;font-size: 29px;margin-top: -7px;padding-right: 10px;">+</span>
-								{{deliver.name}}
-								<span style="float: center;">{{deliver.hour}}</span>
-								<span ng-if="deliver.alert>0">超时:{{deliver.alert}}单</span>
-								<span ng-if="deliver.orders.length>0"style="float: right;">{{deliver.orders.length}}单</span>
+								<span style="float: left;font-size: 29px;margin-top: 0px;padding-right: 10px;">+</span>
+								<span style="line-height: 20px;font-weight: 800;">
+									{{deliver.name}}
+								</span>
+								<span ng-if="deliver.orders.length>0"style="float: right;font-weight: 600;">{{deliver.orders.length}}单</span>
 								<span ng-if="!deliver.orders.length"style="float: right;">0单</span>
+								<br>
+								<span style="margin-top:5px;line-height: 20px;">{{deliver.hour}}</span>
+								<span ng-if="deliver.alert>0" style="line-height: 20px;">超时:{{deliver.alert}}单</span>
 								</a>
 							  </h4>
 						   </div>
@@ -597,11 +599,11 @@
 											<div class="portlet-body"style="font-size: 10px;border-style: solid;border-width: 0px 1px 1px 1px;">
 											   <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
 												  <div class="row"style="margin-left: 0px;margin-right: -5px;">
-													 <div class="col-md-2 nonepadding">
-														餐馆
-													 </div>
-													 <div class="col-md-9 nonepadding">
+														<div class="col-md-7 nonepadding">
 														{{order.rrname}}
+													 </div>
+													 <div class="col-md-5 nonepadding">
+														{{order.r_cell}}
 													 </div>
 												  </div>
 												  <div class="row"style="margin-left: 0px;margin-right: -5px;">

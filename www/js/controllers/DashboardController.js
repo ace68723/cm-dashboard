@@ -8,7 +8,7 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 	// auth.login("kathy","liangliang");
 	auth.authenticaton();
 	DashCtrl.h = window.innerHeight*0.9;
-	DashCtrl.h2 = window.innerHeight*0.8*0.5;
+	DashCtrl.h2 = window.innerHeight*0.9*0.5;
 	// console.log("height",DashCtrl.h2);
 	// set sidebar closed and body solid layout mode
 	$rootScope.settings.layout.pageContentWhite = true;
@@ -17,11 +17,7 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 
 
 		DashCtrl.order_data = dashboardService.get_orders();
-		// console.log("test get",DashCtrl.order_data);
 		DashCtrl.f_data = dashboardService.get_fomat();
-	 $timeout(function() {
-			console.log(DashCtrl.f_data)
-		}, 1000);
 
 
 	DashCtrl.openOrderChange = function (oid,port,c_addr) {
