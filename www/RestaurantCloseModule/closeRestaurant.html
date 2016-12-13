@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>商家关店管理</title>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+  <script type="text/javascript" src="./closeRestaurantController.js"></script>
+  <script type="text/javascript" src="./closeRestaurantService.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+  <div ng-controller="closeRestaurantController as crc">
+    <p>Search {{singleSelect}}</p>
+    <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
+      <option ng-repeat="option in SearchOptions"
+              value="{{option.value}}"
+              ng-selected= "{{option.value == singleSelect}}"> {{option.optionName}}
+      </option>
+    </select>
+    <p>
+      <input type="text" ng-model="search[singleSelect]">
+    </p>
+    <button ng-click="crc.clearSearch()">Clear</button>
+    <br>
+    <br>
+    <div>
+      <form role = "form" ng-submit="crc.addCloseRestaurant()" >
+            <div>
+              <label for = "closeRestaurant_id">RID:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type = "number" id = 'closeRestaurant_id' ng-model = "newcloseRestaurant.rid">
+            </div>
+
+            <div>
+              <label for = "closeRestaurant_start">开始关店时间:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type = 'text' id = "closeRestaurant_start" ng-model = "newcloseRestaurant.start_time">
+            </div>
+
+            <div>
+              <label for = "closeRestaurant_end">结束关店时间:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type = 'text' id = "closeRestaurant_end" ng-model = "newcloseRestaurant.end_time">
+            </div>
+            <button type = "submit"> Add </button>
+
+            <button type = "button" ng-click = "crc.cancelCreating()"> Cancel </button>
+          </form>
+        </div>
+    <br>
+    <table>
+      <tr>
+        <th>RID</th>
+        <th>Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+      </tr>
+      <tr ng-repeat="(id, closeRestaurant) in crc.closeRestaurants|filter: search">
+          <td>{{crc.closeRestaurant.rid}}</td>
+          <td>{{crc.closeRestaurant.name}}</td>
+          <td  ng-if="!closeRestaurant.isEditing">{{crc.closeRestaurant.start_time}}</td>
+          <td  ng-if="!closeRestaurant.isEditing">{{crc.closeRestaurant.end_time}}</td>
+          <td  ng-if="closeRestaurant.isEditing"><input type="text" ng-model="crc.closeRestaurant.start_time"></input></td>
+          <td  ng-if="closeRestaurant.isEditing"><input type="text" ng-model="crc.closeRestaurant.end_time"></input></td>
+      </tr>
+      <td><button ng-if= "!closeRestaurant.isEditing" ng-click ="crc.startEditing()">Edit</button>
+
+      <td><button ng-if= "closeRestaurant.isEditing" ng-click = "crc.updateCloseRestaurant(closeRestaurant)">Update</button>
+      <td><button ng-if= "closeRestaurant.isEditing" ng-click = "crc.cancelEditing(closeRestaurant)">Cancel</button>
+      </div>
+
+    </table>
+  </div>
+</div>
+</body>
