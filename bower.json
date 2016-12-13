@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.2.0"
   },
   "dependencies": {
-    "lodash": "~4.3.0"
+    "lodash": "~4.3.0",
+    "papaparse": "~4.1.2"
   }
 }

@@ -13,7 +13,6 @@ angular.module('MetronicApp')
     AlertService.ev_message ='hi'
     AlertService.alert =function  (iv_meessage) {
         AlertService.ev_message = iv_meessage;
-        console.log(AlertService.ev_message)
     };
     return AlertService
   });

@@ -1,3 +1,4 @@
+
 var myApp = angular.module('myApp', []);
 
 myApp.factory('Restaurants', function() {
@@ -147,7 +148,9 @@ myApp.factory('Restaurants', function() {
   //return RestaurantList.item;
 })
 
+
   function RestaurantsCtrl($scope, Restaurants) {
+
   //
     $scope.search = {};
 

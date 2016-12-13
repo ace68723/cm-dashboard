@@ -1,13 +1,13 @@
 
 angular.module('MetronicApp').controller('DashboardController', function(dashboardService,$rootScope, $scope, $http, $timeout,$interval,$modal,$log,auth,API_URL) {
 	var DashCtrl = this;
-	$scope.$on('$viewContentLoaded', function() {   
+	$scope.$on('$viewContentLoaded', function() {
 		// initialize core components
 		App.initAjax();
 	});
 	// auth.login("kathy","liangliang");
 	auth.authenticaton();
-	DashCtrl.h = window.innerHeight*0.8;
+	DashCtrl.h = window.innerHeight*0.9;
 	DashCtrl.h2 = window.innerHeight*0.8*0.5;
 	// console.log("height",DashCtrl.h2);
 	// set sidebar closed and body solid layout mode
@@ -15,15 +15,16 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 	$rootScope.settings.layout.pageBodySolid = false;
 	$rootScope.settings.layout.pageSidebarClosed = true;
 
-	$timeout(function() {
-		// console.log("get data from dashboard service",dashboardService.get_orders())
+
 		DashCtrl.order_data = dashboardService.get_orders();
 		// console.log("test get",DashCtrl.order_data);
 		DashCtrl.f_data = dashboardService.get_fomat();
-		// console.log("test fomat", DashCtrl.f_data.reject_order);
-	}, 1000);
-	
-   
+	 $timeout(function() {
+			console.log(DashCtrl.f_data)
+			// console.log("test fomat", DashCtrl.f_data.reject_order);
+		}, 1000);
+
+
 	DashCtrl.openOrderChange = function (oid,port,c_addr) {
 	  var size = 'lg'
 	  var eo_data = {};
@@ -46,8 +47,8 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 	  };
 
 	  DashCtrl.openPopup(size,eo_data);
-	  
-	  
+
+
 	};
 	DashCtrl.openMap = function (oid,c_lat,c_lng,r_lat,r_lng,c_addr) {
 		// r_addr,c_addr
@@ -62,7 +63,7 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 	  // eo_data.r_addr= r_addr;
 	  // eo_data.c_addr=c_addr;
 	  eo_data.type = "maps";
-	  DashCtrl.openPopup(size,eo_data);  
+	  DashCtrl.openPopup(size,eo_data);
 	};
 
 	DashCtrl.openPopup = function (size,eo_data) {
@@ -79,7 +80,7 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 			  }
 		  }
 	  });
-		  
+
 	  modalInstance.result.then(function()
 	  {
 		// promise 成功完成后call get init 刷新数据
