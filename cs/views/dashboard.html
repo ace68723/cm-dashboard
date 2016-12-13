@@ -12,6 +12,8 @@
 <div >
 
 
+
+
 	<!-- BEGIN DASHBOARD COLUMN -->
 	<div class="row" style="margin-right:0px;">
 
@@ -39,7 +41,7 @@
 							data-close-others="true"></i>
 
 							   <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
-							   <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+							   <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
 							   <!-- <span class="caption-helper">送餐</span> -->
 						   </div>
 						   <div class="actions">
@@ -53,12 +55,11 @@
 						 <div class="portlet-body order_body">
 
 							   <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-								   <div class="col-md-2 nonepadding">
-									   餐馆
-								   </div>
-								   <div class="col-md-9 nonepadding">
+								   <div class="col-md-7 nonepadding">
 									  {{order.rrname}}
+								   </div>
+									 <div class="col-md-5 nonepadding">
+									  {{order.r_cell}}
 								   </div>
 							   </div>
 
@@ -136,7 +137,7 @@
 							data-close-others="true"></i>
 
 								   <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
-								   <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+								   <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
 								   <!-- <span class="caption-helper">送餐</span> -->
 							   </div>
 							   <div class="actions">
@@ -149,12 +150,12 @@
 
 								   <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-									   <div class="col-md-2 nonepadding">
-										   餐馆
-									   </div>
-									   <div class="col-md-9 nonepadding">
-										  {{order.rrname}}
-									   </div>
+										 <div class="col-md-7 nonepadding">
+											{{order.rrname}}
+										 </div>
+										 <div class="col-md-5 nonepadding">
+											{{order.r_cell}}
+										 </div>
 								   </div>
 
 								   <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -225,9 +226,9 @@
 					ng-repeat="(id,order) in dc.f_data.new_order">
 				  <div  class="portlet-title order_header skyblue"
 						ng-class="{warning:order.warning==1,alert:order.alert==1}">
-					  <div class=" order_title"
-							style="cursor:pointer"
-					  		data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
+					  <div 	class=" order_title"
+									style="cursor:pointer"
+					  			data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
 
 						  <i class="icon-pin" style="color: #ffffff"
 							class="dropdown-toggle"
@@ -236,7 +237,7 @@
 
 						  <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
 
-						  <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+						  <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
 						  <!-- <span class="caption-helper">送餐</span> -->
 					  </div>
 					  <div class="actions">
@@ -249,12 +250,40 @@
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-							  <div class="col-md-2 nonepadding">
-								  餐馆
-							  </div>
-							  <div class="col-md-9 nonepadding">
+								<div class="col-md-7 nonepadding">
 								 {{order.rrname}}
-							  </div>
+								</div>
+	<!-- ng-style="order.r_call== 'A' &&  {'cursor':'pointer'}" -->
+								<div class="col-md-5 nonepadding"
+											style="color:#D91E18;cursor:pointer"
+											ng-if="order.r_call == 'A'"
+											ng-click="dc.autoCall(order.oid)"
+										>
+									<i class="icon-call-out"
+										 style="color: #D91E18">
+									</i>
+								 {{order.r_cell}}
+								</div>
+								<div class="col-md-5 nonepadding"
+											style="color:#26C281;"
+											ng-if="order.r_call == 'C' ||!order.r_call"
+										>
+								 <i class="icon-call-end"
+									 	style="color: #26C281">
+								 </i>
+								 {{order.r_cell}}
+
+								</div>
+								<div class="col-md-5 nonepadding"
+											style="color:#D91E18;cursor:pointer"
+											ng-if="order.r_call == 'U'"
+											ng-click="dc.needToCall()"
+										>
+									<i class="icon-ban"
+										 style="color: #D91E18">
+									</i>
+								 {{order.r_cell}}
+								</div>
 						  </div>
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -335,7 +364,7 @@
 
 
 						  <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
-						  <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+						  <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
 						  <!-- <span class="caption-helper">送餐</span> -->
 					  </div>
 					  <div class="actions">
@@ -357,12 +386,12 @@
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-							  <div class="col-md-2 nonepadding">
-								  餐馆
-							  </div>
-							  <div class="col-md-9 nonepadding">
+								<div class="col-md-7 nonepadding">
 								 {{order.rrname}}
-							  </div>
+								</div>
+								<div class="col-md-5 nonepadding">
+								 {{order.r_cell}}
+								</div>
 						  </div>
 
 						  <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -443,7 +472,7 @@
                data-close-others="true"></i>
 
                <span class="caption-subject"style="font-size: 12px;">{{order.oid}}</span>
-               <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+               <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
 
                <!-- <span class="caption-helper">送餐</span> -->
              </div>
@@ -463,12 +492,12 @@
 
                <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
-                 <div class="col-md-2 nonepadding">
-                   餐馆
-                 </div>
-                 <div class="col-md-9 nonepadding">
-                  {{order.rrname}}
-                 </div>
+								 <div class="col-md-7 nonepadding">
+								 {{order.rrname}}
+								</div>
+								<div class="col-md-5 nonepadding">
+								 {{order.r_cell}}
+								</div>
                </div>
 
                <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -583,7 +612,7 @@
 												  <i class="icon-pin" style="color: #ffffff"></i>
 
 												  <span class="caption-subject"style="font-size: 12px;"> {{order.oid}}</span>
-												  <span class="caption-subject"style="font-size: 10px;">   电话：{{order.cell}}</span>
+												  <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
 												  <!-- <span class="caption-helper">送餐</span> -->
 											   </div>
 												<div class="actions">
@@ -600,11 +629,11 @@
 											<div class="portlet-body"style="font-size: 10px;border-style: solid;border-width: 0px 1px 1px 1px;">
 											   <div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
 												  <div class="row"style="margin-left: 0px;margin-right: -5px;">
-													 <div class="col-md-2 nonepadding">
-														餐馆
-													 </div>
-													 <div class="col-md-9 nonepadding">
+														<div class="col-md-7 nonepadding">
 														{{order.rrname}}
+													 </div>
+													 <div class="col-md-5 nonepadding">
+														{{order.r_cell}}
 													 </div>
 												  </div>
 												  <div class="row"style="margin-left: 0px;margin-right: -5px;">

@@ -54,9 +54,7 @@ angular.module('MetronicApp')
 
 
             RestaurantListCtrl.clearSearch = function() {
-              console.log("clearSearch",RestaurantListCtrl.search);
               RestaurantListCtrl.search = null;
-              console.log("76",RestaurantListCtrl.restaurants);
               RestaurantListCtrl.search = {};
 
             }

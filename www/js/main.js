@@ -142,25 +142,21 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
                 }]
             }
         })
+
+        // Restaurant Search
         .state('searchRes', {
-            url: "/searchRes.html",
-            templateUrl: "RestaurantListModuel/search-res.html",
+            url: "/searchRes.html", //url address
+            templateUrl: "RestaurantListModuel/search-res.html", //view
             data: {pageTitle: '馋猫订餐 Dashboard'},
             cache: true,
-            controller: "RestaurantListController as rlc"
-            // resolve: {
-            //     deps: ['$ocLazyLoad', function($ocLazyLoad) {
-            //         return $ocLazyLoad.load({
-            //             name: 'MetronicApp',
-            //             insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
-            //             files: [
-            //                 'js/controllers/restaurant.js'
-            //             ]
-            //         });
-            //     }]
-            // }
+            controller: "RestaurantListController as rlc" //controller
         })
 
+        .state('driverSchedule', {
+            url: "/driverSchedule.html", //url address
+            templateUrl: "../views/driverSchedule.html", //view
+            controller:"DriverScheduleController as dsc" //controller
+        })
         // Blank Page
 
 

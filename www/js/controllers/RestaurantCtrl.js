@@ -42,7 +42,6 @@ angular.module('MetronicApp')
             RestaurantListCtrl.change = function(selected) {
               //do if's in case you use null or empty values
               console.log("44",selected);
-              if (selected == Select) {}
               if (selected = SearchOption.optionName) {
                 return selected;
               }

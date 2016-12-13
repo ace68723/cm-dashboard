@@ -63,6 +63,13 @@
                     Richmond Hill
             </button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button"
+                    ng-click="areaSelect = {area: 'Mississauga'}"
+                    ng-class="{'active':areaSelect.area=='Mississauga'}"
+                    class="btn btn-circle green btn-outline"
+                    style="margin-right: 40px;">
+                    Mississauga
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button"
                     ng-click="areaSelect = ''; rlc.clearSearch()"
                     ng-class="{'active':areaSelect==''}"
                     class="btn btn-circle dark btn-outline"

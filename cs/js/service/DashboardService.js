@@ -4,25 +4,24 @@ angular.module('MetronicApp')
   var lo_data  ={};
   var lo_fdata ={};
   var la_delivers;
+  lo_fdata.delivers= [];
   	// dashboardService.timeout = 0;
   	var stop;
-	dashboardService.get_init = function  () {
+    json2csv.ConvertToJSON()
+     .then(function (result) {
+       lo_fdata.delivers = result.data;
+       _.remove(lo_fdata.delivers, function(n) {return !n.area});
 
-		// lo_data.account = 0;
+     })
+	dashboardService.get_init = function  () {
 		if(stop){
 			$interval.cancel(stop);
 		}
 		stop = $interval(function() {
 			get_API();
 		},30000)
-
     // get driver list from local csv file
-    json2csv.ConvertToJSON()
-    .then(function (result) {
-      lo_fdata.delivers = result.data;
-      _.remove(lo_fdata.delivers, function(n) {return !n.area});
-       get_API();
-    })
+    get_API();
 	}
 
 	function get_API() {
@@ -32,7 +31,8 @@ angular.module('MetronicApp')
 		}).then(function successCallback(response) {
 			lo_data.orders = response.data.ea_orders;
 			lo_data.statas = response.data.ea_stats;
-         setOrders();
+      setOrders();
+
 		}, function errorCallback(response) {
 		   // alertService.alert(response);
 		});
@@ -138,5 +138,26 @@ angular.module('MetronicApp')
 		},30000)
 	}
 	play_audio();
+  autoCalling = false;
+  dashboardService.autoCall = function (oid) {
+    if(!autoCalling){
+      autoCalling = true;
+      var ro_data = {};
+      ro_data.oid = oid;
+      $http({
+        method: 'POST',
+        url: API_URL+'MobMonitor/CallRr',
+        data:ro_data
+      }).then(function successCallback(response) {
+        console.log(response)
+        swal("Success!",
+             "Automatic call sent to restaurany. oid: "+ oid ,
+             "success");
+        autoCalling = false;
+        get_API();
+      })
+    }
+
+  }
   return dashboardService
 })

@@ -4,7 +4,7 @@ angular.module('MetronicApp')
 
 	json2csv.ConvertToJSON = function(csv){
       var deferred = $q.defer();
-      Papa.parse('../../data/deliver.csv', {
+      Papa.parse('data/deliver.csv', {
           download: true,
           header: true,
           complete: function(result) {

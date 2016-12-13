@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<style>
+ table, th,  td {
+    text-align: center;
+
+     border: 1px
+  }
+ table{
+  table-layout: fixed;
+  }
+ th {
+      height: 50px;
+    }
+
+</style>
+    <title>DriverList</title>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src ="  https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+    <script type="text/javascript" src="./Driver.js"></script>
+</head>
+  <body ng-controller="DriverCtrl">
+  <div>
+    <div>
+      <input value="North York" ng-click="areaSelect = {area: 'North York'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Scarborough" ng-click="areaSelect = {area: 'Scarborough'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input value="All" ng-click="areaSelect =null;" type="button"/>
+    </div>
+
+
+    <div>
+      <table>
+          <tr>
+            <th>Driver ID</th>
+            <th>Name</th>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+
+          <tr ng-repeat="(id,driver) in drivers|filter: search|filter:areaSelect">
+            <td>{{driver.driver_id}}</td>
+            <td >{{driver.name}}</td>
+            <td ng-if = "id == showitem.id"><input type="text" ng-model="driver.sunday"></td>
+            <td ng-if = "id != showitem.id">{{driver.sunday}}</td>
+            <td ng-if = "id == showitem.id" ><input type="text" ng-model="driver.monday"></td>
+            <td ng-if = "id != showitem.id" >{{driver.monday}}</td>
+            <td ng-if = "id == showitem.id" ><input type="text" ng-model="driver.tuesday"></td>
+            <td ng-if = "id != showitem.id" >{{driver.tuesday}}</td>
+            <td ng-if = "id == showitem.id" ><input type="text" ng-model="driver.wednesday"></td>
+            <td ng-if = "id != showitem.id" >{{driver.wednesday}}</td>
+            <td ng-if = "id == showitem.id" ><input type="text" ng-model="driver.thursday"></td>
+            <td ng-if = "id != showitem.id" >{{driver.thursday}}</td>
+            <td ng-if = "id == showitem.id" ><input type="text" ng-model="driver.friday"></td>
+            <td ng-if = "id != showitem.id" >{{driver.friday}}</td>
+            <td ng-if = "id == showitem.id" ><input type="text" ng-model="driver.saturday"></td>
+            <td ng-if = "id != showitem.id" >{{driver.saturday}}</td>
+            <td><button ng-if= "!isEditing " ng-click = "GetItem(driver)">Edit</button>
+            <td><button ng-if= "!isEditing " ng-click = "deleteDriver(driver)">Delet</button>
+            <td><button ng-if= "isEditing; id == showitem.id" ng-click = "SaveEdit(driver);showitem.id = null">Save</button>
+            <td><button ng-if= "isEditing;id == showitem.id" ng-click = "resetEditing(driver)">Reset</button>
+            <td><button ng-if= "isEditing;id == showitem.id" ng-click = "cancelEditing(driver)">Cancel</button>
+          </tr>
+        </table>
+        <button ng-click = "startCreating()"> Add Driver</button>
+        <div ng-show='shouldShowCreating()'>
+          <form ng-show = "isCreating" role = "form" ng-submit="addDriver(newDriver)" >
+                <!-- input drive id -->
+                <div>
+                  <label for = "newDriverID">Driver ID:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = "text" id = 'newDriverID' ng-model = "newDriver.driver_id" placeholder = "Enter Driver ID">
+                </div>
+                <!-- input  driver id end-->
+                <!-- input driver name -->
+                <div>
+                  <label for = "newDriverName">Driver Name:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverName" ng-model = "newDriver.name" placeholder=" Enter Driver Name">
+                </div>
+                <!-- input driver name end -->
+                <div>
+                  <label for = "newDriverSunday">Driver Sunday Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverSunday" ng-model = "newDriver.sunday" placeholder=" Enter Sunday Working Hour">
+                </div>
+                <div>
+                  <label for = "newDriverMonday">Driver Monday Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverMonday" ng-model = "newDriver.monday" placeholder=" Enter Monday Working Hour">
+                </div>
+                <div>
+                  <label for = "newDriverTuesday">Driver Tuesday Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input  type = 'text' id = "newDriverTuesday"
+                          ng-model = "newDriver.tuesday"
+                          placeholder=" Enter Tuesday Working Hour">
+                </div>
+                <div>
+                  <label for = "newDriverWednesday">Driver Wednesdays Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverWednesday" ng-model = "newDriver.wednesday" placeholder=" Enter Wednesdays Working Hour">
+                </div>
+                <div>
+                  <label for = "newDriverThursday">Driver Thursday Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverThursday" ng-model = "newDriver.thursday" placeholder=" Enter Thursday Working Hour">
+                </div>
+                <div>
+                  <label for = "newDriverFriday">Driver Friday Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverFriday" ng-model = "newDriver.friday" placeholder=" Enter Friday Working Hour">
+                </div>
+                <div>
+                  <label for = "newDriverSaturday">Driver Saturday Working Hour:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type = 'text' id = "newDriverSaturday" ng-model = "newDriver.saturday" placeholder=" Enter Saturday Working Hour">
+                </div>
+                <!-- add newDriver -->
+                <button type = "submit"> Create </button>
+                <!-- add newDriver end -->
+                <button type = "button" ng-click = "cancelCreating()">Cancel </button>
+              </form>
+            </div>
+        </div>
+
+  </div>
+  </div>
+  </body>

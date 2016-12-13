@@ -10,8 +10,13 @@
 <body>
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
+<<<<<<< HEAD
     <p>Search </p>
     <select name="singleSelect" ng-model="rlc.singleSelect"  ng-change="rlc.clearSearch()">
+=======
+    <p>Search {{singleSelect}}</p>
+    <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
+>>>>>>> ceeda4cfca3bcb86f17f3a86f32f5f1ff6a0a78e
       <option ng-repeat="option in SearchOptions"
               value="{{option.value}}"
               ng-selected= "{{option.value == rlc.singleSelect}}"> {{option.optionName}}
@@ -67,7 +72,12 @@
       <input value="Markham" ng-click="areaSelect = {area: 'Markham'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<<<<<<< HEAD
       <input value="All" ng-click="areaSelect = null; rlc.clearSearch()" type="button"/>
+=======
+      {{areaSelect}}
+      <input value="All" ng-click="areaSelect =null; clearSearch()" type="button"/>
+>>>>>>> ceeda4cfca3bcb86f17f3a86f32f5f1ff6a0a78e
       <tr>
         <th>RID</th>
         <th>Name</th>
@@ -84,7 +94,12 @@
         <td>{{restaurant.tel}}</td>
         <td>{{restaurant.openhour}}</td>
         <td>{{restaurant.area}}</td>
+<<<<<<< HEAD
         <td><button ng-click= "rlc.GetItem(restaurant)">edit</button>
+=======
+        <td><button ng-click= "GetItem(restaurant)">edit</button>
+          {{restaurant.id}}
+>>>>>>> ceeda4cfca3bcb86f17f3a86f32f5f1ff6a0a78e
       </tr>
     </table>
   </div>

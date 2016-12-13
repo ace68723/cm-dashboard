@@ -86,4 +86,16 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 		  $log.info('Modal dismissed at: ' + new Date());
 	  });
 	}
+	DashCtrl.autoCall = function (oid) {
+		dashboardService.autoCall(oid)
+	}
+	DashCtrl.needToCall = function () {
+		swal({
+			  title: "Automatic call fails",
+			  text: "Please contact restaurant immediately",
+			  type: "warning",
+			  confirmButtonText: "ok",
+			  closeOnConfirm: false
+			});
+	}
 });
