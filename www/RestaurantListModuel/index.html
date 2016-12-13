@@ -10,8 +10,10 @@
 <body>
 <div ng-app="myApp">
   <div ng-controller="RestaurantsCtrl">
+
     <p>Search</p>
     <select name="singleSelect" ng-model="singleSelect"  ng-change="rlc.clearSearch()">
+
       <option ng-repeat="option in SearchOptions"
               value="{{option.value}}"
               ng-selected= "{{option.value == singleSelect}}"> {{option.optionName}}
@@ -67,7 +69,9 @@
       <input value="Markham" ng-click="areaSelect = {area: 'Markham'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Richmond Hill" ng-click="areaSelect = {area: 'Richmond Hill'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
       <input value="Downtown" ng-click="areaSelect = {area: 'Downtown'}" type="button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+
       <input value="All" ng-click="areaSelect = null; rlc.clearSearch()" type="button"/>
+
       <tr>
         <th>RID</th>
         <th>Name</th>
@@ -84,7 +88,9 @@
         <td>{{restaurant.tel}}</td>
         <td>{{restaurant.openhour}}</td>
         <td>{{restaurant.area}}</td>
+
         <td><button ng-click= "rlc.GetItem(restaurant)">edit</button>
+
       </tr>
     </table>
   </div>
