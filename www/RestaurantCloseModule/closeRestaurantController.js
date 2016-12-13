@@ -45,7 +45,15 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
   crc.postCloseRestaurant = crs.addCloseRestaurant;
   crc.updateCloseRestaurant = crs.updateCloseRestaurant;
   console.log(crs)
-  crs.getCloseRestaurants();
+
+  crs.getCloseRestaurants()
+    .then(()=>{
+
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+
   crc.editRestaurant = function(closeRestaurant){
     if(!closeRestaurant.isEditing){
       closeRestaurant.isEditing = true;

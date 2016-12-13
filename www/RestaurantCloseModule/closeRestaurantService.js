@@ -1,8 +1,7 @@
 angular.module('myApp')
   .service('closeRestaurantService', function ($http, $timeout,$q) {
+    // getCloseRestaurants
 
-    function getCloseRestaurants() {
-      console.log('getCloseRestaurant')
     /*  input:
       response.data.ev_result:  0 ok | 1 fail
       response.data.ev_message: error message
@@ -26,47 +25,47 @@ angular.module('myApp')
           close_id:"123"
       }
     */
-    var getRestaurantData = function(result){
+
+    function getCloseRestaurants() {
       var deferred = $q.defer();
-      function successCallback(response) {
-          const data = response.data;
-            if(data.ev_result == 0){
-             //  var restaurant = {};
-             //  for (i=0, i<30, i++){
-             //    restaurant.rid = data.ev_data[i].rid;
-             //    restaurant.name = data.ev_data[i].rr_name;
-             //    restaurant.start_time = data.ev_data[i].start_time;
-             //    restaurant.end_time = data.ev_data[i].end_time;
-             //    restaurant.close_id = data.ev_data[i].close_id;
-             //    closeRestaurants.push(restaurant)
-             //  }
+        //init data
+          var closeRestaurants = [];
 
-             _.forEach(closeRestaurant, function(restaurant, id) {
-                var data = {};
-                data.rid = restaurant.rid;
-                data.name = restaurant.rr_name;
-                data.start_time = restaurant.start_time;
-                data.end_time = restaurant.end_time;
-                data.close_id = restaurant.close_id;
-                closeRestaurantList.push(data);
-               })
-               return closeRestaurants
-            }
-          }, function errorCallback(response) {
-       }
-      closeRestaurants= result;
-      deferred.resolve(result)
-      return deferred.promise
-    }
-      var closeRestaurants = [];
-      $http({
-         method: 'GET',
-         url: "http://test.norgta.com/public/api/v1/rr_close"
-         header:
-       })
-       .then(getRestaurantData)
+          // successCallback
+          var successCallback = (response)=>{
+
+            const data = response.data;
+            _.forEach(closeRestaurant, function(restaurant, id) {
+               var data = {};
+               data.rid = restaurant.rid;
+               data.name = restaurant.rr_name;
+               data.start_time = restaurant.start_time;
+               data.end_time = restaurant.end_time;
+               data.close_id = restaurant.close_id;
+               closeRestaurants.push(data);
+              })
+        deferred.resolve(closeRestaurants)
+          }
+          // successCallback end
+
+          //errorCallback
+          var errorCallback = (response)=>{
+        deferred.reject(response)
+          }
+          // errorCallback end
+
+          $http({
+             method: 'GET',
+             url: "http://test.norgta.com/public/api/v1/rr_close",
+             headers: {
+               'Content-Type': 'application/json',
+               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODA5NTM4NjcsImV4cCI6MTUxMjQ4OTg2NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.-WTLfPc5k7IZ-e_T5JfTAGXK0ZjB8xmaBecj1lo1Aj4'
+             }
+           }).then(successCallback,errorCallback)
+       return deferred.promise
 
     }
+    // getCloseRestaurants end
 
     function getQTest(){
       var deferred = $q.defer();
