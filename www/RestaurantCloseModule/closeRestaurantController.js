@@ -13,33 +13,7 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
       "value": "name"
     }
   ];
-  // var testFunc = function(result){
-  //   var deferred = $q.defer();
-  //   crc.QTEstArray = result;
-  //   deferred.resolve(result)
-  //   console.log(crc.QTEstArray)
-  //   return deferred.promise
-  // }
-  var testFunc = function(result){
-    var deferred = $q.defer();
-    crc.QTEstArray = result;
-    deferred.resolve(result)
-    console.log(crc.QTEstArray)
-    return deferred.promise
-  }
-  var testFunc2 = function(result){
-    crc.QTEstArray2 = result;
-    console.log(crc.QTEstArray2)
-  }
-  crs.getQTest()
-  .then(testFunc)
-  .then(testFunc2)
-  .catch(function(){
 
-  })
-
-//  crc.QTEstArray = crs.getQTest();
-  //console.log(crc.QTEstArray)
   crc.singleSelect = crc.SearchOptions[0].value;
   crc.closeRestaurants = crs.closeRestaurants;
   crc.postCloseRestaurant = crs.addCloseRestaurant;
