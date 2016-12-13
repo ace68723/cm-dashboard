@@ -67,49 +67,55 @@ angular.module('myApp')
     }
     // getCloseRestaurants end
 
-    function getQTest(){
-      var deferred = $q.defer();
-      var QTEstArray=[];
-      var TestObject = {test:"test"};
-      QTEstArray.push(TestObject);
-      $timeout(function () {
-      deferred.resolve(QTEstArray)
-      console.log(QTEstArray)
-       }, 500);
+   // updateCloseRestaurant
+    function updateCloseRestaurant(){
+     var deferred = $q.defer();
+       // successCallback
+         var successCallback = (response)=>{
+          console.log(response)
+       deferred.resolve(response)
+         }
+         // successCallback end
 
+         //errorCallback
+         var errorCallback = (response)=>{
+       deferred.reject(response)
+         }
+         $http({
+             method:"PUT",
+             url:"http://test.norgta.com/public/api/v1/rr_close/close_id",
+             headers: {
+               'Content-Type': 'application/json',
+               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODA5NTM4NjcsImV4cCI6MTUxMjQ4OTg2NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.-WTLfPc5k7IZ-e_T5JfTAGXK0ZjB8xmaBecj1lo1Aj4'
+             },
+             data: {restaurant_information: crc.updateCloseRestaurant}
+           })
+         .then(successCallback, errorCallback);
      return deferred.promise
     }
+   // updateCloseRestaurant end
 
-    function updateCloseRestaurant(){
-      $http({
-        method:"PUT",
-        url:"http://test.norgta.com/public/api/v1/rr_close/close_id",
-        data: {restaurant_information: crc.updateRestaurantInformation},
-        config:""
-      })
-     .then(
-         function(response){
-           // success callback
-         },
-         function(response){
-           // failure callback
-         }
-      );
-    }
+   // addCloseRestaurant
   function addCloseRestaurant(){
-    $http({
-      method: 'POST',
-      url: 'http://test.norgta.com/public/api/v1/rr_close/',
-      headers: {
-        'Authortoken': "",
-      },
-      data: {restaurant_information: crc.newCloseRestaurant }
-    }).then(function successCallback(response) {
-        console.log(response)
-    }, function errorCallback(response) {
-      console.log(response)
-      });
-      }
+   var deferred = $q.defer();
+        var successCallback =function(response){
+          console.log(respone)
+      deferred.resolve(response)
+        }
+        var errorCallback = function(response){
+      deferred.reject(response)
+        }
+        $http({
+          method: 'POST',
+          url: 'http://test.norgta.com/public/api/v1/rr_close/',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODA5NTM4NjcsImV4cCI6MTUxMjQ4OTg2NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.-WTLfPc5k7IZ-e_T5JfTAGXK0ZjB8xmaBecj1lo1Aj4'
+          },
+          data: {restaurant_information: crc.newCloseRestaurant }
+        }).then(successCallback, errorCallback);
+   return deferred.promise
+  }
 
     return ({
       getCloseRestaurants : getCloseRestaurants,
