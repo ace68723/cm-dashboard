@@ -33,18 +33,24 @@ angular.module('myApp')
 
           // successCallback
           var successCallback = (response)=>{
-
             const data = response.data;
-            _.forEach(closeRestaurant, function(restaurant, id) {
+            if(data.ev_result == 0){
+              console.log(data.ev_data)
+             var restaurantData = data.ev_data;
+            _.forEach(restaurantData, function(restaurant, id) {
                var data = {};
                data.rid = restaurant.rid;
-               data.name = restaurant.rr_name;
+               data.rr_name = restaurant.name;
                data.start_time = restaurant.start_time;
                data.end_time = restaurant.end_time;
-               data.close_id = restaurant.close_id;
+               data.close_id = restaurant.id;
                closeRestaurants.push(data);
+               closeRestaurants = _.sortBy(closeRestaurants,["close_id"])
               })
         deferred.resolve(closeRestaurants)
+          }else {
+            deferred.reject(response)
+          }
           }
           // successCallback end
 
@@ -59,7 +65,7 @@ angular.module('myApp')
              url: "http://test.norgta.com/public/api/v1/rr_close",
              headers: {
                'Content-Type': 'application/json',
-               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODA5NTM4NjcsImV4cCI6MTUxMjQ4OTg2NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.-WTLfPc5k7IZ-e_T5JfTAGXK0ZjB8xmaBecj1lo1Aj4'
+               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOm51bGwsImV4cCI6bnVsbCwiYXVkIjoiIiwic3ViIjoiIiwidWlkIjoiMSJ9.5TMNlgJjGkASfF8hV5VH9xu1TneqUoNZdinwoQkq55o'
              }
            }).then(successCallback,errorCallback)
        return deferred.promise
@@ -68,7 +74,9 @@ angular.module('myApp')
     // getCloseRestaurants end
 
    // updateCloseRestaurant
-    function updateCloseRestaurant(){
+    function updateCloseRestaurant(closeRestaurant){
+      console.log(closeRestaurant)
+
      var deferred = $q.defer();
        // successCallback
          var successCallback = (response)=>{
@@ -83,12 +91,15 @@ angular.module('myApp')
          }
          $http({
              method:"PUT",
-             url:"http://test.norgta.com/public/api/v1/rr_close/close_id",
+             url:"http://test.norgta.com/public/api/v1/rr_close",
              headers: {
                'Content-Type': 'application/json',
-               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODA5NTM4NjcsImV4cCI6MTUxMjQ4OTg2NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.-WTLfPc5k7IZ-e_T5JfTAGXK0ZjB8xmaBecj1lo1Aj4'
+               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOm51bGwsImV4cCI6bnVsbCwiYXVkIjoiIiwic3ViIjoiIiwidWlkIjoiMSJ9.5TMNlgJjGkASfF8hV5VH9xu1TneqUoNZdinwoQkq55o'
              },
-             data: {restaurant_information: crc.updateCloseRestaurant}
+             data: {"rid":closeRestaurant.rid,
+                    "start_time":closeRestaurant.start_time,
+                    "end_time":closeRestaurant.end_time,
+                    "id":closeRestaurant.close_id   }
            })
          .then(successCallback, errorCallback);
      return deferred.promise
@@ -96,10 +107,10 @@ angular.module('myApp')
    // updateCloseRestaurant end
 
    // addCloseRestaurant
-  function addCloseRestaurant(){
+  function addCloseRestaurant(newCloseRestaurant){
    var deferred = $q.defer();
         var successCallback =function(response){
-          console.log(respone)
+          console.log(response)
       deferred.resolve(response)
         }
         var errorCallback = function(response){
@@ -107,12 +118,15 @@ angular.module('myApp')
         }
         $http({
           method: 'POST',
-          url: 'http://test.norgta.com/public/api/v1/rr_close/',
+          url: 'http://test.norgta.com/public/api/v1/rr_close',
           headers: {
             'Content-Type': 'application/json',
-            'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODA5NTM4NjcsImV4cCI6MTUxMjQ4OTg2NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQifQ.-WTLfPc5k7IZ-e_T5JfTAGXK0ZjB8xmaBecj1lo1Aj4'
+            'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOm51bGwsImV4cCI6bnVsbCwiYXVkIjoiIiwic3ViIjoiIiwidWlkIjoiMSJ9.5TMNlgJjGkASfF8hV5VH9xu1TneqUoNZdinwoQkq55o'
           },
-          data: {restaurant_information: crc.newCloseRestaurant }
+          data: {"rid":newCloseRestaurant.rid,
+                "start_time":newCloseRestaurant.start_time,
+                 "end_time":newCloseRestaurant.end_time
+                }
         }).then(successCallback, errorCallback);
    return deferred.promise
   }
@@ -120,8 +134,7 @@ angular.module('myApp')
     return ({
       getCloseRestaurants : getCloseRestaurants,
       updateCloseRestaurant: updateCloseRestaurant,
-      addCloseRestaurant : addCloseRestaurant,
-      getQTest : getQTest
+      addCloseRestaurant : addCloseRestaurant
     })
 
 
