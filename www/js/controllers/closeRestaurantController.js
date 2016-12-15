@@ -4,6 +4,7 @@ angular.module('MetronicApp').controller('closeRestaurantController',
 function($rootScope, $scope, $http, closeRestaurantService,$q) {
   var crc = this;
   var crs = closeRestaurantService;
+  crc.height = window.innerHeight*0.9;
 //  crs.getQTest();
   crc.search = {};
   crc.SearchOptions = [{
@@ -15,13 +16,15 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
     }
   ];
   crc.updateRestaurantList = function(){
-   crs.getCloseRestaurants()
-    .then((result)=>{
-    crc.closeRestaurants = result;
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+    setTimeout(function () {
+      crs.getCloseRestaurants()
+       .then((result)=>{
+       crc.closeRestaurants = result;
+       })
+       .catch((error)=>{
+         console.log(error)
+       })
+    }, 200);
    }
   crc.roleCheck = function(){
     if($rootScope.role == "SETTLE"){
@@ -70,6 +73,7 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
        swal("已提交!", "success"
             );
        crc.addOnClick();
+       crc.resetAddForm();
           } else {
        swal("已取消!");
           }
