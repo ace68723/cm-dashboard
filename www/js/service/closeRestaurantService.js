@@ -118,6 +118,7 @@ angular.module('MetronicApp')
         var errorCallback = function(response){
       deferred.reject(response)
         }
+        
         $http({
           method: 'POST',
           url: 'http://test.norgta.com/public/api/v1/rr_close',
