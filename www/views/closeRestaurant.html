@@ -1,0 +1,128 @@
+<div class="row"  style="height:{{crc.height}}px;overflow:scroll;">
+<div class="col-md-12">
+<div class="portlet light bordered">
+  <div class="portlet-title">
+            <div class="caption font-dark">
+                <!-- <i class="icon-settings font-dark"></i> -->
+                <span class="caption-subject bold uppercase">Search Close Restaurant</span>
+            </div>
+            <div class="tools"> </div>
+  </div>
+
+    <select name="crc.singleSelect"
+            ng-model="crc.singleSelect"
+            ng-change="crc.clearSearch()"
+            class="btn green-haze btn-outline btn-circle btn-sm"
+            style="margin-right: 40px;">
+      <option ng-repeat="option in crc.SearchOptions"
+              value="{{option.value}}"
+              ng-selected= "{{option.value == crc.singleSelect}}"> {{option.optionName}}
+      </option>
+    </select>
+    <input type="text" ng-model="crc.search[crc.singleSelect]" style="margin-right: 40px;">
+    <button type = "button"
+            ng-click="crc.clearSearch()"
+            class="btn btn-circle green btn-outline"
+            style="margin-right: 40px;">
+            Clear
+    </button>
+
+
+  <br>
+  <br>
+  <div class="portlet-body">
+    <a class="dt-button buttons-pdf buttons-html5 btn green btn-outline"
+       tabindex="0"
+       aria-controls="sample_1"
+       href="#" style = "margin-bottom : 10px;">
+       <span>添加关店</span>
+    </a>
+    <br>
+    <br>
+      <form role = "form" ng-submit="crc.confrimAdd()" >
+            <div>
+              <label for = "closeRestaurant_id">
+               <a class="dt-button buttons-pdf buttons-html5 btn green btn-outline"
+                  tabindex="0"
+                  aria-controls="sample_1"
+                  href="#"><span>RID:</span>
+               </a>
+              </label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type = "number" id = 'closeRestaurant_id' ng-model = "crc.newCloseRestaurant.rid">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <label for = "closeRestaurant_start">
+                <a class="dt-button buttons-pdf buttons-html5 btn red btn-outline"
+                   tabindex="0"
+                   aria-controls="sample_1"
+                   href="#"><span>开始关店时间:</span>
+                </a>
+              </label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type = 'text' id = "closeRestaurant_start" ng-model = "crc.newCloseRestaurant.start_time">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <label for = "closeRestaurant_end">
+                <a class="dt-button buttons-pdf buttons-html5 btn blue btn-outline"
+                   tabindex="0"
+                   aria-controls="sample_1"
+                   href="#"
+                   ><span> 结束关店时间:</span>
+                </a>
+              </label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input style = "margin-right:20px;" type = 'text' id = "closeRestaurant_end" ng-model = "crc.newCloseRestaurant.end_time">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button type = "submit"
+                    class="btn btn-circle blue btn-outline"
+                    style="margin-right:10px;">
+                    Add
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button type = "button"
+                    ng-click = "crc.resetAddForm()"
+                    class="btn btn-circle yellow btn-outline">
+                    Cancel
+              </button>
+           </div>
+      </form>
+      <br>
+      <table class="table table-striped table-bordered table-hover" id="sample_1" style="margin-top: 20px;">
+      <tr>
+        <th>RID</th>
+        <th>Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Edit</th>
+      </tr>
+      <tr ng-repeat="(id, closeRestaurant) in crc.closeRestaurants| filter: crc.search | orderBy:'-close_id'">
+          <td>{{closeRestaurant.rid}}</td>
+          <td>{{closeRestaurant.rr_name}}</td>
+          <td  ng-if="!closeRestaurant.isEditing">{{closeRestaurant.start_time}}</td>
+          <td  ng-if="!closeRestaurant.isEditing">{{closeRestaurant.end_time}}</td>
+          <td  ng-if="closeRestaurant.isEditing"><input type="text" ng-model="closeRestaurant.start_time"></input></td>
+          <td  ng-if="closeRestaurant.isEditing"><input type="text" ng-model="closeRestaurant.end_time"></input></td>
+          <td ng-if= "!closeRestaurant.isEditing">
+            <button
+                      ng-click ="crc.startEditing(closeRestaurant)"
+                      class="btn btn-circle purple btn-outline"
+                      style="margin-right: 40px;">
+                      Edit
+            </button>
+          </td>
+          <td ng-if= "closeRestaurant.isEditing">
+            <button
+                      ng-click = "crc.confrimUpdate(closeRestaurant)"
+                      class="btn btn-circle green btn-outline"
+                      style="margin-right: 40px;">
+                      Update
+            </button>
+            <button
+                      ng-click = "crc.cancelEditing(closeRestaurant)"
+                      class="btn btn-circle red btn-outline"
+                      style="margin-right: 40px;">
+                      Cancel
+          </td>
+
+      </tr>
+     </table>
+  </div>
+</div>
+</div>
+</div>
