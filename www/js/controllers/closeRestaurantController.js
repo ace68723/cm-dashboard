@@ -4,6 +4,7 @@ angular.module('MetronicApp').controller('closeRestaurantController',
 function($rootScope, $scope, $http, closeRestaurantService,$q) {
   var crc = this;
   var crs = closeRestaurantService;
+  crc.height = window.innerHeight*0.9;
 //  crs.getQTest();
   crc.search = {};
   crc.SearchOptions = [{
