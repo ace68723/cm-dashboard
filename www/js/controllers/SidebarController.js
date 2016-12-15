@@ -18,6 +18,18 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 	SidebarCtrl.ChangeToSearchRes = function () {
 		 $state.go('searchRes');
 	};
+	SidebarCtrl.ChangetoCloseRes = function(){
+		dashboardService.getRole()
+		.then(SidebarCtrl.GotoCloseRes())
+		.catch((error)=>{
+			console.log(error)
+			window.location="index.html#/dashboard.html"
+		})
+	}
+
+	SidebarCtrl.GotoCloseRes = function (){
+		$state.go('closeRestaurant')
+	}
 
 
 

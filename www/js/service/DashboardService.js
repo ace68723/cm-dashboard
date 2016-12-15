@@ -1,5 +1,5 @@
 angular.module('MetronicApp')
-.service('dashboardService',function  ($http,$interval,API_URL,json2csv) {
+.service('dashboardService',function  ($http,$interval,API_URL,json2csv,$q) {
   var dashboardService = {};
   var lo_data  ={};
   var lo_fdata ={};
@@ -36,6 +36,30 @@ angular.module('MetronicApp')
 		}, function errorCallback(response) {
 		   // alertService.alert(response);
 		});
+
+    dashboardService.getRole=function(){
+      var deferred = $q.defer();
+
+       var successCallback = function(response){
+         const data = response.data;  
+          if(data.ev_role == 3){
+            var role = "SETTLE"
+         deferred.resolve(role)
+          }else{
+            var role = "OTHER"
+         deferred.reject(role)
+          }
+       }
+       var errorCallback = function(response){
+      deferred.reject(response)
+         }
+       $http({
+              method: 'GET',
+              url: "http://test.norgta.com/public/api/v1/rr_role"
+            }).then(successCallback,errorCallback)
+     return deferred.promise
+    }
+
 
 		function setOrders() {
 			lo_fdata.new_order = [];

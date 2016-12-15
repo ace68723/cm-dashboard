@@ -1,3 +1,14 @@
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name smartDriverApp.authToken
+ * @description
+ * # authToken
+ * Factory in the smartDriverApp.
+ */
+
+
 angular.module('MetronicApp')
   .service('closeRestaurantService', function ($http, $timeout,$q) {
     // getCloseRestaurants
@@ -35,7 +46,6 @@ angular.module('MetronicApp')
           var successCallback = (response)=>{
             const data = response.data;
             if(data.ev_result == 0){
-              console.log(data.ev_data)
              var restaurantData = data.ev_data;
             _.forEach(restaurantData, function(restaurant, id) {
                var data = {};
@@ -62,11 +72,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url: "http://test.norgta.com/public/api/v1/rr_close",
-             headers: {
-               'Content-Type': 'application/json',
-               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOm51bGwsImV4cCI6bnVsbCwiYXVkIjoiIiwic3ViIjoiIiwidWlkIjoiMSJ9.5TMNlgJjGkASfF8hV5VH9xu1TneqUoNZdinwoQkq55o'
-             }
+             url: "http://test.norgta.com/public/api/v1/rr_close"
            }).then(successCallback,errorCallback)
        return deferred.promise
 
@@ -92,10 +98,6 @@ angular.module('MetronicApp')
          $http({
              method:"PUT",
              url:"http://test.norgta.com/public/api/v1/rr_close",
-             headers: {
-               'Content-Type': 'application/json',
-               'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOm51bGwsImV4cCI6bnVsbCwiYXVkIjoiIiwic3ViIjoiIiwidWlkIjoiMSJ9.5TMNlgJjGkASfF8hV5VH9xu1TneqUoNZdinwoQkq55o'
-             },
              data: {"rid":closeRestaurant.rid,
                     "start_time":closeRestaurant.start_time,
                     "end_time":closeRestaurant.end_time,
@@ -119,10 +121,6 @@ angular.module('MetronicApp')
         $http({
           method: 'POST',
           url: 'http://test.norgta.com/public/api/v1/rr_close',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authortoken': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOm51bGwsImV4cCI6bnVsbCwiYXVkIjoiIiwic3ViIjoiIiwidWlkIjoiMSJ9.5TMNlgJjGkASfF8hV5VH9xu1TneqUoNZdinwoQkq55o'
-          },
           data: {"rid":newCloseRestaurant.rid,
                 "start_time":newCloseRestaurant.start_time,
                  "end_time":newCloseRestaurant.end_time
