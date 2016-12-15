@@ -5,6 +5,7 @@
   <title>商家关店管理</title>
   <meta charset="utf-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
   <script type="text/javascript" src="./closeRestaurantController.js"></script>
   <script type="text/javascript" src="./closeRestaurantService.js"></script>
 </head>
@@ -12,37 +13,37 @@
 <div ng-app="myApp">
   <div ng-controller="closeRestaurantController as crc">
     <p>Search {{singleSelect}}</p>
-    <select name="singleSelect" ng-model="singleSelect"  ng-change="clearSearch()">
-      <option ng-repeat="option in SearchOptions"
+    <select name="crc.singleSelect" ng-model="crc.singleSelect"  ng-change="clearSearch()">
+      <option ng-repeat="option in crc.SearchOptions"
               value="{{option.value}}"
-              ng-selected= "{{option.value == singleSelect}}"> {{option.optionName}}
+              ng-selected= "{{option.value == crc.singleSelect}}"> {{option.optionName}}
       </option>
     </select>
     <p>
-      <input type="text" ng-model="search[singleSelect]">
+      <input type="text" ng-model="crc.search[crc.singleSelect]">
     </p>
     <button ng-click="crc.clearSearch()">Clear</button>
     <br>
     <br>
     <div>
-      <form role = "form" ng-submit="crc.addCloseRestaurant()" >
+      <form role = "form" ng-submit="crc.addOnClick()" >
             <div>
               <label for = "closeRestaurant_id">RID:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type = "number" id = 'closeRestaurant_id' ng-model = "newcloseRestaurant.rid">
+              <input type = "number" id = 'closeRestaurant_id' ng-model = "crc.newCloseRestaurant.rid">
             </div>
 
             <div>
               <label for = "closeRestaurant_start">开始关店时间:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type = 'text' id = "closeRestaurant_start" ng-model = "newcloseRestaurant.start_time">
+              <input type = 'text' id = "closeRestaurant_start" ng-model = "crc.newCloseRestaurant.start_time">
             </div>
 
             <div>
               <label for = "closeRestaurant_end">结束关店时间:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type = 'text' id = "closeRestaurant_end" ng-model = "newcloseRestaurant.end_time">
+              <input type = 'text' id = "closeRestaurant_end" ng-model = "crc.newCloseRestaurant.end_time">
             </div>
             <button type = "submit"> Add </button>
 
-            <button type = "button" ng-click = "crc.cancelCreating()"> Cancel </button>
+            <button type = "button" ng-click = "crc.resetAddForm()"> Cancel </button>
           </form>
         </div>
     <br>
@@ -53,18 +54,20 @@
         <th>Start Time</th>
         <th>End Time</th>
       </tr>
-      <tr ng-repeat="(id, closeRestaurant) in crc.closeRestaurants|filter: search">
-          <td>{{crc.closeRestaurant.rid}}</td>
-          <td>{{crc.closeRestaurant.name}}</td>
-          <td  ng-if="!closeRestaurant.isEditing">{{crc.closeRestaurant.start_time}}</td>
-          <td  ng-if="!closeRestaurant.isEditing">{{crc.closeRestaurant.end_time}}</td>
-          <td  ng-if="closeRestaurant.isEditing"><input type="text" ng-model="crc.closeRestaurant.start_time"></input></td>
-          <td  ng-if="closeRestaurant.isEditing"><input type="text" ng-model="crc.closeRestaurant.end_time"></input></td>
+      <tr ng-repeat="(id, closeRestaurant) in crc.closeRestaurants| filter: crc.search | orderBy:'-close_id'">
+          <td>{{closeRestaurant.rid}}</td>
+          <td>{{closeRestaurant.rr_name}}</td>
+          <td  ng-if="!crc.restaurantEditing">{{closeRestaurant.start_time}}</td>
+          <td  ng-if="!crc.restaurantEditing">{{closeRestaurant.end_time}}</td>
+          <td  ng-if="crc.restaurantEditing"><input type="text" ng-model="closeRestaurant.start_time"></input></td>
+          <td  ng-if="crc.restaurantEditing"><input type="text" ng-model="closeRestaurant.end_time"></input></td>
+          <td><button ng-if= "!crc.restaurantEditing" ng-click ="crc.startEditing()">Edit</button>
+          <td><button ng-if= "crc.restaurantEditing" ng-click = "crc.updateOnClick(closeRestaurant)">Update</button>
+          <td><button ng-if= "crc.restaurantEditing" ng-click = "crc.cancelEditing(closeRestaurant)">Cancel</button>
       </tr>
-      <td><button ng-if= "!closeRestaurant.isEditing" ng-click ="crc.startEditing()">Edit</button>
 
-      <td><button ng-if= "closeRestaurant.isEditing" ng-click = "crc.updateCloseRestaurant(closeRestaurant)">Update</button>
-      <td><button ng-if= "closeRestaurant.isEditing" ng-click = "crc.cancelEditing(closeRestaurant)">Cancel</button>
+
+
       </div>
 
     </table>

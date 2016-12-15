@@ -5,6 +5,7 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
   var crc = this;
   var crs = closeRestaurantService;
 //  crs.getQTest();
+  crc.search = {};
   crc.SearchOptions = [{
       "optionName": "RID",
       "value": "rid"
@@ -13,24 +14,48 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
       "value": "name"
     }
   ];
-
-  crc.singleSelect = crc.SearchOptions[0].value;
-  crc.closeRestaurants = crs.closeRestaurants;
-  crc.postCloseRestaurant = crs.addCloseRestaurant;
-  crc.updateCloseRestaurant = crs.updateCloseRestaurant;
-  console.log(crs)
-
-  crs.getCloseRestaurants()
-    .then(()=>{
-
+  crc.updateRestaurantList = function(){
+   crs.getCloseRestaurants()
+    .then((result)=>{
+    console.log(result)
+    crc.closeRestaurants = result;
     })
     .catch((error)=>{
       console.log(error)
     })
+   }
+  crc.updateRestaurantList();
+  crc.restaurantEditing = false;
+  crc.itemEditing = false;
+  crc.singleSelect = crc.SearchOptions[0].value;
+  crc.closeRestaurants = crs.closeRestaurants;
+  crc.postCloseRestaurant = crs.addCloseRestaurant;
+  crc.newCloseRestaurant ={};
+  crc.updateOnClick = function(closeRestaurant){
+    console.log(closeRestaurant)
+    crs.updateCloseRestaurant(closeRestaurant)
+    .then(crc.updateRestaurantList())
+    .catch(function(error){
+      console.log(error)
+    })
+    crc.cancelEditing();
+  }
+
+  crc.addOnClick = function(){
+    console.log($scope)
+    console.log(crc.newCloseRestaurant)
+    crs.addCloseRestaurant(crc.newCloseRestaurant)
+    .then(crc.updateRestaurantList())
+    .catch(function(error){
+      console.log(error)
+    })
+   }
+
+
 
   crc.editRestaurant = function(closeRestaurant){
-    if(!closeRestaurant.isEditing){
-      closeRestaurant.isEditing = true;
+    if(!crc.restaurantEditing){
+      crc.restaurantEditing = true;
       crc.itemEditing = true;
       crc.editingRestaurant = [];
       _.forEach(closeRestaurants,function(closeRestaurant) {
@@ -45,8 +70,8 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
     }
   }
 
-  crc.cancelEditing = function(closeRestaurant){
-      closeRestaurant.isEditing = false;
+  crc.cancelEditing = function(){
+      crc.restaurantEditing = false;
       crc.itemEditing = false;
       // cleanEditingSchedules()
   }
@@ -57,7 +82,7 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
   }
 
   crc.startEditing = function(closeRestaurant){
-      closeRestaurant.isEditing = true;
+      crc.restaurantEditing = true;
       // cleanEditingSchedules()
   }
 
@@ -65,13 +90,8 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
     crc.newCloseRestaurant={};
   }
 
-  var newCloseRestaurant ={
-    rid : "",
-    start_time: "",
-    end_time :""
-  }
+
   function addCloseRestaurant(){
-    crc.newCloseRestaurant = newCloseRestaurant;
     if(!crc.newCloseRestaurant.rid || !crc.newCloseRestaurant.start_time ||!crc.newCloseRestaurant.end_time ){
 
     }else{
