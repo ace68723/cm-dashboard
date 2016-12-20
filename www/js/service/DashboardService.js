@@ -41,7 +41,7 @@ angular.module('MetronicApp')
       var deferred = $q.defer();
 
        var successCallback = function(response){
-         const data = response.data;  
+         const data = response.data;
           if(data.ev_role == 3){
             var role = "SETTLE"
          deferred.resolve(role)
