@@ -30,6 +30,17 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 	SidebarCtrl.GotoCloseRes = function (){
 		$state.go('closeRestaurant')
 	}
+	SidebarCtrl.GotoCustomSer = function (){
+  	$state.go('customService')
+  }
+	SidebarCtrl.ChangetoCustomSer = function (){
+		dashboardService.getRole()
+		.then(SidebarCtrl.GotoCustomSer())
+		.catch((error)=>{
+			console.log(error)
+			window.location="index.html#/dashboard.html"
+		})
+	}
 
 
 

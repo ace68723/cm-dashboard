@@ -162,6 +162,11 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
             templateUrl:"../views/closeRestaurant.html", //views
             controller:"closeRestaurantController as crc" //controller
         })
+        .state('customService',{
+            url:"/customService.html", //url address
+            templateUrl:"../views/customService.html", //views
+            controller:"customServiceController as csc" //controller
+        })
         // Blank Page
 
 
@@ -225,10 +230,11 @@ MetronicApp.run(["$rootScope", "settings", "$state","dashboardService", function
     dashboardService.getRole()
     .then(function(role){
       $rootScope.role = role;
-
+    
     })
     .catch(function(role){
       $rootScope.role = role;
+      console.log($rootScope.role)
     });
 
 }]);
