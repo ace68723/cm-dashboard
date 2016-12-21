@@ -35,8 +35,8 @@ angular.module('MetronicApp')
           var successCallback = (response)=>{
             const data = response.data;
             if(data.ev_result == 0){
-              console.log(data.ev_data)
-             var restaurantData = data.ev_data;
+              console.log(data.ea_data)
+             var restaurantData = data.ea_data;
             _.forEach(restaurantData, function(restaurant, id) {
                var data = {};
                data.rid = restaurant.rid;

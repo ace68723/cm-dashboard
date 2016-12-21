@@ -65,11 +65,14 @@ function($rootScope, $scope, $http, customServiceService,$q) {
     csc.cancelEditing(customServiceSchedule);
   }
   csc.updateOnClick = function(customServiceSchedule){
-    css.updateCustomServiceSchedule(customServiceSchedule)
-    .then(csc.updateCustomServiceSchedule())
-    .catch(function(error){
-      console.log(error)
-    })
+    setTimeout(function () {
+      css.updateCustomServiceSchedule(customServiceSchedule)
+       .then(csc.updateCustomServiceSchedule())
+       .catch((error)=>{
+         console.log(error)
+       })
+    }, 200);
+    
     csc.cancelEditing(customServiceSchedule);
   }
   csc.addOnClick = function(){

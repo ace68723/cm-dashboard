@@ -45,7 +45,7 @@ angular.module('MetronicApp')
         var successCallback = (response)=>{
           const data = response.data;
           if(data.ev_result == 0){
-           var customServiceListData = data.ev_data;
+           var customServiceListData = data.ea_data;
           _.forEach(customServiceListData, function(customServiceList, id) {
              var data = {};
              data.uid = customServiceList.uid;
@@ -84,7 +84,7 @@ angular.module('MetronicApp')
           var successCallback = (response)=>{
             const data = response.data;
             if(data.ev_result == 0){
-             var cServiceData = data.ev_data;
+             var cServiceData = data.ea_data;
             _.forEach(cServiceData, function(customServiceSchedule, id) {
                var data = {};
                data.id = customServiceSchedule.id;
