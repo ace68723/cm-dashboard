@@ -57,28 +57,33 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
       console.log(error)
     })
    }
-  crc.confrimAdd = function(){
-    swal({
-      title: "确认添加?",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "是的, 请添加!",
-      cancelButtonText: "不, 请删除!",
-      closeOnConfirm: false,
-      closeOnCancel: false
-      },
-     function(isConfirm) {
-       if (isConfirm) {
-       swal("已提交!", "success"
-            );
-       crc.addOnClick();
-       crc.resetAddForm();
-          } else {
-       swal("已取消!");
-          }
-    });
-  }
+   crc.confrimAdd = function(){
+     if(!crc.newCloseRestaurant.rid||!crc.newCloseRestaurant.start_time||!crc.newCloseRestaurant.end_time){
+
+     }else{
+     swal({
+       title: "确认添加?",
+       type: "warning",
+       showCancelButton: true,
+       confirmButtonClass: "btn-danger",
+       confirmButtonText: "是的, 请添加!",
+       cancelButtonText: "不, 请删除!",
+       closeOnConfirm: false,
+       closeOnCancel: false
+       },
+      function(isConfirm) {
+        if (isConfirm) {
+        swal("已提交!", "success"
+             );
+        crc.addOnClick();
+        crc.resetAddForm();
+        crc.updateRestaurantList();
+           } else {
+        swal("已取消!");
+           }
+     });
+     }
+   }
   crc.confrimUpdate = function(closeRestaurant){
     swal({
       title: "确认更新?",
