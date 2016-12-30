@@ -129,17 +129,6 @@ function($rootScope, $scope, $http, closeRestaurantService,$q) {
   }
 
 
-  function addCloseRestaurant(){
-    if(!crc.newCloseRestaurant.rid || !crc.newCloseRestaurant.start_time ||!crc.newCloseRestaurant.end_time ){
-
-    }else{
-      crc.closeRestaurants.push(crc.newCloseRestaurant);
-      crc.resetAddForm();
-      crc.postCloseRestaurant();
-    }
-  }
-
-
 
 
 
