@@ -41,6 +41,17 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 			window.location="index.html#/dashboard.html"
 		})
 	}
+	SidebarCtrl.ChangetoDriverSchedule = function (){
+		dashboardService.getRole()
+		.then(SidebarCtrl.GotoDriverSchedule())
+		.catch((error)=>{
+			console.log(error)
+			window.location="index.html#/dashboard.html"
+		})
+	}
+	SidebarCtrl.GotoDriverSchedule = function (){
+		$state.go('driverSchdule')
+	}
 
 
 

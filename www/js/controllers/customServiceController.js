@@ -72,7 +72,7 @@ function($rootScope, $scope, $http, customServiceService,$q) {
          console.log(error)
        })
     }, 200);
-    
+
     csc.cancelEditing(customServiceSchedule);
   }
   csc.addOnClick = function(){
@@ -84,6 +84,10 @@ function($rootScope, $scope, $http, customServiceService,$q) {
     })
    }
   csc.confrimAdd = function(){
+    if(!csc.newCustomServiceSchdule.uid||!csc.newCustomServiceSchdule.valid_from||!csc.newCustomServiceSchdule.valid_to||!csc.newCustomServiceSchdule.zone){
+
+    }else{
+
     swal({
       title: "确认添加?",
       type: "warning",
@@ -105,6 +109,8 @@ function($rootScope, $scope, $http, customServiceService,$q) {
        swal("已取消!");
           }
     });
+
+  }
   }
   csc.confrimUpdate = function(customServiceSchedule){
     swal({
