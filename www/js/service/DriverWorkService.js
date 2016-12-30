@@ -10,7 +10,7 @@
 
 
 angular.module('MetronicApp')
-  .service('driverWorkService', function ($http, $timeout,$q) {
+  .service('driverWorkService', function ($http, API2_URL, $timeout,$q) {
     // getCloseRestaurants
 
     /*  input:
@@ -67,7 +67,7 @@ angular.module('MetronicApp')
 
         $http({
            method: 'GET',
-           url: "http://test.norgta.com/public/api/v1/dr_list"
+           url: API2_URL+"dr_list"
          }).then(successCallback,errorCallback)
      return deferred.promise
     }
@@ -113,7 +113,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url: "http://test.norgta.com/public/api/v1/dr_work"
+             url: API2_URL+"dr_work"
            }).then(successCallback,errorCallback)
        return deferred.promise
 
@@ -138,7 +138,7 @@ angular.module('MetronicApp')
          }
          $http({
              method:"PUT",
-             url:"http://test.norgta.com/public/api/v1/dr_work",
+             url:API2_URL+"dr_work",
              data: {
                     "id":driverSchdule.id,
                     "driver_id":driverSchdule.driver_id,
@@ -165,7 +165,7 @@ angular.module('MetronicApp')
 
         $http({
           method: 'POST',
-          url: 'http://test.norgta.com/public/api/v1/dr_work',
+          url: API2_URL+"dr_work",
           data: {"driver_id":newDriverSchedule.driver_id,
                 "valid_from":newDriverSchedule.valid_from,
                  "valid_to":newDriverSchedule.valid_to,
@@ -188,7 +188,7 @@ angular.module('MetronicApp')
 
          $http({
            method: 'PATCH',
-           url: 'http://test.norgta.com/public/api/v1/dr_work',
+           url: API2_URL+"dr_work",
            data: {
              "id":driverSchdule.id
                  }

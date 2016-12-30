@@ -1,5 +1,5 @@
 angular.module('MetronicApp')
-.service('dashboardService',function  ($http,$interval,API_URL,json2csv,$q) {
+.service('dashboardService',function  ($http,$interval,API_URL,API2_URL,json2csv,$q) {
   var dashboardService = {};
   var lo_data  ={};
   var lo_fdata ={};
@@ -55,7 +55,7 @@ angular.module('MetronicApp')
          }
        $http({
               method: 'GET',
-              url: "http://test.norgta.com/public/api/v1/rr_role"
+              url: API2_URL+"rr_role"
             }).then(successCallback,errorCallback)
      return deferred.promise
     }

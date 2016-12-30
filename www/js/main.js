@@ -109,7 +109,7 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
 }]);
 
 MetronicApp.constant("API_URL", "https://chanmao.ca/index.php?r=");
-
+MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
 /* Setup Rounting For All Pages */
 MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', function($stateProvider, $urlRouterProvider,$httpProvider) {
     // Redirect any unmatched url

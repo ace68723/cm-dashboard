@@ -10,7 +10,7 @@
 
 
 angular.module('MetronicApp')
-  .service('customServiceService', function ($http, $timeout,$q) {
+  .service('customServiceService', function ($http,API2_URL, $timeout,$q) {
     // getCloseRestaurants
 
     /*  input:
@@ -68,7 +68,7 @@ angular.module('MetronicApp')
 
         $http({
            method: 'GET',
-           url: "http://test.norgta.com/public/api/v1/cs_role"
+           url: API2_URL+"cs_role"
          }).then(successCallback,errorCallback)
      return deferred.promise
     }
@@ -111,7 +111,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url: "http://test.norgta.com/public/api/v1/cs_work"
+             url: API2_URL+"cs_work"
            }).then(successCallback,errorCallback)
        return deferred.promise
 
@@ -136,7 +136,7 @@ angular.module('MetronicApp')
          }
          $http({
              method:"PUT",
-             url:"http://test.norgta.com/public/api/v1/cs_work",
+             url:API2_URL+"cs_work",
              data: {
                     "id":customServiceSchedule.id,
                     "uid":customServiceSchedule.uid,
@@ -163,7 +163,7 @@ angular.module('MetronicApp')
 
         $http({
           method: 'POST',
-          url: 'http://test.norgta.com/public/api/v1/cs_work',
+          url: API2_URL+"cs_work",
           data: {"uid":newCustomServiceSchdule.uid,
                 "valid_from":newCustomServiceSchdule.valid_from,
                  "valid_to":newCustomServiceSchdule.valid_to,
@@ -186,7 +186,7 @@ angular.module('MetronicApp')
 
          $http({
            method: 'PATCH',
-           url: 'http://test.norgta.com/public/api/v1/cs_work',
+           url: API2_URL+"cs_work",
            data: {
              "id":customServiceSchedule.id
                  }
