@@ -106,7 +106,7 @@ function($rootScope, $scope, $http, driverWorkService,$q) {
        dwc.convertDriverID();
        dwc.convertZone();
        dwc.addOnClick();
-       dwc.resetAddForm();
+             dwc.convertBack();
           } else {
        swal("已取消!");
           }
@@ -135,6 +135,7 @@ function($rootScope, $scope, $http, driverWorkService,$q) {
       dwc.changeZone(driverSchdule);
       dwc.updateOnClick(driverSchdule);
       dwc.updateDriverSchedule()
+
           } else {
        swal("已取消!");
           }
@@ -182,15 +183,18 @@ function($rootScope, $scope, $http, driverWorkService,$q) {
   }
 
   dwc.resetAddForm = function(){
-    dwc.newDriverSchedule={};
-  }
-
+    dwc.newDriverSchedule= {};
+}
  dwc.convertDriverID = function(){
    dwc.newDriverSchedule.driver_id = parseInt(dwc.newDriverSchedule.driver_id, 10);
  }
  dwc.convertZone = function(){
    dwc.newDriverSchedule.zone = parseInt(dwc.newDriverSchedule.zone, 10);
    dwc.driver.zone = parseInt(dwc.driver.zone, 10);
+ }
+ dwc.convertBack = function(){
+   dwc.newDriverSchedule.zone = dwc.newDriverSchedule.zone.toString();
+   dwc.newDriverSchedule.driver_id =  dwc.newDriverSchedule.driver_id.toString();
  }
  dwc.areaOptions = [
 
