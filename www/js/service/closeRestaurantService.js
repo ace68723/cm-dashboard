@@ -10,7 +10,7 @@
 
 
 angular.module('MetronicApp')
-  .service('closeRestaurantService', function ($http, $timeout,$q) {
+  .service('closeRestaurantService', function ($http,API2_URL, $timeout,$q) {
     // getCloseRestaurants
 
     /*  input:
@@ -72,7 +72,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url: "http://test.norgta.com/public/api/v1/rr_close"
+             url: API2_URL+"rr_close"
            }).then(successCallback,errorCallback)
        return deferred.promise
 
@@ -97,7 +97,7 @@ angular.module('MetronicApp')
          }
          $http({
              method:"PUT",
-             url:"http://test.norgta.com/public/api/v1/rr_close",
+             url:API2_URL+"rr_close",
              data: {"rid":closeRestaurant.rid,
                     "start_time":closeRestaurant.start_time,
                     "end_time":closeRestaurant.end_time,
@@ -121,7 +121,7 @@ angular.module('MetronicApp')
 
         $http({
           method: 'POST',
-          url: 'http://test.norgta.com/public/api/v1/rr_close',
+          url: API2_URL+"rr_close",
           data: {"rid":newCloseRestaurant.rid,
                 "start_time":newCloseRestaurant.start_time,
                  "end_time":newCloseRestaurant.end_time
