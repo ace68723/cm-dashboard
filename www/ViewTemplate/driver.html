@@ -37,7 +37,7 @@
 
     <div class="header-left">
       <img alt="menu" src="icon/menu.png" height="30px"/>
-      <img alt="version" src="icon/version.png" height="30px" style="margin-left: 10px"/>
+      <div class="version">V1.0.5</div>
       <div id="time">
         <script type="text/javascript">
           function update(){
@@ -81,9 +81,9 @@
       <div class="dri-select">
         <div class="dri-name">
           <select class="btn-res-name">
-            <option value ="restaurant">restaurant</option>
-            <option value = "service">service</option>
-            <option value = "driver" selected="selected">driver</option>
+            <option value ="restaurant">Restaurant</option>
+            <option value = "service">Service</option>
+            <option value = "driver" selected="selected">Driver</option>
           </select>
           <form class="search-form" action=" " method="GET">
             <div class="input-group">
@@ -100,26 +100,24 @@
 
         <div class="area">
           <p>
-            <button type="button" class="btn-scarborough">Scarborough</button>
-            <button type="button" class="btn-markham">Markham</button>
-            <button type="button" class="btn-northyork">North York</button>
-            <button type="button" class="btn-richmond">Richmond Hill</button>
+            <button type="button" class="btn-scarborough">NY/RH</button>
+            <button type="button" class="btn-northyork">SC/RH</button>
             <button type="button" class="btn-downtown">Downtown</button>
             <button type="button" class="btn-missi">Mississauga</button>
             <button type="button" class="btn-all">All</button>
-            <button type="button" class="btn-closed">Closed</button>
           </p>
         </div>
 
         <div class="week">
           <p>
-            <button type="button" class="btn-mon">MON</button>
-            <button type="button" class="btn-tue">TUE</button>
-            <button type="button" class="btn-wed">WED</button>
-            <button type="button" class="btn-thu">THU</button>
-            <button type="button" class="btn-fri">FRI</button>
-            <button type="button" class="btn-sat">SAT</button>
-            <button type="button" class="btn-sun">SUN</button>
+            <button type="button" class="btn-weekday">MON</button>
+            <button type="button" class="btn-weekday">TUE</button>
+            <button type="button" class="btn-weekday">WED</button>
+            <button type="button" class="btn-weekday">THU</button>
+            <button type="button" class="btn-weekday">FRI</button>
+            <button type="button" class="btn-weekend">SAT</button>
+            <button type="button" class="btn-weekend">SUN</button>
+            <button type="button" class="btn-week">ALL</button>
           </p>
         </div>
 
@@ -127,7 +125,7 @@
 
       <div class="new">
         <input type="image" src="icon/icon-schedule.png" onclick="popDriTable();"/>
-        <p>添加客服班表</p>
+        <p>添加司机班表</p>
       </div>
     </div>
 
@@ -135,22 +133,24 @@
         <table class="dri-table" cellspacing="0" cellpadding="0" >
             <thead>
                 <tr>
-                    <th> RID </th>
-                    <th> NAME </th>
-                    <th> ADDRESS </th>
-                    <th> TELEPHONE </th>
-                    <th> OPEN HOUR </th>
+                    <th> UID </th>
+                    <th class="table-name"> NAME </th>
+                    <th class="table-time"> START TIME </th>
+                    <th class="table-time"> END TIME </th>
+                    <th class="table-area"> AREA </th>
                     <th> EDIT </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td> 4 </td>
-                    <td> 老汤家(Scarborough) </td>
-                    <td> 3380 Midland Ave, Scarborough, M9U 8Y7 </td>
-                    <td> 905540283 </td>
-                    <td>12:00 ~ 22:00</td>
-                    <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="popDriver();"/></td>
+                  <td> 4342 </td>
+                  <td>  <button onclick="popDriver()"> ddoahdsi </button></td>
+                  <td> 2016-12-17 12:00 </td>
+                  <td> 2016-12-18 12:00 </td>
+                  <td> 2 </td>
+                  <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="editServicer();"/>
+                      <input type="image" class="table-edit" src="icon/icon-delete.png"/>
+                  </td>
                 </tr>
                 <tr>
                     <td> 6 </td>
@@ -213,24 +213,9 @@
   <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
   <div class="pop-dri-name">
     <div class="btn-group">
-        <a class="pop-btn-dri-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 客服姓名
+        <a class="pop-btn-dri-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 司机姓名
             <i class=""></i>
         </a>
-        <!--<ul class="dropdown-menu pull-right">
-            <li>
-                <a href="javascript:;"> Option 1</a>
-            </li>
-            <li class="divider"> </li>
-            <li>
-                <a href="javascript:;">Option 2</a>
-            </li>
-            <li>
-                <a href="javascript:;">Option 3</a>
-            </li>
-            <li>
-                <a href="javascript:;">Option 4</a>
-            </li>
-        </ul>-->
     </div>
     <form class="search-form" action=" " method="GET">
       <div class="pop-input-group">
@@ -249,10 +234,10 @@
     <table class="pop-dri-table" cellspacing="0" cellpadding="0" >
         <tbody>
             <tr>
-                <td> ddsfv </td>
-                <td> g3tfs </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
+                <td> <button onclick="popDriver()"> ddsfv </button> </td>
+                <td> <button onclick="popDriver()"> g3tfs </button></td>
+                <td> <button onclick="popDriver()"> fsef </button></td>
+                <td> <button onclick="popDriver()"> fgbfgb </button></td>
             </tr>
             <tr>
                 <td> fsef </td>
@@ -299,24 +284,13 @@
                 <td> <input type="text" class="dri-end-time-1"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
             </tr>
@@ -325,24 +299,13 @@
               <td> <input type="text" class="dri-end-time-2"/> </td>
               <td>
                 <div class="area-group">
-                    <a class="pop-btn-area-2" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
+                  <select class="btn-ser-select">
+                    <option value ="ny/rh" selected="selected">NY/RH</option>
+                    <option value = "sc/rh">SC/RH</option>
+                    <option value = "downtown">Downtown</option>
+                    <option value = "mississauga">Mississauga</option>
+                    <option value = "all">All</option>
+                  </select>
                 </div>
               </td>
             </tr>
@@ -351,24 +314,13 @@
               <td> <input type="text" class="dri-end-time-3"/> </td>
               <td>
                 <div class="area-group">
-                    <a class="pop-btn-area-3" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
+                  <select class="btn-ser-select">
+                    <option value ="ny/rh" selected="selected">NY/RH</option>
+                    <option value = "sc/rh">SC/RH</option>
+                    <option value = "downtown">Downtown</option>
+                    <option value = "mississauga">Mississauga</option>
+                    <option value = "all">All</option>
+                  </select>
                 </div>
               </td>
             </tr>
@@ -377,24 +329,13 @@
               <td> <input type="text" class="dri-end-time-4"/> </td>
               <td>
                 <div class="area-group">
-                    <a class="pop-btn-area-4" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
+                  <select class="btn-ser-select">
+                    <option value ="ny/rh" selected="selected">NY/RH</option>
+                    <option value = "sc/rh">SC/RH</option>
+                    <option value = "downtown">Downtown</option>
+                    <option value = "mississauga">Mississauga</option>
+                    <option value = "all">All</option>
+                  </select>
                 </div>
               </td>
             </tr>
@@ -403,24 +344,13 @@
               <td> <input type="text" class="dri-end-time-5"/> </td>
               <td>
                 <div class="area-group">
-                    <a class="pop-btn-area-5" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
+                  <select class="btn-ser-select">
+                    <option value ="ny/rh" selected="selected">NY/RH</option>
+                    <option value = "sc/rh">SC/RH</option>
+                    <option value = "downtown">Downtown</option>
+                    <option value = "mississauga">Mississauga</option>
+                    <option value = "all">All</option>
+                  </select>
                 </div>
               </td>
             </tr>
@@ -429,24 +359,13 @@
               <td> <input type="text" class="dri-end-time-6"/> </td>
               <td>
                 <div class="area-group">
-                    <a class="pop-btn-area-6" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
+                  <select class="btn-ser-select">
+                    <option value ="ny/rh" selected="selected">NY/RH</option>
+                    <option value = "sc/rh">SC/RH</option>
+                    <option value = "downtown">Downtown</option>
+                    <option value = "mississauga">Mississauga</option>
+                    <option value = "all">All</option>
+                  </select>
                 </div>
               </td>
             </tr>
@@ -455,24 +374,13 @@
               <td> <input type="text" class="dri-end-time-7"/> </td>
               <td>
                 <div class="area-group">
-                    <a class="pop-btn-area-7" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
+                  <select class="btn-ser-select">
+                    <option value ="ny/rh" selected="selected">NY/RH</option>
+                    <option value = "sc/rh">SC/RH</option>
+                    <option value = "downtown">Downtown</option>
+                    <option value = "mississauga">Mississauga</option>
+                    <option value = "all">All</option>
+                  </select>
                 </div>
               </td>
             </tr>
@@ -492,24 +400,13 @@
                   <td> <input type="text" class="dri-end-time-1"/> </td>
                   <td>
                     <div class="area-group">
-                        <a class="pop-btn-area-1" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                            <i class=""></i>
-                        </a>
-                        <!--<ul class="dropdown-menu pull-right">
-                            <li>
-                                <a href="javascript:;"> Option 1</a>
-                            </li>
-                            <li class="divider"> </li>
-                            <li>
-                                <a href="javascript:;">Option 2</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">Option 3</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">Option 4</a>
-                            </li>
-                        </ul>-->
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
                     </div>
                   </td>
               </tr>
@@ -518,24 +415,13 @@
                 <td> <input type="text" class="dri-end-time-2"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area-2" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -544,24 +430,13 @@
                 <td> <input type="text" class="dri-end-time-3"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area-3" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -570,24 +445,13 @@
                 <td> <input type="text" class="dri-end-time-4"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area-4" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -596,24 +460,13 @@
                 <td> <input type="text" class="dri-end-time-5"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area-5" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -622,24 +475,13 @@
                 <td> <input type="text" class="dri-end-time-6"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area-6" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
               </tr>
@@ -648,24 +490,13 @@
                 <td> <input type="text" class="dri-end-time-7"/> </td>
                 <td>
                   <div class="area-group">
-                      <a class="pop-btn-area-7" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
+                    <select class="btn-ser-select">
+                      <option value ="ny/rh" selected="selected">NY/RH</option>
+                      <option value = "sc/rh">SC/RH</option>
+                      <option value = "downtown">Downtown</option>
+                      <option value = "mississauga">Mississauga</option>
+                      <option value = "all">All</option>
+                    </select>
                   </div>
                 </td>
               </tr>

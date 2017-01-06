@@ -17,6 +17,18 @@
   margin-left: 10px;
 }
 
+.version{
+  height: 22px;
+  width: 60px;
+  background-color: #F36A5A;
+  margin-left: 10px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding-top: 8px;
+  font-family: Myriad Pro;
+}
+
 #time{
   font-family: myriad pro;
   color: #7FACCD;
@@ -139,24 +151,25 @@
   margin: 0 5px 0 5px;
 }
 
-select{
-  border-radius: 25px;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  touch-action: manipulation;
-  cursor: pointer;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 18px;
-  background: 0 0;
-  margin: 0 5px 0 5px;
-  border-color: #3598dc;
-  color: #3598dc;
-  text-decoration: none;
-  font-family: myriad pro;
-  height: 30px;
+.content select{
+      border-radius: 25px;
+      display: inline-block;
+      touch-action: manipulation;
+      cursor: pointer;
+      border: 1px solid transparent;
+      -webkit-appearance: none;
+      font-size: 16px;
+      background: 0 0;
+      border-color: #94A0B2;
+      color: #94A0B2;
+      width: 120px;
+      height: 35px;
+      padding-left: 10px;
+      font-family: myriad pro;
+      background-image: url(icon/arrow.png);
+      background-position: right;
+      background-size: 25px;
+      background-repeat: no-repeat;
 }
 
 .res-name{
@@ -242,6 +255,10 @@ button{
 
 .res-table tr{
   height: 45px;
+}
+
+.res-table tbody tr:nth-child(2n+1) td{
+  background-color: #f6faf9;
 }
 
 .res-table td{
@@ -333,6 +350,22 @@ button{
   border: 0.25px solid #e5e5e5;
 }
 
+.ser-table button{
+  color: #67809F;
+}
+
+.table-name{
+  padding: 0 40px;
+}
+
+.table-time{
+  padding: 0 30px;
+}
+
+.table-area{
+  padding: 0 10px;
+}
+
 .ser-table th{
   font-weight: bold;
   border: 0.25px solid #e5e5e5;
@@ -342,14 +375,12 @@ button{
   height: 45px;
 }
 
-.ser-table td{
-  border: 0.25px solid #e5e5e5;
+.ser-table tbody tr:nth-child(2n+1) td{
+  background-color: #f6faf9;
 }
 
-.table-edit{
-  height: 25px;
-  width: 25px;
-  margin: 0 20px 0 20px;
+.ser-table td{
+  border: 0.25px solid #e5e5e5;
 }
 
 .driver{
@@ -402,38 +433,18 @@ button{
   margin-top: 20px;
 }
 
-.btn-mon{
+.btn-weekday{
   background-color: #67809F;
   color: white;
 }
 
-.btn-tue{
-  background-color: #67809F;
-  color: white;
-}
-
-.btn-wed{
-  background-color: #67809F;
-  color: white;
-}
-
-.btn-thu{
-  background-color: #67809F;
-  color: white;
-}
-
-.btn-fri{
-  background-color: #67809F;
-  color: white;
-}
-
-.btn-sat{
+.btn-weekend{
   background-color: #ffa1b5;
   color: white;
 }
 
-.btn-sun{
-  background-color: #ffa1b5;
+.btn-week{
+  background-color: #BFBFBF;
   color: white;
 }
 
@@ -444,6 +455,10 @@ button{
   border: 0.25px solid #e5e5e5;
 }
 
+.dri-table button{
+  color: #67809F;
+}
+
 .dri-table th{
   font-weight: bold;
   border: 0.25px solid #e5e5e5;
@@ -451,6 +466,10 @@ button{
 
 .dri-table tr{
   height: 45px;
+}
+
+.dri-table tbody tr:nth-child(2n+1) td{
+  background-color: #f6faf9;
 }
 
 .dri-table td{

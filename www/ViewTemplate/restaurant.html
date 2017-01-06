@@ -28,7 +28,7 @@
 
     <div class="header-left">
       <img alt="menu" src="icon/menu.png" height="30px"/>
-      <img alt="version" src="icon/version.png" height="30px" style="margin-left: 10px"/>
+      <div class="version">V1.0.5</div>
       <div id="time">
          <script type="text/javascript">
          function update(){
@@ -68,9 +68,9 @@
       <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
       <div class="res-search">
         <select class="btn-res-name">
-          <option value ="restaurant" selected="selected">restaurant</option>
-          <option value = "service">service</option>
-          <option value = "driver">driver</option>
+          <option value ="restaurant" selected="selected">Restaurant</option>
+          <option value = "service">Service</option>
+          <option value = "driver">Driver</option>
         </select>
         <form class="search-form" action=" " method="GET">
             <div class="input-group">
@@ -183,9 +183,9 @@
     <p style="margin-left: 200px;">结束关店时间</p>
   </div>
   <div class="time">
-    <img src="icon/icon-calendar.png"/>
+    <input type="image"  class="icon-calender" src="icon/icon-calendar.png" />
     <input type="text" class="start-time"/>
-    <img src="icon/icon-calendar2.png" style="margin-left: 80px;"/>
+    <input type="image" class= "icon-calendar" src="icon/icon-calendar2.png" style="margin-left: 80px;"/>
     <input type="text" class="end-time"/>
   </div>
   <div class="res-pop-btn">
@@ -198,20 +198,34 @@
             <tr>
                 <th> Start Time </th>
                 <th> End Time </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td> 2016-12-29 00:01:00 </td>
                 <td> 2016-12-29 00:02:00 </td>
+                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
             </tr>
             <tr>
                 <td> 2016-12-29 00:01:00 </td>
                 <td> 2016-12-29 00:02:00 </td>
+                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
             </tr>
             <tr>
                 <td> 2016-12-29 00:01:00 </td>
                 <td> 2016-12-29 00:02:00 </td>
+                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
+            </tr>
+            <tr>
+                <td> 2016-12-29 00:01:00 </td>
+                <td> 2016-12-29 00:02:00 </td>
+                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
+            </tr>
+            <tr>
+                <td> 2016-12-29 00:01:00 </td>
+                <td> 2016-12-29 00:02:00 </td>
+                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
             </tr>
         </tbody>
     </table>
