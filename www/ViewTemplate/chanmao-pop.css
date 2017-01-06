@@ -1,0 +1,419 @@
+#res-pop{
+  margin-left: 20%;
+  margin-top: -920px;
+  width: 50%;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  position: fixed;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: white;
+  padding: 5px;
+  z-index: 3;
+  box-shadow: 0px 0px 5px grey;
+}
+
+#background{
+  position: fixed;
+  width: 120%;
+  height: 250%;
+  background-color: grey;
+  opacity: 0.7;
+  margin-top: -150%;
+  margin-left: -10%;
+  visibility: hidden;
+  z-index: 2;
+}
+
+#res-pop p{
+  font-size: 18px;
+  font-family: Myriad Pro;
+}
+
+.time-title{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-family: Microsoft Yahei;
+  font-size: 18px;
+}
+
+.time{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time img{
+  width: 30px;
+  margin-right: 10px;
+}
+
+.time input{
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.start-time{
+  border: 1px solid #93b4cc;
+}
+
+.end-time{
+  border: 1px solid #4db3a2;
+}
+
+.res-pop-btn{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.btn-add{
+  border-radius: 20px;
+  background-color: #F36A5A;
+  width: 80px;
+  height: 40px;
+  color: white;
+}
+
+.btn-cancel{
+  border-radius: 20px;
+  background-color: #5C9BD1;
+  padding: 10px 16px;
+  color: white;
+  margin-left: 20px;
+}
+
+.history{
+  width: 80%;
+  height: 200px;
+  background-color: #EEEEEE;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.time-table{
+  width: 100%;
+  text-align: center;
+  font-family: Myriad Pro;
+  margin-top: 30px;
+}
+
+.time-table th{
+  font-weight: bold;
+}
+
+.time-table tr{
+  height: 30px;
+}
+
+.close-icon{
+  position: fixed;
+  margin-left: 90%;
+  margin-top: -920px;
+  width: 30px;
+  z-index: 3;
+}
+
+#close{
+  visibility: hidden;
+}
+
+#pop-ser-new{
+  margin-left: 20%;
+  margin-top: -920px;
+  width: 50%;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  position: fixed;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: white;
+  padding: 5px;
+  z-index: 3;
+  box-shadow: 0px 0px 5px grey;
+}
+
+/*SERVICER*/
+
+#pop-ser-new p{
+  font-size: 18px;
+  font-family: Myriad Pro;
+}
+
+.pop-ser-name{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: center;
+  width: 80%;
+}
+
+.pop-btn-ser-name{
+  border-radius: 25px;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: 0 0;
+  margin: 0 5px 0 5px;
+  border-color: #3598dc;
+  color: #3598dc;
+  text-decoration: none;
+  font-family: myriad pro;
+}
+
+.pop-input-group{
+  left: auto;
+  right: 0;
+  position: relative;
+  display: block;
+}
+
+.pop-input-group>i{
+  color: #ccc;
+  position: absolute;
+  margin: 11px 2px 4px 10px;
+  z-index: 3;
+  width: 25px;
+  text-align: center;
+  margin-top: 8px;
+  right: 8px;
+  float: right;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.pop-btn-clear{
+  border-color: #BFBFBF;
+  color: #BFBFBF;
+  border-radius: 10px;
+  height: 35px;
+}
+
+.pop-ser-table{
+  width: 100%;
+  text-align: center;
+  font-family: Myriad Pro;
+  color: #67809F;
+}
+
+.pop-ser-table tr{
+  height: 30px;
+}
+
+#ser-pop{
+  margin-left: 11%;
+  margin-top: -920px;
+  width: 78%;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  position: fixed;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: white;
+  padding: 5px;
+  z-index: 3;
+  box-shadow: 0px 0px 5px grey;
+}
+
+#ser-pop p{
+  font-size: 20px;
+  font-family: Myriad Pro;
+}
+
+.ser-time-table{
+  text-align: center;
+  font-family: Myriad Pro;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ser-time-table th{
+  font-weight: bold;
+}
+
+.ser-time-table tr{
+  height: 30px;
+}
+
+.ser-time-table input{
+    width: 150px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #66b5ad;
+    box-shadow: 0 0 2px #e5e5e5;
+}
+
+.ser-time-table a{
+    border-radius: 15px;
+    display: inline-block;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: 0 0;
+    margin: 0 5px 0 5px;
+    border-color: #66b5ad;
+    color: #66b5ad;
+    text-decoration: none;
+    width: 100px;
+    font-family: myriad pro;
+    box-shadow: 0 0 2px #e5e5e5;
+  }
+
+/*DRIVER*/
+
+  #pop-dri-new{
+    margin-left: 20%;
+    margin-top: -920px;
+    width: 50%;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    position: fixed;
+    visibility: hidden;
+    overflow: hidden;
+    background-color: white;
+    padding: 5px;
+    z-index: 3;
+    box-shadow: 0px 0px 5px grey;
+  }
+
+  #pop-dri-new p{
+    font-size: 18px;
+    font-family: Myriad Pro;
+  }
+
+  .pop-dri-name{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .pop-btn-dri-name{
+    border-radius: 25px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: 0 0;
+    margin: 0 5px 0 5px;
+    border-color: #3598dc;
+    color: #3598dc;
+    text-decoration: none;
+    font-family: myriad pro;
+  }
+
+  .pop-dri-table{
+    width: 100%;
+    text-align: center;
+    font-family: Myriad Pro;
+    color: #67809F;
+  }
+
+  .pop-dri-table tr{
+    height: 30px;
+  }
+
+  #dri-pop{
+    margin-left: 11%;
+    margin-top: -920px;
+    width: 78%;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    position: fixed;
+    visibility: hidden;
+    overflow: hidden;
+    background-color: white;
+    padding: 5px;
+    z-index: 3;
+    box-shadow: 0px 0px 5px grey;
+  }
+
+  #dri-pop p{
+    font-size: 20px;
+    font-family: Myriad Pro;
+  }
+
+  .dri-time-table{
+    text-align: center;
+    font-family: Myriad Pro;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .dri-time-table th{
+    font-weight: bold;
+  }
+
+  .dri-time-table tr{
+    height: 30px;
+  }
+
+  .dri-time-table input{
+      width: 150px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1px solid #66b5ad;
+      box-shadow: 0 0 2px #e5e5e5;
+  }
+
+  .dri-time-table a{
+      border-radius: 15px;
+      display: inline-block;
+      text-align: center;
+      touch-action: manipulation;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 15px;
+      box-sizing: border-box;
+      background: 0 0;
+      margin: 0 5px 0 5px;
+      border-color: #66b5ad;
+      color: #66b5ad;
+      text-decoration: none;
+      width: 100px;
+      font-family: myriad pro;
+      box-shadow: 0 0 2px #e5e5e5;
+    }
