@@ -44,7 +44,14 @@
             var hour = new Date().getHours();
             var minute = new Date().getMinutes();
             var second = new Date().getSeconds();
-            document.getElementById('time').innerHTML= hour + ": " + minute + ": " + second;
+            if (minute<10&&second<10)
+            document.getElementById('time').innerHTML= hour + ":0" + minute + ":0" + second;
+            if (minute<10&&second>9)
+            document.getElementById('time').innerHTML= hour + ":0" + minute + ":" + second;
+            if (minute>9&&second<10)
+            document.getElementById('time').innerHTML= hour + ":" + minute + ":0" + second;
+            if (minute>9&&second>9)
+            document.getElementById('time').innerHTML= hour + ":" + minute + ":" + second;
           }
           setInterval(update,1000);
        </script>
