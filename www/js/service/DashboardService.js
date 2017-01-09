@@ -137,10 +137,52 @@ angular.module('MetronicApp')
 		}
 	}
   dashboardService.find_order = function  (oid) {
-    serach_order = _.find(lo_data.orders, function(order){
-        return order.oid == oid;
-    });
-    return serach_order
+    var deferred = $q.defer();
+      $http({
+      method: 'POST',
+      url: API_URL+'MobMonitor/OrderDetailInt',
+      data:{oid:oid}
+    }).then(function successCallback(response) {
+      console.log(response.data.eo_order)
+      if(!response.data.eo_order){
+        deferred.reject(response)
+      }else{
+        const oid = response.data.eo_order.oid;
+        const order = response.data.eo_order.order;
+        const delivery = response.data.eo_order.delivery;
+        const rr = response.data.eo_order.rr;
+        const user =  response.data.eo_order.user;
+        const serach_order = {
+          "oid": oid,
+          "status": order.status,
+          "dltype": "送餐",
+          "channel": order.channel,
+          "status_txt": order.status_txt,
+          "dlexp": order.dlexp,
+          "total": order.total,
+          "created": order.created,
+          "cell": user.tel,
+          "c_addr": user.addr,
+          "c_postal": user.postal,
+          "c_lat": user.lat,
+          "c_lng": user.lng,
+          "r_cell": user.tel,
+          "rrname": rr.name,
+          "r_addr": rr.addr,
+          "r_postal": rr.postal,
+          "r_lat": rr.lat,
+          "r_lng": rr.lng,
+          "r_call": rr.tel,
+        }
+        deferred.resolve(serach_order)
+      }
+
+
+    }).catch(function errorCallback(error) {
+      deferred.reject(response)
+    })
+
+    return deferred.promise
 	}
 	var audio = new Audio('audio/pikapi.wav');
 	function play_audio () {

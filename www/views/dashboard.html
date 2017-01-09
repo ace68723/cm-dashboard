@@ -253,7 +253,7 @@
 								<div class="col-md-7 nonepadding">
 								 {{order.rrname}}
 								</div>
-	<!-- ng-style="order.r_call== 'A' &&  {'cursor':'pointer'}" -->
+								<!-- ng-style="order.r_call== 'A' &&  {'cursor':'pointer'}" -->
 								<div class="col-md-5 nonepadding"
 											style="color:#D91E18;cursor:pointer"
 											ng-if="order.r_call == 'A'"
@@ -574,7 +574,7 @@
 							 <a  ng-class="{'active':selectedArea.area == ''}" ng-click="selectedArea = {}"class="btn green btn-outline"> ALL </a>
            </div>
 					<div class="panel panel-default"
-						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:'hour'|filter:selectedArea"
+						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:['-orders.length','hour'] |filter:selectedArea"
 						 overflow="hidden"
 						 style="margin-top: 0px;">
 						   <div class=" driver_heading" >

@@ -109,7 +109,7 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
 }]);
 
 MetronicApp.constant("API_URL", "https://chanmao.ca/index.php?r=");
-MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
+MetronicApp.constant("API2_URL", "http://manage.chanmao.ca/public/api/v1/");
 /* Setup Rounting For All Pages */
 MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', function($stateProvider, $urlRouterProvider,$httpProvider) {
     // Redirect any unmatched url
@@ -154,22 +154,22 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
 
         .state('driverSchedule', {
             url: "/driverSchedule.html", //url address
-            templateUrl: "../views/driverSchedule.html", //view
+            templateUrl: "views/driverSchedule.html", //view
             controller:"DriverScheduleController as dsc" //controller
         })
         .state('closeRestaurant',{
             url:"/closeRestaurant.html", //url address
-            templateUrl:"../views/closeRestaurant.html", //views
+            templateUrl:"views/closeRestaurant.html", //views
             controller:"closeRestaurantController as crc" //controller
         })
         .state('customService',{
             url:"/customService.html", //url address
-            templateUrl:"../views/customService.html", //views
+            templateUrl:"views/customService.html", //views
             controller:"customServiceController as csc" //controller
         })
         .state('driverSchdule',{
             url:"/driverSchdule.html", //url address
-            templateUrl:"../views/DriverWork.html", //views
+            templateUrl:"views/DriverWork.html", //views
             controller:"driverWorkController as dwc" //controller
         })
         .state('testList',{
