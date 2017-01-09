@@ -17,13 +17,14 @@ angular.module("MetronicApp")
 	  		            if(event.which === 13) {
 												var searchText = input[0].value;
 												var serach_order =  dashboardService.find_order(searchText);
-	                        if (serach_order){
-	                            serach_order.type = "od"
-	                            open(serach_order)
-	                        }else{
-	                            alert("未找到当日订单");
-	                        }
-
+												console.log('13')
+												dashboardService.find_order(searchText)
+												.then(function (serach_order) {
+														serach_order.type = "od"
+	                          open(serach_order)
+												}).catch(function (error) {
+													alert("未找到当日订单");
+												})
 	  		            }
       		       	});
                   input.bind("blur",function  () {
