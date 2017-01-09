@@ -172,6 +172,12 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
             templateUrl:"../views/DriverWork.html", //views
             controller:"driverWorkController as dwc" //controller
         })
+        .state('testList',{
+            url:"/testList.html", //url address
+            templateUrl:"../views/restaurantList.html", //views
+            controller:"testListController as tlc" //controller
+        })
+
         // Blank Page
 
 

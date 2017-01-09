@@ -1,7 +1,7 @@
 
 angular.module('MetronicApp').controller('driverWorkController',
-['$rootScope', '$scope',  '$http','driverWorkService','$q',
-function($rootScope, $scope, $http, driverWorkService,$q) {
+['$rootScope', '$scope',  '$http','driverWorkService','$q','$modal','dashboardService',
+function($rootScope, $scope, $http, driverWorkService,$q,$modal,dashboardService) {
   var dwc = this;
   var dws = driverWorkService;
   dwc.height = window.innerHeight*0.9;
@@ -219,6 +219,32 @@ function($rootScope, $scope, $http, driverWorkService,$q) {
  dwc.changeZone = function(driverSchdule){
    console.log(driverSchdule.zone)
    driverSchdule.zone = dwc.driver.zone;
+ }
+ 
+ dwc.openPopup = function (size,eo_data) {
+   var modalInstance = $modal.open(
+   {
+     templateUrl: 'views/orderChange.html',
+     controller: 'popUpCtrl as puc',
+     size: size,
+     resolve:
+     {
+       data: function()
+       {
+         return eo_data;
+       }
+     }
+   });
+
+   modalInstance.result.then(function()
+   {
+   // promise 成功完成后call get init 刷新数据
+   dashboardService.get_init();
+   // console.log("1");
+   }, function()
+   {
+     $log.info('Modal dismissed at: ' + new Date());
+   });
  }
 
 
