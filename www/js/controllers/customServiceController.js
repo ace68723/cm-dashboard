@@ -52,7 +52,7 @@ function($rootScope, $scope, $http, customServiceService,$q) {
   csc.getCustomServiceLists();
   csc.updateCustomServiceSchedule();
   csc.itemEditing = false;
-  csc.singleSelect = csc.SearchOptions[0].value;
+  csc.singleSelect = csc.SearchOptions[1].value;
   csc.DeleteOnClick = function(customServiceSchedule){
     css.deleteCustomServiceSchedule(customServiceSchedule)
     .then((result)=>{
@@ -104,7 +104,7 @@ function($rootScope, $scope, $http, customServiceService,$q) {
             );
        csc.convertUID();
        csc.addOnClick();
-       csc.resetAddForm();
+       csc.convertBack();
           } else {
        swal("已取消!");
           }
@@ -179,7 +179,9 @@ function($rootScope, $scope, $http, customServiceService,$q) {
  csc.convertUID= function(){
    csc.newCustomServiceSchdule.uid = parseInt(csc.newCustomServiceSchdule.uid, 10);
  }
-
+ csc.convertBack = function(){
+   csc.newCustomServiceSchdule.uid = csc.newCustomServiceSchdule.uid.toString();
+ }
 
 
 
