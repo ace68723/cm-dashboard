@@ -103,6 +103,7 @@ angular.module('MetronicApp')
                data.tel = Restaurants.item[i].tel;
                data.hour = Restaurants.item[i].hour;
                data.area = Restaurants.item[i].area;
+							 data.tel2 = Restaurants.item[i].tel2;
                RestaurantListCtrl.restaurants.push(data)
 
              }
