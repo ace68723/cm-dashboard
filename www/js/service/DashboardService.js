@@ -22,10 +22,12 @@ angular.module('MetronicApp')
       get_API();
 		},30000)
     // get driver list from local csv file
-    // get_API();
-    getDrivers();
+    get_API();
+    // getDrivers();
 	}
+  getDrivers();
   function getDrivers() {
+    console.log('getDrivers')
     $http({
       method: 'GET',
       url: API_URL+'MobMonitor/DriverSchedule',
@@ -42,9 +44,14 @@ angular.module('MetronicApp')
 		  method: 'GET',
 		  url: API_URL+'MobMonitor/OrderList',
 		}).then(function successCallback(response) {
-			lo_data.orders = response.data.ea_orders;
-			lo_data.statas = response.data.ea_stats;
-      setOrders();
+      if(!lo_fdata.delivers){
+        get_API()
+      }else{
+        lo_data.orders = response.data.ea_orders;
+        lo_data.statas = response.data.ea_stats;
+        setOrders();
+      }
+
 
 		}, function errorCallback(response) {
 
