@@ -7,23 +7,36 @@ angular.module('MetronicApp')
   lo_fdata.delivers= [];
   	// dashboardService.timeout = 0;
   	var stop;
-    json2csv.ConvertToJSON()
-     .then(function (result) {
-       lo_fdata.delivers = result.data;
-       _.remove(lo_fdata.delivers, function(n) {return !n.area});
-
-     })
+    // json2csv.ConvertToJSON()
+    //  .then(function (result) {
+    //    lo_fdata.delivers = result.data;
+    //    _.remove(lo_fdata.delivers, function(n) {return !n.area});
+    //
+    //  })
 	dashboardService.get_init = function  () {
 		if(stop){
 			$interval.cancel(stop);
 		}
 		stop = $interval(function() {
-			get_API();
+			// getDrivers();
+      get_API();
 		},30000)
     // get driver list from local csv file
-    get_API();
+    // get_API();
+    getDrivers();
 	}
+  function getDrivers() {
+    $http({
+      method: 'GET',
+      url: API_URL+'MobMonitor/DriverSchedule',
+    }).then(function successCallback(response) {
+      lo_fdata.delivers = response.data.eo_schedule;
+      get_API();
+    }, function errorCallback(response) {
+       // alertService.alert(response);
+    });
 
+  }
 	function get_API() {
 		$http({
 		  method: 'GET',
@@ -34,95 +47,92 @@ angular.module('MetronicApp')
       setOrders();
 
 		}, function errorCallback(response) {
-		   // alertService.alert(response);
+
 		});
 
-    dashboardService.getRole=function(){
-      var deferred = $q.defer();
-
-       var successCallback = function(response){
-         const data = response.data;
-          if(data.ev_role == 3){
-            var role = "SETTLE"
-         deferred.resolve(role)
-          }else{
-            var role = "OTHER"
-         deferred.reject(role)
-          }
-       }
-       var errorCallback = function(response){
-      deferred.reject(response)
-         }
-       $http({
-              method: 'GET',
-              url: API2_URL+"rr_role"
-            }).then(successCallback,errorCallback)
-     return deferred.promise
-    }
-
-
-		function setOrders() {
-			lo_fdata.new_order = [];
-			lo_fdata.change_addr_order = [];
-			lo_fdata.new_user_order = [];
-			lo_fdata.reject_order = [];
-			lo_fdata.confirm_order = [];
-			lo_fdata.delivering_order = [];
-			lo_fdata.complete_order = [];
-
-			_.forEach( lo_data.orders, function(order, key) {
-				switch(order.status) {
-				  case '0':
-					  lo_fdata.new_order.push(order)
-					  break;
-				  case '60':
-					   lo_fdata.change_addr_order.push(order)
-					  break;
-				  case '5':
-					   lo_fdata.reject_order.push(order)
-					  break;
-				  case '90':
-					   lo_fdata.reject_order.push(order)
-					  break;
-				  case '55':
-					   lo_fdata.new_user_order.push(order)
-					  break;
-				  case '10':
-					  lo_fdata.confirm_order.push(order)
-					  break;
-				  case '20':
-					   lo_fdata.delivering_order.push(order)
-					  break;
-				  case '30':
-					   lo_fdata.delivering_order.push(order)
-					  break;
-				  case '40':
-					   lo_fdata.complete_order.push(order)
-					  break;
-				}
-      });
-      _.forEach(lo_fdata.delivers,function (deliver,key) {
-        deliver.orders = [];
-        deliver.alert = 0;
-      })
-      _.forEach(lo_fdata.delivering_order, function (order, key) {
-        var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
-          return deliver.driver_id == order.driver_id;
-        });
-        if(deliver_index == -1){
-          // alert("Can't find deliver "+ order.deliver);
-        }else{
-          lo_fdata.delivers[deliver_index].orders.push(order)
-          if(order.alert == 1){
-            lo_fdata.delivers[deliver_index].alert += 1
-          }
-        }
-      })
-		};
 
 	};
+  function setOrders() {
+    lo_fdata.new_order = [];
+    lo_fdata.change_addr_order = [];
+    lo_fdata.new_user_order = [];
+    lo_fdata.reject_order = [];
+    lo_fdata.confirm_order = [];
+    lo_fdata.delivering_order = [];
+    lo_fdata.complete_order = [];
 
+    _.forEach( lo_data.orders, function(order, key) {
+      switch(order.status) {
+        case '0':
+          lo_fdata.new_order.push(order)
+          break;
+        case '60':
+           lo_fdata.change_addr_order.push(order)
+          break;
+        case '5':
+           lo_fdata.reject_order.push(order)
+          break;
+        case '90':
+           lo_fdata.reject_order.push(order)
+          break;
+        case '55':
+           lo_fdata.new_user_order.push(order)
+          break;
+        case '10':
+          lo_fdata.confirm_order.push(order)
+          break;
+        case '20':
+           lo_fdata.delivering_order.push(order)
+          break;
+        case '30':
+           lo_fdata.delivering_order.push(order)
+          break;
+        case '40':
+           lo_fdata.complete_order.push(order)
+          break;
+      }
+    });
+    _.forEach(lo_fdata.delivers,function (deliver,key) {
+      deliver.orders = [];
+      deliver.alert = 0;
+    })
+    _.forEach(lo_fdata.delivering_order, function (order, key) {
+      var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
+        return deliver.driver_id == order.driver_id;
+      });
+      if(deliver_index == -1){
+        // alert("Can't find deliver "+ order.deliver);
+      }else{
+        lo_fdata.delivers[deliver_index].orders.push(order)
+        if(order.alert == 1){
+          lo_fdata.delivers[deliver_index].alert += 1
+        }
+      }
+    })
+  };
 
+  dashboardService.getRole=function(){
+    var deferred = $q.defer();
+
+     var successCallback = function(response){
+       const data = response.data;
+        if(data.ev_role == 3){
+          var role = "SETTLE"
+       deferred.resolve(role)
+        }else{
+          var role = "OTHER"
+       deferred.reject(role)
+        }
+     }
+     var errorCallback = function(response){
+    deferred.reject(response)
+       }
+     $http({
+            method: 'GET',
+            url: API2_URL+"rr_role"
+          }).then(successCallback,errorCallback)
+   return deferred.promise
+  }
 
 
 	dashboardService.get_orders = function  () {
