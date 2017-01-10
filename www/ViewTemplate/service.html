@@ -6,6 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="chanmao.css" rel="stylesheet" type="text/css" />
   <link href="chanmao-pop.css" rel="stylesheet" type="text/css" />
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+  <link href="library/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+
+  <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/css/layout.min.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="favicon.ico" /> </head>
+
   <script language="javascript">
 
     function popSerTable(){
@@ -33,377 +43,252 @@
 </head>
 
 <body>
-  <div class="header">
+    <!--  BEGIN HEADER-->
+    <div class="header">
 
-    <div class="header-left">
-      <img alt="menu" src="icon/menu.png" height="30px"/>
-      <div class="version">V1.0.5</div>
-      <div id="time">
-        <script type="text/javascript">
-          function update(){
-            var hour = new Date().getHours();
-            var minute = new Date().getMinutes();
-            var second = new Date().getSeconds();
-            if (minute<10&&second<10)
-            document.getElementById('time').innerHTML= hour + ":0" + minute + ":0" + second;
-            if (minute<10&&second>9)
-            document.getElementById('time').innerHTML= hour + ":0" + minute + ":" + second;
-            if (minute>9&&second<10)
-            document.getElementById('time').innerHTML= hour + ":" + minute + ":0" + second;
-            if (minute>9&&second>9)
-            document.getElementById('time').innerHTML= hour + ":" + minute + ":" + second;
-          }
-          setInterval(update,1000);
-       </script>
+      <div class="header-left">
+          <img alt="menu" src="icon/menu.png" height="30px"/>
+          <div class="version">V1.0.5</div>
+          <div id="time">
+              <script type="text/javascript">
+                function update(){
+                  var hour = new Date().getHours();
+                  var minute = new Date().getMinutes();
+                  var second = new Date().getSeconds();
+                  if (minute<10&&second<10)
+                  document.getElementById('time').innerHTML= hour + ":0" + minute + ":0" + second;
+                  if (minute<10&&second>9)
+                  document.getElementById('time').innerHTML= hour + ":0" + minute + ":" + second;
+                  if (minute>9&&second<10)
+                  document.getElementById('time').innerHTML= hour + ":" + minute + ":0" + second;
+                  if (minute>9&&second>9)
+                  document.getElementById('time').innerHTML= hour + ":" + minute + ":" + second;
+                }
+                setInterval(update,1000);
+              </script>
+          </div>
       </div>
+
+      <div class="header-right">
+          <input type="image" class="search" src="icon/icon-search.png"/>
+          <img alt="logo" src="icon/logo.png" height="50px" style="margin-left: 15px"/>
+          <div class="text">
+            <p>Chanmao<br/>
+              &nbsp;&nbsp;Service</p>
+            </div>
+          <input type="image" class="log-out" src="icon/logout.png"/>
+      </div>
+
     </div>
+    <!--  END HEADER-->
+    <!--  BEGIN CONTENT-->
+    <div class="content">
+        <!-- BEGIN NAVIGATION -->
+        <nav class="option">
+            <img alt="home" src="icon/icon-home2.png" />
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <a href="restaurant.html"><img alt="restaurant" src="icon/icon-restaurant2.png"/></a>
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <img alt="service" src="icon/icon-service.png"/>
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <a href="driver.html"><img alt="driver" src="icon/icon-driver2.png" style="height:25px"/></a>
+        </nav>
+        <!--  END NAVIGATION -->
+        <!--  BEGIN MAIN FUNCTION-->
+        <div class="service">
+            <p>客服班表</p>
+            <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
 
-    <div class="header-right">
-      <input type="image" class="search" src="icon/icon-search.png"/>
-      <img alt="logo" src="icon/logo.png" height="60px" style="margin-left: 15px"/>
-      <div class="text">
-        <p>Chanmao<br/>
-        &nbsp;&nbsp;Service</p>
-      </div>
-      <input type="image" class="log-out" src="icon/logout.png"/>
-  </div>
-</div>
+            <div class="ser-content">
 
-<div class="content">
-  <nav class="option">
-    <img alt="home" src="icon/icon-home2.png" />
-    <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-    <a href="restaurant.html"><img alt="restaurant" src="icon/icon-restaurant2.png"/></a>
-    <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-    <img alt="service" src="icon/icon-service.png"/>
-    <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-    <a href="driver.html"><img alt="driver" src="icon/icon-driver2.png" style="height:25px"/></a>
-  </nav>
+                <div class="ser-select">
+                    <!--  BEGIN SEARCH BAR-->
+                    <div class="ser-name">
+                        <select class="btn-res-name">
+                          <option value ="restaurant">Restaurant</option>
+                          <option value = "service" selected="selected">Service</option>
+                          <option value = "driver">Driver</option>
+                        </select>
+                        <form class="search-form" action=" " method="GET">
+                            <div class="search-bar">
+                              <i class="icon-search"></i>
+                              <input type="text" class="input-search" placeholder="Search...">
+                              <span class="input-group-btn">
+                                <a href="javascript:;" class="btn submit">
+                                </a>
+                              </span>
+                            </div>
+                        </form>
+                        <button type="button" class="btn-clear">CLEAR</button>
+                    </div>
+                    <!--  END SEARCH BAR-->
 
-  <div class="service">
-    <p>客服班表</p>
-    <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
+                    <!--  BEGIN AREA BAR-->
+                    <div class="area">
+                      <p>
+                        <button type="button" class="btn-scarborough">NY/RH</button>
+                        <button type="button" class="btn-northyork">SC/RH</button>
+                        <button type="button" class="btn-downtown">Downtown</button>
+                        <button type="button" class="btn-missi">Mississauga</button>
+                        <button type="button" class="btn-all">All</button>
+                      </p>
+                    </div>
 
-    <div class="ser-content">
-      <div class="ser-select">
-        <div class="ser-name">
-          <select class="btn-res-name">
-            <option value ="restaurant">Restaurant</option>
-            <option value = "service" selected="selected">Service</option>
-            <option value = "driver">Driver</option>
-          </select>
-          <form class="search-form" action=" " method="GET">
-            <div class="input-group">
+                    <div class="week">
+                      <p>
+                        <button type="button" class="btn-weekday">MON</button>
+                        <button type="button" class="btn-weekday">TUE</button>
+                        <button type="button" class="btn-weekday">WED</button>
+                        <button type="button" class="btn-weekday">THU</button>
+                        <button type="button" class="btn-weekday">FRI</button>
+                        <button type="button" class="btn-weekend">SAT</button>
+                        <button type="button" class="btn-weekend">SUN</button>
+                        <button type="button" class="btn-week">ALL</button>
+                      </p>
+                    </div>
+                    <!--  END AREA BAR-->
+              </div>
+
+              <div class="add-new">
+                <input type="image" src="icon/icon-schedule.png" onclick="popSerTable();"/>
+                <p>添加客服班表</p>
+              </div>
+
+           </div>
+
+           <!--  BEGIN TABLE-->
+           <div class="table">
+              <table class="ser-table" cellspacing="0" cellpadding="0" >
+                <thead>
+                  <tr>
+                      <th> UID </th>
+                      <th class="table-name"> NAME </th>
+                      <th class="table-time"> START TIME </th>
+                      <th class="table-time"> END TIME </th>
+                      <th class="table-area"> AREA </th>
+                      <th> EDIT </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td> 4342 </td>
+                      <td> <button onclick="popServicer()"> ddoahdsi </button></td>
+                      <td> 2016-12-17 12:00 </td>
+                      <td> 2016-12-18 12:00 </td>
+                      <td> 2 </td>
+                      <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="editServicer();"/>
+                          <input type="image" class="table-edit" src="icon/icon-delete.png"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td> 6 </td>
+                      <td> Jacob </td>
+                      <td> Nilson </td>
+                      <td> jac123 </td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td> 8 </td>
+                      <td> Larry </td>
+                      <td> Cooper </td>
+                      <td> lar </td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td> 4 </td>
+                      <td> Sandy </td>
+                      <td> Lim </td>
+                      <td> sanlim </td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--  END TABLE-->
+        </div>
+        <!--  END MAIN FUNCTION-->
+    </div>
+    <!-- END CONTENT -->
+
+  <!-- BEGIN POPUP -->
+  <div id="background"></div>
+  <!-- BEGIN SERVICER SEARCH EDIT-->
+  <div id="pop-ser-new">
+      <p>客服列表</p>
+      <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
+
+      <div class="pop-ser-name">
+        <div class="btn-group">
+            <a class="pop-btn-ser-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 客服姓名
+            </a>
+        </div>
+        <form class="search-form" action=" " method="GET">
+            <div class="pop-input-group">
               <i class="icon-search"></i>
               <input type="text" class="input-search" placeholder="Search...">
-              <span class="input-group-btn">
-                  <a href="javascript:;" class="btn submit">
-                  </a>
+              <span class="pop-input-group-btn">
+                <a href="javascript:;" class="btn submit">
+                </a>
               </span>
             </div>
-          </form>
-          <button type="button" class="btn-clear">CLEAR</button>
-        </div>
-
-        <div class="area">
-          <p>
-            <button type="button" class="btn-scarborough">NY/RH</button>
-            <button type="button" class="btn-northyork">SC/RH</button>
-            <button type="button" class="btn-downtown">Downtown</button>
-            <button type="button" class="btn-missi">Mississauga</button>
-            <button type="button" class="btn-all">All</button>
-          </p>
-        </div>
-
-        <div class="week">
-          <p>
-            <button type="button" class="btn-weekday">MON</button>
-            <button type="button" class="btn-weekday">TUE</button>
-            <button type="button" class="btn-weekday">WED</button>
-            <button type="button" class="btn-weekday">THU</button>
-            <button type="button" class="btn-weekday">FRI</button>
-            <button type="button" class="btn-weekend">SAT</button>
-            <button type="button" class="btn-weekend">SUN</button>
-            <button type="button" class="btn-week">ALL</button>
-          </p>
-        </div>
-
+        </form>
+        <button type="button" class="pop-btn-clear">CLEAR</button>
       </div>
-      <div class="new">
-        <input type="image" src="icon/icon-schedule.png" onclick="popSerTable();"/>
-        <p>添加客服班表</p>
-      </div>
-    </div>
 
-    <div class="table">
-        <table class="ser-table" cellspacing="0" cellpadding="0" >
-            <thead>
-                <tr>
-                    <th> UID </th>
-                    <th class="table-name"> NAME </th>
-                    <th class="table-time"> START TIME </th>
-                    <th class="table-time"> END TIME </th>
-                    <th class="table-area"> AREA </th>
-                    <th> EDIT </th>
-                </tr>
-            </thead>
+      <div class="pop-ser-name">
+          <table class="pop-ser-table" cellspacing="0" cellpadding="0" >
             <tbody>
-                <tr>
-                    <td> 4342 </td>
-                    <td> <button onclick="popServicer()"> ddoahdsi </button></td>
-                    <td> 2016-12-17 12:00 </td>
-                    <td> 2016-12-18 12:00 </td>
-                    <td> 2 </td>
-                    <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="editServicer();"/>
-                        <input type="image" class="table-edit" src="icon/icon-delete.png"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td> 6 </td>
-                    <td> Jacob </td>
-                    <td> Nilson </td>
-                    <td> jac123 </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 8 </td>
-                    <td> Larry </td>
-                    <td> Cooper </td>
-                    <td> lar </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 4 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 6 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 8 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 4 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
+              <tr>
+                  <td> <button onclick="popServicer()"> ddsfv </button></td>
+                  <td> <button onclick="popServicer()">g3tfs </button></td>
+                  <td> <button onclick="popServicer()">fsef </button></td>
+                  <td> <button onclick="popServicer()">fgbfgb </button</td>
+              </tr>
+              <tr>
+                  <td> fsef </td>
+                  <td> fgbfgb </td>
+                  <td> fsef </td>
+                  <td> fgbfgb </td>
+              </tr>
             </tbody>
-        </table>
-    </div>
-
-  </div>
-</div>
-
-<div id="background"></div>
-
-<div id="pop-ser-new">
-  <p>客服列表</p>
-  <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
-  <div class="pop-ser-name">
-    <div class="btn-group">
-        <a class="pop-btn-ser-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 客服姓名
-        </a>
-    </div>
-    <form class="search-form" action=" " method="GET">
-      <div class="pop-input-group">
-        <i class="icon-search"></i>
-        <input type="text" class="input-search" placeholder="Search...">
-        <span class="pop-input-group-btn">
-            <a href="javascript:;" class="btn submit">
-            </a>
-        </span>
+          </table>
       </div>
-    </form>
-    <button type="button" class="pop-btn-clear">CLEAR</button>
-  </div>
 
-  <div class="pop-ser-name">
-    <table class="pop-ser-table" cellspacing="0" cellpadding="0" >
-        <tbody>
-            <tr>
-                <td> <button onclick="popDriver()"> ddsfv </button></td>
-                <td> <button onclick="popDriver()">g3tfs </button></td>
-                <td> <button onclick="popDriver()">fsef </button></td>
-                <td> <button onclick="popDriver()">fgbfgb </button</td>
-            </tr>
-            <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-            <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-            <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-        </tbody>
-    </table>
   </div>
-</div>
-
-<div id="ser-pop">
-  <p>fsnfdkf</p>
-  <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
-  <div class="time-title">
-    <p>12.25-12.31</p>
-    <p style="margin-left: 450px;">1.1-1.7</p>
-  </div>
-  <div class="ser-time-table">
-    <table class="ser-time-table-1" cellspacing="4" cellpadding="0" >
-        <thead>
-            <tr>
-                <th> 开始时间 </th>
-                <th> 结束时间 </th>
-                <th> 分区 </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> <input type="text" class="ser-start-time-1"/> </td>
-                <td> <input type="text" class="ser-end-time-1"/> </td>
-                <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="ser-start-time-2"/> </td>
-              <td> <input type="text" class="ser-end-time-2"/> </td>
-              <td>
-                <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="ser-start-time-3"/> </td>
-              <td> <input type="text" class="ser-end-time-3"/> </td>
-              <td>
-                <div class="area-group">
-                  <select class="btn-ser-select">
-                    <option value ="ny/rh" selected="selected">NY/RH</option>
-                    <option value = "sc/rh">SC/RH</option>
-                    <option value = "downtown">Downtown</option>
-                    <option value = "mississauga">Mississauga</option>
-                    <option value = "all">All</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="ser-start-time-4"/> </td>
-              <td> <input type="text" class="ser-end-time-4"/> </td>
-              <td>
-                <div class="area-group">
-                  <select class="btn-ser-select">
-                    <option value ="ny/rh" selected="selected">NY/RH</option>
-                    <option value = "sc/rh">SC/RH</option>
-                    <option value = "downtown">Downtown</option>
-                    <option value = "mississauga">Mississauga</option>
-                    <option value = "all">All</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="ser-start-time-5"/> </td>
-              <td> <input type="text" class="ser-end-time-5"/> </td>
-              <td>
-                <div class="area-group">
-                  <select class="btn-ser-select">
-                    <option value ="ny/rh" selected="selected">NY/RH</option>
-                    <option value = "sc/rh">SC/RH</option>
-                    <option value = "downtown">Downtown</option>
-                    <option value = "mississauga">Mississauga</option>
-                    <option value = "all">All</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="ser-start-time-6"/> </td>
-              <td> <input type="text" class="ser-end-time-6"/> </td>
-              <td>
-                <div class="area-group">
-                  <select class="btn-ser-select">
-                    <option value ="ny/rh" selected="selected">NY/RH</option>
-                    <option value = "sc/rh">SC/RH</option>
-                    <option value = "downtown">Downtown</option>
-                    <option value = "mississauga">Mississauga</option>
-                    <option value = "all">All</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="ser-start-time-7"/> </td>
-              <td> <input type="text" class="ser-end-time-7"/> </td>
-              <td>
-                <div class="area-group">
-                  <select class="btn-ser-select">
-                    <option value ="ny/rh" selected="selected">NY/RH</option>
-                    <option value = "sc/rh">SC/RH</option>
-                    <option value = "downtown">Downtown</option>
-                    <option value = "mississauga">Mississauga</option>
-                    <option value = "all">All</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-        </tbody>
-      </table>
-      <table class="ser-time-table-2" cellspacing="4" cellpadding="0" style="margin-left: 70px;">
-          <thead>
+  <!--  END SERVICER SEARCH EDIT-->
+  <!--  BEGIN SERVICER TIME EDIT-->
+  <div id="ser-pop">
+      <p>fsnfdkf</p>
+      <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
+      <div class="time-title">
+        <p>12.25-12.31</p>
+        <p style="margin-left: 450px;">1.1-1.7</p>
+      </div>
+      <!--  BEGIN SERVICER TIME TABLE-->
+      <div class="ser-time-table">
+          <table class="ser-time-table-1" cellspacing="4" cellpadding="0" >
+            <thead>
               <tr>
                   <th> 开始时间 </th>
                   <th> 结束时间 </th>
                   <th> 分区 </th>
               </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
               <tr>
-                  <td> <input type="text" class="ser-start-time-1"/> </td>
-                  <td> <input type="text" class="ser-end-time-1"/> </td>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-1" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-1" />
+                    </div>
+                  </td>
                   <td>
                     <div class="area-group">
                       <select class="btn-ser-select">
@@ -417,106 +302,340 @@
                   </td>
               </tr>
               <tr>
-                <td> <input type="text" class="ser-start-time-2"/> </td>
-                <td> <input type="text" class="ser-end-time-2"/> </td>
                 <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="ser-start-time-3"/> </td>
-                <td> <input type="text" class="ser-end-time-3"/> </td>
-                <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="ser-start-time-4"/> </td>
-                <td> <input type="text" class="ser-end-time-4"/> </td>
-                <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="ser-start-time-5"/> </td>
-                <td> <input type="text" class="ser-end-time-5"/> </td>
-                <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="ser-start-time-6"/> </td>
-                <td> <input type="text" class="ser-end-time-6"/> </td>
-                <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="ser-start-time-7"/> </td>
-                <td> <input type="text" class="ser-end-time-7"/> </td>
-                <td>
-                  <div class="area-group">
-                    <select class="btn-ser-select">
-                      <option value ="ny/rh" selected="selected">NY/RH</option>
-                      <option value = "sc/rh">SC/RH</option>
-                      <option value = "downtown">Downtown</option>
-                      <option value = "mississauga">Mississauga</option>
-                      <option value = "all">All</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-          </tbody>
-        </table>
-    </div>
-  <div class="res-pop-btn">
-    <button type="button" class="btn-add">Add</button>
-    <button type="button" class="btn-cancel">Cancel</button>
-  </div>
-</div>
+                  <div class="input-group">
+                      <input type="text" class="form-control timepicker timepicker-24 ser-start-time-2" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control timepicker timepicker-24 ser-start-time-2" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control timepicker timepicker-24 ser-start-time-3" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                      <input type="text" class="form-control timepicker timepicker-24 ser-start-time-3" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-4" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-4" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-5" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-5" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-6" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-6" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-7" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control timepicker timepicker-24 ser-start-time-7" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-ser-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          <table class="ser-time-table-2" cellspacing="4" cellpadding="0" style="margin-left: 70px;">
+              <thead>
+                  <tr>
+                      <th> 开始时间 </th>
+                      <th> 结束时间 </th>
+                      <th> 分区 </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-8" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-8" />
+                      </div>
+                    </td>
+                      <td>
+                        <div class="area-group">
+                          <select class="btn-ser-select">
+                            <option value ="ny/rh" selected="selected">NY/RH</option>
+                            <option value = "sc/rh">SC/RH</option>
+                            <option value = "downtown">Downtown</option>
+                            <option value = "mississauga">Mississauga</option>
+                            <option value = "all">All</option>
+                          </select>
+                        </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-9" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-9" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-ser-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-10" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-10" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-ser-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-11" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-11" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-ser-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-12" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-12" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-ser-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-13" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-13" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-ser-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-14" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 ser-start-time-14" />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-ser-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+      </div>
+      <!--  END SERVICER TIME TABLE-->
 
-<div id="close">
-<input type="image" class="close-icon" src="icon/close.png" onclick="closePop()"/>
-</div>
+      <div class="res-pop-btn">
+          <button type="button" class="btn-add">Add</button>
+          <button type="button" class="btn-cancel" onclick="closePop()">Cancel</button>
+      </div>
+  </div>
+  <!--  END SERVICER TIME EDIT-->
+
+  <div id="close">
+    <input type="image" class="close-icon" src="icon/close.png" onclick="closePop()"/>
+  </div>
+
+<!-- END POPUP -->
+
+<!--  BEGIN PLUGINS-->
+<script src="library/js/jquery.min.js" type="text/javascript"></script>
+<script src="library/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+<script src="library/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="library/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<script src="library/js/app.min.js" type="text/javascript"></script>
+<script src="library/js/components-date-time-pickers.min.js" type="text/javascript"></script>
+<!-- END PLUGINS -->
 
 </body>

@@ -6,6 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="chanmao.css" rel="stylesheet" type="text/css" />
   <link href="chanmao-pop.css" rel="stylesheet" type="text/css" />
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+  <link href="library/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+
+  <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/css/layout.min.css" rel="stylesheet" type="text/css" />
   <script language="javascript">
     function popUp(){
       var vis = document.getElementById("res-pop");
@@ -21,227 +28,228 @@
       document.getElementById("close").style.visibility = "hidden";
     }
    </script>
+
 </head>
 
-<body>
-  <div class="header">
 
-    <div class="header-left">
-      <img alt="menu" src="icon/menu.png" height="30px"/>
-      <div class="version">V1.0.5</div>
-      <div id="time">
-         <script type="text/javascript">
-         function update(){
-         var hour = new Date().getHours();
-         var minute = new Date().getMinutes();
-         var second = new Date().getSeconds();
-         if (minute<10&&second<10)
-         document.getElementById('time').innerHTML= hour + ":0" + minute + ":0" + second;
-         if (minute<10&&second>9)
-         document.getElementById('time').innerHTML= hour + ":0" + minute + ":" + second;
-         if (minute>9&&second<10)
-         document.getElementById('time').innerHTML= hour + ":" + minute + ":0" + second;
-         if (minute>9&&second>9)
-         document.getElementById('time').innerHTML= hour + ":" + minute + ":" + second;
-      }
-          setInterval(update,1000);
-        </script>
-      </div>
-    </div>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+  <!--  BEGIN HEADER-->
+    <div class="header">
 
-    <div class="header-right">
-      <input type="image" class="search" src="icon/icon-search.png"/>
-      <img alt="logo" src="icon/logo.png" height="60px" style="margin-left: 15px"/>
-      <div class="text">
-        <p>Chanmao<br/>
-        &nbsp;&nbsp;Service</p>
-      </div>
-      <input type="image" class="log-out" src="icon/logout.png"/>
-  </div>
-
-  </div>
-  <div class="content">
-    <nav class="option">
-      <img alt="home" src="icon/icon-home2.png" />
-      <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-      <img alt="restaurant" src="icon/icon-restaurant.png"/>
-      <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-      <a href="service.html"><img alt="service" src="icon/icon-service2.png"/></a>
-      <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-      <a href="driver.html"><img alt="driver" src="icon/icon-driver2.png" style="height:25px"/></a>
-    </nav>
-    <div class="restaurant">
-      <p>SEARCH RESTAUTANT</p>
-      <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
-      <div class="res-search">
-        <select class="btn-res-name">
-          <option value ="restaurant" selected="selected">Restaurant</option>
-          <option value = "service">Service</option>
-          <option value = "driver">Driver</option>
-        </select>
-        <form class="search-form" action=" " method="GET">
-            <div class="input-group">
-                <i class="icon-search"></i>
-                <input type="text" class="input-search" placeholder="Search...">
-                <span class="input-group-btn">
-                    <a href="javascript:;" class="btn submit">
-                    </a>
-                </span>
+        <div class="header-left">
+          <img alt="menu" src="icon/menu.png" height="30px"/>
+          <div class="version">V1.0.5</div>
+          <div id="time">
+            <script type="text/javascript">
+              function update(){
+                var hour = new Date().getHours();
+                var minute = new Date().getMinutes();
+                var second = new Date().getSeconds();
+                if (minute<10&&second<10)
+                document.getElementById('time').innerHTML= hour + ":0" + minute + ":0" + second;
+                if (minute<10&&second>9)
+                document.getElementById('time').innerHTML= hour + ":0" + minute + ":" + second;
+                if (minute>9&&second<10)
+                document.getElementById('time').innerHTML= hour + ":" + minute + ":0" + second;
+                if (minute>9&&second>9)
+                document.getElementById('time').innerHTML= hour + ":" + minute + ":" + second;
+              }
+              setInterval(update,1000);
+            </script>
+          </div>
+        </div>
+        <div class="header-right">
+            <input type="image" class="search" src="icon/icon-search.png"/>
+            <img alt="logo" src="icon/logo.png" height="50px" style="margin-left: 15px"/>
+            <div class="text">
+              <p>Chanmao<br/>
+                &nbsp;&nbsp;Service</p>
             </div>
-        </form>
-        <button type="button" class="btn-clear">CLEAR</button>
-      </div>
+            <input type="image" class="log-out" src="icon/logout.png"/>
+        </div>
 
-      <div class="area">
-        <p>
-        <button type="button" class="btn-scarborough">Scarborough</button>
-        <button type="button" class="btn-markham">Markham</button>
-        <button type="button" class="btn-northyork">North York</button>
-        <button type="button" class="btn-richmond">Richmond Hill</button>
-        <button type="button" class="btn-downtown">Downtown</button>
-        <button type="button" class="btn-missi">Mississauga</button>
-        <button type="button" class="btn-all">All</button>
-        <button type="button" class="btn-closed">Closed</button>
-      </p>
-      </div>
+    </div>
+    <!--  END HEADER-->
+    <!--  BEGIN CONTENT-->
+    <div class="content">
+      <!-- BEGIN NAVIGATION -->
+        <nav class="option">
+            <img alt="home" src="icon/icon-home2.png" />
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <img alt="restaurant" src="icon/icon-restaurant.png"/>
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <a href="service.html"><img alt="service" src="icon/icon-service2.png"/></a>
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <a href="driver.html"><img alt="driver" src="icon/icon-driver2.png" style="height:25px"/></a>
+        </nav>
+      <!--  END NAVIGATION -->
+      <!--  BEGIN MAIN FUNCTION-->
+        <div class="restaurant">
+            <p>SEARCH RESTAUTANT</p>
+            <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
+            <!--  BEGIN SEARCH BAR-->
+            <div class="res-search">
+                <select class="btn-res-name">
+                  <option value ="restaurant" selected="selected">Restaurant</option>
+                  <option value = "service">Service</option>
+                  <option value = "driver">Driver</option>
+                </select>
+                <form class="search-form" action=" " method="GET">
+                  <div class="search-bar">
+                    <i class="icon-search"></i>
+                    <input type="text" class="input-search" placeholder="Search...">
+                    <span class="input-group-btn">
+                      <a href="javascript:;" class="btn submit">
+                      </a>
+                    </span>
+                  </div>
+                </form>
+                <button type="button" class="btn-clear">CLEAR</button>
+            </div>
+            <!--  END SEARCH BAR-->
 
-      <div class="table">
-          <table class="res-table" cellspacing="0" cellpadding="0" >
+            <!--  BEGIN AREA BAR-->
+            <div class="area">
+              <p>
+                <button type="button" class="btn-scarborough">Scarborough</button>
+                <button type="button" class="btn-markham">Markham</button>
+                <button type="button" class="btn-northyork">North York</button>
+                <button type="button" class="btn-richmond">Richmond Hill</button>
+                <button type="button" class="btn-downtown">Downtown</button>
+                <button type="button" class="btn-missi">Mississauga</button>
+                <button type="button" class="btn-all">All</button>
+                <button type="button" class="btn-closed">Closed</button>
+              </p>
+            </div>
+            <!--  END AREA BAR-->
+            <!--  BEGIN TABLE-->
+            <div class="table">
+              <table class="res-table" cellspacing="0" cellpadding="0" >
+                <thead>
+                    <tr>
+                        <th> RID </th>
+                        <th> NAME </th>
+                        <th> ADDRESS </th>
+                        <th> TELEPHONE </th>
+                        <th> OPEN HOUR </th>
+                        <th> EDIT </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 4 </td>
+                        <td> 老汤家(Scarborough) </td>
+                        <td> 3380 Midland Ave, Scarborough, M9U 8Y7 </td>
+                        <td> 905540283 </td>
+                        <td>12:00 ~ 22:00</td>
+                        <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="popUp();"/></td>
+                    </tr>
+                    <tr>
+                        <td> 6 </td>
+                        <td> Jacob </td>
+                        <td> Nilson </td>
+                        <td> jac123 </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> 8 </td>
+                        <td> Larry </td>
+                        <td> Cooper </td>
+                        <td> lar </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <!--  END TABLE-->
+        </div>
+      <!--  END MAIN FUNCTION-->
+    </div>
+<!-- END CONTENT -->
+
+<!-- BEGIN POPUP -->
+  <div id="background"></div>
+  <!-- BEGIN RESTAURANT TIME EDIT-->
+  <div id="res-pop">
+      <p>半亩园(Scarborough)</p>
+      <hr style="width: 80%; border:0.5px solid #E5E5E5;"/>
+      <div class="time-title">
+          <p>开始关店时间</p>
+          <p style="margin-left: 200px;">结束关店时间</p>
+      </div>
+      <!--  BEGIN DATETIME PICKER-->
+      <div class="time">
+          <img class="icon-calender" src="icon/icon-calendar.png" style="height:30px;"/>
+          <div class="input-group date form_datetime" data-date-format="yyyy-mm-dd hh:ii">
+                <input type="text" size="16" readonly class="start-time">
+                  <span class="input-group-btn">
+                      <button class="btn default date-set" type="button" style="margin-left:-30px;">
+                      </button>
+                  </span>
+          </div>
+          <input type="image" class= "icon-calendar" src="icon/icon-calendar2.png" style="margin-left:50px;"/>
+
+              <div class="input-group date form_datetime">
+                  <input type="text" size="16" readonly class="end-time" data-date-format="yyyy-mm-dd hh:ii">
+                  <span class="input-group-btn">
+                      <button class="btn default date-set" type="button" style="margin-left:-30px;">
+                      </button>
+                  </span>
+              </div>
+      </div>
+      <!--  END DATETIME PICKER-->
+      <div class="res-pop-btn">
+          <button type="button" class="btn-add">Add</button>
+          <button type="button" class="btn-cancel">Cancel</button>
+      </div>
+      <!--  BEGIN HISTORY TABLE-->
+      <div class="history">
+          <table class="time-table" cellspacing="0" cellpadding="0" >
               <thead>
                   <tr>
-                      <th> RID </th>
-                      <th> NAME </th>
-                      <th> ADDRESS </th>
-                      <th> TELEPHONE </th>
-                      <th> OPEN HOUR </th>
-                      <th> EDIT </th>
+                      <th> Start Time </th>
+                      <th> End Time </th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>
                   <tr>
-                      <td> 4 </td>
-                      <td> 老汤家(Scarborough) </td>
-                      <td> 3380 Midland Ave, Scarborough, M9U 8Y7 </td>
-                      <td> 905540283 </td>
-                      <td>12:00 ~ 22:00</td>
-                      <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="popUp();"/></td>
+                      <td> 2016-12-29 00:01:00 </td>
+                      <td> 2016-12-29 00:02:00 </td>
+                      <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
                   </tr>
                   <tr>
-                      <td> 6 </td>
-                      <td> Jacob </td>
-                      <td> Nilson </td>
-                      <td> jac123 </td>
-                      <td></td>
-                      <td></td>
+                      <td> 2016-12-29 00:01:00 </td>
+                      <td> 2016-12-29 00:02:00 </td>
+                      <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
                   </tr>
                   <tr>
-                      <td> 8 </td>
-                      <td> Larry </td>
-                      <td> Cooper </td>
-                      <td> lar </td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <td> 4 </td>
-                      <td> Sandy </td>
-                      <td> Lim </td>
-                      <td> sanlim </td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <td> 6 </td>
-                      <td> Sandy </td>
-                      <td> Lim </td>
-                      <td> sanlim </td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <td> 8 </td>
-                      <td> Sandy </td>
-                      <td> Lim </td>
-                      <td> sanlim </td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-                  <tr>
-                      <td> 4 </td>
-                      <td> Sandy </td>
-                      <td> Lim </td>
-                      <td> sanlim </td>
-                      <td></td>
-                      <td></td>
+                      <td> 2016-12-29 00:01:00 </td>
+                      <td> 2016-12-29 00:02:00 </td>
+                      <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
                   </tr>
               </tbody>
           </table>
       </div>
-    </div>
+      <!--  END HISTORY TABLE-->
+
+  </div>
+  <!--  END RESTAURANT TIME EDIT-->
+
+  <div id="close">
+    <input type="image" class="close-icon" src="icon/close.png" onclick="closePop();"/>
   </div>
 
-<div id="background"></div>
+  <!-- END POPUP -->
 
-<div id="res-pop">
-  <p>半亩园(Scarborough)</p>
-  <hr style="width: 80%; border:0.5px solid #E5E5E5;"/>
-  <div class="time-title">
-    <p>开始关店时间</p>
-    <p style="margin-left: 200px;">结束关店时间</p>
-  </div>
-  <div class="time">
-    <input type="image"  class="icon-calender" src="icon/icon-calendar.png" />
-    <input type="text" class="start-time"/>
-    <input type="image" class= "icon-calendar" src="icon/icon-calendar2.png" style="margin-left: 80px;"/>
-    <input type="text" class="end-time"/>
-  </div>
-  <div class="res-pop-btn">
-    <button type="button" class="btn-add">Add</button>
-    <button type="button" class="btn-cancel">Cancel</button>
-  </div>
-  <div class="history">
-    <table class="time-table" cellspacing="0" cellpadding="0" >
-        <thead>
-            <tr>
-                <th> Start Time </th>
-                <th> End Time </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> 2016-12-29 00:01:00 </td>
-                <td> 2016-12-29 00:02:00 </td>
-                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
-            </tr>
-            <tr>
-                <td> 2016-12-29 00:01:00 </td>
-                <td> 2016-12-29 00:02:00 </td>
-                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
-            </tr>
-            <tr>
-                <td> 2016-12-29 00:01:00 </td>
-                <td> 2016-12-29 00:02:00 </td>
-                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
-            </tr>
-            <tr>
-                <td> 2016-12-29 00:01:00 </td>
-                <td> 2016-12-29 00:02:00 </td>
-                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
-            </tr>
-            <tr>
-                <td> 2016-12-29 00:01:00 </td>
-                <td> 2016-12-29 00:02:00 </td>
-                <td> <input type="image" class="history-edit" src="icon/icon-edit.png" onclick="historyEdit();"/></td>
-            </tr>
-        </tbody>
-    </table>
-  </div>
-
-</div>
-
-<div id="close">
-<input type="image" class="close-icon" src="icon/close.png" onclick="closePop();"/>
-</div>
+<!--  BEGIN PLUGINS-->
+    <script src="library/js/jquery.min.js" type="text/javascript"></script>
+    <script src="library/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="library/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="library/js/app.min.js" type="text/javascript"></script>
+    <script src="library/js/components-date-time-pickers.min.js" type="text/javascript"></script>
+<!-- END PLUGINS -->
 
 </body>
