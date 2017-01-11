@@ -191,6 +191,7 @@ button{
   font-size: 15px;
   box-sizing: border-box;
   background: 0 0;
+  outline: none;
   margin: 0 5px 5px 5px;
 }
 

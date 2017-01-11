@@ -282,15 +282,49 @@
 }
 
 .ser-time-table input{
-    width: 160px;
-    height: 22px;
-    border-radius: 5px;
-    border: 1px solid #94A0B2;
-    box-shadow: 0 0 2px #e5e5e5;
-    margin: 0 3px;
+      border-radius: 5px;
+      border: 1px solid #94A0B2;
+      box-shadow: 0 0 2px #e5e5e5;
+      margin: 0 3px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: transparent;
+      width:70px;
+      height:30px;
+      outline: none;
+      box-shadow: 1px 0 1px #e5e5e5;
+      margin-right: 10px;
+  }
+
+.btn-ser-time-select{
+  width:80px;
+  border-radius:5px;
+  float:left;
+  margin-right: -5px;
+  border-right:transparent;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  display: inline-block;
+  touch-action: manipulation;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  font-size: 16px;
+  background: 0 0;
+  border-color: #94A0B2;
+  color: #94A0B2;
+  height: 30px;
+  font-family: myriad pro;
+  box-shadow: -1px 0 1px #e5e5e5;
+  background-image: url(icon/arrow.png);
+  background-position: right;
+  background-size: 25px;
+  padding-left: 10px;
+  padding-top: 3px;
+  background-repeat: no-repeat;
 }
 
-.ser-time-table select{
+.area-group select{
     border-radius: 25px;
     display: inline-block;
     touch-action: manipulation;
@@ -303,6 +337,7 @@
     color: #94A0B2;
     width: 100px;
     height: 30px;
+    outline: none;
     padding-left: 10px;
     font-family: myriad pro;
     box-shadow: 0 0 2px #e5e5e5;
@@ -423,20 +458,49 @@
     height: 35px;
   }
 
-/*.input-group input{
-  border-radius: 5px;
-}*/
-
   .dri-time-table input{
-      width: 160px;
-      height: 22px;
       border-radius: 5px;
       border: 1px solid #94A0B2;
       box-shadow: 0 0 2px #e5e5e5;
       margin: 0 3px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: transparent;
+      width:70px;
+      height:30px;
+      box-shadow: 1px 0 1px #e5e5e5;
+      margin-right: 10px;
   }
 
-  .dri-time-table select{
+  .btn-dri-time-select{
+    width:80px;
+    border-radius:5px;
+    float:left;
+    margin-right: -5px;
+    border-right:transparent;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    display: inline-block;
+    touch-action: manipulation;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    font-size: 16px;
+    background: 0 0;
+    border-color: #94A0B2;
+    color: #94A0B2;
+    height: 30px;
+    font-family: myriad pro;
+    box-shadow: -1px 0 1px #e5e5e5;
+    background-image: url(icon/arrow.png);
+    background-position: right;
+    background-size: 25px;
+    padding-left: 10px;
+    padding-top: 3px;
+    background-repeat: no-repeat;
+}
+
+  .area-group select{
       border-radius: 25px;
       display: inline-block;
       touch-action: manipulation;
@@ -445,6 +509,7 @@
       -webkit-appearance: none;
       font-size: 16px;
       background: 0 0;
+      outline: none;
       border-color: #94A0B2;
       color: #94A0B2;
       width: 100px;
