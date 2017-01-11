@@ -1,8 +1,8 @@
 #res-pop{
   margin-left: 20%;
   margin-top: -920px;
-  width: 50%;
-  height: 520px;
+  width: 650px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
   visibility: hidden;
   overflow: hidden;
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   z-index: 3;
   box-shadow: 0px 0px 5px grey;
 }
@@ -31,6 +31,7 @@
 #res-pop p{
   font-size: 18px;
   font-family: Myriad Pro;
+  margin-top: 10px;
 }
 
 .time-title{
@@ -40,31 +41,39 @@
   flex-wrap: nowrap;
   font-family: Microsoft Yahei;
   font-size: 18px;
+  margin-top: 10px;
 }
 
 .time{
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.time img{
-  width: 30px;
-  margin-right: 10px;
+  margin-top: 10px;
+  margin-left: 35px;
 }
 
 .time input{
-  width: 200px;
   height: 30px;
-  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 1em;
 }
 
 .start-time{
   border: 1px solid #93b4cc;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  padding: 6px 12px;
+  margin-left: 10px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
 }
 
 .end-time{
   border: 1px solid #4db3a2;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  padding: 6px 12px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
 }
 
 .res-pop-btn{
@@ -84,7 +93,7 @@
 .btn-cancel{
   border-radius: 20px;
   background-color: #5C9BD1;
-  padding: 10px 16px;
+  padding: 8px 16px;
   color: white;
   margin-left: 20px;
 }
@@ -95,6 +104,14 @@
   background-color: #EEEEEE;
   border-radius: 20px;
   margin-top: 30px;
+  overflow: auto;
+  padding-bottom: 20px;
+}
+
+.history-edit{
+  width: 23px;
+  height: 23px;
+  margin-right: 20px;
 }
 
 .time-table{
@@ -109,7 +126,7 @@
 }
 
 .time-table tr{
-  height: 30px;
+  height: 35px;
 }
 
 .close-icon{
@@ -126,8 +143,8 @@
 
 #pop-ser-new{
   margin-left: 20%;
-  margin-top: -920px;
-  width: 50%;
+  margin-top: -900px;
+  width: 640px;
   height: 520px;
   display: flex;
   flex-direction: column;
@@ -147,6 +164,7 @@
 #pop-ser-new p{
   font-size: 18px;
   font-family: Myriad Pro;
+  margin-top: 10px;
 }
 
 .pop-ser-name{
@@ -175,13 +193,15 @@
   color: #3598dc;
   text-decoration: none;
   font-family: myriad pro;
+  height: 33px;
 }
 
 .pop-input-group{
   left: auto;
   right: 0;
   position: relative;
-  display: block;
+  display: grid;
+  height: 33px;
 }
 
 .pop-input-group>i{
@@ -202,14 +222,19 @@
   border-color: #BFBFBF;
   color: #BFBFBF;
   border-radius: 10px;
-  height: 35px;
+  height: 33px;
 }
 
 .pop-ser-table{
   width: 100%;
   text-align: center;
   font-family: Myriad Pro;
+  font-size: 18px;
+}
+
+.pop-ser-table button{
   color: #67809F;
+  font-size: 18px;
 }
 
 .pop-ser-table tr{
@@ -217,9 +242,9 @@
 }
 
 #ser-pop{
-  margin-left: 11%;
-  margin-top: -920px;
-  width: 78%;
+  margin-left: 9%;
+  margin-top: -900px;
+  width: 80%;
   height: 520px;
   display: flex;
   flex-direction: column;
@@ -236,13 +261,13 @@
 
 #ser-pop p{
   font-size: 20px;
+  margin-top: 10px;
   font-family: Myriad Pro;
 }
 
 .ser-time-table{
   text-align: center;
   font-family: Myriad Pro;
-  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -253,44 +278,46 @@
 }
 
 .ser-time-table tr{
-  height: 30px;
+  height: 35px;
 }
 
 .ser-time-table input{
-    width: 150px;
-    height: 20px;
+    width: 160px;
+    height: 22px;
     border-radius: 5px;
-    border: 1px solid #66b5ad;
+    border: 1px solid #94A0B2;
     box-shadow: 0 0 2px #e5e5e5;
+    margin: 0 3px;
 }
 
-.ser-time-table a{
-    border-radius: 15px;
+.ser-time-table select{
+    border-radius: 25px;
     display: inline-block;
-    text-align: center;
     touch-action: manipulation;
     cursor: pointer;
     border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 15px;
-    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-size: 16px;
     background: 0 0;
-    margin: 0 5px 0 5px;
-    border-color: #66b5ad;
-    color: #66b5ad;
-    text-decoration: none;
+    border-color: #94A0B2;
+    color: #94A0B2;
     width: 100px;
+    height: 30px;
+    padding-left: 10px;
     font-family: myriad pro;
     box-shadow: 0 0 2px #e5e5e5;
+    background-image: url(icon/arrow.png);
+    background-position: right;
+    background-size: 25px;
+    background-repeat: no-repeat;
   }
 
 /*DRIVER*/
 
   #pop-dri-new{
     margin-left: 20%;
-    margin-top: -920px;
-    width: 50%;
+    margin-top: -900px;
+    width: 640px;
     height: 520px;
     display: flex;
     flex-direction: column;
@@ -308,6 +335,7 @@
   #pop-dri-new p{
     font-size: 18px;
     font-family: Myriad Pro;
+    margin-top: 10px;
   }
 
   .pop-dri-name{
@@ -315,7 +343,7 @@
     flex-direction: row;
     margin-top: 30px;
     justify-content: center;
-    width: 80%;
+    width: 100%;
   }
 
   .pop-btn-dri-name{
@@ -331,18 +359,24 @@
     font-size: 15px;
     box-sizing: border-box;
     background: 0 0;
-    margin: 0 5px 0 5px;
+    margin: 0 5px 0 10px;
     border-color: #3598dc;
     color: #3598dc;
     text-decoration: none;
     font-family: myriad pro;
+    height: 33px;
   }
 
   .pop-dri-table{
     width: 100%;
     text-align: center;
     font-family: Myriad Pro;
+    font-size: 18px;
+  }
+
+  .pop-dri-table button{
     color: #67809F;
+    font-size: 18px;
   }
 
   .pop-dri-table tr{
@@ -350,9 +384,9 @@
   }
 
   #dri-pop{
-    margin-left: 11%;
-    margin-top: -920px;
-    width: 78%;
+    margin-left: 9%;
+    margin-top: -900px;
+    width: 80%;
     height: 520px;
     display: flex;
     flex-direction: column;
@@ -370,12 +404,12 @@
   #dri-pop p{
     font-size: 20px;
     font-family: Myriad Pro;
+    margin-top: 10px;
   }
 
   .dri-time-table{
     text-align: center;
     font-family: Myriad Pro;
-    margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -386,34 +420,40 @@
   }
 
   .dri-time-table tr{
-    height: 30px;
+    height: 35px;
   }
+
+/*.input-group input{
+  border-radius: 5px;
+}*/
 
   .dri-time-table input{
-      width: 150px;
-      height: 20px;
+      width: 160px;
+      height: 22px;
       border-radius: 5px;
-      border: 1px solid #66b5ad;
+      border: 1px solid #94A0B2;
       box-shadow: 0 0 2px #e5e5e5;
+      margin: 0 3px;
   }
 
-  .dri-time-table a{
-      border-radius: 15px;
+  .dri-time-table select{
+      border-radius: 25px;
       display: inline-block;
-      text-align: center;
       touch-action: manipulation;
       cursor: pointer;
       border: 1px solid transparent;
-      white-space: nowrap;
-      padding: 6px 12px;
-      font-size: 15px;
-      box-sizing: border-box;
+      -webkit-appearance: none;
+      font-size: 16px;
       background: 0 0;
-      margin: 0 5px 0 5px;
-      border-color: #66b5ad;
-      color: #66b5ad;
-      text-decoration: none;
+      border-color: #94A0B2;
+      color: #94A0B2;
       width: 100px;
+      height: 30px;
       font-family: myriad pro;
       box-shadow: 0 0 2px #e5e5e5;
+      background-image: url(icon/arrow.png);
+      background-position: right;
+      background-size: 25px;
+      padding-left: 10px;
+      background-repeat: no-repeat;
     }
