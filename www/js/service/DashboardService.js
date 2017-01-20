@@ -26,8 +26,8 @@ angular.module('MetronicApp')
     // getDrivers();
 	}
   getDrivers();
+
   function getDrivers() {
-    console.log('getDrivers')
     $http({
       method: 'GET',
       url: API_URL+'MobMonitor/DriverSchedule',
@@ -37,6 +37,9 @@ angular.module('MetronicApp')
     }, function errorCallback(response) {
        // alertService.alert(response);
     });
+    setTimeout(function () {
+      getDrivers();
+    }, 900000);
 
   }
 	function get_API() {
