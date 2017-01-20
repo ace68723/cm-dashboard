@@ -6,6 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="chanmao.css" rel="stylesheet" type="text/css" />
   <link href="chanmao-pop.css" rel="stylesheet" type="text/css" />
+
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+  <link href="library/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+  <link href="library/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+
+  <link href="library/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+  <link href="library/css/layout.min.css" rel="stylesheet" type="text/css" />
+
+  <link rel="shortcut icon" href="favicon.ico" /> </head>
   <script language="javascript">
 
     function popDriTable(){
@@ -33,653 +44,840 @@
 </head>
 
 <body>
-  <div class="header">
+    <!--  BEGIN HEADER-->
+    <div class="header">
 
-    <div class="header-left">
-      <img alt="menu" src="icon/menu.png" height="30px"/>
-      <img alt="version" src="icon/version.png" height="30px" style="margin-left: 10px"/>
-      <div id="time">
-        <script type="text/javascript">
-          function update(){
-            var hour = new Date().getHours();
-            var minute = new Date().getMinutes();
-            var second = new Date().getSeconds();
-            document.getElementById('time').innerHTML= hour + ": " + minute + ": " + second;
-          }
-          setInterval(update,1000);
-       </script>
+      <div class="header-left">
+        <img alt="menu" src="icon/menu.png" height="30px"/>
+        <div class="version">V1.0.5</div>
+        <div id="time">
+            <script type="text/javascript">
+              function update(){
+                var hour = new Date().getHours();
+                var minute = new Date().getMinutes();
+                var second = new Date().getSeconds();
+                if (minute<10&&second<10)
+                document.getElementById('time').innerHTML= hour + ":0" + minute + ":0" + second;
+                if (minute<10&&second>9)
+                document.getElementById('time').innerHTML= hour + ":0" + minute + ":" + second;
+                if (minute>9&&second<10)
+                document.getElementById('time').innerHTML= hour + ":" + minute + ":0" + second;
+                if (minute>9&&second>9)
+                document.getElementById('time').innerHTML= hour + ":" + minute + ":" + second;
+              }
+              setInterval(update,1000);
+            </script>
+        </div>
       </div>
+
+      <div class="header-right">
+          <input type="image" class="search" src="icon/icon-search.png"/>
+          <img alt="logo" src="icon/logo.png" height="50px" style="margin-left: 15px"/>
+          <div class="text">
+            <p>Chanmao<br/>
+              &nbsp;&nbsp;Service</p>
+            </div>
+          <input type="image" class="log-out" src="icon/logout.png"/>
+      </div>
+
     </div>
+    <!--  END HEADER-->
+    <!--  BEGIN CONTENT-->
+    <div class="content">
+        <!-- BEGIN NAVIGATION -->
+        <nav class="option">
+            <img alt="home" src="icon/icon-home2.png" />
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <a href="restaurant.html"><img alt="restaurant" src="icon/icon-restaurant2.png"/></a>
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <a href="service.html"><img alt="service" src="icon/icon-service2.png"/></a>
+            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
+            <img alt="driver" src="icon/icon-driver.png" style="height:25px"/>
+        </nav>
+        <!--  END NAVIGATION -->
+        <!--  BEGIN MAIN FUNCTION-->
+        <div class="driver">
+            <p>司机班表</p>
+            <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
+            <div class="dri-content">
+                <div class="dri-select">
+                    <!--  BEGIN SEARCH BAR-->
+                    <div class="dri-name">
+                      <select class="btn-res-name">
+                          <option value ="restaurant">Restaurant</option>
+                          <option value = "service">Service</option>
+                          <option value = "driver" selected="selected">Driver</option>
+                      </select>
+                      <form class="search-form" action=" " method="GET">
+                          <div class="search-bar">
+                            <i class="icon-search"></i>
+                            <input type="text" class="input-search" placeholder="Search...">
+                            <span class="input-group-btn">
+                              <a href="javascript:;" class="btn submit">
+                              </a>
+                            </span>
+                          </div>
+                      </form>
+                      <button type="button" class="btn-clear">CLEAR</button>
+                    </div>
+                    <!--  END SEARCH BAR-->
 
-    <div class="header-right">
-      <input type="image" class="search" src="icon/icon-search.png"/>
-      <img alt="logo" src="icon/logo.png" height="60px" style="margin-left: 15px"/>
-      <div class="text">
-        <p>Chanmao<br/>
-        &nbsp;&nbsp;Service</p>
+                    <!--  BEGIN AREA BAR-->
+
+                    <div class="area">
+                      <p>
+                        <button type="button" class="btn-scarborough">NY/RH</button>
+                        <button type="button" class="btn-northyork">SC/RH</button>
+                        <button type="button" class="btn-downtown">Downtown</button>
+                        <button type="button" class="btn-missi">Mississauga</button>
+                        <button type="button" class="btn-all">All</button>
+                      </p>
+                    </div>
+
+                    <div class="week">
+                      <p>
+                        <button type="button" class="btn-weekday">MON</button>
+                        <button type="button" class="btn-weekday">TUE</button>
+                        <button type="button" class="btn-weekday">WED</button>
+                        <button type="button" class="btn-weekday">THU</button>
+                        <button type="button" class="btn-weekday">FRI</button>
+                        <button type="button" class="btn-weekend">SAT</button>
+                        <button type="button" class="btn-weekend">SUN</button>
+                        <button type="button" class="btn-week">ALL</button>
+                      </p>
+                    </div>
+                    <!--  END AREA BAR-->
+                </div>
+
+                <div class="add-new">
+                  <input type="image" src="icon/icon-schedule.png" onclick="popDriTable();"/>
+                  <p style="font-size: 1.2em;">添加司机班表</p>
+                </div>
+
+              </div>
+              <!--  BEGIN TABLE-->
+              <div class="table">
+                <table class="dri-table" cellspacing="0" cellpadding="0" >
+                  <thead>
+                    <tr>
+                      <th> UID </th>
+                      <th class="table-name"> NAME </th>
+                      <th class="table-time"> START TIME </th>
+                      <th class="table-time"> END TIME </th>
+                      <th class="table-area"> AREA </th>
+                      <th> EDIT </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> 4342 </td>
+                      <td>  <button onclick="popDriver()"> ddoahdsi </button></td>
+                      <td> 2016-12-17 12:00 </td>
+                      <td> 2016-12-18 12:00 </td>
+                      <td> 2 </td>
+                      <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="editServicer();"/>
+                          <input type="image" class="table-edit" src="icon/icon-delete.png"/>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td> 6 </td>
+                        <td> Jacob </td>
+                        <td> Nilson </td>
+                        <td> jac123 </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td> 8 </td>
+                        <td> Larry </td>
+                        <td> Cooper </td>
+                        <td> lar </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--  END TABLE-->
+          </div>
+          <!--  END MAIN FUNCTION-->
       </div>
-      <input type="image" class="log-out" src="icon/logout.png"/>
-  </div>
+      <!-- END CONTENT -->
 
-</div>
-
-<div class="content">
-  <nav class="option">
-    <img alt="home" src="icon/icon-home2.png" />
-    <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-    <a href="restaurant.html"><img alt="restaurant" src="icon/icon-restaurant2.png"/></a>
-    <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-    <a href="service.html"><img alt="service" src="icon/icon-service2.png"/></a>
-    <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-    <img alt="driver" src="icon/icon-driver.png" style="height:25px"/>
-  </nav>
-
-  <div class="driver">
-    <p>司机班表</p>
-    <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
-    <div class="dri-content">
-      <div class="dri-select">
-        <div class="dri-name">
-          <select class="btn-res-name">
-            <option value ="restaurant">restaurant</option>
-            <option value = "service">service</option>
-            <option value = "driver" selected="selected">driver</option>
-          </select>
+    <!-- BEGIN POPUP -->
+  <div id="background"></div>
+  <!-- BEGIN DRIVER SEARCH EDIT-->
+  <div id="pop-dri-new">
+      <p>司机列表</p>
+      <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
+      <div class="pop-dri-name">
+          <div class="btn-group">
+            <a class="pop-btn-dri-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 司机姓名
+            <i class=""></i>
+            </a>
+          </div>
           <form class="search-form" action=" " method="GET">
-            <div class="input-group">
+            <div class="pop-input-group">
               <i class="icon-search"></i>
               <input type="text" class="input-search" placeholder="Search...">
-              <span class="input-group-btn">
-                  <a href="javascript:;" class="btn submit">
-                  </a>
+              <span class="pop-input-group-btn">
+                <a href="javascript:;" class="btn submit">
+                </a>
               </span>
             </div>
           </form>
-          <button type="button" class="btn-clear">CLEAR</button>
-        </div>
-
-        <div class="area">
-          <p>
-            <button type="button" class="btn-scarborough">Scarborough</button>
-            <button type="button" class="btn-markham">Markham</button>
-            <button type="button" class="btn-northyork">North York</button>
-            <button type="button" class="btn-richmond">Richmond Hill</button>
-            <button type="button" class="btn-downtown">Downtown</button>
-            <button type="button" class="btn-missi">Mississauga</button>
-            <button type="button" class="btn-all">All</button>
-            <button type="button" class="btn-closed">Closed</button>
-          </p>
-        </div>
-
-        <div class="week">
-          <p>
-            <button type="button" class="btn-mon">MON</button>
-            <button type="button" class="btn-tue">TUE</button>
-            <button type="button" class="btn-wed">WED</button>
-            <button type="button" class="btn-thu">THU</button>
-            <button type="button" class="btn-fri">FRI</button>
-            <button type="button" class="btn-sat">SAT</button>
-            <button type="button" class="btn-sun">SUN</button>
-          </p>
-        </div>
-
+          <button type="button" class="pop-btn-clear">CLEAR</button>
       </div>
 
-      <div class="new">
-        <input type="image" src="icon/icon-schedule.png" onclick="popDriTable();"/>
-        <p>添加客服班表</p>
-      </div>
-    </div>
-
-    <div class="table">
-        <table class="dri-table" cellspacing="0" cellpadding="0" >
-            <thead>
-                <tr>
-                    <th> RID </th>
-                    <th> NAME </th>
-                    <th> ADDRESS </th>
-                    <th> TELEPHONE </th>
-                    <th> OPEN HOUR </th>
-                    <th> EDIT </th>
-                </tr>
-            </thead>
+      <div class="pop-dri-name">
+          <table class="pop-dri-table" cellspacing="0" cellpadding="0" >
             <tbody>
-                <tr>
-                    <td> 4 </td>
-                    <td> 老汤家(Scarborough) </td>
-                    <td> 3380 Midland Ave, Scarborough, M9U 8Y7 </td>
-                    <td> 905540283 </td>
-                    <td>12:00 ~ 22:00</td>
-                    <td><input type="image" class="table-edit" src="icon/icon-edit.png" onclick="popDriver();"/></td>
-                </tr>
-                <tr>
-                    <td> 6 </td>
-                    <td> Jacob </td>
-                    <td> Nilson </td>
-                    <td> jac123 </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 8 </td>
-                    <td> Larry </td>
-                    <td> Cooper </td>
-                    <td> lar </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 4 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 6 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 8 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td> 4 </td>
-                    <td> Sandy </td>
-                    <td> Lim </td>
-                    <td> sanlim </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-  </div>
-</div>
-
-<div id="background"></div>
-
-<div id="pop-dri-new">
-  <p>司机列表</p>
-  <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
-  <div class="pop-dri-name">
-    <div class="btn-group">
-        <a class="pop-btn-dri-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 客服姓名
-            <i class=""></i>
-        </a>
-        <!--<ul class="dropdown-menu pull-right">
-            <li>
-                <a href="javascript:;"> Option 1</a>
-            </li>
-            <li class="divider"> </li>
-            <li>
-                <a href="javascript:;">Option 2</a>
-            </li>
-            <li>
-                <a href="javascript:;">Option 3</a>
-            </li>
-            <li>
-                <a href="javascript:;">Option 4</a>
-            </li>
-        </ul>-->
-    </div>
-    <form class="search-form" action=" " method="GET">
-      <div class="pop-input-group">
-        <i class="icon-search"></i>
-        <input type="text" class="input-search" placeholder="Search...">
-        <span class="pop-input-group-btn">
-            <a href="javascript:;" class="btn submit">
-            </a>
-        </span>
-      </div>
-    </form>
-    <button type="button" class="pop-btn-clear">CLEAR</button>
-  </div>
-
-  <div class="pop-dri-name">
-    <table class="pop-dri-table" cellspacing="0" cellpadding="0" >
-        <tbody>
-            <tr>
-                <td> ddsfv </td>
-                <td> g3tfs </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-            <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-            <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-            <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-            </tr>
-        </tbody>
-    </table>
-  </div>
-</div>
-
-<div id="dri-pop">
-  <p>fsnfdkf</p>
-  <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
-  <div class="time-title">
-    <p>12.25-12.31</p>
-    <p style="margin-left: 450px;">1.1-1.7</p>
-  </div>
-  <div class="dri-time-table">
-    <table class="dri-time-table-1" cellspacing="4" cellpadding="0" >
-        <thead>
-            <tr>
-                <th> 开始时间 </th>
-                <th> 结束时间 </th>
-                <th> 分区 </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> <input type="text" class="dri-start-time-1"/> </td>
-                <td> <input type="text" class="dri-end-time-1"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="dri-start-time-2"/> </td>
-              <td> <input type="text" class="dri-end-time-2"/> </td>
-              <td>
-                <div class="area-group">
-                    <a class="pop-btn-area-2" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="dri-start-time-3"/> </td>
-              <td> <input type="text" class="dri-end-time-3"/> </td>
-              <td>
-                <div class="area-group">
-                    <a class="pop-btn-area-3" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="dri-start-time-4"/> </td>
-              <td> <input type="text" class="dri-end-time-4"/> </td>
-              <td>
-                <div class="area-group">
-                    <a class="pop-btn-area-4" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="dri-start-time-5"/> </td>
-              <td> <input type="text" class="dri-end-time-5"/> </td>
-              <td>
-                <div class="area-group">
-                    <a class="pop-btn-area-5" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="dri-start-time-6"/> </td>
-              <td> <input type="text" class="dri-end-time-6"/> </td>
-              <td>
-                <div class="area-group">
-                    <a class="pop-btn-area-6" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> <input type="text" class="dri-start-time-7"/> </td>
-              <td> <input type="text" class="dri-end-time-7"/> </td>
-              <td>
-                <div class="area-group">
-                    <a class="pop-btn-area-7" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                        <i class=""></i>
-                    </a>
-                    <!--<ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="javascript:;"> Option 1</a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="javascript:;">Option 2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Option 4</a>
-                        </li>
-                    </ul>-->
-                </div>
-              </td>
-            </tr>
-        </tbody>
-      </table>
-      <table class="ser-time-table-2" cellspacing="4" cellpadding="0" style="margin-left: 70px;">
-          <thead>
               <tr>
-                  <th> 开始时间 </th>
-                  <th> 结束时间 </th>
-                  <th> 分区 </th>
+                <td> <button onclick="popDriver()"> ddsfv </button> </td>
+                <td> <button onclick="popDriver()"> g3tfs </button></td>
+                <td> <button onclick="popDriver()"> fsef </button></td>
+                <td> <button onclick="popDriver()"> fgbfgb </button></td>
               </tr>
-          </thead>
-          <tbody>
               <tr>
-                  <td> <input type="text" class="dri-start-time-1"/> </td>
-                  <td> <input type="text" class="dri-end-time-1"/> </td>
+                <td> fsef </td>
+                <td> fgbfgb </td>
+                <td> fsef </td>
+                <td> fgbfgb </td>
+              </tr>
+           </tbody>
+         </table>
+      </div>
+  </div>
+  <!--  END DRIVER SEARCH EDIT-->
+  <!--  BEGIN DRIVER TIME EDIT-->
+  <div id="dri-pop">
+      <p>fsnfdkf</p>
+      <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
+      <div class="time-title">
+          <p>12.25-12.31</p>
+          <p style="margin-left: 450px;">1.1-1.7</p>
+      </div>
+      <!--  BEGIN DRIVER TIME TABLE-->
+      <div class="dri-time-table">
+          <table class="dri-time-table-1" cellspacing="4" cellpadding="0" >
+              <thead>
+                  <tr>
+                      <th> 开始时间 </th>
+                      <th> 结束时间 </th>
+                      <th> 分区 </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-1"/>
+                        </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-end-time-1" />
+                        </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-2" />
+                      </div>
+                    </td>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-2" />
+                      </div>
+                   </td>
                   <td>
                     <div class="area-group">
-                        <a class="pop-btn-area-1" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                            <i class=""></i>
-                        </a>
-                        <!--<ul class="dropdown-menu pull-right">
-                            <li>
-                                <a href="javascript:;"> Option 1</a>
-                            </li>
-                            <li class="divider"> </li>
-                            <li>
-                                <a href="javascript:;">Option 2</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">Option 3</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">Option 4</a>
-                            </li>
-                        </ul>-->
+                      <select class="btn-dri-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
                     </div>
                   </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="dri-start-time-2"/> </td>
-                <td> <input type="text" class="dri-end-time-2"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area-2" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="dri-start-time-3"/> </td>
-                <td> <input type="text" class="dri-end-time-3"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area-3" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="dri-start-time-4"/> </td>
-                <td> <input type="text" class="dri-end-time-4"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area-4" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="dri-start-time-5"/> </td>
-                <td> <input type="text" class="dri-end-time-5"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area-5" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="dri-start-time-6"/> </td>
-                <td> <input type="text" class="dri-end-time-6"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area-6" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td> <input type="text" class="dri-start-time-7"/> </td>
-                <td> <input type="text" class="dri-end-time-7"/> </td>
-                <td>
-                  <div class="area-group">
-                      <a class="pop-btn-area-7" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> NY/RH
-                          <i class=""></i>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right">
-                          <li>
-                              <a href="javascript:;"> Option 1</a>
-                          </li>
-                          <li class="divider"> </li>
-                          <li>
-                              <a href="javascript:;">Option 2</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 3</a>
-                          </li>
-                          <li>
-                              <a href="javascript:;">Option 4</a>
-                          </li>
-                      </ul>-->
-                  </div>
-                </td>
-              </tr>
-          </tbody>
-        </table>
-    </div>
-  <div class="res-pop-btn">
-    <button type="button" class="btn-add">Add</button>
-    <button type="button" class="btn-cancel">Cancel</button>
-  </div>
-</div>
+                </tr>
+                <tr>
+                   <td>
+                     <select class="btn-dri-time-select">
+                       <option value ="12-25" selected="selected">12-25</option>
+                       <option value = "12-26">12-26</option>
+                       <option value = "12-27">12-27</option>
+                       <option value = "12-28">12-28</option>
+                       <option value = "12-29">12-29</option>
+                       <option value = "12-30">12-30</option>
+                       <option value = "12-31">12-31</option>
+                     </select>
+                     <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-3" />
+                     </div>
+                   </td>
+                  <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                     <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-3" />
+                     </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-dri-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select class="btn-dri-time-select">
+                      <option value ="12-25" selected="selected">12-25</option>
+                      <option value = "12-26">12-26</option>
+                      <option value = "12-27">12-27</option>
+                      <option value = "12-28">12-28</option>
+                      <option value = "12-29">12-29</option>
+                      <option value = "12-30">12-30</option>
+                      <option value = "12-31">12-31</option>
+                    </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-4" />
+                      </div>
+                  </td>
+                  <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-4" />
+                      </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-dri-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select class="btn-dri-time-select">
+                      <option value ="12-25" selected="selected">12-25</option>
+                      <option value = "12-26">12-26</option>
+                      <option value = "12-27">12-27</option>
+                      <option value = "12-28">12-28</option>
+                      <option value = "12-29">12-29</option>
+                      <option value = "12-30">12-30</option>
+                      <option value = "12-31">12-31</option>
+                    </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-5" />
+                      </div>
+                  </td>
+                  <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-5" />
+                      </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-dri-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select class="btn-dri-time-select">
+                      <option value ="12-25" selected="selected">12-25</option>
+                      <option value = "12-26">12-26</option>
+                      <option value = "12-27">12-27</option>
+                      <option value = "12-28">12-28</option>
+                      <option value = "12-29">12-29</option>
+                      <option value = "12-30">12-30</option>
+                      <option value = "12-31">12-31</option>
+                    </select>
+                     <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-6" />
+                          </div>
+                  </td>
+                  <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-6" />
+                        </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-dri-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select class="btn-dri-time-select">
+                      <option value ="12-25" selected="selected">12-25</option>
+                      <option value = "12-26">12-26</option>
+                      <option value = "12-27">12-27</option>
+                      <option value = "12-28">12-28</option>
+                      <option value = "12-29">12-29</option>
+                      <option value = "12-30">12-30</option>
+                      <option value = "12-31">12-31</option>
+                    </select>
+                     <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-7" />
+                          </div>
+                  </td>
+                  <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                      <div class="input-group">
+                          <input type="text" class="form-control timepicker timepicker-24 dri-start-time-7" />
+                        </div>
+                  </td>
+                  <td>
+                    <div class="area-group">
+                      <select class="btn-dri-select">
+                        <option value ="ny/rh" selected="selected">NY/RH</option>
+                        <option value = "sc/rh">SC/RH</option>
+                        <option value = "downtown">Downtown</option>
+                        <option value = "mississauga">Mississauga</option>
+                        <option value = "all">All</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          <table class="ser-time-table-2" cellspacing="4" cellpadding="0" style="margin-left: 70px;">
+              <thead>
+                  <tr>
+                      <th> 开始时间 </th>
+                      <th> 结束时间 </th>
+                      <th> 分区 </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-8" />
+                            </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-8" />
+                          </div>
+                    </td>
+                      <td>
+                        <div class="area-group">
+                          <select class="btn-dri-select">
+                            <option value ="ny/rh" selected="selected">NY/RH</option>
+                            <option value = "sc/rh">SC/RH</option>
+                            <option value = "downtown">Downtown</option>
+                            <option value = "mississauga">Mississauga</option>
+                            <option value = "all">All</option>
+                          </select>
+                        </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25">12-25</option>
+                        <option value = "12-26" selected="selected">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-9" />
+                            </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" >12-25</option>
+                          <option value = "12-26" selected="selected">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-9" />
+                          </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-10" />
+                            </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-10" />
+                          </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-11" />
+                            </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-11" />
+                          </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-12" />
+                            </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-12" />
+                          </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-13" />
+                            </div>
+                    </td>
+                    <td>
+                        <select class="btn-dri-time-select">
+                          <option value ="12-25" selected="selected">12-25</option>
+                          <option value = "12-26">12-26</option>
+                          <option value = "12-27">12-27</option>
+                          <option value = "12-28">12-28</option>
+                          <option value = "12-29">12-29</option>
+                          <option value = "12-30">12-30</option>
+                          <option value = "12-31">12-31</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-13" />
+                          </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                       <div class="input-group">
+                              <input type="text" class="form-control timepicker timepicker-24 dri-start-time-14" />
+                            </div>
+                    </td>
+                    <td>
+                      <select class="btn-dri-time-select">
+                        <option value ="12-25" selected="selected">12-25</option>
+                        <option value = "12-26">12-26</option>
+                        <option value = "12-27">12-27</option>
+                        <option value = "12-28">12-28</option>
+                        <option value = "12-29">12-29</option>
+                        <option value = "12-30">12-30</option>
+                        <option value = "12-31">12-31</option>
+                      </select>
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker timepicker-24 dri-start-time-14" />
+                          </div>
+                    </td>
+                    <td>
+                      <div class="area-group">
+                        <select class="btn-dri-select">
+                          <option value ="ny/rh" selected="selected">NY/RH</option>
+                          <option value = "sc/rh">SC/RH</option>
+                          <option value = "downtown">Downtown</option>
+                          <option value = "mississauga">Mississauga</option>
+                          <option value = "all">All</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <!--  END DRIVER TIME TABLE-->
 
-<div id="close">
-<input type="image" class="close-icon" src="icon/close.png" onclick="closePop()"/>
-</div>
+      <div class="res-pop-btn">
+          <button type="button" class="btn-add">Add</button>
+          <button type="button" class="btn-cancel" onclick="closePop()">Cancel</button>
+      </div>
+  </div>
+  <!--  END DRIVER TIME EDIT-->
+  <div id="close">
+    <input type="image" class="close-icon" src="icon/close.png" onclick="closePop()"/>
+  </div>
+
+  <!-- END POPUP -->
+
+  <!--  BEGIN PLUGINS-->
+  <script src="library/js/jquery.min.js" type="text/javascript"></script>
+  <script src="library/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+  <script src="library/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="library/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+  <script src="library/js/app.min.js" type="text/javascript"></script>
+  <script src="library/js/components-date-time-pickers.min.js" type="text/javascript"></script>
+  <!-- END PLUGINS -->
 
 </body>
+</html>
