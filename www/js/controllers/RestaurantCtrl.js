@@ -2,9 +2,9 @@
 
 /* Setup blank page controller */
 angular.module('MetronicApp')
-	.controller('RestaurantListController', ['$rootScope','$scope', 'settings','restaurantService','$timeout',function($rootScope, $scope, settings,restaurantService,$timeout) {
-	    var RestaurantListCtrl = this;
-			RestaurantListCtrl.height = window.innerHeight*0.9;
+	.controller('RestaurantController', ['$rootScope','$scope', 'settings','restaurantService','$timeout',function($rootScope, $scope, settings,restaurantService,$timeout) {
+	    var RestaurantCtrl = this;
+			RestaurantCtrl.height = window.innerHeight*0.9;
       $scope.$on('$viewContentLoaded', function() {
         // initialize core components
         App.initAjax();
@@ -13,7 +13,7 @@ angular.module('MetronicApp')
         $rootScope.settings.layout.pageSidebarClosed = true;
 
       });
-          RestaurantListCtrl.SearchOptions = [{
+          RestaurantCtrl.SearchOptions = [{
             "optionName": "RID",
             "value": "rid"
           }, {
@@ -33,13 +33,13 @@ angular.module('MetronicApp')
             "value": "area"
           }, ];
 
-            // console.log("in there",RestaurantListCtrl.SearchOptions);
-          // function RestaurantsCtrl(RestaurantListCtrl, Restaurants) {
+            // console.log("in there",RestaurantCtrl.SearchOptions);
+          // function RestaurantsCtrl(RestaurantCtrl, Restaurants) {
             //
-            RestaurantListCtrl.search = {};
+            RestaurantCtrl.search = {};
 
-            RestaurantListCtrl.singleSelect = RestaurantListCtrl.SearchOptions[1].value;
-            RestaurantListCtrl.change = function(selected) {
+            RestaurantCtrl.singleSelect = RestaurantCtrl.SearchOptions[1].value;
+            RestaurantCtrl.change = function(selected) {
               //do if's in case you use null or empty values
               console.log("44",selected);
               if (selected = SearchOption.optionName) {
@@ -47,55 +47,55 @@ angular.module('MetronicApp')
               }
             }
 
-            RestaurantListCtrl.isCurrentCateArea= function(area){
+            RestaurantCtrl.isCurrentCateArea= function(area){
               return $scope.currentArea!== null  && restaurant.area===area;
             }
 
 
-            RestaurantListCtrl.clearSearch = function() {
-              RestaurantListCtrl.search = null;
-              RestaurantListCtrl.search = {};
+            RestaurantCtrl.clearSearch = function() {
+              RestaurantCtrl.search = null;
+              RestaurantCtrl.search = {};
 
             }
 
-           RestaurantListCtrl.GetItem=function(restaurant){
+           RestaurantCtrl.GetItem=function(restaurant){
             console.log("GetItem",restaurant);
             // var showitem ='123';
-            RestaurantListCtrl.showitem={};
-            RestaurantListCtrl.reset={};
-            RestaurantListCtrl.showitem.rid= restaurant.rid;
+            RestaurantCtrl.showitem={};
+            RestaurantCtrl.reset={};
+            RestaurantCtrl.showitem.rid= restaurant.rid;
             // console.log(restaurant.rid);
-            RestaurantListCtrl.showitem.name= restaurant.name;
-            RestaurantListCtrl.showitem.address= restaurant.address;
-            RestaurantListCtrl.showitem.tel= restaurant.tel;
-            RestaurantListCtrl.showitem.hour= restaurant.hour;
-            RestaurantListCtrl.showitem.area= restaurant.area;
-            RestaurantListCtrl.reset.rid= restaurant.rid;
-            RestaurantListCtrl.reset.name= restaurant.name;
-            RestaurantListCtrl.reset.address= restaurant.address;
-            RestaurantListCtrl.reset.tel= restaurant.tel;
-            RestaurantListCtrl.reset.hour= restaurant.hour;
-            RestaurantListCtrl.reset.area= restaurant.area;
+            RestaurantCtrl.showitem.name= restaurant.name;
+            RestaurantCtrl.showitem.address= restaurant.address;
+            RestaurantCtrl.showitem.tel= restaurant.tel;
+            RestaurantCtrl.showitem.hour= restaurant.hour;
+            RestaurantCtrl.showitem.area= restaurant.area;
+            RestaurantCtrl.reset.rid= restaurant.rid;
+            RestaurantCtrl.reset.name= restaurant.name;
+            RestaurantCtrl.reset.address= restaurant.address;
+            RestaurantCtrl.reset.tel= restaurant.tel;
+            RestaurantCtrl.reset.hour= restaurant.hour;
+            RestaurantCtrl.reset.area= restaurant.area;
            }
 
             restaurantService.get_rrlist()
             .then(function (result) {
-              RestaurantListCtrl.restaurants = result;
+              RestaurantCtrl.restaurants = result;
             })
             .catch(function (error) {
               console.log(error)
             })
-            RestaurantListCtrl.ResetItem = function(restaurant){
-              RestaurantListCtrl.showitem.rid=reset.rid;
-              RestaurantListCtrl.showitem.name= reset.name;
-              RestaurantListCtrl.showitem.address=reset.address;
-              RestaurantListCtrl.showitem.tel= reset.tel;
-              RestaurantListCtrl.showitem.hour=reset.hour;
-              RestaurantListCtrl.showitem.area= reset.area;
+            RestaurantCtrl.ResetItem = function(restaurant){
+              RestaurantCtrl.showitem.rid=reset.rid;
+              RestaurantCtrl.showitem.name= reset.name;
+              RestaurantCtrl.showitem.address=reset.address;
+              RestaurantCtrl.showitem.tel= reset.tel;
+              RestaurantCtrl.showitem.hour=reset.hour;
+              RestaurantCtrl.showitem.area= reset.area;
             }
 
-             RestaurantListCtrl.restaurants = [];
-             for (i = 0; i < RestaurantListCtrl.restaurants.length; i++) {
+             RestaurantCtrl.restaurants = [];
+             for (i = 0; i < RestaurantCtrl.restaurants.length; i++) {
                var data = {}
                data.rid = Restaurants.item[i].rid;
                data.name = Restaurants.item[i].name;
@@ -104,31 +104,31 @@ angular.module('MetronicApp')
                data.hour = Restaurants.item[i].hour;
                data.area = Restaurants.item[i].area;
 							 data.tel2 = Restaurants.item[i].tel2;
-               RestaurantListCtrl.restaurants.push(data)
+               RestaurantCtrl.restaurants.push(data)
 
              }
 
-             RestaurantListCtrl.selectArea = function(area){
-               for (i=0; i< RestaurantListCtrl.restaurants.length; i++){
-                 if (RestaurantListCtrl.restaurants[i].area !=area){
-                   RestaurantListCtrl.restaurants[i]=[];
+             RestaurantCtrl.selectArea = function(area){
+               for (i=0; i< RestaurantCtrl.restaurants.length; i++){
+                 if (RestaurantCtrl.restaurants[i].area !=area){
+                   RestaurantCtrl.restaurants[i]=[];
                  }
                }
              }
-             RestaurantListCtrl.editandSubmit = function(){
+             RestaurantCtrl.editandSubmit = function(){
 
              }
 
             var isClicked;
             var Highlightarea;
-            RestaurantListCtrl.addBackGroundColor = function(area) {
-              console.log("143",RestaurantListCtrl.showitem)
+            RestaurantCtrl.addBackGroundColor = function(area) {
+              console.log("143",RestaurantCtrl.showitem)
               if (!isClicked) {
                 isClicked = true;
                 Highlightarea = area;
-                for (i = 0; i < RestaurantListCtrl.restaurants.length; i++) {
-                  if (RestaurantListCtrl.restaurants[i].area == area) {
-                    RestaurantListCtrl.restaurants[i].style = {
+                for (i = 0; i < RestaurantCtrl.restaurants.length; i++) {
+                  if (RestaurantCtrl.restaurants[i].area == area) {
+                    RestaurantCtrl.restaurants[i].style = {
                       "background-color": "#ff0000",
                       "color": "#ffffff",
                     }
@@ -136,15 +136,15 @@ angular.module('MetronicApp')
                 }
               } else {
                 isClicked = false;
-                for (i = 0; i < RestaurantListCtrl.restaurants.length; i++) {
-                  if (RestaurantListCtrl.restaurants[i].area == Highlightarea) {
-                    RestaurantListCtrl.restaurants[i].style = {}
+                for (i = 0; i < RestaurantCtrl.restaurants.length; i++) {
+                  if (RestaurantCtrl.restaurants[i].area == Highlightarea) {
+                    RestaurantCtrl.restaurants[i].style = {}
                   }
 
                 }
                 if (Highlightarea != area)
-                  for (i = 0; i < RestaurantListCtrl.restaurants.length; i++) {
-                    RestaurantListCtrl.addBackGroundColor(area)
+                  for (i = 0; i < RestaurantCtrl.restaurants.length; i++) {
+                    RestaurantCtrl.addBackGroundColor(area)
                   }
               }
             }

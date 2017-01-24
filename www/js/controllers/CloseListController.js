@@ -1,42 +1,34 @@
-angular.module('MetronicApp').controller('testListController',
-['$rootScope', '$scope',  '$http','testListService','$q',
-function($rootScope, $scope, $http, testListService,$q) {
+angular.module('MetronicApp').controller('closeListController',
+['$rootScope', '$scope',  '$http','closeListService','$q',
+function($rootScope, $scope, $http, closeListService,$q) {
   ComponentsDateTimePickers.init();
-  var tlc = this;
-  var tls = testListService;
-  tlc.height = window.innerHeight*0.9;
+  var clc = this;
+  var cls = closeListService;
+  clc.height = window.innerHeight*0.9;
       $(document).ready(function() {
         $('#background').click(function() {
           $("#res-pop").css({'visibility': 'hidden'});
           $("#background").css({'visibility': 'hidden'});
         });
       });
-//  role check
-  tlc.roleCheck = function(){
-    if($rootScope.role == "SETTLE"){
-      tlc.updateRestaurantList()
-        }else{
-      window.location="index.html#/dashboard.html"
-      }
-    }
-//  role check end
+
 //init
-  tlc.updateRestaurantList = function(){
+  clc.updateRestaurantList = function(){
     setTimeout(function () {
-      tls.getRestaurantLists()
+      cls.getRestaurantLists()
        .then((result)=>{
-       tlc.restaurantLists = result;
+       clc.restaurantLists = result;
       })
        .catch((error)=>{
          console.log(error)
        })
     }, 200);
    }
-  tlc.updateCloseInformation = function(){
+  clc.updateCloseInformation = function(){
     setTimeout(function () {
-      tls.getCloseInfomaiton(tlc.newCloseRestaurant.rid)
+      cls.getCloseInfomaiton(clc.newCloseRestaurant.rid)
        .then((result)=>{
-       tlc.closeInformation = result;
+       clc.closeInformation = result;
        console.log(result)
        })
        .catch((error)=>{
@@ -44,20 +36,19 @@ function($rootScope, $scope, $http, testListService,$q) {
        })
     }, 200);
    }
-  tlc.updateRestaurantList();
-  tlc.roleCheck();
+  clc.updateRestaurantList();
 //init end
 
-  tlc.getCloseInformation = function(closeRestaurant){
-     tlc.pop = true;
-     tlc.name = closeRestaurant.name;
-     tlc.newCloseRestaurant.rid = closeRestaurant.rid;
-     tlc.convertRid();
+  clc.getCloseInformation = function(closeRestaurant){
+     clc.pop = true;
+     clc.name = closeRestaurant.name;
+     clc.newCloseRestaurant.rid = closeRestaurant.rid;
+     clc.convertRid();
      setTimeout(function(){
-       tls.getCloseInfomaiton(closeRestaurant.rid)
+       cls.getCloseInfomaiton(closeRestaurant.rid)
        .then((result)=>{
-         tlc.closeInformation = result;
-         tlc.popUp();
+         clc.closeInformation = result;
+         clc.popUp();
        })
        .catch((error)=>{
          console.log(error)
@@ -67,15 +58,15 @@ function($rootScope, $scope, $http, testListService,$q) {
 
 
 // update function
-  tlc.updateOnClick = function(closeInformation){
-    tls.updateCloseRestaurant(closeInformation)
-    .then(tlc.updateRestaurantList())
+  clc.updateOnClick = function(closeInformation){
+    cls.updateCloseRestaurant(closeInformation)
+    .then(clc.updateRestaurantList())
     .catch(function(error){
       console.log(error)
     })
-    tlc.cancelEditing(closeInformation);
+    clc.cancelEditing(closeInformation);
   }
-  tlc.confrimUpdate = function(closeInformation){
+  clc.confrimUpdate = function(closeInformation){
     swal({
       title: "确认更新?",
       type: "warning",
@@ -90,7 +81,7 @@ function($rootScope, $scope, $http, testListService,$q) {
        if (isConfirm) {
        swal("已更新!", "success"
             );
-       tlc.updateOnClick(closeInformation);
+       clc.updateOnClick(closeInformation);
           } else {
        swal("已取消!");
           }
@@ -98,20 +89,20 @@ function($rootScope, $scope, $http, testListService,$q) {
   }
 // update function end
 // add function
-  tlc.addOnClick = function(){
-    tls.addCloseRestaurant(tlc.newCloseRestaurant)
-    .then(tlc.updateRestaurantList())
+  clc.addOnClick = function(){
+    cls.addCloseRestaurant(clc.newCloseRestaurant)
+    .then(clc.updateRestaurantList())
     .catch(function(error){
       console.log(error)
     })
    }
-   tlc.updateSuccess = function(){
-     tlc.updateRestaurantList();
+   clc.updateSuccess = function(){
+     clc.updateRestaurantList();
      swal("已提交!", "success"
           );
    }
-   tlc.confrimAdd1 = function(){
-      if(!tlc.newCloseRestaurant.rid||!tlc.newCloseRestaurant.start_time||!tlc.newCloseRestaurant.end_time){
+   clc.confrimAdd1 = function(){
+      if(!clc.newCloseRestaurant.rid||!clc.newCloseRestaurant.start_time||!clc.newCloseRestaurant.end_time){
 
       }else{
       swal({
@@ -126,24 +117,24 @@ function($rootScope, $scope, $http, testListService,$q) {
         },
        function(isConfirm) {
          if (isConfirm) {
-           tls.addCloseRestaurant(tlc.newCloseRestaurant)
-           .then(tlc.updateSuccess())
+           cls.addCloseRestaurant(clc.newCloseRestaurant)
+           .then(clc.updateSuccess())
            .catch(function(error){
              console.log(error);
              swal("");
            })
          //
          //
-         tlc.resetAddForm();
-         tlc.updateCloseInformation();
+         clc.resetAddForm();
+         clc.updateCloseInformation();
             } else {
          swal("已取消!");
             }
       });
       }
    }
-  tlc.confrimAdd = function(){
-     if(!tlc.newCloseRestaurant.rid||!tlc.newCloseRestaurant.start_time||!tlc.newCloseRestaurant.end_time){
+  clc.confrimAdd = function(){
+     if(!clc.newCloseRestaurant.rid||!clc.newCloseRestaurant.start_time||!clc.newCloseRestaurant.end_time){
 
      }else{
      swal({
@@ -160,10 +151,10 @@ function($rootScope, $scope, $http, testListService,$q) {
         if (isConfirm) {
         swal("已提交!", "success"
              );
-        tlc.convertRid();
-        tlc.addOnClick();
-        tlc.resetAddForm();
-        tlc.updateCloseInformation();
+        clc.convertRid();
+        clc.addOnClick();
+        clc.resetAddForm();
+        clc.updateCloseInformation();
            } else {
         swal("已取消!");
            }
@@ -172,47 +163,47 @@ function($rootScope, $scope, $http, testListService,$q) {
   }
 // add function end
 // basic function
-  tlc.cancelEditing = function(closeInformation){
+  clc.cancelEditing = function(closeInformation){
       closeInformation.isEditing = false;
-      tlc.itemEditing = false;
+      clc.itemEditing = false;
       // cleanEditingSchedules()
   }
-  tlc.clearSearch = function() {
-    tlc.search = null;
-    tlc.search = {};
+  clc.clearSearch = function() {
+    clc.search = null;
+    clc.search = {};
   }
-  tlc.startEditing = function(closeInformation){
+  clc.startEditing = function(closeInformation){
     if(!closeInformation.isEditing){
       closeInformation.isEditing = true;
-      tlc.itemEditing = true
+      clc.itemEditing = true
 
     }
       // cleanEditingSchedules()
   }
-  tlc.resetAddForm = function(){
-    tlc.newCloseRestaurant.rid = tlc.newCloseRestaurant.rid;
-    tlc.newCloseRestaurant.start_time = '';
-    tlc.newCloseRestaurant.end_time = "";
+  clc.resetAddForm = function(){
+    clc.newCloseRestaurant.rid = clc.newCloseRestaurant.rid;
+    clc.newCloseRestaurant.start_time = '';
+    clc.newCloseRestaurant.end_time = "";
   }
-  tlc.convertRid= function(){
-    tlc.newCloseRestaurant.rid = parseInt(tlc.newCloseRestaurant.rid, 10);
+  clc.convertRid= function(){
+    clc.newCloseRestaurant.rid = parseInt(clc.newCloseRestaurant.rid, 10);
   }
-  tlc.convertBack = function(){
-    tlc.newCloseRestaurant.rid = tlc.newCloseRestaurant.rid.toString();
+  clc.convertBack = function(){
+    clc.newCloseRestaurant.rid = clc.newCloseRestaurant.rid.toString();
   }
-  tlc.popUp =function(){
+  clc.popUp =function(){
     var vis = document.getElementById("res-pop");
     vis.style.visibility = "visible";
     document.getElementById("background").style.visibility = "visible";
   }
-  tlc.closePop =function(){
+  clc.closePop =function(){
       var vis = document.getElementById("res-pop");
       vis.style.visibility = "hidden";
       document.getElementById("background").style.visibility = "hidden";
-   tlc.resetAddForm();
+   clc.resetAddForm();
   }
-  tlc.search = {};
-  tlc.SearchOptions = [{
+  clc.search = {};
+  clc.SearchOptions = [{
       "optionName": "RID",
       "value": "rid"
     }, {
@@ -220,9 +211,9 @@ function($rootScope, $scope, $http, testListService,$q) {
       "value": "name"
     }
   ];
-  tlc.singleSelect = tlc.SearchOptions[1].value;
-  tlc.newCloseRestaurant ={};
-  tlc.restaurantEditing = false;
-  tlc.itemEditing = false;
+  clc.singleSelect = clc.SearchOptions[1].value;
+  clc.newCloseRestaurant ={};
+  clc.restaurantEditing = false;
+  clc.itemEditing = false;
 // basic function end
 }])
