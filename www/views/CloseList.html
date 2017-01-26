@@ -1,0 +1,120 @@
+<div class="row"  style="height:{{clc.height}}px;overflow:scroll;">
+  <div class="content">
+    <div class="restaurant">
+      <p>Search {{singleSelect}}</p>
+      <div class="res-search">
+        <select class="btn-res-name" name="clc.singleSelect" ng-model="clc.singleSelect"  ng-change="clearSearch()">
+        <option ng-repeat="option in clc.SearchOptions"
+                value="{{option.value}}"
+                ng-selected= "{{option.value == clc.singleSelect}}"> {{option.optionName}}
+        </option>
+      </select>
+        <p style = "margin-left :20px;"><input type="text" ng-model="clc.search[clc.singleSelect]"></p>
+        <button style = "margin-left :20px;" ng-click="clc.clearSearch()" class="btn-clear">Clear</button>
+      </div>
+      <br>
+      <div class="table">
+        <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn-scarborough">Scarborough</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn-markham">Markham</button>
+          <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn-northyork">North York</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn-richmond">Richmond Hill</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn-downtown">Downtown</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn-missi">Mississauga</button>
+          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn-all">All</button>
+          <button type="button" ng-click="closeSelect = {status: 1}"  class="btn-closed">Closed</button>
+           <tr>
+            <th style = "text-align: center">RID</th>
+            <th style = "text-align: center">NAME</th>
+            <th style = "text-align: center">ADDRESS</th>
+            <th style = "text-align: center">TELEPHONE</th>
+            <th style = "text-align: center">OPEN HOUR</th>
+            <th style = "text-align: center">AREA</th>
+            <th ng-if = "role == 'SETTLE'" style = "text-align: center">EDIT</th>
+           </tr>
+           <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">{{closeRestaurant.rid}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.name}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.address}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.tel}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.hour}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" > {{closeRestaurant.area}}</td>
+              <td ng-if = "role =='SETTLE'" ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
+                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-edit.png"
+                ng-click ="clc.getCloseInformation(closeRestaurant)"></input></td>
+            </tr>
+         </table>
+      </div>
+    </div>
+  </div>
+  <div id="background"></div>
+  <div id="res-pop"  tabindex="-1">
+      <p>{{clc.name}}</p>
+      <hr style="width: 80%; border:0.5px solid #E5E5E5;"/>
+      <div class="time-title">
+          <p>开始关店时间</p>
+          <p style="margin-left: 200px;">结束关店时间</p>
+      </div>
+      <!--  BEGIN DATETIME PICKER-->
+      <div class="time" style = "  display: flex; " >
+        <div style= "width: 50%;display: flex;  margin-right : 70px">
+          <div style="margin-right :8px;">
+             <img  class="icon-calender" src="../ViewTemplate/icon/icon-calendar.png"style="height:30px;"/>
+          </div>
+          <div class="input-group date form_datetime" style="width:200px" >
+                <input type="text"  class="form-control date-set start-time" ng-model = "clc.newCloseRestaurant.start_time" style = "border-radius: 10px;">
+
+          </div>
+
+        </div>
+        <div style= "width: 50%;display: flex;margin-left:0px">
+          <div style="margin-right :8px;">
+            <input type="image" class= "icon-calendar" src="../ViewTemplate/icon/icon-calendar2.png"/>
+          </div>
+
+          <div class="input-group date form_datetime"  style="width:200px">
+              <input type="text"  class="form-control date-set end-time" ng-model = "clc.newCloseRestaurant.end_time" style = "border-radius: 10px;">
+
+          </div>
+        </div>
+      </div>
+      <!--  END DATETIME PICKER-->
+      <div ng-if = "clc.pop"class="res-pop-btn">
+          <button type="button" class="btn-add" ng-click = "clc.confrimAdd1()">Add</button>
+          <button type="button" class="btn-cancel" ng-click = "clc.closePop()">Cancel</button>
+      </div>
+      <!--  BEGIN HISTORY TABLE-->
+      <div  class="history">
+          <table class="time-table" cellspacing="0" cellpadding="0"  >
+            <tr>
+             <th style = "text-align: center">Start Time</th>
+             <th style = "text-align: center">End Time</th>
+             <th style = "text-align: center">Edit</th>
+            </tr>
+            <tr ng-repeat="(id, closeInformation) in clc.closeInformation|orderBy:'-close_id'" >
+               <td ng-if="!closeInformation.isEditing">{{closeInformation.start_time}}</td>
+               <td ng-if="!closeInformation.isEditing">{{closeInformation.end_time}}</td>
+               <td  ng-if="closeInformation.isEditing"><input type="text" ng-model="closeInformation.start_time" size ="18"></input></td>
+               <td  ng-if="closeInformation.isEditing"><input type="text" ng-model="closeInformation.end_time" size ="18"></input></td>
+               <td ng-if="!closeInformation.isEditing"><input type="image" class="history-edit" src="../ViewTemplate/icon/icon-edit.png" ng-click ="clc.startEditing(closeInformation)"></input></td>
+               <td ng-if= "closeInformation.isEditing" size = "20">
+                   <button
+                             ng-click = "clc.confrimUpdate(closeInformation)"
+                             class="btn btn-circle green btn-outline"
+                             style="margin-right:10px;">
+                             Update
+                   </button>
+
+                   <button
+                             ng-click = "clc.cancelEditing(closeInformation)"
+                             class="btn btn-circle red btn-outline"
+                             >
+                             Cancel
+                </td>
+             </tr>
+          </table>
+      </div>
+      <!--  END HISTORY TABLE-->
+
+  </div>
+</div>

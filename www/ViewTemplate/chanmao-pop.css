@@ -1,6 +1,8 @@
 #res-pop{
-  margin-left: 20%;
-  top:8%;
+
+  margin-left: 30%;
+  top:18%;
+
   width: 750px;
   height: 540px;
   display: flex;
@@ -48,7 +50,6 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  margin-left: 35px;
 }
 
 .time input{
