@@ -26,6 +26,10 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 			window.location="index.html#/dashboard.html"
 		})
 	}
+	SidebarCtrl.GotoCloseRes = function (){
+		$state.go('closeRestaurant')
+	}
+
 	SidebarCtrl.ChangetoCustomSer = function (){
 		dashboardService.getRole()
 		.then(SidebarCtrl.GotoCustomSer())
@@ -34,12 +38,11 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 			window.location="index.html#/dashboard.html"
 		})
 	}
-	SidebarCtrl.GotoCloseRes = function (){
-		$state.go('closeRestaurant')
-	}
 	SidebarCtrl.GotoCustomSer = function (){
   	$state.go('customService')
   }
+
+
 
 	SidebarCtrl.ChangetoDriverSchedule = function (){
 		dashboardService.getRole()
@@ -51,6 +54,17 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 	}
 	SidebarCtrl.GotoDriverSchedule = function (){
 		$state.go('driverSchdule')
+	}
+	SidebarCtrl.ChangetoCsSchedule = function (){
+		dashboardService.getRole()
+		.then(SidebarCtrl.GotoCsSchedule())
+		.catch((error)=>{
+			console.log(error)
+			window.location="index.html#/dashboard.html"
+		})
+	}
+	SidebarCtrl.GotoCsSchedule = function (){
+		$state.go('csSchedule')
 	}
 
 

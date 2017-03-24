@@ -1,0 +1,219 @@
+<div class="row"  style="height:{{cssc.height}}px;overflow:scroll;">
+  <div class="content">
+    <div class="driver">
+      <p>客服班表</p>
+      <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
+     <div class="dri-content">
+       <div class = "dri-select">
+        <div class="dri-name">
+          <select class="btn-res-name" name="cssc.singleSelect" ng-model="cssc.singleSelect"  ng-change="clearSearch()">
+            <option ng-repeat="option in cssc.SearchOptions" value="{{option.value}}"
+                  ng-selected= "{{option.value == cssc.singleSelect}}">
+                  {{option.optionName}}</option>
+          </select>
+          <p style = "margin-left :20px;"><input type="text" ng-model="cssc.search[cssc.singleSelect]"></p>
+          <button style = "margin-left :20px;" ng-click="cssc.clearSearch()" class="btn-clear">Clear</button>
+        </div>
+        <div class="area">
+          <p>
+          <button type="button"  ng-click="areaSelect = {zone: 'SC/RH'}" class="btn-scarborough">SC/RH</button>
+          <button type="button"  ng-click="areaSelect = {zone: 'DT/MS'}"  class="btn-northyork">DT/MS</button>
+          <button type="button"  ng-click="areaSelect = ''; closeSelect = ''; weekIndex=''; cssc.clearSearch()"  class="btn-all">All</button>
+          </p>
+        </div>
+        <div class="week">
+          <p>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 1}" >MON</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 2}">TUE</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 3}">WED</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 4}">THU</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 5}">FRI</button>
+          <button type="button" class="btn-weekend" ng-click="weekIndex = {week: 6}">SAT</button>
+          <button type="button" class="btn-weekend" ng-click="weekIndex = {week: 0}">SUN</button>
+          <button type="button" class="btn-week" ng-click="areaSelect = ''; closeSelect = ''; weekIndex=''; cssc.clearSearch()">ALL</button>
+          </p>
+        </div>
+      </div>
+      <div class="add-new">
+        <input type="image" src="../ViewTemplate/icon/icon-schedule.png" ng-click="cssc.popSerTable();cssc.getCsLists()"/>
+        <p style="font-size: 1.2em;">添加客服班表</p>
+      </div>
+     </div>
+     <div class="table">
+        <table class="dri-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+           <tr>
+            <th style = "text-align: center">UID</th>
+            <th style = "text-align: center">NAME</th>
+            <th style = "text-align: center">START TIME</th>
+            <th style = "text-align: center">END TIME</th>
+            <th style = "text-align: center">AREA</th>
+            <th ng-if = "role == 'SETTLE'" style = "text-align: center">EDIT</th>
+           </tr>
+           <tr ng-repeat="(id, cs) in cssc.csSchedules| filter: cssc.search |filter: closeSelect|filter: areaSelect|filter: weekIndex">
+              <td >{{cs.uid}}</td>
+              <td ><button ng-click= "cssc.popServicer(cs); cssc.getThisWeekSchedule(cs);cssc.getNextWeekSchedule(cs)">{{cs.username}}</button></td>
+              <td ng-if = "!cs.isEditing">{{cs.valid_from}}</td>
+              <td ng-if = "!cs.isEditing">{{cs.valid_to}}</td>
+              <td ng-if = "!cs.isEditing">{{cs.zone}}</td>
+              <td ng-if = "cs.isEditing"><input type="text" ng-model="cs.valid_from" size ="18"></td>
+              <td ng-if = "cs.isEditing"><input type="text" ng-model="cs.valid_to" size ="18"></td>
+              <td ng-if = "cs.isEditing">
+                <!-- <select name="mySelect" id="mySelect"
+                    ng-options="option.name for option in  cssc.areaOptions track by option.zone"
+                    value ="{{option.zone}}" -->
+                    <!-- ng-model="driver.zone"></select> -->
+                 <select ng-model="cs.zone">
+                  <option ng-repeat="option in cssc.areaOptions"
+                  ng-selected = "option.name==driver.zone"
+                  value="{{option.zone}}">
+                  {{option.name}}</option>
+                </select>
+              </td>
+              <td ng-if = "!cs.isEditing">
+                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-edit.png"
+                ng-click ="cssc.startEditing(cs)"></input>
+                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-delete.png"
+                ng-click ="cssc.deleteSchedule(cs)"></input></td>
+              <td ng-if= "cs.isEditing" size = "20">
+                    <button
+                              ng-click = "cssc.confrimUpdate(cs)"
+                              class="btn btn-circle green btn-outline"
+                              style="margin-right:10px;">
+                              Update
+                    </button>
+
+                    <button
+                              ng-click = "cssc.cancelEditing(cs)"
+                              class="btn btn-circle red btn-outline">
+                              Cancel
+                 </td>
+            </tr>
+        </table>
+     </div>
+    </div>
+   </div>
+
+  <div id="background"></div>
+  <div id="pop-ser-new">
+    <p>客服列表</p>
+    <hr style="width: 80%; border:0.5px solid #E5E5E5;"/>
+    <div >
+      <div class="pop-dri-name">
+          <div class="btn-group">
+            <a class="pop-btn-dri-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 客服姓名
+            <i ></i>
+            </a>
+          </div>
+          <form class="search-form" action=" " method="GET">
+            <div class="pop-input-group">
+              <i class="icon-search"></i>
+              <input type="text" class="input-search" ng-model= "csSearch" size = "18">
+              <span class="pop-input-group-btn"><a href="javascript:;" class="btn submit"></a></span>
+            </div>
+          </form>
+          <button type="button" class="pop-btn-clear" ng-click ="csSearch = ''">CLEAR</button>
+      </div>
+    </div>
+    <div class="columns">
+      <div ng-repeat="cs in cssc.csLists|filter : csSearch">
+          <button type="button" ng-click="cssc.popServicer();cssc.getThisWeekSchedule(cs);cssc.getNextWeekSchedule(cs)">{{cs.username}}</button>
+      </div>
+    </div>
+  </div>
+  <div id="ser-pop">
+    <p>{{cssc.name}}</p>
+    <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
+    <div class="time-title">
+        <p>{{cssc.thisWeek[0].date}} - {{cssc.thisWeek[6].date}}</p>
+        <p style="margin-left: 450px;">{{cssc.nextWeek[0].date}} - {{cssc.nextWeek[6].date}}</p>
+    </div>
+   <!--  BEGIN DRIVER TIME TABLE-->
+    <div class="dri-time-table">
+      <table class="dri-time-table-1" cellspacing="4" cellpadding="0" >
+        <tr>
+           <th> 开始时间 </th>
+           <th> 结束时间 </th>
+           <th> 分区 </th>
+        </tr>
+        <tr ng-repeat = "item in cssc.thisWeekSchedules">
+          <td>
+            <select  class="btn-dri-time-select" ng-model = "item.start_date">
+              <option ng-repeat = "option in cssc.thisWeek" >{{option.date}}</option>
+            </select>
+            <div class="input-group">
+             <input type="text" ng-model="item.start_time" size ="18">
+            </div>
+          </td>
+          <td>
+            <select class="btn-dri-time-select" ng-model = "item.end_date">
+              <option ng-repeat = "option in cssc.thisWeek">{{option.date}}</option>
+            </select>
+            <div class="input-group">
+             <input type="text" ng-model="item.end_time" size ="18">
+            </div>
+          </td>
+          <td>
+           <div class="area-group">
+            <select ng-model="item.zone">
+              <option ng-repeat="option in cssc.areaOptions"  value="{{option.zone}}"
+                ng-selected = "option.name == item.zone">{{option.name}}</option>
+            </select>
+           </div>
+          </td>
+        </tr>
+        <tr style='display:block'>
+          <td>
+            <label type="button" ng-click = "cssc.createThisWeekSchedule()"style="font-family:Myraid Pro; font-size:18px;color:blue">添加+
+            </label>
+          </td>
+        </tr>
+      </table>
+
+      <table class="dri-time-table-1" cellspacing="4" cellpadding="0" >
+        <tr>
+           <th> 开始时间 </th>
+           <th> 结束时间 </th>
+           <th> 分区 </th>
+        </tr>
+        <tr ng-repeat = "item in cssc.nextWeekSchedules">
+          <td>
+            <select class="btn-dri-time-select" ng-model = "item.start_date">
+              <option ng-repeat = "option in cssc.nextWeek">{{option.date}}</option>
+            </select>
+            <div class="input-group">
+             <input type="text" ng-model="item.start_time" size ="18">
+            </div>
+          </td>
+          <td>
+            <select class="btn-dri-time-select" ng-model = "item.end_date">
+              <option ng-repeat = "option in cssc.nextWeek">{{option.date}}</option>
+            </select>
+            <div class="input-group">
+              <input type="text" ng-model="item.end_time" size ="18">
+            </div>
+          </td>
+          <td>
+           <div class="area-group">
+            <select ng-model="item.zone" class="btn-dri-select">
+              <option ng-repeat="option in cssc.areaOptions" value="{{option.zone}}"
+                ng-selected = "option.name == item.zone">{{option.name}}</option>
+            </select>
+          </div>
+          </td>
+        </tr>
+        <tr style='display:block'>
+          <td><label type="button"ng-click = "cssc.createNextWeekSchedule()" style="font-family:myraid pro; font-size:18px; color:blue">添加+</label></td>
+
+
+        </tr>
+      </table>
+    </div>
+      <!--  END DRIVER TIME TABLE-->
+      <div class="res-pop-btn">
+          <button type="button" class="btn-add" ng-click = "cssc.addOnClickThisWeek()">添加本周</button>
+          <button type="button" class="btn-add" ng-click = "cssc.addOnClickNextWeek()">添加下周</button>
+          <button type="button" class="btn-cancel"
+          ng-click="cssc.closePop()">Cancel</button>
+      </div>
+  </div>
+</div>

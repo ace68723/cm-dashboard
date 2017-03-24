@@ -197,7 +197,6 @@ function($rootScope, $scope, $http, driverWorkService,$q,$modal,dashboardService
    dwc.newDriverSchedule.driver_id =  dwc.newDriverSchedule.driver_id.toString();
  }
  dwc.areaOptions = [
-
    {
      name:"SC/MH",
      zone:1
@@ -213,14 +212,13 @@ function($rootScope, $scope, $http, driverWorkService,$q,$modal,dashboardService
      name:"MI",
      zone:4
    }
-
  ]
  dwc.driver={};
  dwc.changeZone = function(driverSchdule){
    console.log(driverSchdule.zone)
    driverSchdule.zone = dwc.driver.zone;
  }
- 
+
  dwc.openPopup = function (size,eo_data) {
    var modalInstance = $modal.open(
    {

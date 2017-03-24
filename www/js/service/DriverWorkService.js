@@ -154,6 +154,7 @@ angular.module('MetronicApp')
 
    // addCustomServiceSchedule
     function addDriverSchedule(newDriverSchedule){
+      console.log(newDriverSchedule.driver_id)
      var deferred = $q.defer();
         var successCallback =function(response){
           console.log(response)

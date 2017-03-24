@@ -151,17 +151,11 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
             cache: true,
             controller: "closeListController as clc" //controller
         })
-
-        .state('driverSchedule', {
-            url: "/driverSchedule.html", //url address
-            templateUrl: "views/driverSchedule.html", //view
-            controller:"DriverScheduleController as dsc" //controller
-        })
-        .state('closeRestaurant',{
-            url:"/closeRestaurant.html", //url address
-            templateUrl:"views/closeRestaurant.html", //views
-            controller:"closeRestaurantController as crc" //controller
-        })
+        // .state('driverSchedule', {
+        //     url: "/driverSchedule.html", //url address
+        //     templateUrl: "views/driverSchedule.html", //view
+        //     controller:"driverchangename as dcn" //controller
+        // })
         .state('customService',{
             url:"/customService.html", //url address
             templateUrl:"views/customService.html", //views
@@ -169,14 +163,15 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
         })
         .state('driverSchdule',{
             url:"/driverSchdule.html", //url address
-            templateUrl:"views/DriverWork.html", //views
-            controller:"driverWorkController as dwc" //controller
+            templateUrl:"views/DriverSchdule.html", //views
+            controller:"driverScheduleController as dsc" //controller
         })
-        .state('testList',{
-            url:"/testList.html", //url address
-            templateUrl:"views/CloseList.html", //views
-            controller:"closeListController as clc" //controller
+        .state('csSchedule',{
+            url:"/csSchedule.html", //url address
+            templateUrl:"views/CustomServiceSchedule.html", //views
+            controller:"customServiceScheduleController as cssc" //controller
         })
+
 
         // Blank Page
 

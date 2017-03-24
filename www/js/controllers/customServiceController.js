@@ -127,6 +127,7 @@ function($rootScope, $scope, $http, customServiceService,$q) {
        if (isConfirm) {
        swal("已更新!", "success"
             );
+       csc.convertZone(customServiceSchedule);
        csc.updateOnClick(customServiceSchedule);
           } else {
        swal("已取消!");
@@ -176,6 +177,9 @@ function($rootScope, $scope, $http, customServiceService,$q) {
   csc.resetAddForm = function(){
     csc.newCustomServiceSchdule={};
   }
+ csc.convertZone = function(customServiceSchedule){
+   customServiceSchedule.zone = parseInt(customServiceSchedule.zone,10);
+ }
  csc.convertUID= function(){
    csc.newCustomServiceSchdule.uid = parseInt(csc.newCustomServiceSchdule.uid, 10);
  }
