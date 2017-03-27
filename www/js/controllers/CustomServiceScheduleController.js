@@ -135,7 +135,7 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
     for(i=cssc.length; i<cssc.thisWeekSchedules.length; i++){
      cssc.thisWeekSchedules[i].zone = parseInt(cssc.thisWeekSchedules[i].zone, 10);
       csss.addCsSchedule(cssc.thisWeekSchedules[i])
-      .then()
+      .then(cssc.length=cssc.thisWeekSchedules.length)
       .catch(function(error){
         console.log(error)
       })
@@ -146,7 +146,7 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
      for(i=cssc.length2; i<cssc.nextWeekSchedules.length; i++){
       cssc.nextWeekSchedules[i].zone = parseInt(cssc.nextWeekSchedules[i].zone, 10);
        csss.addCsSchedule(cssc.nextWeekSchedules[i])
-       .then()
+       .then(cssc.length2=cssc.nextWeekSchedules.length)
        .catch(function(error){
          console.log(error)
        })
@@ -158,12 +158,11 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
      swal("已提交!", "success"
           );
    }
-   cssc.confrimAdd1 = function(){
-      if(!cssc.newCloseRestaurant.rid||!cssc.newCloseRestaurant.start_time||!cssc.newCloseRestaurant.end_time){
-
+   cssc.confrimAddThis = function(){
+      if(!cssc.thisWeekSchedules){
       }else{
       swal({
-        title: "确认添加?",
+        title: "确认添加本周班表?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -174,28 +173,21 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
         },
        function(isConfirm) {
          if (isConfirm) {
-           csss.addCloseRestaurant(cssc.newCloseRestaurant)
-           .then(cssc.updateSuccess())
-           .catch(function(error){
-             console.log(error);
-             swal("");
-           })
-         //
-         //
-         cssc.resetAddForm();
-         cssc.updateCloseInformation();
+           swal("已提交!", "success")
+           cssc.addOnClickThisWeek();
+
             } else {
          swal("已取消!");
             }
       });
       }
    }
-   cssc.confrimAdd = function(){
-     if(!cssc.newCloseRestaurant.rid||!cssc.newCloseRestaurant.start_time||!cssc.newCloseRestaurant.end_time){
+   cssc.confrimAddNext = function(){
+     if(!cssc.nextWeekSchedules){
 
      }else{
      swal({
-       title: "确认添加?",
+       title: "确认添加下周班表?",
        type: "warning",
        showCancelButton: true,
        confirmButtonClass: "btn-danger",
@@ -208,10 +200,7 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
         if (isConfirm) {
         swal("已提交!", "success"
              );
-        cssc.convertRid();
-        cssc.addOnClick();
-        cssc.resetAddForm();
-        cssc.updateCloseInformation();
+        cssc.addOnClickNextWeek();
            } else {
         swal("已取消!");
            }

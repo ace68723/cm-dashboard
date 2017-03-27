@@ -136,7 +136,7 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
     for(i=dsc.length; i<dsc.thisWeekSchedules.length; i++){
      dsc.thisWeekSchedules[i].zone = parseInt(dsc.thisWeekSchedules[i].zone, 10);
       dss.addDriverSchedule(dsc.thisWeekSchedules[i])
-      .then()
+      .then(dsc.length=dsc.thisWeekSchedules.length)
       .catch(function(error){
         console.log(error)
       })
@@ -147,24 +147,43 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
      for(i=dsc.length2; i<dsc.nextWeekSchedules.length; i++){
       dsc.nextWeekSchedules[i].zone = parseInt(dsc.nextWeekSchedules[i].zone, 10);
        dss.addDriverSchedule(dsc.nextWeekSchedules[i])
-       .then()
+       .then(dsc.length2=dsc.nextWeekSchedules.length)
        .catch(function(error){
          console.log(error)
        })
      }
      dsc.updateDriverSchedule();
     }
-   dsc.updateSuccess = function(){
-     dsc.updateRestaurantList();
-     swal("已提交!", "success"
-          );
-   }
-   dsc.confrimAdd1 = function(){
-      if(!dsc.newCloseRestaurant.rid||!dsc.newCloseRestaurant.start_time||!dsc.newCloseRestaurant.end_time){
+    dsc.confrimAddThis = function(){
+       if(!dsc.thisWeekSchedules){
+       }else{
+       swal({
+         title: "确认添加本周班表?",
+         type: "warning",
+         showCancelButton: true,
+         confirmButtonClass: "btn-danger",
+         confirmButtonText: "是的, 请添加!",
+         cancelButtonText: "不, 请删除!",
+         closeOnConfirm: false,
+         closeOnCancel: false
+         },
+        function(isConfirm) {
+          if (isConfirm) {
+            swal("已提交!", "success")
+            dsc.addOnClickThisWeek();
+
+             } else {
+          swal("已取消!");
+             }
+       });
+       }
+    }
+    dsc.confrimAddNext = function(){
+      if(!dsc.nextWeekSchedules){
 
       }else{
       swal({
-        title: "确认添加?",
+        title: "确认添加下周班表?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -175,50 +194,15 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
         },
        function(isConfirm) {
          if (isConfirm) {
-           dss.addCloseRestaurant(dsc.newCloseRestaurant)
-           .then(dsc.updateSuccess())
-           .catch(function(error){
-             console.log(error);
-             swal("");
-           })
-         //
-         //
-         dsc.resetAddForm();
-         dsc.updateCloseInformation();
+         swal("已提交!", "success"
+              );
+         dsc.addOnClickNextWeek();
             } else {
          swal("已取消!");
             }
       });
       }
    }
-  dsc.confrimAdd = function(){
-     if(!dsc.newCloseRestaurant.rid||!dsc.newCloseRestaurant.start_time||!dsc.newCloseRestaurant.end_time){
-
-     }else{
-     swal({
-       title: "确认添加?",
-       type: "warning",
-       showCancelButton: true,
-       confirmButtonClass: "btn-danger",
-       confirmButtonText: "是的, 请添加!",
-       cancelButtonText: "不, 请删除!",
-       closeOnConfirm: false,
-       closeOnCancel: false
-       },
-      function(isConfirm) {
-        if (isConfirm) {
-        swal("已提交!", "success"
-             );
-        dsc.convertRid();
-        dsc.addOnClick();
-        dsc.resetAddForm();
-        dsc.updateCloseInformation();
-           } else {
-        swal("已取消!");
-           }
-     });
-     }
-  }
 // add function end
 
 // delete function
