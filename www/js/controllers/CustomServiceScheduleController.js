@@ -49,6 +49,7 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
   }
   cssc.updateCsSchedule();
   cssc.getThisWeekSchedule = function(cs){
+    cssc.thisCS =cs;
     cssc.newThisWeekSchdule.uid =cs.uid;
     csss.getThisWeekSchedule(cs)
     .then((result)=>{
@@ -106,8 +107,8 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
     })
     cssc.cancelEditing(cs);
   }
-  cssc.confrimUpdate = function(cs){
-    cs.zone = parseInt(cs.zone, 10);
+  cssc.confirmUpdate = function(cs){
+    cssc.convertZone(cs);
     swal({
       title: "确认更新?",
       type: "warning",
@@ -133,7 +134,11 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
 // add function
   cssc.addOnClickThisWeek = function(){
     for(i=cssc.length; i<cssc.thisWeekSchedules.length; i++){
-     cssc.thisWeekSchedules[i].zone = parseInt(cssc.thisWeekSchedules[i].zone, 10);
+      if(cssc.thisWeekSchedules[i].zone == "SC/RH"){
+        cssc.thisWeekSchedules[i].zone = 1;
+      }else if(cssc.thisWeekSchedules[i].zone =="DT/MS"){
+        cssc.thisWeekSchedules[i].zone = 2;
+      }
       csss.addCsSchedule(cssc.thisWeekSchedules[i])
       .then(cssc.length=cssc.thisWeekSchedules.length)
       .catch(function(error){
@@ -144,7 +149,11 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
    }
   cssc.addOnClickNextWeek = function(){
      for(i=cssc.length2; i<cssc.nextWeekSchedules.length; i++){
-      cssc.nextWeekSchedules[i].zone = parseInt(cssc.nextWeekSchedules[i].zone, 10);
+       if(cssc.nextWeekSchedules[i].zone == "SC/RH"){
+         cssc.nextWeekSchedules[i].zone = 1;
+       }else if(cssc.nextWeekSchedules[i].zone =="DT/MS"){
+         cssc.nextWeekSchedules[i].zone = 2;
+       }
        csss.addCsSchedule(cssc.nextWeekSchedules[i])
        .then(cssc.length2=cssc.nextWeekSchedules.length)
        .catch(function(error){
@@ -175,7 +184,7 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
          if (isConfirm) {
            swal("已提交!", "success")
            cssc.addOnClickThisWeek();
-
+           cssc.getThisWeekSchedule(cssc.thisCS);
             } else {
          swal("已取消!");
             }
@@ -201,6 +210,7 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
         swal("已提交!", "success"
              );
         cssc.addOnClickNextWeek();
+        cssc.getNextWeekSchedule(cssc.thisCS);
            } else {
         swal("已取消!");
            }
@@ -299,6 +309,13 @@ function($rootScope, $scope, $http, customerServiceSchduleService,$q) {
       zone:2
     }
   ]
+  cssc.convertZone = function(cs){
+    if(cs.zone == "SC/RH"){
+      cs.zone = 1;
+    }else if(cs.zone =="DT/MS"){
+      cs.zone = 2;
+    }
+  }
   cssc.SearchOptions = [
     {
       "optionName": "Name",

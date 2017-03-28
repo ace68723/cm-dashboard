@@ -65,10 +65,9 @@
                     value ="{{option.zone}}" -->
                     <!-- ng-model="driver.zone"></select> -->
                  <select ng-model="driver.zone">
-                  <option ng-repeat="option in dsc.areaOptions"
-                  ng-selected = "option.name==driver.zone"
-                  value="{{option.zone}}">
-                  {{option.name}} </option>
+                  <option ng-repeat="option in dsc.areaOptions" value = "{{option.name}}">
+                    {{option.name}}
+                  </option>
                 </select>
               </td>
               <td ng-if = "!driver.isEditing">
@@ -78,14 +77,14 @@
                 ng-click ="dsc.deleteSchedule(driver)"></input></td>
               <td ng-if= "driver.isEditing" size = "20">
                     <button
-                              ng-click = "dsc.confrimUpdate(driver)"
+                              ng-click = "dsc.confirmUpdate(driver)"
                               class="btn btn-circle green btn-outline"
                               style="margin-right:10px;">
                               Update
                     </button>
 
                     <button
-                              ng-click = "dsc.cancelEditing(driver)"
+                              ng-click = "dsc.cancelEditing(driver);dsc.updateDriverSchedule()"
                               class="btn btn-circle red btn-outline">
                               Cancel
                  </td>
@@ -157,8 +156,9 @@
           <td>
            <div class="area-group">
             <select ng-model="item.zone">
-              <option ng-repeat="option in dsc.areaOptions"  value="{{option.zone}}"
-                ng-selected = "option.name == item.zone">{{option.name}}</option>
+              <option ng-repeat="option in dsc.areaOptions"  value="{{option.name}}">
+                {{option.name}}
+              </option>
             </select>
            </div>
           </td>
@@ -198,12 +198,13 @@
             </div>
           </td>
           <td>
-           <div class="area-group">
-            <select ng-model="item.zone" class="btn-dri-select">
-              <option ng-repeat="option in dsc.areaOptions" value="{{option.zone}}"
-                ng-selected = "option.name == item.zone">{{option.name}}</option>
-            </select>
-          </div>
+            <div class="area-group">
+             <select ng-model="item.zone">
+               <option ng-repeat="option in dsc.areaOptions"  value="{{option.name}}">
+                 {{option.name}}
+               </option>
+             </select>
+            </div>
           </td>
         </tr>
         <tr style='display:block'>

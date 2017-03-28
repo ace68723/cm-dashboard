@@ -47,6 +47,7 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
   }
   dsc.updateDriverSchedule();
   dsc.getThisWeekSchedule = function(driver){
+    dsc.thisDriver =driver;
     dsc.newThisWeekSchdule.driver_id =driver.driver_id;
     dss.getThisWeekSchedule(driver)
     .then((result)=>{
@@ -92,10 +93,6 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
   }
   dsc.getThisWeek();
   dsc.getNextWeek();
-  dsc.print =function(driver){
-    console.log(driver.zone)
-    dsc.selected = driver.zone;
-  }
 //init end
 
 // update function
@@ -107,8 +104,8 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
     })
     dsc.cancelEditing(driver);
   }
-  dsc.confrimUpdate = function(driver){
-    driver.zone = parseInt(driver.zone, 10);
+  dsc.confirmUpdate = function(driver){
+    dsc.convertZone(driver)
     swal({
       title: "确认更新?",
       type: "warning",
@@ -134,8 +131,16 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
 // add function
   dsc.addOnClickThisWeek = function(){
     for(i=dsc.length; i<dsc.thisWeekSchedules.length; i++){
-     dsc.thisWeekSchedules[i].zone = parseInt(dsc.thisWeekSchedules[i].zone, 10);
-      dss.addDriverSchedule(dsc.thisWeekSchedules[i])
+      if(dsc.thisWeekSchedules[i].zone == "SC/MH"){
+        dsc.thisWeekSchedules[i].zone = 1;
+      }else if(dsc.thisWeekSchedules[i].zone =="Downtown"){
+        dsc.thisWeekSchedules[i].zone = 3;
+      }else if(dsc.thisWeekSchedules[i].zone =="NY/RH"){
+        dsc.thisWeekSchedules[i].zone =2;
+      }else if(dsc.thisWeekSchedules[i].zone =="Missisauga"){
+        dsc.thisWeekSchedules[i].zone =4;
+      }
+   dss.addDriverSchedule(dsc.thisWeekSchedules[i])
       .then(dsc.length=dsc.thisWeekSchedules.length)
       .catch(function(error){
         console.log(error)
@@ -145,16 +150,24 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
    }
   dsc.addOnClickNextWeek = function(){
      for(i=dsc.length2; i<dsc.nextWeekSchedules.length; i++){
-      dsc.nextWeekSchedules[i].zone = parseInt(dsc.nextWeekSchedules[i].zone, 10);
+         if(dsc.nextWeekSchedules[i].zone == "SC/MH"){
+           dsc.nextWeekSchedules[i].zone = 1;
+         }else if(dsc.nextWeekSchedules[i].zone =="Downtown"){
+           dsc.nextWeekSchedules[i].zone = 3;
+         }else if(dsc.nextWeekSchedules[i].zone =="NY/RH"){
+           dsc.nextWeekSchedules[i].zone =2;
+         }else if(dsc.nextWeekSchedules[i].zone =="Missisauga"){
+           dsc.nextWeekSchedules[i].zone =4;
+         }
        dss.addDriverSchedule(dsc.nextWeekSchedules[i])
        .then(dsc.length2=dsc.nextWeekSchedules.length)
        .catch(function(error){
          console.log(error)
        })
      }
-     dsc.updateDriverSchedule();
-    }
-    dsc.confrimAddThis = function(){
+      dsc.updateDriverSchedule();
+  }
+  dsc.confrimAddThis = function(){
        if(!dsc.thisWeekSchedules){
        }else{
        swal({
@@ -171,14 +184,14 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
           if (isConfirm) {
             swal("已提交!", "success")
             dsc.addOnClickThisWeek();
-
+            dsc.getThisWeekSchedule(dsc.thisDriver);
              } else {
           swal("已取消!");
              }
        });
        }
     }
-    dsc.confrimAddNext = function(){
+  dsc.confrimAddNext = function(){
       if(!dsc.nextWeekSchedules){
 
       }else{
@@ -197,6 +210,7 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
          swal("已提交!", "success"
               );
          dsc.addOnClickNextWeek();
+         dsc.getNextWeekSchedule(dsc.thisDriver);
             } else {
          swal("已取消!");
             }
@@ -295,13 +309,24 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
       name:"NY/RH",
       zone:2
     },{
-      name:"DT",
+      name:"Downtown",
       zone:3
     },{
-      name:"MI",
+      name:"Missisauga",
       zone:4
     }
   ]
+  dsc.convertZone = function(driver){
+    if(driver.zone == "SC/MH"){
+      driver.zone = 1;
+    }else if(driver.zone =="DT"){
+      driver.zone = 3;
+    }else if(driver.zone =="NY/RH"){
+      driver.zone =2;
+    }else if(driver.zone =="MI"){
+      driver.zone =4;
+    }
+  }
   dsc.SearchOptions = [
     {
       "optionName": "Name",
