@@ -10,25 +10,25 @@
 
 
 angular.module('MetronicApp')
-  .service('driverScheduleService', function ($http, API2_URL, $timeout,$q) {
+  .service('customerServiceSchduleService', function ($http, API2_URL, $timeout,$q) {
 
    //get all driverList
-    function getDriverLists(){
+    function getCustomServiceLists(){
       var deferred = $q.defer();
 
-        var driverLists = [];
+        var csLists = [];
 
         var successCallback = (response)=>{
           const data = response.data;
           if(data.ev_result == 0){
-           var DriverScheduleListsData = data.ea_data;
-          _.forEach(DriverScheduleListsData, function(DriverScheduleList, id) {
+           var csScheduleListsData = data.ea_data;
+          _.forEach(csScheduleListsData, function(csScheduleList, id) {
              var data = {};
-             data.driver_id = DriverScheduleList.driver_id;
-             data.driver_name = DriverScheduleList.driver_name;
-             driverLists.push(data);
+             data.uid = csScheduleList.uid;
+             data.username = csScheduleList.username;
+             csLists.push(data);
             })
-      deferred.resolve(driverLists)
+      deferred.resolve(csLists)
         }else {
           deferred.reject(response)
         }
@@ -43,7 +43,7 @@ angular.module('MetronicApp')
 
         $http({
            method: 'GET',
-           url: API2_URL+"dr_list"
+           url: API2_URL+"cs_list"
          }).then(successCallback,errorCallback)
      return deferred.promise
     }
@@ -122,29 +122,28 @@ angular.module('MetronicApp')
    //get Weeks end
 
    // getAllDriverSchedule
-    function getDriverSchedules() {
+    function getcsSchedules() {
       var deferred = $q.defer();
         //init data
-          var driverSchedules = [];
+          var csSchedules = [];
 
           // successCallback
           var successCallback = (response)=>{
             const data = response.data;
             if(data.ev_result == 0){
-             var driverSchedulesData = data.ea_data;
-            _.forEach(driverSchedulesData, function(driverSchdule, id) {
+             var csSchedulesData = data.ea_data;
+            _.forEach(csSchedulesData, function(csSchedule, id) {
                var data = {};
-               data.id = driverSchdule.id;
-               data.driver_id = driverSchdule.driver_id;
-               data.week = driverSchdule.week_index;
-               data.driver_name = driverSchdule.driver_name;
-               data.valid_from = driverSchdule.valid_from;
-               data.valid_to = driverSchdule.valid_to;
-               data.zone = driverSchdule.zone.name;
-               data.comment = driverSchdule.comment;
-               driverSchedules.push(data);
+               data.id = csSchedule.id;
+               data.uid = csSchedule.uid;
+               data.week = csSchedule.week_index;
+               data.username = csSchedule.username;
+               data.valid_from = csSchedule.valid_from;
+               data.valid_to = csSchedule.valid_to;
+               data.zone = csSchedule.zone.name;
+               csSchedules.push(data);
               })
-        deferred.resolve(driverSchedules)
+        deferred.resolve(csSchedules)
           }else {
             deferred.reject(response)
           }
@@ -159,7 +158,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url: API2_URL+"dr_work_t"
+             url: API2_URL+"cs_work_t"
            }).then(successCallback,errorCallback)
        return deferred.promise
 
@@ -167,33 +166,33 @@ angular.module('MetronicApp')
    // getAllDriverSchedule end
 
    // getDriverScheduleThisWeek
-    function getThisWeekSchedule(driver) {
+    function getThisWeekSchedule(cs) {
        var deferred = $q.defer();
          //init data
-           var driverThisWeekSchedules = [];
+           var csThisWeekSchedules = [];
 
            // successCallback
            var successCallback = (response)=>{
              const data = response.data;
              if(data.ev_result == 0){
-              var driverSchedulesData = data.ea_data;
-             _.forEach(driverSchedulesData, function(driverSchdule, id) {
+              var csSchedulesData = data.ea_data;
+             _.forEach(csSchedulesData, function(csSchedule, id) {
                 var data = {};
-                data.driver_id = driverSchdule.driver_id;
-                data.date = driverSchdule.week_index;
-                data.driver_name = driverSchdule.driver_name;
-                data.valid_from = driverSchdule.valid_from;
-                data.valid_to = driverSchdule.valid_to;
+                data.uid = csSchedule.uid;
+                data.date = csSchedule.week;
+                data.username = csSchedule.username;
+                data.valid_from = csSchedule.valid_from;
+                data.valid_to = csSchedule.valid_to;
                 var thisStart = data.valid_from.split(" ");
                 data.start_date = thisStart[0];
                 data.start_time =thisStart[1];
                 var thisEnd = data.valid_to.split(" ");
                 data.end_date = thisEnd[0];
                 data.end_time = thisEnd[1];
-                data.zone = driverSchdule.zone.name;
-                driverThisWeekSchedules.push(data);
+                data.zone = csSchedule.zone.name;
+                csThisWeekSchedules.push(data);
                })
-            deferred.resolve(driverThisWeekSchedules)
+            deferred.resolve(csThisWeekSchedules)
               }else {
                deferred.reject(response)
               }
@@ -208,7 +207,7 @@ angular.module('MetronicApp')
 
            $http({
               method: 'GET',
-              url: API2_URL+"dr_work_t/"+driver.driver_id
+              url: API2_URL+"cs_work_t/"+ cs.uid
             }).then(successCallback,errorCallback)
         return deferred.promise
 
@@ -216,33 +215,33 @@ angular.module('MetronicApp')
    // getDriverScheduleThisWeek end
 
    // getDriverScheduleNextWeek
-    function getNextWeekSchedule(driver) {
+    function getNextWeekSchedule(cs) {
          var deferred = $q.defer();
            //init data
-             var driverNextWeekSchedules = [];
+             var csNextWeekSchedules = [];
 
              // successCallback
              var successCallback = (response)=>{
                const data = response.data;
                if(data.ev_result == 0){
-                var driverSchedulesData = data.ea_data;
-               _.forEach(driverSchedulesData, function(driverSchdule, id) {
+                var csSchedulesData = data.ea_data;
+               _.forEach(csSchedulesData, function(csSchedule, id) {
                   var data = {};
-                  data.driver_id = driverSchdule.driver_id;
-                  data.date = driverSchdule.week_index;
-                  data.driver_name = driverSchdule.driver_name;
-                  data.valid_from = driverSchdule.valid_from;
-                  data.valid_to = driverSchdule.valid_to;
+                  data.driver_id = csSchedule.driver_id;
+                  data.date = csSchedule.week;
+                  data.driver_name = csSchedule.driver_name;
+                  data.valid_from = csSchedule.valid_from;
+                  data.valid_to = csSchedule.valid_to;
                   var thisStart = data.valid_from.split(" ");
                   data.start_date = thisStart[0];
                   data.start_time =thisStart[1];
                   var thisEnd = data.valid_to.split(" ");
                   data.end_date = thisEnd[0];
                   data.end_time = thisEnd[1];
-                  data.zone = driverSchdule.zone.name;
-                  driverNextWeekSchedules.push(data);
+                  data.zone = csSchedule.zone.name;
+                  csNextWeekSchedules.push(data);
                  })
-              deferred.resolve(driverNextWeekSchedules)
+              deferred.resolve(csNextWeekSchedules)
                 }else {
                deferred.reject(response)
                 }
@@ -257,14 +256,14 @@ angular.module('MetronicApp')
 
              $http({
                 method: 'GET',
-                url: API2_URL+"dr_work_n/"+driver.driver_id
+                url: API2_URL+"cs_work_n/"+cs.uid
               }).then(successCallback,errorCallback)
           return deferred.promise
        }
    // getDriverScheduleNextWeek end
 
    // updateDriverSchedule
-    function updateDriverSchedule(driver){
+    function updateCsSchedule(cs){
 
      var deferred = $q.defer();
        // successCallback
@@ -279,13 +278,13 @@ angular.module('MetronicApp')
          }
          $http({
              method:"PUT",
-             url:API2_URL+"dr_work",
+             url:API2_URL+"cs_work",
              data: {
-                    "id":driver.id,
-                    "driver_id":driver.driver_id,
-                    "valid_from":driver.valid_from,
-                    "valid_to":driver.valid_to,
-                    "zone": driver.zone
+                    "id":cs.id,
+                    "uid":cs.uid,
+                    "valid_from":cs.valid_from,
+                    "valid_to":cs.valid_to,
+                    "zone": cs.zone
                      }
            })
          .then(successCallback, errorCallback);
@@ -294,7 +293,7 @@ angular.module('MetronicApp')
    // updateDriverSchedule end
 
    // addDriverSchedule
-    function addDriverSchedule(schedule){
+    function addCsSchedule(schedule){
      var deferred = $q.defer();
         var successCallback =function(response){
       deferred.resolve(response)
@@ -305,8 +304,8 @@ angular.module('MetronicApp')
 
         $http({
           method: 'POST',
-          url: API2_URL+"dr_work",
-          data: [{"driver_id":schedule.driver_id,
+          url: API2_URL+"cs_work",
+          data: [{"uid":schedule.uid,
                 "valid_from":schedule.start_date+' '+schedule.start_time,
                  "valid_to":schedule.end_date+' '+schedule.end_time,
                  "zone": schedule.zone
@@ -316,7 +315,7 @@ angular.module('MetronicApp')
      }
    // addDriverSchedule end
 
-    function deletedDriverSchedule(driver){
+    function deletedCsSchedule(cs){
       var deferred = $q.defer();
          var successCallback =function(response){
        deferred.resolve(response)
@@ -327,9 +326,9 @@ angular.module('MetronicApp')
 
          $http({
            method: 'PATCH',
-           url: API2_URL+"dr_work",
+           url: API2_URL+"cs_work",
            data: {
-             "id":driver.id
+             "id":cs.id
                  }
          }).then(successCallback, errorCallback);
        return deferred.promise
@@ -338,13 +337,13 @@ angular.module('MetronicApp')
     return ({
       getThisWeek :getThisWeek,
       getNextWeek : getNextWeek,
-      getDriverLists : getDriverLists,
-      getDriverSchedules : getDriverSchedules,
+      getCustomServiceLists : getCustomServiceLists,
+      getcsSchedules : getcsSchedules,
       getThisWeekSchedule : getThisWeekSchedule,
       getNextWeekSchedule : getNextWeekSchedule,
-      updateDriverSchedule: updateDriverSchedule,
-      addDriverSchedule : addDriverSchedule,
-      deletedDriverSchedule : deletedDriverSchedule
+      updateCsSchedule: updateCsSchedule,
+      addCsSchedule : addCsSchedule,
+      deletedCsSchedule : deletedCsSchedule
     })
 
 

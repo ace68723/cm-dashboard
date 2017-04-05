@@ -1,0 +1,116 @@
+<div ng-if="false">
+  <!-- driverSelection -->
+    <select name="dsc.driverSelection"
+            class="btn green-haze btn-outline btn-circle btn-sm"
+            ng-model="dsc.driverSelection"
+            style="margin-right: 40px;"
+            ng-selected= "{{option.value == dsc.driverSelection}}">
+      <option ng-repeat="option in dsc.driverOptions" value="{{option.value}}" > {{option.optionName}}
+      </option>
+    </select>
+    <input type="text" name="name" ng-model="dsc.search[dsc.driverSelection]">
+  <!-- driverSelection end-->
+
+  <!-- areaSelection -->
+    <div>
+      <select name="dsc.areaSelection"
+              class="btn green-haze btn-outline btn-circle btn-sm"
+              ng-model="dsc.areaSelection"
+              style="margin-right: 40px;"
+              ng-model="dsc.areaSelection"
+              ng-selected= "{{option.value == dsc.areaSelection}}">
+        <option ng-repeat="option in dsc.areaOptions" value="{{option.value}}" > {{option.optionName}}
+        </option>
+      </select>
+    </div>
+  <!-- areaSelection end -->
+
+  <!-- areaSelection -->
+    <div>
+      <select name="dsc.dateSelection"
+              class="btn green-haze btn-outline btn-circle btn-sm"
+              ng-model="dsc.dateSelection"
+              style="margin-right: 40px;"
+              ng-model="dsc.dateSelection"
+              ng-selected= "{{option.value == dsc.dateSelection}}">
+        <option ng-repeat="option in dsc.dateOptions" value="{{option.value}}" > {{option.optionName}}
+        </option>
+      </select>
+    </div>
+  <!-- dateSelection end -->
+
+  <button ng-click="dsc.clearFilter()">Show All Drivers</button>
+  <table>
+      <tr>
+        <th>Driver ID</th>
+        <th>Name</th>
+        <th  ng-repeat="(id,date) in dsc.week |filter: dsc.dateSelection">{{date.showDate}}</th>
+      </tr>
+      <tr ng-repeat="(id,driver) in dsc.drivers|filter: dsc.search| filter:dsc.areaSelection">
+        <td>{{driver.driver_id}}</td>
+        <td >{{driver.name}}</td>
+
+        <td ng-if="!driver.isEditing" ng-repeat="(id,schedule) in driver.schedules | filter: dsc.dateSelection">{{schedule.hour}}</td>
+        <td ng-if="driver.isEditing"  ng-repeat="(id,editingSchedule) in dsc.editingSchedules | filter: dsc.dateSelection ">
+          <input type="text" ng-model="editingSchedule.hour"></input>
+        </td>
+
+        <td><button ng-if= "!driver.isEditing && !dsc.itemEditing" ng-click = "dsc.editSchedule(driver)">Edit</button>
+        <!-- <td><button ng-if= "!isEditing " ng-click = "deleteDriver(driver)">Delet</button> -->
+
+        <td><button ng-if= "driver.isEditing" ng-click = "dsc.saveEditing(driver)">Save</button>
+        <td><button ng-if= "driver.isEditing" ng-click = "dsc.cancelEditing(driver)">Cancel</button>
+        <!-- <td><button ng-if= "driver.isEditing" ng-click = "cancelEditing(driver)">clear</button> -->
+
+      </tr>
+  </table>
+</div>
+
+
+
+<div style="display:flex;height:800px;overflow: auto;">
+  <div class="" style="width:20%">
+    <table>
+        <tr>
+          <th>Driver ID</th>
+          <th>Name</th>
+        </tr>
+        <tr ng-repeat="(id,driver) in dsc.initDriverList|filter: dsc.search| filter:dsc.areaSelection">
+          <td>{{driver.driver_id}}</td>
+          <td >{{driver.name}}</td>
+           <!-- ng-if= "!driver.isEditing && !dsc.itemEditing" -->
+          <td><button ng-click = "dsc.addToArea(driver)">add</button>
+
+        </tr>
+    </table>
+  </div>
+  <div class="" style="
+                        width:80%;
+                        display:flex;
+                        flex-direction: column;"
+  >
+    <div ng-repeat="area in dsc.areaList" class="" style="width:100%;height:auto;min-height: 300px;">
+        <div class="" style=" text-align: center;
+                              font-size: 25px;
+                              height:auto;" >
+          {{area.name}}
+
+          <table>
+              <tr>
+                <th>Driver ID</th>
+                <th>Name</th>
+              </tr>
+              <tr ng-repeat="(id,driver) in area.driverList">
+                <td>{{driver.driver_id}}</td>
+                <td >{{driver.name}}</td>
+                 <!-- ng-if= "!driver.isEditing && !dsc.itemEditing" -->
+                <td><button ng-click = "dsc.addToArea(driver)">add</button>
+
+              </tr>
+          </table>
+
+        </div>
+    </div>
+  </div>
+
+</div>

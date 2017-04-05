@@ -41,7 +41,7 @@
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" > {{closeRestaurant.area}}</td>
               <td ng-if = "role =='SETTLE'" ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
                 <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-edit.png"
-                ng-click ="clc.getCloseInformation(closeRestaurant)"></input></td>
+                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
             </tr>
          </table>
       </div>

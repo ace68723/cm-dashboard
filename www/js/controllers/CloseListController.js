@@ -11,6 +11,11 @@ function($rootScope, $scope, $http, closeListService,$q) {
           $("#background").css({'visibility': 'hidden'});
         });
       });
+      $(document).ready(function(){
+           $("#res-pop").css('top', ($(window).height() - $("#res-pop").height())/2 + "px");
+           $("#res-pop").css('left', ($(window).width() - $("#res-pop").width())/2 + "px");
+         });
+
 
 //init
   clc.updateRestaurantList = function(){
@@ -195,6 +200,7 @@ function($rootScope, $scope, $http, closeListService,$q) {
     var vis = document.getElementById("res-pop");
     vis.style.visibility = "visible";
     document.getElementById("background").style.visibility = "visible";
+    console.log(1)
   }
   clc.closePop =function(){
       var vis = document.getElementById("res-pop");

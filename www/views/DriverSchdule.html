@@ -1,0 +1,227 @@
+<div class="row"  style="height:{{dsc.height}}px;overflow:scroll;">
+  <div class="content">
+    <div class="driver">
+      <p>司机班表</p>
+      <hr style="width: 100%; border:0.5px solid #E5E5E5;"/>
+     <div class="dri-content">
+       <div class = "dri-select">
+        <div class="dri-name">
+          <select class="btn-res-name" name="dsc.singleSelect" ng-model="dsc.singleSelect"  ng-change="clearSearch()">
+            <option ng-repeat="option in dsc.SearchOptions" value="{{option.value}}"
+                  ng-selected= "{{option.value == dsc.singleSelect}}">
+                  {{option.optionName}}</option>
+          </select>
+          <p style = "margin-left :20px;"><input type="text" ng-model="dsc.search[dsc.singleSelect]"></p>
+          <button style = "margin-left :20px;" ng-click="dsc.clearSearch()" class="btn-clear">Clear</button>
+        </div>
+        <div class="area">
+          <p>
+          <button type="button"  ng-click="areaSelect = {zone: 'SC/MH'}" class="btn-scarborough">SC/MH</button>
+          <button type="button"  ng-click="areaSelect = {zone: 'NY/RH'}"  class="btn-northyork">NY/RH</button>
+          <button type="button"  ng-click="areaSelect = {zone: 'Downtown'}"  class="btn-downtown">Downtown</button>
+          <button type="button"  ng-click="areaSelect = {zone: 'Missisauga'}"  class="btn-missi">Mississauga</button>
+          <button type="button"  ng-click="areaSelect = ''; closeSelect = ''; weekIndex=''; dsc.clearSearch()"  class="btn-all">All</button>
+          </p>
+        </div>
+        <div class="week">
+          <p>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 1}" >MON</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 2}">TUE</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 3}">WED</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 4}">THU</button>
+          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 5}">FRI</button>
+          <button type="button" class="btn-weekend" ng-click="weekIndex = {week: 6}">SAT</button>
+          <button type="button" class="btn-weekend" ng-click="weekIndex = {week: 0}">SUN</button>
+          <button type="button" class="btn-week" ng-click="areaSelect = ''; closeSelect = ''; weekIndex=''; dsc.clearSearch()">ALL</button>
+          </p>
+        </div>
+      </div>
+      <div class="add-new">
+        <input type="image" src="../ViewTemplate/icon/icon-schedule.png" ng-click="dsc.popDriTable();dsc.getDriverLists()"/>
+        <p style="font-size: 1.2em;">添加司机班表</p>
+      </div>
+     </div>
+     <div class="table">
+        <table class="dri-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+           <tr>
+            <th style = "text-align: center">Driver ID</th>
+            <th style = "text-align: center">NAME</th>
+            <th style = "text-align: center">START TIME</th>
+            <th style = "text-align: center">END TIME</th>
+            <th style = "text-align: center">AREA</th>
+            <th ng-if = "role == 'SETTLE'" style = "text-align: center">EDIT</th>
+           </tr>
+           <tr ng-repeat="(id, driver) in dsc.driverSchedules| filter: dsc.search |filter: closeSelect|filter: areaSelect|filter: weekIndex">
+              <td >{{driver.driver_id}}</td>
+              <td ><button ng-click= "dsc.popDriver(driver); dsc.getThisWeekSchedule(driver);dsc.getNextWeekSchedule(driver)">{{driver.driver_name}}</button></td>
+              <td ng-if = "!driver.isEditing">{{driver.valid_from}}</td>
+              <td ng-if = "!driver.isEditing">{{driver.valid_to}}</td>
+              <td ng-if = "!driver.isEditing">{{driver.zone}}</td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.valid_from" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.valid_to" size ="18"></td>
+              <td ng-if = "driver.isEditing">
+                <!-- <select name="mySelect" id="mySelect"
+                    ng-options="option.name for option in  dsc.areaOptions track by option.zone"
+                    value ="{{option.zone}}" -->
+                    <!-- ng-model="driver.zone"></select> -->
+                 <select ng-model="driver.zone">
+                  <option ng-repeat="option in dsc.areaOptions" value = "{{option.name}}">
+                    {{option.name}}
+                  </option>
+                </select>
+              </td>
+              <td ng-if = "!driver.isEditing">
+                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-edit.png"
+                ng-click ="dsc.startEditing(driver)"></input>
+                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-delete.png"
+                ng-click ="dsc.deleteSchedule(driver)"></input></td>
+              <td ng-if= "driver.isEditing" size = "20">
+                    <button
+                              ng-click = "dsc.confirmUpdate(driver)"
+                              class="btn btn-circle green btn-outline"
+                              style="margin-right:10px;">
+                              Update
+                    </button>
+
+                    <button
+                              ng-click = "dsc.cancelEditing(driver);dsc.updateDriverSchedule()"
+                              class="btn btn-circle red btn-outline">
+                              Cancel
+                 </td>
+            </tr>
+        </table>
+     </div>
+    </div>
+   </div>
+
+  <div id="background"></div>
+  <div id="pop-dri-new">
+    <p>司机列表</p>
+    <hr style="width: 80%; border:0.5px solid #E5E5E5;"/>
+    <div >
+      <div class="pop-dri-name">
+          <div class="btn-group">
+            <a class="pop-btn-dri-name" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 司机姓名
+            <i ></i>
+            </a>
+          </div>
+          <form class="search-form" action=" " method="GET">
+            <div class="pop-input-group">
+              <i class="icon-search"></i>
+              <input type="text" class="input-search" ng-model= "driverSearch" size = "18">
+              <span class="pop-input-group-btn"><a href="javascript:;" class="btn submit"></a></span>
+            </div>
+          </form>
+          <button type="button" class="pop-btn-clear" ng-click ="driverSearch = ''">CLEAR</button>
+      </div>
+    </div>
+    <div class="columns">
+      <div ng-repeat="driver in dsc.driverLists|filter : driverSearch">
+          <button type="button" ng-click="dsc.popDriver();dsc.getThisWeekSchedule(driver);dsc.getNextWeekSchedule(driver)">{{driver.driver_name}}</button>
+      </div>
+    </div>
+  </div>
+  <div id="dri-pop">
+    <p>{{dsc.name}}</p>
+    <hr style="width: 90%; border:0.5px solid #E5E5E5;"/>
+    <div class="time-title">
+        <p>{{dsc.thisWeek[0].date}} - {{dsc.thisWeek[6].date}}</p>
+        <p style="margin-left: 450px;">{{dsc.nextWeek[0].date}} - {{dsc.nextWeek[6].date}}</p>
+    </div>
+   <!--  BEGIN DRIVER TIME TABLE-->
+    <div class="dri-time-table">
+      <table class="dri-time-table-1" cellspacing="4" cellpadding="0" >
+        <tr>
+           <th> 开始时间 </th>
+           <th> 结束时间 </th>
+           <th> 分区 </th>
+        </tr>
+        <tr ng-repeat = "item in dsc.thisWeekSchedules">
+          <td>
+            <select  class="btn-dri-time-select" ng-model = "item.start_date">
+              <option ng-repeat = "option in dsc.thisWeek" >{{option.date}}</option>
+            </select>
+            <div class="input-group">
+             <input type="text" ng-model="item.start_time" size ="18">
+            </div>
+          </td>
+          <td>
+            <select class="btn-dri-time-select" ng-model = "item.end_date">
+              <option ng-repeat = "option in dsc.thisWeek">{{option.date}}</option>
+            </select>
+            <div class="input-group">
+             <input type="text" ng-model="item.end_time" size ="18">
+            </div>
+          </td>
+          <td>
+           <div class="area-group">
+            <select ng-model="item.zone">
+              <option ng-repeat="option in dsc.areaOptions"  value="{{option.name}}">
+                {{option.name}}
+              </option>
+            </select>
+           </div>
+          </td>
+        </tr>
+        <tr style='display:block'>
+          <td >
+            <label type="button" ng-click = "dsc.createThisWeekSchedule()"style="font-family:Myraid Pro; font-size:18px;color:blue">添加+
+            </label>
+          </td>
+        </tr>
+      </table>
+
+      <table class="dri-time-table-1" cellspacing="4" cellpadding="0" >
+        <thead>
+        <tr>
+           <th> 开始时间 </th>
+           <th> 结束时间 </th>
+           <th> 分区 </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat = "item in dsc.nextWeekSchedules">
+          <td>
+            <select class="btn-dri-time-select" ng-model = "item.start_date">
+              <option ng-repeat = "option in dsc.nextWeek">{{option.date}}</option>
+            </select>
+            <div class="input-group">
+             <input type="text" ng-model="item.start_time" size ="18">
+            </div>
+          </td>
+          <td>
+            <select class="btn-dri-time-select" ng-model = "item.end_date">
+              <option ng-repeat = "option in dsc.nextWeek">{{option.date}}</option>
+            </select>
+            <div class="input-group">
+              <input type="text" ng-model="item.end_time" size ="18">
+            </div>
+          </td>
+          <td>
+            <div class="area-group">
+             <select ng-model="item.zone">
+               <option ng-repeat="option in dsc.areaOptions"  value="{{option.name}}">
+                 {{option.name}}
+               </option>
+             </select>
+            </div>
+          </td>
+        </tr>
+        <tr style='display:block'>
+          <td><label type="button"ng-click = "dsc.createNextWeekSchedule()" style="font-family:myraid pro; font-size:18px; color:blue">添加+</label></td>
+
+
+        </tr>
+      </tbody>
+      </table>
+    </div>
+      <!--  END DRIVER TIME TABLE-->
+
+      <div class="res-pop-btn">
+          <button type="button" class="btn-add" ng-click = "dsc.confrimAddThis()">添加本周</button>
+          <button type="button" class="btn-add" ng-click = "dsc.confrimAddNext()">添加下周</button>
+          <button type="button" class="btn-cancel"
+          ng-click="dsc.closePop();dsc.resetAddForm()">Cancel</button>
+      </div>
+  </div>
+</div>

@@ -84,17 +84,6 @@
     <!--  END HEADER-->
     <!--  BEGIN CONTENT-->
     <div class="content">
-        <!-- BEGIN NAVIGATION -->
-        <nav class="option">
-            <img alt="home" src="icon/icon-home2.png" />
-            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-            <a href="restaurant.html"><img alt="restaurant" src="icon/icon-restaurant2.png"/></a>
-            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-            <a href="service.html"><img alt="service" src="icon/icon-service2.png"/></a>
-            <hr style="width: 25px; border:0.5px solid #7FACCD; margin: -15px"/>
-            <img alt="driver" src="icon/icon-driver.png" style="height:25px"/>
-        </nav>
-        <!--  END NAVIGATION -->
         <!--  BEGIN MAIN FUNCTION-->
         <div class="driver">
             <p>司机班表</p>
@@ -148,13 +137,11 @@
                     </div>
                     <!--  END AREA BAR-->
                 </div>
-
                 <div class="add-new">
                   <input type="image" src="icon/icon-schedule.png" onclick="popDriTable();"/>
                   <p style="font-size: 1.2em;">添加司机班表</p>
                 </div>
-
-              </div>
+            </div>
               <!--  BEGIN TABLE-->
               <div class="table">
                 <table class="dri-table" cellspacing="0" cellpadding="0" >
@@ -201,7 +188,7 @@
               <!--  END TABLE-->
           </div>
           <!--  END MAIN FUNCTION-->
-      </div>
+    </div>
       <!-- END CONTENT -->
 
     <!-- BEGIN POPUP -->
@@ -230,21 +217,10 @@
       </div>
 
       <div class="pop-dri-name">
-          <table class="pop-dri-table" cellspacing="0" cellpadding="0" >
-            <tbody>
-              <tr>
-                <td> <button onclick="popDriver()"> ddsfv </button> </td>
-                <td> <button onclick="popDriver()"> g3tfs </button></td>
-                <td> <button onclick="popDriver()"> fsef </button></td>
-                <td> <button onclick="popDriver()"> fgbfgb </button></td>
+          <table class="pop-dri-table columns" cellspacing="0" cellpadding="0" >
+              <tr ng-repeat = "(id, driver) in dlc.driverLists">
+                <td> <button onclick="popDriver()"> {{driver.driver}} </button> </td>
               </tr>
-              <tr>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-                <td> fsef </td>
-                <td> fgbfgb </td>
-              </tr>
-           </tbody>
          </table>
       </div>
   </div>
