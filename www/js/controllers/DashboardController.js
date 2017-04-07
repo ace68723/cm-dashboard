@@ -18,6 +18,7 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 
 		DashCtrl.order_data = dashboardService.get_orders();
 		DashCtrl.f_data = dashboardService.get_fomat();
+		console.log(DashCtrl.f_data)
 
 
 	DashCtrl.openOrderChange = function (oid,port,c_addr) {

@@ -19,7 +19,6 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
        $("#pop-dri-new").css('top', ($(window).height() - $("#pop-dri-new").height())/2 + "px");
        $("#pop-dri-new").css('left', ($(window).width() - $("#pop-dri-new").width())/2 + "px");
      });
-
 //init
   dsc.updateDriverSchedule = function(){
     setTimeout(function () {
