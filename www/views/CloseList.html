@@ -91,7 +91,7 @@
              <th style = "text-align: center">End Time</th>
              <th style = "text-align: center">Edit</th>
             </tr>
-            <tr ng-repeat="(id, closeInformation) in clc.closeInformation|orderBy:'-close_id'" >
+            <tr ng-repeat="(id, closeInformation) in clc.closeInformation|orderBy:'-id'" >
                <td ng-if="!closeInformation.isEditing">{{closeInformation.start_time}}</td>
                <td ng-if="!closeInformation.isEditing">{{closeInformation.end_time}}</td>
                <td  ng-if="closeInformation.isEditing"><input type="text" ng-model="closeInformation.start_time" size ="18"></input></td>
