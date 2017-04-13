@@ -14,6 +14,11 @@
     width: 20%;
     float: left;
 }
+@media (min-width: 992px){
+.col-md-6 {
+    width: 72.66667%;
+  }
+  }
 @media (min-width: 768px) {
 .col-sm-15 {
         width: 20%;
@@ -71,6 +76,9 @@
 }
 .order_header.red{
     background-color: #e35b5a;
+}
+.order_header.purple{
+    background-color: #00cccc;
 }
 .order_header.darkblue{
     background-color: #67809f;

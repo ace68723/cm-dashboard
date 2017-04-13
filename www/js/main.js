@@ -1,4 +1,4 @@
-
+'use strict';
 
 /***
 Metronic AngularJS App Main Script
@@ -11,6 +11,7 @@ var MetronicApp = angular.module("MetronicApp", [
     "oc.lazyLoad",
     "ngSanitize"
 ]);
+
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
@@ -25,6 +26,7 @@ MetronicApp.config(['$controllerProvider', function($controllerProvider) {
   // in new ones!
   $controllerProvider.allowGlobals();
 }]);
+
 
 /********************************************
  END: BREAKING CHANGE in AngularJS v1.3.x:

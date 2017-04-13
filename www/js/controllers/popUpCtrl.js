@@ -67,7 +67,8 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.status_txt  = data.status_txt;
         popUpCtrl.channel = data.channel;
         popUpCtrl.created = data.created;
-        popUpCtrl.deliver = data.deliver;
+        popUpCtrl.deliver = data.driver_name;
+        console.log(data)
     }
     $scope.ok = function()
     {

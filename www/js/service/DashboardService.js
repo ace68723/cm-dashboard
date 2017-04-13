@@ -193,6 +193,7 @@ angular.module('MetronicApp')
           "r_lat": rr.lat,
           "r_lng": rr.lng,
           "r_call": rr.tel,
+          "driver_name":delivery.driver_name,
         }
         deferred.resolve(serach_order)
       }
