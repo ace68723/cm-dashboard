@@ -8,7 +8,7 @@
  * Factory in the smartDriverApp.
  */
 angular.module('MetronicApp')
-  .service('closeListService', function ($http, $timeout,$q) {
+  .service('closeListService', function ($http, $timeout,$q,API2_URL) {
     // getRestaurantLists
     function getRestaurantLists() {
       var deferred = $q.defer();
@@ -47,7 +47,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url: "http://test.norgta.com/public/api/v1/rr_info"
+             url: API2_URL+"rr_info"
            }).then(successCallback,errorCallback)
        return deferred.promise
 
@@ -89,7 +89,7 @@ angular.module('MetronicApp')
 
           $http({
              method: 'GET',
-             url:"http://test.norgta.com/public/api/v1/rr_close/"+id
+             url:API2_URL+"rr_close/"+id
             //  params:{"rid":closeRestaurant.rid,"rid2":closeRestaurant.rid,}
            }).then(successCallback,errorCallback)
        return deferred.promise
@@ -115,7 +115,7 @@ angular.module('MetronicApp')
          }
          $http({
              method:"PUT",
-             url:"http://test.norgta.com/public/api/v1/rr_close",
+             url:API2_URL+"rr_close",
              data: {"rid":closeInformation.rid,
                     "start_time":closeInformation.start_time,
                     "end_time":closeInformation.end_time,
@@ -139,7 +139,7 @@ angular.module('MetronicApp')
 
         $http({
           method: 'POST',
-          url: "http://test.norgta.com/public/api/v1/rr_close",
+          url: API2_URL+"rr_close",
           data: {"rid":newCloseRestaurant.rid,
                 "start_time":newCloseRestaurant.start_time,
                  "end_time":newCloseRestaurant.end_time

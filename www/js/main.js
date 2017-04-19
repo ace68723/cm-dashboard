@@ -110,8 +110,15 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
     });
 }]);
 
+//===============================================================================
+//old api API_URL product
 MetronicApp.constant("API_URL", "https://chanmao.ca/index.php?r=");
-MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
+//new api API2_URL product
+MetronicApp.constant("API2_URL", "http://manage.chanmao.ca/public/api/v1/");
+//Important! API2_URL test
+// MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
+//===============================================================================
+
 /* Setup Rounting For All Pages */
 MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', function($stateProvider, $urlRouterProvider,$httpProvider) {
     // Redirect any unmatched url
