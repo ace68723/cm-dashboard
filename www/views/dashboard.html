@@ -479,7 +479,7 @@
  			 取消
  		 <span ng-if="dc.f_data.reject_order.length > 0">{{(dc.f_data.reject_order|filter:{status : '90'}).length}}单 </span>
  		 </div>
-		 <div class="order_col_box  "style="height:{{dc.h}}px;">
+		 <div class="order_col_box  "style="height:{{dc.h2}}px;">
 			  <div  class="portlet order_box "
 					ng-repeat="(id,order) in dc.f_data.reject_order|filter:{status : '90'}">
 				  <div  class="portlet-title order_header purple"

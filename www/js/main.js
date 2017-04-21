@@ -180,6 +180,10 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
             templateUrl:"views/CustomServiceSchedule.html", //views
             controller:"customServiceScheduleController as cssc" //controller
         })
+        .state('reslocation',{
+            url:"/reslocation.html", //url address
+            templateUrl:"views/restaurantLocation.html" //views
+        })
 
 
         // Blank Page
