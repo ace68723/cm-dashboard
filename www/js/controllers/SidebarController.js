@@ -18,6 +18,9 @@ angular.module('MetronicApp').controller('SidebarController', function(dashboard
 	SidebarCtrl.ChangeToSearchRes = function () {
 		 $state.go('searchRes');
 	};
+	SidebarCtrl.ChangeToResLocation = function(){
+		 $state.go('reslocation');
+	};
 	SidebarCtrl.ChangetoCloseRes = function(){
 		dashboardService.getRole()
 		.then(SidebarCtrl.GotoCloseRes())

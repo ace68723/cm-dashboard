@@ -15,14 +15,14 @@
       <br>
       <div class="table">
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
-          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn-scarborough">Scarborough</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn-markham">Markham</button>
-          <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn-northyork">North York</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn-richmond">Richmond Hill</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn-downtown">Downtown</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn-missi">Mississauga</button>
-          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn-all">All</button>
-          <button type="button" ng-click="closeSelect = {status: 1}"  class="btn-closed">Closed</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn dark btn-outline">Scarborough</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn red-mint btn-outline">Markham</button>
+          <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn blue-hoki btn-outline">North York</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
+          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
+          <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
            <tr>
             <th style = "text-align: center">RID</th>
             <th style = "text-align: center">NAME</th>
@@ -40,7 +40,7 @@
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.hour}}</td>
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" > {{closeRestaurant.area}}</td>
               <td ng-if = "role =='SETTLE'" ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
-                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-edit.png"
+                <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
                 ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
             </tr>
          </table>
@@ -59,7 +59,7 @@
       <div class="time" style = "  display: flex; " >
         <div style= "width: 50%;display: flex;  margin-right : 70px">
           <div style="margin-right :8px;">
-             <img  class="icon-calender" src="../ViewTemplate/icon/icon-calendar.png"style="height:30px;"/>
+             <img  class="icon-calender" src="./views/icon/icon-calendar.png"style="height:30px;"/>
           </div>
           <div class="input-group date form_datetime" style="width:200px" >
                 <input type="text"  class="form-control date-set start-time" ng-model = "clc.newCloseRestaurant.start_time" style = "border-radius: 10px;">
@@ -69,7 +69,7 @@
         </div>
         <div style= "width: 50%;display: flex;margin-left:0px">
           <div style="margin-right :8px;">
-            <input type="image" class= "icon-calendar" src="../ViewTemplate/icon/icon-calendar2.png"/>
+            <input type="image" class= "icon-calendar" src="./views/icon/icon-calendar2.png"/>
           </div>
 
           <div class="input-group date form_datetime"  style="width:200px">
@@ -96,7 +96,7 @@
                <td ng-if="!closeInformation.isEditing">{{closeInformation.end_time}}</td>
                <td  ng-if="closeInformation.isEditing"><input type="text" ng-model="closeInformation.start_time" size ="18"></input></td>
                <td  ng-if="closeInformation.isEditing"><input type="text" ng-model="closeInformation.end_time" size ="18"></input></td>
-               <td ng-if="!closeInformation.isEditing"><input type="image" class="history-edit" src="../ViewTemplate/icon/icon-edit.png" ng-click ="clc.startEditing(closeInformation)"></input></td>
+               <td ng-if="!closeInformation.isEditing"><input type="image" class="history-edit" src="./views/icon/icon-edit.png" ng-click ="clc.startEditing(closeInformation)"></input></td>
                <td ng-if= "closeInformation.isEditing" size = "20">
                    <button
                              ng-click = "clc.confrimUpdate(closeInformation)"

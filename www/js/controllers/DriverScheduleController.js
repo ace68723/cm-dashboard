@@ -308,10 +308,10 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
       name:"NY/RH",
       zone:2
     },{
-      name:"Downtown",
+      name:"DT",
       zone:3
     },{
-      name:"Missisauga",
+      name:"MI",
       zone:4
     }
   ]

@@ -23,19 +23,19 @@
         </div>
         <div class="week">
           <p>
-          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 1}" >MON</button>
-          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 2}">TUE</button>
-          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 3}">WED</button>
-          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 4}">THU</button>
-          <button type="button" class="btn-weekday" ng-click="weekIndex = {week: 5}">FRI</button>
-          <button type="button" class="btn-weekend" ng-click="weekIndex = {week: 6}">SAT</button>
-          <button type="button" class="btn-weekend" ng-click="weekIndex = {week: 0}">SUN</button>
-          <button type="button" class="btn-week" ng-click="areaSelect = ''; closeSelect = ''; weekIndex=''; cssc.clearSearch()">ALL</button>
+          <button type="button" class="btn dark btn-outline" ng-click="weekIndex = {week: 1}" >MON</button>
+          <button type="button" class="btn red-mint btn-outline" ng-click="weekIndex = {week: 2}">TUE</button>
+          <button type="button" class="btn blue-hoki btn-outline" ng-click="weekIndex = {week: 3}">WED</button>
+          <button type="button" class="btn green-haze btn-outline" ng-click="weekIndex = {week: 4}">THU</button>
+          <button type="button" class="btn yellow-mint btn-outline" ng-click="weekIndex = {week: 5}">FRI</button>
+          <button type="button" class="btn purple-sharp btn-outline" ng-click="weekIndex = {week: 6}">SAT</button>
+          <button type="button" class="btn grey-mint btn-outline" ng-click="weekIndex = {week: 0}">SUN</button>
+          <button type="button" class="btn default btn-outline" ng-click="areaSelect = ''; closeSelect = ''; weekIndex=''; cssc.clearSearch()">ALL</button>
           </p>
         </div>
       </div>
       <div class="add-new">
-        <input type="image" src="../ViewTemplate/icon/icon-schedule.png" ng-click="cssc.popSerTable();cssc.getCsLists()"/>
+        <input type="image" src="./views/icon/icon-schedule.png" ng-click="cssc.popSerTable();cssc.getCsLists()"/>
         <p style="font-size: 1.2em;">添加客服班表</p>
       </div>
      </div>
@@ -69,9 +69,9 @@
                    </select>
               </td>
               <td ng-if = "!cs.isEditing">
-                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-edit.png"
+                <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
                 ng-click ="cssc.startEditing(cs)"></input>
-                <input type="image" class="table-edit" src="../ViewTemplate/icon/icon-delete.png"
+                <input type="image" class="table-edit" src="./views/icon/icon-delete.png"
                 ng-click ="cssc.deleteSchedule(cs)"></input></td>
               <td ng-if= "cs.isEditing" size = "20">
                     <button
