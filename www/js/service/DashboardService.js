@@ -33,6 +33,18 @@ angular.module('MetronicApp')
       url: API_URL+'MobMonitor/DriverSchedule',
     }).then(function successCallback(response) {
       lo_fdata.delivers = response.data.eo_schedule;
+      lo_fdata.delivers.current = response.data.ev_current;
+      lo_fdata.delivers.current = parseInt(lo_fdata.delivers.current, 10);
+      for(i=0; i<lo_fdata.delivers.length; i++){
+        lo_fdata.delivers[i].valid_from = parseInt(lo_fdata.delivers[i].valid_from, 10);
+        lo_fdata.delivers[i].valid_to = parseInt(lo_fdata.delivers[i].valid_to, 10);
+        if (lo_fdata.delivers[i].valid_from < lo_fdata.delivers.current &&lo_fdata.delivers.current< lo_fdata.delivers[i].valid_to){
+          lo_fdata.delivers[i].off = 1;
+        }else if(lo_fdata.delivers[i].valid_to < lo_fdata.delivers.current||lo_fdata.delivers.current < lo_fdata.delivers[i].valid_from){
+          lo_fdata.delivers[i].off = 2;
+        }
+      };
+      console.log(lo_fdata)
       get_API();
     }, function errorCallback(response) {
        // alertService.alert(response);
@@ -153,6 +165,8 @@ angular.module('MetronicApp')
 	}
 	dashboardService.get_fomat = function  () {
 		if (lo_fdata.statas !== null){
+      console.log(lo_fdata)
+
 			return lo_fdata;
 		}
 	}
@@ -167,6 +181,7 @@ angular.module('MetronicApp')
       if(!response.data.eo_order){
         deferred.reject(response)
       }else{
+        console.log(response.data.eo_order)
         const oid = response.data.eo_order.oid;
         const order = response.data.eo_order.order;
         const delivery = response.data.eo_order.delivery;
@@ -194,6 +209,7 @@ angular.module('MetronicApp')
           "r_lng": rr.lng,
           "r_call": rr.tel,
           "driver_name":delivery.driver_name,
+          "driver_cell": delivery.cell,
         }
         deferred.resolve(serach_order)
       }
