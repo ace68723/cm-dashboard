@@ -58,6 +58,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.url= $sce.trustAsResourceUrl("https://www.chanmao.ca/monitor/#/" + port + "/"+ oid);
     }
     function search_orderDetial (argument) {
+      console.log(data)
         popUpCtrl.oid     = data.oid;
         popUpCtrl.cell    = data.cell;
         popUpCtrl.dltype  = data.dltype;
@@ -68,7 +69,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.channel = data.channel;
         popUpCtrl.created = data.created;
         popUpCtrl.deliver = data.driver_name;
-        console.log(data)
+        popUpCtrl.driver_cell = data.driver_cell;
     }
     $scope.ok = function()
     {

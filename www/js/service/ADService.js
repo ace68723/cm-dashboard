@@ -8,7 +8,7 @@
  * Factory in the smartDriverApp.
  */
 angular.module('MetronicApp')
-  .service('closeListService', function ($http, $timeout,$q,API2_URL) {
+  .service('ADService', function ($http, $timeout,$q,API2_URL) {
     // getRestaurantLists
     function getRestaurantLists() {
       var deferred = $q.defer();

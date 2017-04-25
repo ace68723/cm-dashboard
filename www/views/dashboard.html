@@ -23,10 +23,10 @@
 				<span ng-if="dc.f_data.change_addr_order.length > 0">{{dc.f_data.change_addr_order.length}}单 </span>
 				</div>
 			   <!-- <ion-scroll style="height: 50%"> -->
-				<!-- BEGIN 改运费 class="scroller"-->
+				<!-- BEGIN 改税前 class="scroller"-->
 				<div class="order_col_box  "style="height:{{dc.h2}}px;">
 					<div  class="portlet order_box "
-						  ng-repeat="(id,order) in dc.f_data.change_addr_order">
+						  ng-repeat="(id,order) in dc.f_data.change_addr_order| orderBy:'oid'">
 					   <div  class="portlet-title order_header yellow"
 							 ng-class="{warning:order.warning==1,alert:order.alert==1}">
 						   <div class=" order_title"
@@ -67,13 +67,13 @@
 									   总价
 								   </div>
 								   <div class="col-md-5 nonepadding">
-									   {{order.total | currency}}
+									    {{order.total | currency}}({{order.dlexp | currency}})
 								   </div>
 								   <div class="col-md-2 nonepadding">
-									   运费
+									   税前
 								   </div>
 								   <div class="col-md-2 nonepadding">
-									   {{order.dlexp | currency}}
+									   {{order.pretax | currency}}
 								   </div>
 							   </div>
 
@@ -121,7 +121,7 @@
 						 </div>
 					</div>
 				</div>
-				<!-- END 改运费-->
+				<!-- END 改税前-->
 			<!-- </div> -->
 			<!-- <div style="height: 592px;"> -->
 				<div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #e87e04;color: #ffffff;">
@@ -131,7 +131,7 @@
 				<!-- BEGIN 新用户-->
 				<div class="order_col_box "style="height:{{dc.h}}px;">
 					   <div  class="portlet order_box "
-							 ng-repeat="(id,order) in dc.f_data.new_user_order">
+							 ng-repeat="(id,order) in dc.f_data.new_user_order| orderBy:'oid'">
 						   <div  class="portlet-title order_header orange"
 								 ng-class="{warning:order.warning==1,alert:order.alert==1}">
 							   <div class=" order_title"
@@ -171,13 +171,13 @@
 										   总价
 									   </div>
 									   <div class="col-md-5 nonepadding">
-										   {{order.total | currency}}
+										    {{order.total | currency}}({{order.dlexp | currency}})
 									   </div>
 									   <div class="col-md-2 nonepadding">
-										   运费
+										   税前
 									   </div>
 									   <div class="col-md-2 nonepadding">
-										   {{order.dlexp | currency}}
+										   {{order.pretax | currency}}
 									   </div>
 								   </div>
 
@@ -238,7 +238,7 @@
 
 			<div class="order_col_box"style="height:{{dc.h}}px;">
 			  <div  class="portlet order_box "
-					ng-repeat="(id,order) in dc.f_data.new_order">
+					ng-repeat="(id,order) in dc.f_data.new_order| orderBy:'oid'">
 				  <div  class="portlet-title order_header skyblue"
 						ng-class="{warning:order.warning==1,alert:order.alert==1}">
 					  <div 	class=" order_title"
@@ -307,13 +307,13 @@
 								  总价
 							  </div>
 							  <div class="col-md-5 nonepadding">
-								  {{order.total | currency}}
+								   {{order.total | currency}}({{order.dlexp | currency}})
 							  </div>
 							  <div class="col-md-2 nonepadding">
-								  运费
+								  税前
 							  </div>
 							  <div class="col-md-2 nonepadding">
-								  {{order.dlexp | currency}}
+								  {{order.pretax | currency}}
 							  </div>
 						  </div>
 
@@ -358,6 +358,8 @@
 						<!-- </div> -->
 					</div>
 			  </div>
+				<div class="portlet order_box" style ="height :200px; background-color: transparent">
+				</div>
 			</div>
 			<!-- END ORDER BOX-->
 		</div>
@@ -365,10 +367,10 @@
 
 	<!-- BEGIN 拒单 COLUMN -->
 		<div class="col-md-15 col-sm-3 nonepadding border-left">
-		  <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #e35b5a;color: #ffffff;">
-				拒单
-			<span ng-if="dc.f_data.reject_order.length > 0">{{(dc.f_data.reject_order|filter:{status : '5'}).length}}单 </span>
-			</div>
+	   <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #e35b5a;color: #ffffff;">
+			拒单
+		   <span ng-if="dc.f_data.reject_order.length > 0">{{(dc.f_data.reject_order|filter:{status : '5'}).length}}单 </span>
+		 </div>
 			<!-- BEGIN ORDER BOX-->
      <div class="order_col_box  "style="height:{{dc.h2}}px;">
 			  <div  class="portlet order_box "
@@ -422,13 +424,13 @@
 								  总价
 							  </div>
 							  <div class="col-md-5 nonepadding">
-								  {{order.total | currency}}
+								   {{order.total | currency}}({{order.dlexp | currency}})
 							  </div>
 							  <div class="col-md-2 nonepadding">
-								  运费
+								  税前
 							  </div>
 							  <div class="col-md-2 nonepadding">
-								  {{order.dlexp | currency}}
+								  {{order.pretax | currency}}
 							  </div>
 						  </div>
 
@@ -477,7 +479,7 @@
 			<!-- END ORDER BOX-->
 		 <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #00cccc;color: #ffffff;">
  			 取消
- 		 <span ng-if="dc.f_data.reject_order.length > 0">{{(dc.f_data.reject_order|filter:{status : '90'}).length}}单 </span>
+ 		   <span ng-if="dc.f_data.reject_order.length > 0">{{(dc.f_data.reject_order|filter:{status : '90'}).length}}单 </span>
  		 </div>
 		 <div class="order_col_box  "style="height:{{dc.h2}}px;">
 			  <div  class="portlet order_box "
@@ -531,13 +533,13 @@
 								  总价
 							  </div>
 							  <div class="col-md-5 nonepadding">
-								  {{order.total | currency}}
+								   {{order.total | currency}}({{order.dlexp | currency}})
 							  </div>
 							  <div class="col-md-2 nonepadding">
-								  运费
+								  税前
 							  </div>
 							  <div class="col-md-2 nonepadding">
-								  {{order.dlexp | currency}}
+								  {{order.pretax | currency}}
 							  </div>
 						  </div>
 
@@ -582,6 +584,8 @@
 						<!-- </div> -->
 					</div>
 			  </div>
+				<div class="portlet order_box" style ="height :200px; background-color: transparent">
+				</div>
 			</div>
 			<!-- END ORDER BOX-->
 		</div>
@@ -598,7 +602,7 @@
 
        <div class="order_col_box"style="height:{{dc.h}}px;">
          <div  class="portlet order_box "
-           ng-repeat="(id,order) in dc.f_data.confirm_order">
+           ng-repeat="(id,order) in dc.f_data.confirm_order| orderBy:['-dltype','oid']">
            <div  class="portlet-title order_header darkblue"
              ng-class="{warning:order.warning==1,alert:order.alert==1}">
              <div  class=" order_title"
@@ -645,13 +649,13 @@
                    总价
                  </div>
                  <div class="col-md-5 nonepadding">
-                   {{order.total | currency}}
+                    {{order.total | currency}}({{order.dlexp | currency}})
                  </div>
                  <div class="col-md-2 nonepadding">
-                   运费
+                   税前
                  </div>
                  <div class="col-md-2 nonepadding">
-                   {{order.dlexp | currency}}
+                   {{order.pretax | currency}}
                  </div>
 
                </div>
@@ -697,7 +701,9 @@
              <!-- </div> -->
            </div>
          </div>
-       </div>
+				 <div class="portlet order_box" style ="height :200px; background-color: transparent">
+ 				</div>
+			 </div>
        <!-- END ORDER BOX-->
      </div>
    <!-- END 已接单 COLUMN -->
@@ -721,7 +727,7 @@
 							 <a  ng-class="{'active':selectedArea.area == ''}" ng-click="selectedArea = {}"class="btn green btn-outline"> ALL </a>
            </div>
 					<div class="panel panel-default"
-						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:['-orders.length','hour'] |filter:selectedArea"
+						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:['off' , 'orders.length'] |filter:selectedArea"
 						 overflow="hidden"
 						 style="margin-top: 0px;">
 						   <div class=" driver_heading" >
@@ -746,6 +752,9 @@
 						   <div id="{{id}}" class="panel-collapse collapse" aria-expanded="false">
 							  <div class="panel-body"
 								   style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 11px;">
+									<div class="portlet-title" style="margin-bottom: 0px;background-color: #4ec49a;color: #ffffff;text-align: center;">
+										司机电话:{{deliver.cell}}
+									</div>
 									<!-- BEGIN ORDER BOX-->
 										<div class="portlet light"
 											  ng-repeat="order in deliver.orders"
@@ -789,13 +798,13 @@
 														总价
 													 </div>
 													 <div class="col-md-5 nonepadding">
-														{{order.total | currency}}
+														 {{order.total | currency}}({{order.dlexp | currency}})
 													 </div>
 													 <div class="col-md-2 nonepadding">
-														运费
+														税前
 													 </div>
 													 <div class="col-md-2 nonepadding">
-														{{order.dlexp | currency}}
+														{{order.pretax | currency}}
 													 </div>
 												  </div>
 												  <div class="row"style="margin-left: 0px;margin-right: -5px;">
@@ -840,9 +849,12 @@
 											</div>
 										</div>
 									<!-- END ORDER BOX-->
+
 							  </div>
 					   </div>
 					</div>
+					<div class="portlet order_box" style ="height :200px; background-color: transparent">
+  				</div>
 				 </div>
 			  </div>
 		   </div>
