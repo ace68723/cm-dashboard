@@ -132,11 +132,11 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
     for(i=dsc.length; i<dsc.thisWeekSchedules.length; i++){
       if(dsc.thisWeekSchedules[i].zone == "SC/MH"){
         dsc.thisWeekSchedules[i].zone = 1;
-      }else if(dsc.thisWeekSchedules[i].zone =="Downtown"){
+      }else if(dsc.thisWeekSchedules[i].zone =="DT"){
         dsc.thisWeekSchedules[i].zone = 3;
       }else if(dsc.thisWeekSchedules[i].zone =="NY/RH"){
         dsc.thisWeekSchedules[i].zone =2;
-      }else if(dsc.thisWeekSchedules[i].zone =="Missisauga"){
+      }else if(dsc.thisWeekSchedules[i].zone =="MI"){
         dsc.thisWeekSchedules[i].zone =4;
       }
    dss.addDriverSchedule(dsc.thisWeekSchedules[i])
@@ -151,11 +151,11 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
      for(i=dsc.length2; i<dsc.nextWeekSchedules.length; i++){
          if(dsc.nextWeekSchedules[i].zone == "SC/MH"){
            dsc.nextWeekSchedules[i].zone = 1;
-         }else if(dsc.nextWeekSchedules[i].zone =="Downtown"){
+         }else if(dsc.nextWeekSchedules[i].zone =="DT"){
            dsc.nextWeekSchedules[i].zone = 3;
          }else if(dsc.nextWeekSchedules[i].zone =="NY/RH"){
            dsc.nextWeekSchedules[i].zone =2;
-         }else if(dsc.nextWeekSchedules[i].zone =="Missisauga"){
+         }else if(dsc.nextWeekSchedules[i].zone =="MI"){
            dsc.nextWeekSchedules[i].zone =4;
          }
        dss.addDriverSchedule(dsc.nextWeekSchedules[i])
