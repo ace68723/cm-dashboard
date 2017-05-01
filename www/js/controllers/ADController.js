@@ -43,7 +43,7 @@ function($rootScope, $scope, $http, ADService,$q) {
    }
   adc.updateRestaurantList();
 //init end
-
+ 
   adc.getCloseInformation = function(closeRestaurant){
      adc.pop = true;
      adc.name = closeRestaurant.name;

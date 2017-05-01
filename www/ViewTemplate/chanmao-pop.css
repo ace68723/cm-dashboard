@@ -317,7 +317,7 @@
   height: 30px;
   font-family: myriad pro;
   box-shadow: -1px 0 1px #e5e5e5;
-  background-image: url(icon/arrow.png);
+  background-image: url(../views/icon/arrow.png);
   background-position: right;
   background-size: 25px;
   padding-left: 10px;
@@ -342,7 +342,7 @@
     padding-left: 10px;
     font-family: myriad pro;
     box-shadow: 0 0 2px #e5e5e5;
-    background-image: url(icon/arrow.png);
+    background-image: url(../views/icon/arrow.png);
     background-position: right;
     background-size: 25px;
     background-repeat: no-repeat;
@@ -472,8 +472,8 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       border-left: transparent;
-      width:70%;
-      font-size: 16px;
+      width:82%;
+      font-size: 15px;
       height:30px;
       box-shadow: 1px 0 1px #e5e5e5;
       margin-right: 10px;
@@ -481,7 +481,7 @@
   }
 
   .btn-dri-time-select{
-    width:45%;
+    width:70%;
     border-radius:5px;
     float:left;
     margin-right: -5px;
@@ -493,14 +493,14 @@
     cursor: pointer;
     outline: none;
     -webkit-appearance: none;
-    font-size: 16px;
+    font-size: 14px;
     background: 0 0;
     border-color: #94A0B2;
     color: #94A0B2;
     height: 30px;
     font-family: myriad pro;
     box-shadow: -1px 0 1px #e5e5e5;
-    background-image: url(icon/arrow.png);
+    background-image: url(../views/icon/arrow.png);
     background-position: right;
     background-size: 25px;
     padding-left: 10px;
@@ -524,7 +524,7 @@
       height: 30px;
       font-family: myriad pro;
       box-shadow: 0 0 2px #e5e5e5;
-      background-image: url(icon/arrow.png);
+      background-image: url(../views/icon/arrow.png);
       background-position: right;
       background-size: 25px;
       padding-left: 10px;

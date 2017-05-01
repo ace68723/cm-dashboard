@@ -129,7 +129,7 @@
 					<span ng-if="dc.f_data.f_data.new_user_order.length > 0">{{dc.f_data.new_user_order.length}}单 </span>
 				</div>
 				<!-- BEGIN 新用户-->
-				<div class="order_col_box "style="height:{{dc.h}}px;">
+				<div class="order_col_box "style="height:{{dc.h2}}px;">
 					   <div  class="portlet order_box "
 							 ng-repeat="(id,order) in dc.f_data.new_user_order| orderBy:'oid'">
 						   <div  class="portlet-title order_header orange"
@@ -224,6 +224,8 @@
 								 <!-- </div> -->
 							 </div>
 					   </div>
+						 <div class="portlet order_box" style ="height :200px; background-color: transparent">
+		 				</div>
 				</div>
 				<!-- END 新用户-->
 			<!-- </div> -->
