@@ -12,8 +12,84 @@
         <p style = "margin-left :20px;"><input type="text" ng-model="clc.search[clc.singleSelect]"></p>
         <button style = "margin-left :20px;" ng-click="clc.clearSearch()" class="btn-clear">Clear</button>
       </div>
+      <div class="">
+        <button type="button"  ng-click="adc.changetoTop()" class="btn dark btn-outline">置顶商家</button>
+        <button type="button"  ng-click="adc.changetoHome()"  class="btn red-mint btn-outline">Home广告</button>
+        <button type="button"  ng-click="adc.changetoLaunch()"  class="btn blue-hoki btn-outline">首屏广告</button>
+      </div>
+
       <br>
-      <div class="table">
+      <div  ng-if ="adc.top"class="table">
+        <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn dark btn-outline">Scarborough</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn red-mint btn-outline">Markham</button>
+          <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn blue-hoki btn-outline">North York</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
+          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
+          <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
+           <tr>
+            <th style = "text-align: center">RID</th>
+            <th style = "text-align: center">RANK</th>
+            <th style = "text-align: center">START TIME</th>
+            <th style = "text-align: center">END TIME</th>
+            <th style = "text-align: center">ZONE</th>
+            <th style = "text-align: center">EDIT</th>
+           </tr>
+           <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
+              <td>{{closeRestaurant.rid}}</td>
+              <td>{{closeRestaurant.rank}}</td>
+              <td>{{closeRestaurant.start_time}}</td>
+              <td>{{closeRestaurant.end_time}}</td>
+              <td>{{closeRestaurant.zone}}</td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+              <td ng-if = "role =='SETTLE'" >
+                <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+            </tr>
+         </table>
+      </div>
+      <div  ng-if ="adc.home"class="table">
+        <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn dark btn-outline">Scarborough</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn red-mint btn-outline">Markham</button>
+          <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn blue-hoki btn-outline">North York</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
+          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
+          <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
+           <tr>
+            <th style = "text-align: center">RID</th>
+            <th style = "text-align: center">RANK</th>
+            <th style = "text-align: center">START TIME</th>
+            <th style = "text-align: center">END TIME</th>
+            <th style = "text-align: center">ZONE</th>
+            <th style = "text-align: center">EDIT</th>
+           </tr>
+           <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
+              <td>{{closeRestaurant.rid}}</td>
+              <td>{{closeRestaurant.rank}}</td>
+              <td>{{closeRestaurant.start_time}}</td>
+              <td>{{closeRestaurant.end_time}}</td>
+              <td>{{closeRestaurant.zone}}</td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+              <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+              <td ng-if = "role =='SETTLE'" >
+                <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+            </tr>
+         </table>
+      </div>
+      <div  ng-if ="adc.launch"class="table">
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
           <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn dark btn-outline">Scarborough</button>
           <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn red-mint btn-outline">Markham</button>

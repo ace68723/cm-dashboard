@@ -43,7 +43,7 @@ function($rootScope, $scope, $http, ADService,$q) {
    }
   adc.updateRestaurantList();
 //init end
- 
+
   adc.getCloseInformation = function(closeRestaurant){
      adc.pop = true;
      adc.name = closeRestaurant.name;
@@ -196,18 +196,6 @@ function($rootScope, $scope, $http, ADService,$q) {
   adc.convertBack = function(){
     adc.newCloseRestaurant.rid = adc.newCloseRestaurant.rid.toString();
   }
-  adc.popUp =function(){
-    var vis = document.getElementById("res-pop");
-    vis.style.visibility = "visible";
-    document.getElementById("background").style.visibility = "visible";
-    console.log(1)
-  }
-  adc.closePop =function(){
-      var vis = document.getElementById("res-pop");
-      vis.style.visibility = "hidden";
-      document.getElementById("background").style.visibility = "hidden";
-   adc.resetAddForm();
-  }
   adc.search = {};
   adc.SearchOptions = [{
       "optionName": "RID",
@@ -220,6 +208,24 @@ function($rootScope, $scope, $http, ADService,$q) {
   adc.singleSelect = adc.SearchOptions[1].value;
   adc.newCloseRestaurant ={};
   adc.restaurantEditing = false;
-  adc.itemEditing = false;
+  adc.top = true;
+  adc.home = false;
+  adc.launch = false;
+  adc.changetoTop =function(){
+    adc.top =true;
+    adc.home = false;
+    adc.launch = false;
+  }
+  adc.changetoHome =function(){
+    adc.top =false;
+    adc.home = true;
+    adc.launch = false;
+  }
+  adc.changetoLaunch =function(){
+    adc.top =false;
+    adc.home = false;
+    adc.launch = true;
+  }
+
 // basic function end
 }])
