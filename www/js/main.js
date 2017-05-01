@@ -114,9 +114,11 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
 //old api API_URL product
 MetronicApp.constant("API_URL", "https://chanmao.ca/index.php?r=");
 //new api API2_URL product
-MetronicApp.constant("API2_URL", "http://manage.chanmao.ca/public/api/v1/");
+MetronicApp.constant("API2_URL", "https://chanmao.us/api/v1/");
 //Important! API2_URL test
 // MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
+// MetronicApp.constant("API2_URL", "https://chanmao.us/api/v1/");
+
 //===============================================================================
 
 /* Setup Rounting For All Pages */
@@ -183,6 +185,11 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
         .state('reslocation',{
             url:"/reslocation.html", //url address
             templateUrl:"views/restaurantLocation.html" //views
+        })
+        .state('ad',{
+            url:"/ad.html", //url address
+            templateUrl:"views/ad.html", //views
+            controller:"ADController as adc" //controller
         })
 
 

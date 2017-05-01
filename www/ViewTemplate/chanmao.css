@@ -139,7 +139,7 @@
 }
 
 .icon-search{
-  content: url(icon/search.png);
+  content: url(../views/icon/search.png);
   padding: 0 0 5px 7px;
 }
 
@@ -169,7 +169,7 @@
       padding-left: 10px;
       padding-right: 25px;
       font-family: myriad pro;
-      background-image: url(icon/arrow.png);
+      background-image: url(../views/icon/arrow.png);
       background-position: right;
       background-size: 25px;
       background-repeat: no-repeat;
