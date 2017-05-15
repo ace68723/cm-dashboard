@@ -18,6 +18,22 @@ function($rootScope, $scope, $http, ADService,$q) {
 
 
 //init
+adc.getADLists = function(){
+  ads.getADList()
+  .then((result)=>{
+    adc.allLists = result[0];
+    adc.scLists = result[1];
+    adc.nyLists = result[2];
+    adc.rhLists = result[3];
+    adc.mkLists = result[4];
+    adc.dtLists = result[5];
+    adc.miLists = result[6];
+ })
+  .catch((error)=>{
+    console.log(error)
+  })
+}
+adc.getADLists();
   adc.updateRestaurantList = function(){
     setTimeout(function () {
       ads.getRestaurantLists()

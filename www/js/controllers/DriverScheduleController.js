@@ -291,7 +291,7 @@ function($rootScope, $scope, $http, driverScheduleService,$q) {
     start_time: "",
     end_date: "",
     end_time: "",
-    zone: ""
+    zone: "NY/RH"
   }
   dsc.newNextWeekSchedule ={
     start_date: "",
