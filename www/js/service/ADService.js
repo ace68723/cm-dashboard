@@ -24,7 +24,7 @@ angular.module('MetronicApp')
           // successCallback
           var successCallback = (response)=>{
             const data = response.data;
-            console.log(data.ea_ad_rr)
+            console.log(data.ea_ad_rr);
             if(data.ev_result == 0){
              var adData = data.ea_ad_rr[0].adList;
             _.forEach(adData, function(ad, id) {
@@ -80,7 +80,7 @@ angular.module('MetronicApp')
                data.start_date = ad.start_date;
                data.end_date = ad.end_date;
                mkLists.push(data);
-             })
+             });
              var adData = data.ea_ad_rr[5].adList;
             _.forEach(adData, function(ad, id) {
                var data = {};
@@ -91,7 +91,7 @@ angular.module('MetronicApp')
                data.start_date = ad.start_date;
                data.end_date = ad.end_date;
                dtLists.push(data);
-             })
+             });
              var adData = data.ea_ad_rr[6].adList;
             _.forEach(adData, function(ad, id) {
                var data = {};
@@ -102,7 +102,7 @@ angular.module('MetronicApp')
                data.start_date = ad.start_date;
                data.end_date = ad.end_date;
                miLists.push(data);
-             })
+             });
              adLists.push(allLists);
              adLists.push(scLists);
              adLists.push(nyLists);
@@ -110,24 +110,24 @@ angular.module('MetronicApp')
              adLists.push(mkLists);
              adLists.push(dtLists);
              adLists.push(miLists);
-        deferred.resolve(adLists)
+        deferred.resolve(adLists);
           }else {
-            deferred.reject(response)
+            deferred.reject(response);
           }
-          }
+        };
           // successCallback end
 
           //errorCallback
           var errorCallback = (response)=>{
-        deferred.reject(response)
-          }
+        deferred.reject(response);
+      };
           // errorCallback end
 
           $http({
              method: 'GET',
              url:'http://chanmao.us/api/v1/ad_top'
-           }).then(successCallback,errorCallback)
-       return deferred.promise
+           }).then(successCallback,errorCallback);
+       return deferred.promise;
 
     }
     // getRestaurantLists end
@@ -150,47 +150,47 @@ angular.module('MetronicApp')
                data.start_time = restaurant.start_time;
                data.end_time = restaurant.end_time;
                restaurantInfo.push(data);
-              })
-        deferred.resolve(restaurantInfo)
+             });
+        deferred.resolve(restaurantInfo);
           }else {
-            deferred.reject(response)
+            deferred.reject(response);
           }
-          }
+        };
           // successCallback end
 
           //errorCallback
 
           var errorCallback = (response)=>{
-        deferred.reject(response)
-          }
+        deferred.reject(response);
+      };
           // errorCallback end
 
           $http({
              method: 'GET',
              url:API2_URL+"rr_close/"+id
             //  params:{"rid":closeRestaurant.rid,"rid2":closeRestaurant.rid,}
-           }).then(successCallback,errorCallback)
-       return deferred.promise
+          }).then(successCallback,errorCallback);
+       return deferred.promise;
 
     }
     // getRestaurantLists end
 
    // updateCloseRestaurant
     function updateCloseRestaurant(closeInformation){
-      console.log(closeInformation)
+      console.log(closeInformation);
 
      var deferred = $q.defer();
        // successCallback
-         var successCallback = (response)=>{
-          console.log(response)
-       deferred.resolve(response)
-         }
+         var successCallback = (response) => {
+          console.log(response);
+       deferred.resolve(response);
+     };
          // successCallback end
 
          //errorCallback
-         var errorCallback = (response)=>{
-       deferred.reject(response)
-         }
+         var errorCallback = (response) => {
+       deferred.reject(response);
+     };
          $http({
              method:"PUT",
              url:API2_URL+"rr_close",
@@ -200,7 +200,7 @@ angular.module('MetronicApp')
                     "id":closeInformation.id   }
            })
          .then(successCallback, errorCallback);
-     return deferred.promise
+     return deferred.promise;
     }
    // updateCloseRestaurant end
 
@@ -208,12 +208,12 @@ angular.module('MetronicApp')
   function addCloseRestaurant(newCloseRestaurant){
    var deferred = $q.defer();
         var successCallback =function(response){
-          console.log(response)
-      deferred.resolve(response)
-        }
+          console.log(response);
+      deferred.resolve(response);
+    };
         var errorCallback = function(response){
-      deferred.reject(response)
-        }
+      deferred.reject(response);
+    };
 
         $http({
           method: 'POST',
@@ -223,7 +223,7 @@ angular.module('MetronicApp')
                  "end_time":newCloseRestaurant.end_time
                 }
         }).then(successCallback, errorCallback);
-   return deferred.promise
+   return deferred.promise;
   }
 
     return ({
@@ -231,7 +231,7 @@ angular.module('MetronicApp')
       getCloseInfomaiton : getCloseInfomaiton,
       updateCloseRestaurant: updateCloseRestaurant,
       addCloseRestaurant : addCloseRestaurant
-    })
+    });
 
 
 });
