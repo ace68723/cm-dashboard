@@ -723,11 +723,11 @@
 					 			style="margin-top: 14px;margin-bottom: 10px;"
 					      ng-init="selectedArea.area = 'ny'">
                <a  ng-class="{'active':selectedArea.area == 'ny'}" ng-click="selectedArea = {area: 'ny'}" class=" btn green btn-outline"> NY </a>
-               <a  ng-class="{'active':selectedArea.area == 'sc'}" ng-click="selectedArea = {area: 'sc'}"class="btn green btn-outline"> SC </a>
-							 <a  ng-class="{'active':selectedArea.area == 'mh'}" ng-click="selectedArea = {area: 'mh'}"class="btn green btn-outline"> MH </a>
-							 <a  ng-class="{'active':selectedArea.area == 'rh'}" ng-click="selectedArea = {area: 'rh'}"class="btn green btn-outline"> RH </a>
+			   <a  ng-class="{'active':selectedArea.area == 'sc'}" ng-click="selectedArea = {area: 'sc'}"class="btn green btn-outline"> SC </a>
+			   <a  ng-class="{'active':selectedArea.area == 'mh'}" ng-click="selectedArea = {area: 'mh'}"class="btn green btn-outline"> MH </a>
+			   <a  ng-class="{'active':selectedArea.area == 'rh'}" ng-click="selectedArea = {area: 'rh'}"class="btn green btn-outline"> RH </a>
                <a  ng-class="{'active':selectedArea.area == 'dt'}" ng-click="selectedArea = {area: 'dt'}"class="btn green btn-outline"> DT </a>
-			         <a  ng-class="{'active':selectedArea.area == 'mi'}" ng-click="selectedArea = {area: 'mi'}"class="btn green btn-outline"> MI </a>
+		       <a  ng-class="{'active':selectedArea.area == 'mi'}" ng-click="selectedArea = {area: 'mi'}"class="btn green btn-outline"> MI </a>
            </div>
 					<div class="panel panel-default"
 						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:['off' , 'orders.length'] |filter:selectedArea"

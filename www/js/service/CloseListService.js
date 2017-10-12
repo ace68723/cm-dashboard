@@ -8,7 +8,7 @@
  * Factory in the smartDriverApp.
  */
 angular.module('MetronicApp')
-  .service('closeListService', function ($http, $timeout,$q,API2_URL,API3_URL) {
+  .service('closeListService', function ($http, $timeout,$q,API2_URL) {
     // getRestaurantLists
     function getRestaurantLists() {
       var deferred = $q.defer();
@@ -55,6 +55,7 @@ angular.module('MetronicApp')
 
     }
     // getRestaurantLists end
+
     // getRestaurantLists
     function getCloseInfomaiton(id) {
       var deferred = $q.defer();
@@ -131,12 +132,12 @@ angular.module('MetronicApp')
   function addCloseRestaurant(newCloseRestaurant){
    var deferred = $q.defer();
         var successCallback =function(response){
-          console.log(response);
-      deferred.resolve(response);
-    };
+          console.log(response)
+      deferred.resolve(response)
+        }
         var errorCallback = function(response){
-      deferred.reject(response);
-    };
+      deferred.reject(response)
+        }
 
         $http({
           method: 'POST',
@@ -146,235 +147,14 @@ angular.module('MetronicApp')
                  "end_time":newCloseRestaurant.end_time
                 }
         }).then(successCallback, errorCallback);
-   return deferred.promise;
-  }
-
-  function getResDetail(id){
-   var deferred = $q.defer();
-        var successCallback =function(response){
-          console.log(response);
-      deferred.resolve(response);
-    };
-        var errorCallback = function(response){
-      deferred.reject(response);
-    };
-
-        $http({
-          method: 'POST',
-          url: API3_URL+"get_rr_detail",
-          data: {
-            "iv_rid":id
-                }
-        }).then(successCallback, errorCallback);
-   return deferred.promise;
-  }
-
-  function getResDetailFinance(id){
-   var deferred = $q.defer();
-        var successCallback =function(response){
-          console.log(response)
-      deferred.resolve(response)
-        }
-        var errorCallback = function(response){
-      deferred.reject(response)
-        }
-
-        $http({
-          method: 'POST',
-          url: API3_URL+"get_rr_detail_finance",
-          data: {
-            "iv_rid":id
-                }
-        }).then(successCallback, errorCallback);
    return deferred.promise
   }
-  function editResDetailFinance(restaurantDetailFinance){
-   var deferred = $q.defer();
-        var successCallback =function(response){
-          console.log(response)
-      deferred.resolve(response)
-        }
-        var errorCallback = function(response){
-      deferred.reject(response)
-        }
-
-        $http({
-          method: 'PUT',
-          url: API3_URL+"edit_rr_detail_finance",
-          data: {
-            "iv_rid": restaurantDetailFinance.rid,
-            "iv_rate": restaurantDetailFinance.rate,
-            "iv_bname": restaurantDetailFinance.bname,
-            "iv_owner": restaurantDetailFinance.owner,
-            "iv_email": restaurantDetailFinance.email,
-            "iv_bank_name": restaurantDetailFinance.bank_name,
-            "iv_bank_instit": restaurantDetailFinance.bank_instit,
-            "iv_bank_account": restaurantDetailFinance.bank_account,
-            "iv_comment": restaurantDetailFinance.comment,
-            "iv_pay_method": restaurantDetailFinance.pay_method,
-            "iv_pay_cycle": JSON.stringify(restaurantDetailFinance.pay_cycle)
-                }
-        }).then(successCallback, errorCallback);
-   return deferred.promise
-  }
-
-  function getLateNight(id){
-   var deferred = $q.defer();
-        var successCallback =function(response){
-          console.log(response)
-      deferred.resolve(response)
-        }
-        var errorCallback = function(response){
-      deferred.reject(response)
-        }
-
-        $http({
-          method: 'POST',
-          url: API3_URL+"get_rr_open",
-          data: {
-            "iv_rid":id
-                }
-        }).then(successCallback, errorCallback);
-   return deferred.promise
-  }
-  function addLateNight(lateNightinfo){
-   var deferred = $q.defer();
-        var successCallback =function(response){
-          console.log(response)
-      deferred.resolve(response)
-        }
-        var errorCallback = function(response){
-      deferred.reject(response)
-        }
-
-        $http({
-          method: 'POST',
-          url: API3_URL+"add_rr_open",
-          data: {
-            "iv_rid":lateNightinfo.rid,
-            "iv_weekday":lateNightinfo.weekday,
-            "iv_stime": lateNightinfo.stime,
-            "iv_etime": lateNightinfo.etime
-                }
-        }).then(successCallback, errorCallback);
-   return deferred.promise
-  }
-  function editLateNight(lateNightinfo){
-   var deferred = $q.defer();
-        var successCallback =function(response){
-          console.log(response)
-      deferred.resolve(response)
-        }
-        var errorCallback = function(response){
-      deferred.reject(response)
-        }
-
-        $http({
-          method: 'PUT',
-          url: API3_URL+"edit_rr_open",
-          data: {
-            "iv_id": lateNightinfo.id,
-            "iv_rid":lateNightinfo.rid,
-            "iv_weekday":lateNightinfo.weekday,
-            "iv_stime": lateNightinfo.stime,
-            "iv_etime": lateNightinfo.etime
-                }
-        }).then(successCallback, errorCallback);
-   return deferred.promise
-  }
-
-  function editResDetail(restaurantDetail){
-    var deferred = $q.defer();
-         var successCallback =function(response){
-           console.log(response)
-       deferred.resolve(response)
-         }
-         var errorCallback = function(response){
-       deferred.reject(response)
-         }
-
-         $http({
-           method: 'PUT',
-           url: API3_URL+"edit_rr_detail",
-           data: {
-            "iv_rid": restaurantDetail.rid,
-            "iv_name": restaurantDetail.name,
-            "iv_desc": restaurantDetail.desc,
-            "iv_area": restaurantDetail.area,
-            "iv_logo_id": restaurantDetail.logo_id,
-            "iv_postal": restaurantDetail.postal,
-            "iv_tel1": restaurantDetail.tel1,
-            "iv_tel2": restaurantDetail.tel2,
-            "iv_province": restaurantDetail.province,
-            "iv_prvn": restaurantDetail.prvn,
-            "iv_addr": restaurantDetail.addr,
-            "iv_apt_no": restaurantDetail.apt_no,
-            "iv_start_amount": parseInt(restaurantDetail.start_amount,10),
-            "iv_mob_banner": restaurantDetail.mob_banner,
-            "iv_status": restaurantDetail.status,
-            "iv_rate":restaurantDetail.rate}
-         }).then(successCallback, errorCallback);
-    return deferred.promise
-   }
-
-   function addNewRestaurant(newRestaurant){
-     var deferred = $q.defer();
-          var successCallback =function(response){
-            console.log(response)
-        deferred.resolve(response)
-          }
-          var errorCallback = function(response){
-        deferred.reject(response)
-          }
-
-          $http({
-            method: 'POST',
-            url: API3_URL+"add_rr_detail",
-            data: {
-             "iv_name": newRestaurant.name,
-             "iv_desc": newRestaurant.desc,
-             "iv_area": newRestaurant.area,
-             "iv_logo_id": newRestaurant.logo_id,
-             "iv_postal": newRestaurant.postal,
-             "iv_tel1": newRestaurant.tel1,
-             "iv_tel2": newRestaurant.tel2,
-             "iv_province": newRestaurant.province,
-             "iv_prvn": newRestaurant.prvn,
-             "iv_addr": newRestaurant.addr,
-             "iv_apt_no": newRestaurant.apt_no,
-             "iv_start_amount": parseInt(newRestaurant.start_amount,10),
-             "iv_mob_banner": newRestaurant.mob_banner,
-             "iv_status": newRestaurant.status,
-             "iv_rate":newRestaurant.rate,
-             "iv_fbid": newRestaurant.fbid,
-             "iv_bname":newRestaurant.bname,
-             "iv_owner":newRestaurant.owner,
-             "iv_email":newRestaurant.email,
-             "iv_bank_name":newRestaurant.bank_name,
-             "iv_bank_instit": newRestaurant.bank_instit,
-             "iv_bank_account":newRestaurant.bank_account,
-             "iv_comment":newRestaurant.comment,
-             "iv_pay_method":newRestaurant.pay_method,
-             "iv_pay_cycle":newRestaurant.pay_cycle
-           }
-          }).then(successCallback, errorCallback);
-     return deferred.promise
-    }
-
 
     return ({
       getRestaurantLists : getRestaurantLists,
       getCloseInfomaiton : getCloseInfomaiton,
       updateCloseRestaurant: updateCloseRestaurant,
-      addCloseRestaurant : addCloseRestaurant,
-      getResDetail: getResDetail,
-      getLateNight: getLateNight,
-      addLateNight: addLateNight,
-      editLateNight: editLateNight,
-      getResDetailFinance: getResDetailFinance,
-      editResDetail: editResDetail,
-      addNewRestaurant: addNewRestaurant,
-      editResDetailFinance: editResDetailFinance
+      addCloseRestaurant : addCloseRestaurant
     })
 
 

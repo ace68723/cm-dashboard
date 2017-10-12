@@ -157,11 +157,11 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
     }
     dsc.addOnClickNextWeek = function() {
       for (i = dsc.length2; i < dsc.nextWeekSchedules.length; i++) {
-        if (dsc.nextWeekSchedules[i].zone == "SC") {
+        if (dsc.nextWeekSchedules[i].zone == "SC/MH") {
           dsc.nextWeekSchedules[i].zone = 1;
         } else if (dsc.nextWeekSchedules[i].zone == "DT") {
           dsc.nextWeekSchedules[i].zone = 3;
-        } else if (dsc.nextWeekSchedules[i].zone == "NY") {
+        } else if (dsc.nextWeekSchedules[i].zone == "NY/RH") {
           dsc.nextWeekSchedules[i].zone = 2;
         } else if (dsc.nextWeekSchedules[i].zone == "MI") {
           dsc.nextWeekSchedules[i].zone = 4;

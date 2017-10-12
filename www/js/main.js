@@ -115,7 +115,6 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
 MetronicApp.constant("API_URL", "https://chanmao.ca/index.php?r=");
 //new api API2_URL product
 MetronicApp.constant("API2_URL", "https://chanmao.us/api/v1/");
-MetronicApp.constant("API3_URL", "https://chanmao.us/api/v1/");
 //Important! API2_URL test
 // MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
 // MetronicApp.constant("API2_URL", "https://chanmao.us/api/v1/");
@@ -176,13 +175,11 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider','$httpProvider', func
         .state('driverSchdule',{
             url:"/driverSchdule.html", //url address
             templateUrl:"views/DriverSchdule.html", //views
-            data: {pageTitle: '司机班表'},
             controller:"driverScheduleController as dsc" //controller
         })
         .state('csSchedule',{
             url:"/csSchedule.html", //url address
             templateUrl:"views/CustomServiceSchedule.html", //views
-            data: {pageTitle: '客服班表'},
             controller:"customServiceScheduleController as cssc" //controller
         })
         .state('reslocation',{
