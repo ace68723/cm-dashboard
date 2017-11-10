@@ -1,5 +1,5 @@
 /* Setup general page controller */
-var MetronicApp = angular.module("MetronicApp", []); 
+var MetronicApp = angular.module("MetronicApp", []);
 angular.module('MetronicApp').controller('AuthController', ['$rootScope', '$scope', 'auth', function($rootScope, $scope,auth) {
         var AuthController = this;
         AuthController.hello = "hello AuthController"
