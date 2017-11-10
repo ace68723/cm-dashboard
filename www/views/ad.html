@@ -1,16 +1,16 @@
-<div class="row"  style="height:{{clc.height}}px;overflow:scroll;">
+<div class="row"  style="height:{{adc.height}}px;overflow:scroll;">
   <div class="content">
     <div class="restaurant">
       <p>Search {{singleSelect}}</p>
       <div class="res-search">
-        <select class="btn-res-name" name="clc.singleSelect" ng-model="clc.singleSelect"  ng-change="clearSearch()">
-        <option ng-repeat="option in clc.SearchOptions"
+        <select class="btn-res-name" name="adc.singleSelect" ng-model="adc.singleSelect"  ng-change="clearSearch()">
+        <option ng-repeat="option in adc.SearchOptions"
                 value="{{option.value}}"
-                ng-selected= "{{option.value == clc.singleSelect}}"> {{option.optionName}}
+                ng-selected= "{{option.value == adc.singleSelect}}"> {{option.optionName}}
         </option>
       </select>
-        <p style = "margin-left :20px;"><input type="text" ng-model="clc.search[clc.singleSelect]"></p>
-        <button style = "margin-left :20px;" ng-click="clc.clearSearch()" class="btn-clear">Clear</button>
+        <p style = "margin-left :20px;"><input type="text" ng-model="adc.search[adc.singleSelect]"></p>
+        <button style = "margin-left :20px;" ng-click="adc.clearSearch()" class="btn-clear">Clear</button>
       </div>
       <div class="">
         <button type="button"  ng-click="adc.changetoTop()" class="btn dark btn-outline">置顶商家</button>
@@ -20,15 +20,9 @@
 
       <br>
       <div  ng-if ="adc.top"class="table">
+        <h2 stlye = 'text-align: center'> All </h2>
+        <hr>
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
-          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn dark btn-outline">Scarborough</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn red-mint btn-outline">Markham</button>
-          <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn blue-hoki btn-outline">North York</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
-          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
-          <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
            <tr>
             <th style = "text-align: center">RID</th>
             <th style = "text-align: center">RANK</th>
@@ -37,12 +31,12 @@
             <th style = "text-align: center">ZONE</th>
             <th style = "text-align: center">EDIT</th>
            </tr>
-           <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
-              <td>{{closeRestaurant.rid}}</td>
-              <td>{{closeRestaurant.rank}}</td>
-              <td>{{closeRestaurant.start_time}}</td>
-              <td>{{closeRestaurant.end_time}}</td>
-              <td>{{closeRestaurant.zone}}</td>
+           <tr ng-repeat="(id, ad) in adc.allLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+              <td>{{ad.rid}}</td>
+              <td>{{ad.rank}}</td>
+              <td>{{ad.start_date}}</td>
+              <td>{{ad.end_date}}</td>
+              <td>{{ad.zone}}</td>
               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
@@ -50,9 +44,177 @@
               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
               <td ng-if = "role =='SETTLE'" >
                 <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
-                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+                ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
             </tr>
          </table>
+         <br>
+         <h2 stlye = 'text-align: center'> Scarborough </h2>
+         <hr>
+         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+            <tr>
+             <th style = "text-align: center">RID</th>
+             <th style = "text-align: center">RANK</th>
+             <th style = "text-align: center">START TIME</th>
+             <th style = "text-align: center">END TIME</th>
+             <th style = "text-align: center">ZONE</th>
+             <th style = "text-align: center">EDIT</th>
+            </tr>
+            <tr ng-repeat="(id, ad) in adc.scLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+               <td>{{ad.rid}}</td>
+               <td>{{ad.rank}}</td>
+               <td>{{ad.start_date}}</td>
+               <td>{{ad.end_date}}</td>
+               <td>{{ad.zone}}</td>
+               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+               <td ng-if = "role =='SETTLE'" >
+                 <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                 ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
+             </tr>
+          </table>
+          <br>
+          <h2 stlye = 'text-align: center'> North York </h2>
+          <hr>
+          <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+             <tr>
+              <th style = "text-align: center">RID</th>
+              <th style = "text-align: center">RANK</th>
+              <th style = "text-align: center">START TIME</th>
+              <th style = "text-align: center">END TIME</th>
+              <th style = "text-align: center">ZONE</th>
+              <th style = "text-align: center">EDIT</th>
+             </tr>
+             <tr ng-repeat="(id, ad) in adc.nyLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+                <td>{{ad.rid}}</td>
+                <td>{{ad.rank}}</td>
+                <td>{{ad.start_date}}</td>
+                <td>{{ad.end_date}}</td>
+                <td>{{ad.zone}}</td>
+                <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+                <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+                <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+                <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+                <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+                <td ng-if = "role =='SETTLE'" >
+                  <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                  ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
+              </tr>
+            </table>
+            <br>
+            <h2 stlye = 'text-align: center'> Richmond Hill </h2>
+            <hr>
+            <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+               <tr>
+                <th style = "text-align: center">RID</th>
+                <th style = "text-align: center">RANK</th>
+                <th style = "text-align: center">START TIME</th>
+                <th style = "text-align: center">END TIME</th>
+                <th style = "text-align: center">ZONE</th>
+                <th style = "text-align: center">EDIT</th>
+               </tr>
+               <tr ng-repeat="(id, ad) in adc.rhLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+                  <td>{{ad.rid}}</td>
+                  <td>{{ad.rank}}</td>
+                  <td>{{ad.start_date}}</td>
+                  <td>{{ad.end_date}}</td>
+                  <td>{{ad.zone}}</td>
+                  <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+                  <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+                  <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+                  <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+                  <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+                  <td ng-if = "role =='SETTLE'" >
+                    <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                    ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
+                </tr>
+              </table>
+              <br>
+              <h2 stlye = 'text-align: center'> Markham </h2>
+              <hr>
+              <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+                 <tr>
+                  <th style = "text-align: center">RID</th>
+                  <th style = "text-align: center">RANK</th>
+                  <th style = "text-align: center">START TIME</th>
+                  <th style = "text-align: center">END TIME</th>
+                  <th style = "text-align: center">ZONE</th>
+                  <th style = "text-align: center">EDIT</th>
+                 </tr>
+                 <tr ng-repeat="(id, ad) in adc.mkLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+                    <td>{{ad.rid}}</td>
+                    <td>{{ad.rank}}</td>
+                    <td>{{ad.start_date}}</td>
+                    <td>{{ad.end_date}}</td>
+                    <td>{{ad.zone}}</td>
+                    <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+                    <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+                    <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+                    <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+                    <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+                    <td ng-if = "role =='SETTLE'" >
+                      <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                      ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
+                  </tr>
+                </table>
+                <br>
+                <h2 stlye = 'text-align: center'> Downtown </h2>
+                <hr>
+                <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+                   <tr>
+                    <th style = "text-align: center">RID</th>
+                    <th style = "text-align: center">RANK</th>
+                    <th style = "text-align: center">START TIME</th>
+                    <th style = "text-align: center">END TIME</th>
+                    <th style = "text-align: center">ZONE</th>
+                    <th style = "text-align: center">EDIT</th>
+                   </tr>
+                   <tr ng-repeat="(id, ad) in adc.dtLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+                      <td>{{ad.rid}}</td>
+                      <td>{{ad.rank}}</td>
+                      <td>{{ad.start_date}}</td>
+                      <td>{{ad.end_date}}</td>
+                      <td>{{ad.zone}}</td>
+                      <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+                      <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+                      <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+                      <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+                      <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+                      <td ng-if = "role =='SETTLE'" >
+                        <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                        ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
+                    </tr>
+                  </table>
+                  <br>
+                  <h2 stlye = 'text-align: center'> Mississauga </h2>
+                  <hr>
+                  <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
+                     <tr>
+                      <th style = "text-align: center">RID</th>
+                      <th style = "text-align: center">RANK</th>
+                      <th style = "text-align: center">START TIME</th>
+                      <th style = "text-align: center">END TIME</th>
+                      <th style = "text-align: center">ZONE</th>
+                      <th style = "text-align: center">EDIT</th>
+                     </tr>
+                     <tr ng-repeat="(id, ad) in adc.miLists| filter: adc.search |filter: closeSelect|filter: areaSelect">
+                        <td>{{ad.rid}}</td>
+                        <td>{{ad.rank}}</td>
+                        <td>{{ad.start_date}}</td>
+                        <td>{{ad.end_date}}</td>
+                        <td>{{ad.zone}}</td>
+                        <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rid" size ="18"></td>
+                        <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.rank" size ="18"></td>
+                        <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.start_time" size ="18"></td>
+                        <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.end_time" size ="18"></td>
+                        <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
+                        <td ng-if = "role =='SETTLE'" >
+                          <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
+                          ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
+                      </tr>
+                    </table>
       </div>
       <div  ng-if ="adc.home"class="table">
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
@@ -62,7 +224,7 @@
           <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
           <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
           <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
-          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
+          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; adc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
           <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
            <tr>
             <th style = "text-align: center">RID</th>
@@ -72,7 +234,7 @@
             <th style = "text-align: center">ZONE</th>
             <th style = "text-align: center">EDIT</th>
            </tr>
-           <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
+           <tr ng-repeat="(id, closeRestaurant) in adc.restaurantLists| filter: adc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
               <td>{{closeRestaurant.rid}}</td>
               <td>{{closeRestaurant.rank}}</td>
               <td>{{closeRestaurant.start_time}}</td>
@@ -85,7 +247,7 @@
               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
               <td ng-if = "role =='SETTLE'" >
                 <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
-                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+                ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
             </tr>
          </table>
       </div>
@@ -97,7 +259,7 @@
           <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
           <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
           <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
-          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
+          <button type="button"  ng-click="areaSelect = '';closeSelect = ''; adc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
           <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
            <tr>
             <th style = "text-align: center">RID</th>
@@ -107,7 +269,7 @@
             <th style = "text-align: center">ZONE</th>
             <th style = "text-align: center">EDIT</th>
            </tr>
-           <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
+           <tr ng-repeat="(id, closeRestaurant) in adc.restaurantLists| filter: adc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
               <td>{{closeRestaurant.rid}}</td>
               <td>{{closeRestaurant.rank}}</td>
               <td>{{closeRestaurant.start_time}}</td>
@@ -120,7 +282,7 @@
               <td ng-if = "driver.isEditing"><input type="text" ng-model="driver.zone" size ="18"></td>
               <td ng-if = "role =='SETTLE'" >
                 <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
-                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+                ng-click ="adc.getCloseInformation(closeRestaurant);"></input></td>
             </tr>
          </table>
       </div>
