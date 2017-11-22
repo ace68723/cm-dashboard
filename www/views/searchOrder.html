@@ -11,19 +11,19 @@
             </div>
             <div class="actions">
                 <a  class="btn btn-circle btn-default dropdown-toggle"
-                    data-hover="dropdown" 
+                    data-hover="dropdown"
                     data-close-others="true"
                     style="font-size: 12px;"
                     data-ng-click="puc.openOrderChange(puc.oid,3,puc.c_addr)"
-                  > 
-                    {{puc.dltype}} 
+                  >
+                    {{puc.dltype}}
                 </a>
-           
+
             </div>
-       
+
         </div>
         <div class="portlet-body order_body">
-             
+
             <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
                 <div class="col-md-2 nonepadding">
@@ -38,7 +38,7 @@
                 <div class="col-md-2 nonepadding">
                      {{puc.deliver}}
                 </div>
-            </div> 
+            </div>
 
             <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
@@ -55,8 +55,8 @@
                     {{puc.dlexp | currency}}
                 </div>
 
-            </div> 
-             
+            </div>
+
             <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
                 <div class="col-md-2 nonepadding">
@@ -71,7 +71,17 @@
                 <div class="col-md-2 nonepadding">
                     {{puc.channel}}
                 </div>
-            </div> 
+            </div>
+            <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                <div class="col-md-2 nonepadding">
+                    商家电话
+                </div>
+                <div class="col-md-5 nonepadding">
+                    {{puc.r_call}}
+                </div>
+
+            </div>
             <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
                 <div class="col-md-2 nonepadding">
@@ -86,7 +96,7 @@
                     订单详情<i class=" icon-note"></i>
                  </div>
 
-            </div> 
+            </div>
     </div>
 </div>
 <div class="modal-footer">

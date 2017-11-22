@@ -61,6 +61,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
       console.log(data)
         popUpCtrl.oid     = data.oid;
         popUpCtrl.cell    = data.cell;
+        popUpCtrl.r_call  = data.r_call;
         popUpCtrl.dltype  = data.dltype;
         popUpCtrl.rrname  = data.rrname;
         popUpCtrl.total   = data.total;

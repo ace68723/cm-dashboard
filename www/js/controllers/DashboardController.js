@@ -9,6 +9,7 @@ angular.module('MetronicApp').controller('DashboardController', function(dashboa
 	auth.authenticaton();
 	DashCtrl.h = window.innerHeight*0.9;
 	DashCtrl.h2 = window.innerHeight*0.9*0.5;
+	DashCtrl.h3 = window.innerHeight*0.9*0.33;
 
 	// console.log("height",DashCtrl.h2);
 	// set sidebar closed and body solid layout mode
