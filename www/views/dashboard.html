@@ -768,7 +768,7 @@
 
        <div class="order_col_box"style="height:{{dc.h}}px;">
          <div  class="portlet order_box "
-           ng-repeat="(id,order) in dc.f_data.confirm_order| filter:{dltype : '送餐'}">
+           ng-repeat="(id,order) in dc.f_data.confirm_order | orderBy:'oid'| filter:{dltype : '送餐'}">
            <div  class="portlet-title order_header darkblue"
              ng-class="{warning:order.warning==1,alert:order.alert==1}">
              <div  class=" order_title"
