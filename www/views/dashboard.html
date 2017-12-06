@@ -768,7 +768,7 @@
 
        <div class="order_col_box"style="height:{{dc.h}}px;">
          <div  class="portlet order_box "
-           ng-repeat="(id,order) in dc.f_data.confirm_order| filter:{dltype : '送餐'}">
+           ng-repeat="(id,order) in dc.f_data.confirm_order | orderBy:'oid'| filter:{dltype : '送餐'}">
            <div  class="portlet-title order_header darkblue"
              ng-class="{warning:order.warning==1,alert:order.alert==1}">
              <div  class=" order_title"
@@ -888,160 +888,25 @@
 		   <div class="item item-divider"style="text-align: center;height: 39px;font-size: 21px;padding: 5px;background-color: #5c9bd1;color: #ffffff;">
 			  Drivers
 		   </div>
-			 <div class="panel panel-default"
-					ng-repeat="(id,deliver) in dc.f_data.delivers |filter:{driver_id : '408'}"
-					overflow="hidden"
-					style="margin-top: 0px;
-					margin-bottom:0px;
-					">
-						<div class=" driver_heading" style = 'background-color: #32c5d2;'>
-						 <h4 class="panel-title">
-						 <a class="accordion-toggle collapsed"
-								data-toggle="collapse"
-								data-parent="#accordion3"
-								href="#{{id}}"
-								aria-expanded="false">
-						 <span style="float: left;font-size: 29px;margin-top: 0px;padding-right: 10px;">+</span>
-						 <span style="line-height: 20px;font-weight: 800;">
-							 {{deliver.name}}
-						 </span>
-						 <span ng-if="deliver.orders.length>0"style="float: right;font-weight: 600;">{{deliver.orders.length}}单</span>
-						 <span ng-if="!deliver.orders.length"style="float: right;">0单</span>
-						 <br>
-						 <span style="margin-top:5px;line-height: 20px;">{{deliver.hour}}</span>
-						 <span ng-if="deliver.alert>0" style="line-height: 20px;">超时:{{deliver.alert}}单</span>
-						 </a>
-						 </h4>
-						</div>
-						<div id="{{id}}" class="panel-collapse collapse" aria-expanded="false">
-						 <div class="panel-body"
-								style="padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 11px;">
-							 <div class="portlet-title" style="margin-bottom: 0px;background-color: #4ec49a;color: #ffffff;text-align: center;">
-								 司机电话:{{deliver.cell}}
-							 </div>
-							 <!-- BEGIN ORDER BOX-->
-								 <div class="portlet light"
-										 ng-repeat="order in deliver.orders"
-										 style="margin-bottom: 0px;padding:5px;">
 
-									 <div class="portlet-title"
-											ng-class="{warning:order.warning==1,alert:order.alert==1}"
-											style="margin-bottom: 0px;background-color: #4ec49a;color: #ffffff;">
-											<div class="caption "
-											 style="color:#ffffff;cursor:pointer"
-											 data-ng-click="dc.openMap(order.oid,order.c_lat,order.c_lng,order.r_lat,order.r_lng,order.c_addr)">
-											 <i class="icon-pin" style="color: #ffffff"></i>
-
-											 <span class="caption-subject"style="font-size: 12px;"> {{order.oid}}</span>
-											 <span class="caption-subject"style="font-size: 10px;">   TEL：{{order.cell}}</span>
-											 <!-- <span class="caption-helper">送餐</span> -->
-											</div>
-										 <div class="actions">
-												<a  class="btn btn-circle btn-default dropdown-toggle"
-													data-hover="dropdown"
-													data-close-others="true"
-													style="font-size: 12px;"
-													data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)">
-												{{order.dltype}}
-											 </a>
-
-										 </div>
-									 </div>
-									 <div class="portlet-body"style="font-size: 10px;border-style: solid;border-width: 0px 1px 1px 1px;">
-											<div class="scroller" style="height:auto" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
-											 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-												 <div class="col-md-7 nonepadding">
-												 {{order.rrname}}
-												</div>
-												<div class="col-md-5 nonepadding">
-												 {{order.r_cell}}
-												</div>
-											 </div>
-											 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-												<div class="col-md-2 nonepadding">
-												 总价
-												</div>
-												<div class="col-md-5 nonepadding">
-													{{order.total | currency}}({{order.dlexp | currency}})
-												</div>
-												<div class="col-md-2 nonepadding">
-												 税前
-												</div>
-												<div class="col-md-2 nonepadding">
-												 {{order.pretax | currency}}
-												</div>
-											 </div>
-											 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-												<div class="col-md-2 nonepadding">
-												 状态
-												</div>
-												<div class="col-md-5 nonepadding">
-												 {{order.status_txt}}
-												</div>
-												<div class="col-md-2 nonepadding">
-												 平台
-												</div>
-												<div class="col-md-2 nonepadding">
-												 {{order.channel}}
-												</div>
-											 </div>
-											 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-												<div class="col-md-2 nonepadding">
-												 时间
-												</div>
-												<div class="col-md-5 nonepadding">
-													 {{order.created}}
-												</div>
-												<div 	class="col-md-3 nonepadding "
-													 style="cursor:pointer"
-													 data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
-												 订单详情
-												 <i class=" icon-note" >
-												 </i>
-												</div>
-											 </div>
-											 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-					 <div class="col-md-2 nonepadding">
-						 客人地址
-					 </div>
-					 <div class="col-md-6 nonepadding">
-							{{order.c_addr}}
-						</div>
-				 </div>
-											 <div class="row"style="margin-left: 0px;margin-right: -5px;">
-
-												 <div class="col-md-2 nonepadding">
-													 备注
-												 </div>
-												 <div class="col-md-6 nonepadding">
-														{{order.comment}}
-													</div>
-											 </div>
-											</div>
-									 </div>
-								 </div>
-							 <!-- END ORDER BOX-->
-
-						 </div>
-					</div>
-			 </div>
 		   <!-- BEGIN 司机  -->
 		   <div style="height: {{dc.h}}px; width : 100%;border:0px ; overflow:auto">
+
 			  <div class="portlet-body">
 				 <div class="panel-group accordion" id="accordion3">
           <div class="btn-group btn-group-circle btn-group-justified"
 					 			style="margin-top: 14px;margin-bottom: 10px;"
 					      ng-init="selectedArea.area = 'ny'">
-               <a  ng-class="{'active':selectedArea.area == 'ny'}" ng-click="selectedArea = {area: 'ny'}" class=" btn green btn-outline"> NY </a>
-               <a  ng-class="{'active':selectedArea.area == 'sc'}" ng-click="selectedArea = {area: 'sc'}"class="btn green btn-outline"> SC </a>
-							 <a  ng-class="{'active':selectedArea.area == 'mh'}" ng-click="selectedArea = {area: 'mh'}"class="btn green btn-outline"> MH </a>
-							 <a  ng-class="{'active':selectedArea.area == 'rh'}" ng-click="selectedArea = {area: 'rh'}"class="btn green btn-outline"> RH </a>
-               <a  ng-class="{'active':selectedArea.area == 'dt'}" ng-click="selectedArea = {area: 'dt'}"class="btn green btn-outline"> DT </a>
-			         <a  ng-class="{'active':selectedArea.area == 'mi'}" ng-click="selectedArea = {area: 'mi'}"class="btn green btn-outline"> MI </a>
+							 <a  ng-class="{'active':selectedRR.driver_id == '408'}" ng-click="selectedRR = {driver_id: '408'};selectedArea = ''" class=" btn green btn-outline"> EB </a>
+               <a  ng-class="{'active':selectedArea.area == 'ny'}" ng-click="selectedArea = {area: 'ny'};selectedRR ='';" class=" btn green btn-outline"> NY </a>
+							 <a  ng-class="{'active':selectedArea.area == 'rh'}" ng-click="selectedArea = {area: 'rh'};selectedRR ='';"class="btn green btn-outline"> RH </a>
+               <a  ng-class="{'active':selectedArea.area == 'sc'}" ng-click="selectedArea = {area: 'sc'};selectedRR ='';"class="btn green btn-outline"> SC </a>
+							 <a  ng-class="{'active':selectedArea.area == 'mh'}" ng-click="selectedArea = {area: 'mh'};selectedRR ='';"class="btn green btn-outline"> MH </a>
+               <a  ng-class="{'active':selectedArea.area == 'dt'}" ng-click="selectedArea = {area: 'dt'};selectedRR ='';"class="btn green btn-outline"> DT </a>
+			         <a  ng-class="{'active':selectedArea.area == 'mi'}" ng-click="selectedArea = {area: 'mi'};selectedRR ='';"class="btn green btn-outline"> MI </a>
           </div>
 					<div class="panel panel-default"
-						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:['off' , 'orders.length'] |filter:selectedArea"
+						 ng-repeat="(id,deliver) in dc.f_data.delivers | orderBy:['off' , 'orders.length'] |filter:selectedArea|filter:selectedRR"
 						 overflow="hidden"
 						 style="margin-top: 0px;">
 						   <div class=" driver_heading" >
