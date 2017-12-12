@@ -1,4 +1,4 @@
-<div class="row"  style="height:{{clc.height}}px;overflow:scroll;">
+<div class="row"  style="height:{{clc.height}}px; overflow:scroll;">
   <div class="content">
     <div class="restaurant">
       <p>Search {{singleSelect}}</p>
@@ -24,27 +24,35 @@
           <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
           <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
           <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
+          <input  ng-if = "role == 'SETTLE'" type="image" class="add_new" src="./views/icon/icon-schedule.png"
+            ng-click ="clc.popLarge();clc.new = true;" style="height:50px;margin-left:30%"></input>
            <tr>
             <th style = "text-align: center">RID</th>
             <th style = "text-align: center">NAME</th>
-            <th style = "text-align: center">ADDRESS</th>
             <th style = "text-align: center">TELEPHONE</th>
             <th style = "text-align: center">TELEPHONE2</th>
-            <th style = "text-align: center">OPEN HOUR</th>
-            <th style = "text-align: center">AREA</th>
-            <th ng-if = "role == 'SETTLE'" style = "text-align: center">EDIT</th>
+            <th style = "text-align: center">详细信息</th>
+            <th ng-if = "role == 'SETTLE'" style = "text-align: center">财务信息</th>
+            <th ng-if = "role == 'SETTLE'" style = "text-align: center">关店</th>
+            <th ng-if = "role == 'SETTLE'" style = "text-align: center">夜宵</th>
            </tr>
            <tr ng-repeat="(id, closeRestaurant) in clc.restaurantLists| filter: clc.search |filter: closeSelect|filter: areaSelect| orderBy:'-close_id'">
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">{{closeRestaurant.rid}}</td>
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.name}}</td>
-              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.address}}</td>
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.tel}}</td>
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.tel2}}</td>
-              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.hour}}</td>
-              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" > {{closeRestaurant.area}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
+                <input type="image" class="table-edit"  src="./views/icon/icon-home.png"
+                  ng-click ="clc.getResDetail(closeRestaurant);clc.popLarge();clc.details = true;"></input></td>
               <td ng-if = "role =='SETTLE'" ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
-                <input type="image" class="table-edit" src="./views/icon/icon-edit.png"
-                ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+                <input type="image" class="table-edit" src="./views/icon/icon-schedule.png"
+                  ng-click ="clc.getResDetailFinance(closeRestaurant);clc.popLarge();clc.finance = true;"></input></td>
+              <td ng-if = "role =='SETTLE'" ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
+                <input type="image" class="table-edit" src="./views/icon/icon-calendar.png"
+                  ng-click ="clc.getCloseInformation(closeRestaurant);"></input></td>
+              <td ng-if = "role =='SETTLE'" ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
+                <input type="image" class="table-edit" src="./views/icon/icon-restaurant.png"
+                  ng-click ="clc.getLateNight(closeRestaurant);clc.popLarge();clc.lateNight = true;"></input></td>
             </tr>
          </table>
       </div>
@@ -82,7 +90,7 @@
         </div>
       </div>
       <!--  END DATETIME PICKER-->
-      <div ng-if = "clc.pop"class="res-pop-btn">
+      <div ng-if = "clc.pop"class="res-pop-btn" style = 'margin-bottom: 20px;'>
           <button type="button" class="btn-add" ng-click = "clc.confrimAdd1()">Add</button>
           <button type="button" class="btn-cancel" ng-click = "clc.closePop()">Cancel</button>
       </div>
@@ -119,5 +127,401 @@
       </div>
       <!--  END HISTORY TABLE-->
 
+  </div>
+  <div id="dri-pop">
+    <div ng-if = 'clc.details'>
+      <table border="1" style="font-size:15px;line-height: 40px;text-align:center;margin-top:80px;margin-bottom: 20px;">
+        <tr>
+          <td style="width:150px">餐馆ID</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.rid}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.rid" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">餐馆LOGO ID</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.logo_id}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.logo_id" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆名字</td>
+          <td style="width:150px" colspan="3" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.name}}</td>
+          <td ng-if = 'clc.detailEditing' colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.name" size = '20' style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆地址</td>
+          <td style="width:150px" colspan="3" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.addr}}</td>
+          <td ng-if = 'clc.detailEditing' colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.addr" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆电话</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.tel1}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.tel1" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">备用电话</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.tel2}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.tel2" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆介绍</td>
+          <td style="width:150px" colspan="3" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.desc}}</td>
+          <td ng-if = 'clc.detailEditing' colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.desc" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆邮编</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.postal}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.postal" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">apartment号</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.apt_no}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.apt_no" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆区域</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.zone}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <select ng-model="clc.restaurantDetail.area">{{clc.restaurantDetail.zone}}
+               <option ng-repeat="option in clc.areaOptions" value = "{{option.name}}">
+                 {{option.name}}
+               </option>
+           </select>
+          </td>
+
+          <td style="width:150px">banner图片ID</td>
+          <td style="width:150px" ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.mob_banner}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.mob_banner" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td>起始金额</td>
+          <td ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.start_amount}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.start_amount" style = "border-radius: 10px;">
+          </td>
+          <td>餐馆状态</td>
+          <td ng-if = '!clc.detailEditing'>{{clc.restaurantDetail.status}}</td>
+          <td ng-if = 'clc.detailEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetail.status" style = "border-radius: 10px;">
+          </td>
+        </tr>
+      </table>
+      <button ng-if = "role == 'SETTLE'" ng-click = "clc.detailEditing = true"
+              class="btn btn-circle red btn-outline">
+              Edit
+      </button>
+      <button ng-if = "role == 'SETTLE'" ng-click = "clc.editResDetail()"
+      class="btn btn-circle red btn-outline">
+      Save
+      </button>
+      <button ng-if = "role == 'SETTLE'" ng-click = "clc.detailEditing = false"
+              class="btn btn-circle green btn-outline">
+              Cancel
+      </button>
+    </div>
+    <div ng-if = 'clc.finance'>
+      <table border="1" style="font-size:15px;line-height: 40px;text-align:center;margin-top:80px; margin-bottom: 20px;">
+        <tr>
+          <td style="width:150px">餐馆ID</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.rid}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.rid" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">汇率</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.rate}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.rate" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">商家注册名字</td>
+          <td style="width:150px" colspan="3" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bname}}</td>
+          <td ng-if = 'clc.financeEditing' colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bname" size = '20' style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">GST</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.gst}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.gst" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">老板UID</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.owner}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.owner" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">邮箱</td>
+          <td style="width:150px" colspan="3" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.email}}</td>
+          <td ng-if = 'clc.financeEditing' colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.email" style = "border-radius: 10px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td style="width:150px">银行名字</td>
+          <td style="width:150px" colspan="3" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_name}}</td>
+          <td ng-if = 'clc.financeEditing' colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bank_name" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">银行institute 号码</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_instit}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bank_instit" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">银行账户</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_account}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bank_account" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">付款方式</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.pay_method}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.pay_method" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">付款周期</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.pay_cycle}}</td>
+          <td ng-if = 'clc.financeEditing'>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.pay_cycle" style = "border-radius: 10px;">
+          </td>
+        </tr>
+      </table>
+      <button ng-click = "clc.financeEditing = true"
+              class="btn btn-circle red btn-outline">
+              Edit
+      </button>
+
+      <button ng-click = "clc.editResDetailFinance();clc.financeEditing = false"
+              class="btn btn-circle red btn-outline">
+              SAVE
+      </button>
+
+      <button ng-click = "clc.financeEditing = false;clc.closePop()"
+              class="btn btn-circle green btn-outline">
+              Cancel
+      </button>
+
+    </div>
+    <div ng-if = 'clc.new' style = 'overflow:scroll'>
+      <table border="1" style="font-size:15px;line-height: 40px;text-align:center;margin-top:80px; margin-bottom: 20px;">
+        <tr>
+          <td style="width:150px">佣金</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.rate" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">餐馆LOGO ID</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.logo_id" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆名字</td>
+          <td colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.name" size = '20' style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆地址</td>
+          <td colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.addr" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆电话</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.tel1" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">备用电话</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.tel2" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆介绍</td>
+          <td colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.desc" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆邮编</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.postal" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">apartment号</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.apt_no" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆区域</td>
+          <td>
+            <select ng-model="clc.newRestaurant.zone">
+             <option ng-repeat="option in clc.areaOptions" value = "{{option.name}}">
+               {{option.name}}
+             </option>
+            </select>
+          </td>
+          <td style="width:150px">banner图片ID</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.mob_banner" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td>老板UID</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.owner" style = "border-radius: 10px;">
+          </td>
+          <td>餐馆状态</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.status" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">商家注册名字</td>
+          <td colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bname" size = '20' style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td>邮箱</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.owner" style = "border-radius: 10px;">
+          </td>
+          <td>银行名字</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_name" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td>银行branch号码</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_instit" style = "border-radius: 10px;">
+          </td>
+          <td>银行账户号码</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_account" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td>付款方式</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.pay_method" style = "border-radius: 10px;">
+          </td>
+          <td>付款周期</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.pay_cycle" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
+          <td style="width:150px">备注</td>
+          <td colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.comment" size = '20' style = "border-radius: 10px;">
+          </td>
+        </tr>
+      </table>
+      <button ng-click = "clc.addNewRestaurant()"
+      class="btn btn-circle red btn-outline">
+      Save
+      </button>
+      <button ng-click = "clc.closePop()"
+              class="btn btn-circle green btn-outline">
+              Cancel
+      </button>
+    </div>
+    <div ng-if = 'clc.lateNight'>
+      <h1 style="text-align: center">{{clc.name}}</h1>
+      <div class="table">
+        <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro">
+          <tr>
+           <th style = "text-align: center">RID</th>
+           <th style = "text-align: center">开始时间</th>
+           <th style = "text-align: center">结束时间</th>
+           <th style = "text-align: center">日期</th>
+           <th style = "text-align: center">EDIT</th>
+           <th style = "text-align: center">SAVE</th>
+           <th style = "text-align: center">CANCEL</th>
+          </tr>
+          <tr ng-repeat="(id, lateNightinfo) in clc.lateNightInformation">
+             <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.rid}}</td>
+             <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.etime}}</td>
+             <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.stime}}</td>
+             <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.weekday}}</td>
+             <td ng-if = "lateNightinfo.isEditing"><input type="text" size = '10' ng-model = "lateNightinfo.rid"> </td>
+             <td ng-if = "lateNightinfo.isEditing"><input type="text" size = '10' ng-model = "lateNightinfo.etime"></td>
+             <td ng-if = "lateNightinfo.isEditing"><input type="text" size = '10' ng-model = "lateNightinfo.stime"></td>
+             <td ng-if = "lateNightinfo.isEditing"><input type="text" size = '10' ng-model = "lateNightinfo.weekday"> </td>
+             <td>
+               <button ng-click = "clc.startEditing(lateNightinfo)"
+                       class="btn btn-circle red btn-outline">
+                       Edit
+               </button>
+             </td>
+             <td>
+               <button ng-click = "clc.editLateNight(lateNightinfo)"
+                     class="btn btn-circle yellow btn-outline">
+                     SAVE
+               </button>
+              </td>
+              <td>
+                <button ng-click = "clc.cancelEditing(lateNightinfo)"
+                        class="btn btn-circle green btn-outline">
+                        Cancel
+                </button>
+              </td>
+           </tr>
+        </table>
+      </div>
+      <button ng-click = "clc.add = true;"
+              class="btn btn-circle purple btn-outline">
+              添加夜宵
+      </button>
+      <div ng-if = 'clc.add' class="table">
+        <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro">
+          <tr>
+           <th style = "text-align: center">RID</th>
+           <th style = "text-align: center">开始时间</th>
+           <th style = "text-align: center">结束时间</th>
+           <th style = "text-align: center">日期</th>
+           <th style = "text-align: center">SAVE</th>
+           <th style = "text-align: center">CANCEL</th>
+          </tr>
+          <tr ng-repeat="(id, lateNightinfo) in clc.newLateNightInfo">
+             <td><input type="text" size = '10' ng-model = "lateNightinfo.rid"> </td>
+             <td><input type="text" size = '10' ng-model = "lateNightinfo.etime"></td>
+             <td><input type="text" size = '10' ng-model = "lateNightinfo.stime"></td>
+             <td><input type="text" size = '10' ng-model = "lateNightinfo.weekday"> </td>
+             <td>
+               <button ng-click = "clc.addLateNight(lateNightinfo)"
+                     class="btn btn-circle yellow btn-outline">
+                     SAVE
+               </button>
+              </td>
+              <td>
+                <button ng-click = "clc.add = false;"
+                        class="btn btn-circle green btn-outline">
+                        Cancel
+                </button>
+              </td>
+           </tr>
+        </table>
+      </div>
   </div>
 </div>

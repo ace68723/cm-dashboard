@@ -115,6 +115,8 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
 MetronicApp.constant("API_URL", "https://chanmao.ca/index.php?r=");
 //new api API2_URL product
 MetronicApp.constant("API2_URL", "https://chanmao.us/api/v1/");
+MetronicApp.constant("API3_URL", "https://chanmao.us/api/v1/");
+
 //Important! API2_URL test
 // MetronicApp.constant("API2_URL", "http://test.norgta.com/public/api/v1/");
 // MetronicApp.constant("API2_URL", "https://chanmao.us/api/v1/");
