@@ -31,6 +31,7 @@
             <th style = "text-align: center">NAME</th>
             <th style = "text-align: center">TELEPHONE</th>
             <th style = "text-align: center">TELEPHONE2</th>
+            <th style = "text-align: center">营业时间</th>            
             <th style = "text-align: center">详细信息</th>
             <th ng-if = "role == 'SETTLE'" style = "text-align: center">财务信息</th>
             <th ng-if = "role == 'SETTLE'" style = "text-align: center">关店</th>
@@ -41,6 +42,7 @@
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.name}}</td>
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.tel}}</td>
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }" >{{closeRestaurant.tel2}}</td>
+              <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">{{closeRestaurant.hour}}</td>              
               <td ng-style="closeRestaurant.status === 1 ? { 'height':'auto', 'background-color':'lightgrey' } : { 'height': 'auto' }">
                 <input type="image" class="table-edit"  src="./views/icon/icon-home.png"
                   ng-click ="clc.getResDetail(closeRestaurant);clc.popLarge();clc.details = true;"></input></td>
@@ -452,7 +454,7 @@
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro">
           <tr>
            <th style = "text-align: center">RID</th>
-           <th style = "text-align: center">开始时间</th>
+           <th style = "text-align: center">开始时间</th>           
            <th style = "text-align: center">结束时间</th>
            <th style = "text-align: center">日期</th>
            <th style = "text-align: center">EDIT</th>
@@ -461,8 +463,8 @@
           </tr>
           <tr ng-repeat="(id, lateNightinfo) in clc.lateNightInformation">
              <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.rid}}</td>
+             <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.stime}}</td>             
              <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.etime}}</td>
-             <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.stime}}</td>
              <td ng-if = "!lateNightinfo.isEditing">{{lateNightinfo.weekday}}</td>
              <td ng-if = "lateNightinfo.isEditing"><input type="text" size = '10' ng-model = "lateNightinfo.rid"> </td>
              <td ng-if = "lateNightinfo.isEditing"><input type="text" size = '10' ng-model = "lateNightinfo.etime"></td>
