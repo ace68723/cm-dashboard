@@ -133,15 +133,15 @@ clc.getResDetail = function(closeRestaurant){
         _.forEach(clc.restaurantDetail, function() {
           if (clc.restaurantDetail.area == 1) {
             clc.restaurantDetail.zone = "SC";
-          } else if (clc.restaurantDetail.area == 3) {
+          } else if (clc.restaurantDetail.area == 6) {
             clc.restaurantDetail.zone =  "DT";
           } else if (clc.restaurantDetail.area == 2) {
             clc.restaurantDetail.zone = "NY";
-          } else if (clc.restaurantDetail.area == 4) {
+          } else if (clc.restaurantDetail.area == 10) {
             clc.restaurantDetail.zone = "MI";
-          } else if (clc.restaurantDetail.area == 5) {
+          } else if (clc.restaurantDetail.area == 4) {
             clc.restaurantDetail.zone =  "MH";
-          } else if (clc.restaurantDetail.area == 6 ) {
+          } else if (clc.restaurantDetail.area == 3) {
             clc.restaurantDetail.zone ="RH" ;
           }
         });
@@ -157,15 +157,15 @@ clc.getResDetail = function(closeRestaurant){
     if (clc.restaurantDetail.area == "SC") {
       clc.restaurantDetail.area = 1;
     } else if (clc.restaurantDetail.area == "DT") {
-      clc.restaurantDetail.area = 3;
+      clc.restaurantDetail.area = 6;
     } else if (clc.restaurantDetail.area == "NY") {
       clc.restaurantDetail.area = 2;
     } else if (clc.restaurantDetail.area == "MI") {
-      clc.restaurantDetail.area = 4;
+      clc.restaurantDetail.area = 10;
     } else if (clc.restaurantDetail.area == "MH") {
-      clc.restaurantDetail.area = 5;
+      clc.restaurantDetail.area = 4;
     } else if (clc.restaurantDetail.area == "RH") {
-      clc.restaurantDetail.area = 6;
+      clc.restaurantDetail.area = 3;
     }
     cls.editResDetail(clc.restaurantDetail)
     .then(clc.getResDetail(clc.restaurantDetail))
