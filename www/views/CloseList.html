@@ -24,8 +24,9 @@
           <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
           <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
           <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
-          <input  ng-if = "role == 'SETTLE'" type="image" class="add_new" src="./views/icon/icon-schedule.png"
-            ng-click ="clc.popLarge();clc.new = true;" style="height:50px;margin-left:30%"></input>
+          <image  ng-if = "role == 'SETTLE'" type="image" class="add_new" src="./views/icon/icon-schedule.png"
+            ng-click ="clc.popLarge();clc.new = true;" style="height:40px;margin-left:20px">
+          </image>
            <tr>
             <th style = "text-align: center">RID</th>
             <th style = "text-align: center">NAME</th>
@@ -323,17 +324,8 @@
 
     </div>
     <div ng-if = 'clc.new' style = 'overflow:scroll'>
-      <table border="1" style="font-size:15px;line-height: 40px;text-align:center;margin-top:80px; margin-bottom: 20px;">
-        <tr>
-          <td style="width:150px">佣金</td>
-          <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.rate" style = "border-radius: 10px;">
-          </td>
-          <td style="width:150px">餐馆LOGO ID</td>
-          <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.logo_id" style = "border-radius: 10px;">
-          </td>
-        </tr>
+      <table border="1" style="font-size:15px;line-height: 40px;text-align:center;margin-top:20px; margin-bottom: 20px;">
+       
         <tr>
           <td style="width:150px">餐馆名字</td>
           <td colspan="3">
@@ -347,6 +339,12 @@
           </td>
         </tr>
         <tr>
+          <td style="width:150px">餐馆介绍</td>
+          <td colspan="3">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.desc" style = "border-radius: 10px;">
+          </td>
+        </tr>
+        <tr>
           <td style="width:150px">餐馆电话</td>
           <td>
             <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.tel1" style = "border-radius: 10px;">
@@ -357,29 +355,37 @@
           </td>
         </tr>
         <tr>
-          <td style="width:150px">餐馆介绍</td>
-          <td colspan="3">
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.desc" style = "border-radius: 10px;">
-          </td>
-        </tr>
-        <tr>
-          <td style="width:150px">餐馆邮编</td>
+          <td style="width:150px">佣金</td>
           <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.postal" style = "border-radius: 10px;">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.rate" style = "border-radius: 10px;">
           </td>
           <td style="width:150px">apartment号</td>
           <td>
             <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.apt_no" style = "border-radius: 10px;">
           </td>
+          
         </tr>
+       
+        
         <tr>
-          <td style="width:150px">餐馆区域</td>
+          <td style="width:150px">餐馆邮编</td>
           <td>
-            <select ng-model="clc.newRestaurant.zone">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.postal" style = "border-radius: 10px;">
+          </td>
+          <td style="width:150px">餐馆区域{{clc.newRestaurant.area}}</td>
+          <td>
+            <select ng-model="clc.newRestaurant.area">
              <option ng-repeat="option in clc.areaOptions" value = "{{option.name}}">
                {{option.name}}
              </option>
             </select>
+          </td>
+          
+        </tr>
+        <tr>
+          <td style="width:150px">餐馆LOGO ID</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.logo_id" style = "border-radius: 10px;">
           </td>
           <td style="width:150px">banner图片ID</td>
           <td>
@@ -405,17 +411,21 @@
         <tr>
           <td>邮箱</td>
           <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.owner" style = "border-radius: 10px;">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.email" style = "border-radius: 10px;">
           </td>
           <td>银行名字</td>
           <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_name" style = "border-radius: 10px;">
+            <select ng-model="clc.newRestaurant.bank_name">
+              <option ng-repeat="option in clc.bankOptions" value = "{{option.name}}">
+                {{option.bankName}}
+              </option>
+            </select>
           </td>
         </tr>
         <tr>
           <td>银行branch号码</td>
           <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_instit" style = "border-radius: 10px;">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_transit" style = "border-radius: 10px;">
           </td>
           <td>银行账户号码</td>
           <td>
@@ -498,7 +508,6 @@
       <div ng-if = 'clc.add' class="table">
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro">
           <tr>
-           <th style = "text-align: center">RID</th>
            <th style = "text-align: center">开始时间</th>
            <th style = "text-align: center">结束时间</th>
            <th style = "text-align: center">日期</th>
@@ -506,7 +515,6 @@
            <th style = "text-align: center">CANCEL</th>
           </tr>
           <tr ng-repeat="(id, lateNightinfo) in clc.newLateNightInfo">
-             <td><input type="text" size = '10' ng-model = "lateNightinfo.rid"> </td>
              <td><input type="text" size = '10' ng-model = "lateNightinfo.etime"></td>
              <td><input type="text" size = '10' ng-model = "lateNightinfo.stime"></td>
              <td><input type="text" size = '10' ng-model = "lateNightinfo.weekday"> </td>
