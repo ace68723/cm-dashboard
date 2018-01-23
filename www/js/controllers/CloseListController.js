@@ -60,6 +60,8 @@ function($rootScope, $scope, $http, closeListService,$q) {
         clc.pop = true;
         clc.name = closeRestaurant.name;
         closeRestaurant.rid = parseInt(closeRestaurant.rid, 10);
+        clc.lateNightRid = closeRestaurant.rid
+        console.log(clc.lateNightRid)
         setTimeout(function(){
           cls.getLateNight(closeRestaurant.rid)
           .then((result)=>{
@@ -72,7 +74,8 @@ function($rootScope, $scope, $http, closeListService,$q) {
         },200);
   };
   clc.addLateNight = function(lateNightinfo) {
-    lateNightinfo.rid = parseInt(lateNightinfo.rid, 10);
+    lateNightinfo.rid = clc.lateNightRid
+    console.log(lateNightinfo.rid)
     lateNightinfo.weekday = parseInt(lateNightinfo.weekday, 10);
     cls.addLateNight(lateNightinfo)
     .then(clc.getLateNight(lateNightinfo)
@@ -133,15 +136,15 @@ clc.getResDetail = function(closeRestaurant){
         _.forEach(clc.restaurantDetail, function() {
           if (clc.restaurantDetail.area == 1) {
             clc.restaurantDetail.zone = "SC";
-          } else if (clc.restaurantDetail.area == 3) {
+          } else if (clc.restaurantDetail.area == 6) {
             clc.restaurantDetail.zone =  "DT";
           } else if (clc.restaurantDetail.area == 2) {
             clc.restaurantDetail.zone = "NY";
-          } else if (clc.restaurantDetail.area == 4) {
+          } else if (clc.restaurantDetail.area == 10) {
             clc.restaurantDetail.zone = "MI";
-          } else if (clc.restaurantDetail.area == 5) {
+          } else if (clc.restaurantDetail.area == 4) {
             clc.restaurantDetail.zone =  "MH";
-          } else if (clc.restaurantDetail.area == 6 ) {
+          } else if (clc.restaurantDetail.area == 3) {
             clc.restaurantDetail.zone ="RH" ;
           }
         });
@@ -157,15 +160,15 @@ clc.getResDetail = function(closeRestaurant){
     if (clc.restaurantDetail.area == "SC") {
       clc.restaurantDetail.area = 1;
     } else if (clc.restaurantDetail.area == "DT") {
-      clc.restaurantDetail.area = 3;
+      clc.restaurantDetail.area = 6;
     } else if (clc.restaurantDetail.area == "NY") {
       clc.restaurantDetail.area = 2;
     } else if (clc.restaurantDetail.area == "MI") {
-      clc.restaurantDetail.area = 4;
+      clc.restaurantDetail.area = 10;
     } else if (clc.restaurantDetail.area == "MH") {
-      clc.restaurantDetail.area = 5;
+      clc.restaurantDetail.area = 4;
     } else if (clc.restaurantDetail.area == "RH") {
-      clc.restaurantDetail.area = 6;
+      clc.restaurantDetail.area = 3;
     }
     cls.editResDetail(clc.restaurantDetail)
     .then(clc.getResDetail(clc.restaurantDetail))
@@ -334,13 +337,43 @@ clc.getResDetail = function(closeRestaurant){
      });
      }
   };
+  clc.newRestaurant = {
+    "name": "",
+    "desc": "",
+    "area": "",
+    "logo_id": "000",
+    "postal": "",
+    "tel1": "",
+    "tel2": "",
+    "province": "1",
+    "prvn": "ON",
+    "addr": "",
+    "apt_no": "",
+    "start_amount": 0,
+    "mob_banner": "",
+    "status": 1,
+    "rate":"",
+    "fbid":3,
+    "bname":"",
+    "owner":0,
+    "bank_transit": "",
+    "email":"",
+    "bank_name":"",
+    "bank_instit": "",
+    "bank_account":"",
+    "comment":"",
+    "pay_method":"",
+    "pay_cycle":"0"
+};
   clc.addNewRestaurant = function(){
+    console.log(clc.newRestaurant.area);
     if (clc.newRestaurant.area == "SC") {
       clc.newRestaurant.area = 1;
     } else if (clc.newRestaurant.area == "DT") {
       clc.newRestaurant.area = 3;
     } else if (clc.newRestaurant.area == "NY") {
       clc.newRestaurant.area = 2;
+      console.log(clc.newRestaurant.area);
     } else if (clc.newRestaurant.area == "MI") {
       clc.newRestaurant.area = 4;
     } else if (clc.newRestaurant.area == "MH") {
@@ -348,6 +381,28 @@ clc.getResDetail = function(closeRestaurant){
     } else if (clc.newRestaurant.area == "RH") {
       clc.newRestaurant.area = 6;
     }
+    if (clc.newRestaurant.bank_name == "BMO") {
+      clc.newRestaurant.bank_instit = 0001;
+    } else if (clc.newRestaurant.bank_name == "Scotiabank") {
+      clc.newRestaurant.bank_instit = 0002;
+    } else if (clc.newRestaurant.bank_name == "RBC") {
+      clc.newRestaurant.bank_instit = 0003;
+    } else if (clc.newRestaurant.bank_name == "TD") {
+      clc.newRestaurant.bank_instit = 0004;
+    } else if (clc.newRestaurant.bank_name == "National Bank of China") {
+      clc.newRestaurant.bank_instit = 0006;
+    } else if (clc.newRestaurant.bank_name == "CIBC") {
+      clc.newRestaurant.bank_instit = 0010;
+    } else if (clc.newRestaurant.bank_name == "中国银行") {
+      clc.newRestaurant.bank_instit = 0308;
+    } else if (clc.newRestaurant.bank_name == "中国工商银行") {
+      clc.newRestaurant.bank_instit = 0307;
+    } else if (clc.newRestaurant.bank_name == "Shinhan Bank Canada") {
+      clc.newRestaurant.bank_instit = 0355;
+    }
+   clc.newRestaurant.logo_id = parseInt(clc.newRestaurant.logo_id,10);
+   clc.newRestaurant.rate = parseInt(clc.newRestaurant.rate,10);
+   clc.newRestaurant.status = parseInt(clc.newRestaurant.status,10);
    cls.addNewRestaurant(clc.newRestaurant)
    .then(clc.updateRestaurantList())
    .catch(function(error){
@@ -357,33 +412,7 @@ clc.getResDetail = function(closeRestaurant){
 
 // add function end
 // basic function
-  clc.newRestaurant = {
-      "name": "",
-      "desc": "",
-      "area": parseInt("", 10),
-      "logo_id": parseInt("", 10),
-      "postal": "",
-      "tel1": "",
-      "tel2": "",
-      "province": "1",
-      "prvn": "ON",
-      "addr": "",
-      "apt_no": "",
-      "start_amount": 0,
-      "mob_banner": "",
-      "status": 0,
-      "rate":parseInt("", 10),
-      "fbid": parseInt("", 10),
-      "bname":"",
-      "owner":parseInt("", 10),
-      "email":"",
-      "bank_name":"",
-      "bank_instit": "",
-      "bank_account":"",
-      "comment":"",
-      "pay_method":"",
-      "pay_cycle":""
-  };
+  
   clc.cancelEditing = function(closeInformation){
       closeInformation.isEditing = false;
       clc.itemEditing = false;
@@ -458,6 +487,37 @@ clc.getResDetail = function(closeRestaurant){
       "value": "name"
     }
   ];
+  clc.bankOptions = [{
+    "bankName": "BMO",
+    "bankCode": 0001
+  }, {
+    "bankName": "Scotiabank",
+    "bankCode": 0002
+  }, {
+    "bankName": "RBC",
+    "bankCode": 0003
+  }, {
+    "bankName": "TD",
+    "bankCode": 0004
+  }, {
+    "bankName": "CIBC",
+    "bankCode": 0010
+  }, {
+    "bankName": "National Bank of China",
+    "bankCode": 0006
+  }, {
+    "bankName": "中国银行",
+    "bankCode": 0308
+  }, {
+    "bankName": "中国工商银行",
+    "bankCode": 0307
+  },{
+    "bankName": "Shinhan Bank Canada",
+    "bankCode": 0355
+  },{
+    "bankName":''
+  }
+];
   clc.startEditing = function(lateNightinfo) {
    if (!lateNightinfo.isEditing) {
     lateNightinfo.isEditing = true;
