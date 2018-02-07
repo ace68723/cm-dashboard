@@ -279,14 +279,18 @@
           <td style="width:150px">银行名字</td>
           <td style="width:150px" colspan="3" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_name}}</td>
           <td ng-if = 'clc.financeEditing' colspan="3">
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bank_name" style = "border-radius: 10px;">
+              <select ng-model="clc.restaurantDetailFinance.bank_name">
+                  <option ng-repeat="option in clc.bankOptions" value = "{{option.bankName}}">
+                    {{option.bankName}}
+                  </option>
+              </select>
           </td>
         </tr>
         <tr>
-          <td style="width:150px">银行institute 号码</td>
-          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_instit}}</td>
+          <td style="width:150px">银行Transit号码</td>
+          <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_transit}}</td>
           <td ng-if = 'clc.financeEditing'>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bank_instit" style = "border-radius: 10px;">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.restaurantDetailFinance.bank_transit" style = "border-radius: 10px;">
           </td>
           <td style="width:150px">银行账户</td>
           <td style="width:150px" ng-if = '!clc.financeEditing'>{{clc.restaurantDetailFinance.bank_account}}</td>
@@ -416,14 +420,14 @@
           <td>银行名字</td>
           <td>
             <select ng-model="clc.newRestaurant.bank_name">
-              <option ng-repeat="option in clc.bankOptions" value = "{{option.name}}">
+              <option ng-repeat="option in clc.bankOptions" value = "{{option.bankName}}">
                 {{option.bankName}}
               </option>
             </select>
           </td>
         </tr>
         <tr>
-          <td>银行branch号码</td>
+          <td>银行Transit号码</td>
           <td>
             <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.bank_transit" style = "border-radius: 10px;">
           </td>
