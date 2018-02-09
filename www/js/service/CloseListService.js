@@ -351,6 +351,7 @@ angular.module('MetronicApp')
              "iv_owner":newRestaurant.owner,
              "iv_email":newRestaurant.email,
              "iv_bank_name":newRestaurant.bank_name,
+             "iv_bank_transit": newRestaurant.bank_transit,
              "iv_bank_instit": newRestaurant.bank_instit,
              "iv_bank_account":newRestaurant.bank_account,
              "iv_comment":newRestaurant.comment,

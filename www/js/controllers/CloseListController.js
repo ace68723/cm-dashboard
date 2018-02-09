@@ -117,6 +117,25 @@ clc.getResDetailFinance = function(closeRestaurant) {
 };
 clc.editResDetailFinance = function(){
   clc.restaurantDetailFinance.rate = parseInt(clc.restaurantDetailFinance.rate,10);
+  if (clc.restaurantDetailFinance.bank_name == "BMO") {
+    clc.restaurantDetailFinance.bank_instit = 0001;
+  } else if (clc.restaurantDetailFinance.bank_name == "Scotiabank") {
+    clc.restaurantDetailFinance.bank_instit = 0002;
+  } else if (clc.restaurantDetailFinance.bank_name == "RBC") {
+    clc.restaurantDetailFinance.bank_instit = 0003;
+  } else if (clc.restaurantDetailFinance.bank_name == "TD") {
+    clc.restaurantDetailFinance.bank_instit = 0004;
+  } else if (clc.restaurantDetailFinance.bank_name == "National Bank of China") {
+    clc.restaurantDetailFinance.bank_instit = 0006;
+  } else if (clc.restaurantDetailFinance.bank_name == "CIBC") {
+    clc.restaurantDetailFinance.bank_instit = 0010;
+  } else if (clc.restaurantDetailFinance.bank_name == "中国银行") {
+    clc.restaurantDetailFinance.bank_instit = 0308;
+  } else if (clc.restaurantDetailFinance.bank_name == "中国工商银行") {
+    clc.restaurantDetailFinance.bank_instit = 0307;
+  } else if (clc.restaurantDetailFinance.bank_name == "Shinhan Bank Canada") {
+    clc.restaurantDetailFinance.bank_instit = 0355;
+  }
   cls.editResDetailFinance(clc.restaurantDetailFinance)
   .then(clc.getResDetailFinance(clc.restaurantDetailFinance))
   .catch(function(error){
@@ -403,6 +422,7 @@ clc.getResDetail = function(closeRestaurant){
    clc.newRestaurant.logo_id = parseInt(clc.newRestaurant.logo_id,10);
    clc.newRestaurant.rate = parseInt(clc.newRestaurant.rate,10);
    clc.newRestaurant.status = parseInt(clc.newRestaurant.status,10);
+   console.log(clc.newRestaurant)
    cls.addNewRestaurant(clc.newRestaurant)
    .then(clc.updateRestaurantList())
    .catch(function(error){
