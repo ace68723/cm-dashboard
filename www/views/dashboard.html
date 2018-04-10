@@ -912,15 +912,17 @@
 						   <div class=" driver_heading" >
 							  <h4 class="panel-title">
 								<a class="accordion-toggle collapsed"
+								ng-class="{'aactivea':deliver.orders.length >= deliver.threshold}" 
 								   data-toggle="collapse"
 								   data-parent="#accordion3"
 								   href="#{{id}}"
 								   aria-expanded="false">
 								<span style="float: left;font-size: 29px;margin-top: 0px;padding-right: 10px;">+</span>
 								<span style="line-height: 20px;font-weight: 800;">
-									{{deliver.name}}
+									{{deliver.name}}({{deliver.threshold}}) 
 								</span>
-								<span ng-if="deliver.orders.length>0"style="float: right;font-weight: 600;">{{deliver.orders.length}}单</span>
+								<span ng-if="deliver.orders.length>0"style="float: right;font-weight: 600;">
+									{{deliver.orders.length}}单</span>
 								<span ng-if="!deliver.orders.length"style="float: right;">0单</span>
 								<br>
 								<span style="margin-top:5px;line-height: 20px;">{{deliver.hour}}</span>
