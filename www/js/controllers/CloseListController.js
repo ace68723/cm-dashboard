@@ -118,23 +118,23 @@ clc.getResDetailFinance = function(closeRestaurant) {
 clc.editResDetailFinance = function(){
   clc.restaurantDetailFinance.rate = parseInt(clc.restaurantDetailFinance.rate,10);
   if (clc.restaurantDetailFinance.bank_name == "BMO") {
-    clc.restaurantDetailFinance.bank_instit = 0001;
+    clc.restaurantDetailFinance.bank_instit = "0001";
   } else if (clc.restaurantDetailFinance.bank_name == "Scotiabank") {
-    clc.restaurantDetailFinance.bank_instit = 0002;
+    clc.restaurantDetailFinance.bank_instit = "0002";
   } else if (clc.restaurantDetailFinance.bank_name == "RBC") {
-    clc.restaurantDetailFinance.bank_instit = 0003;
+    clc.restaurantDetailFinance.bank_instit = "0003";
   } else if (clc.restaurantDetailFinance.bank_name == "TD") {
-    clc.restaurantDetailFinance.bank_instit = 0004;
+    clc.restaurantDetailFinance.bank_instit = "0004";
   } else if (clc.restaurantDetailFinance.bank_name == "National Bank of China") {
-    clc.restaurantDetailFinance.bank_instit = 0006;
+    clc.restaurantDetailFinance.bank_instit = "0006";
   } else if (clc.restaurantDetailFinance.bank_name == "CIBC") {
-    clc.restaurantDetailFinance.bank_instit = 0010;
+    clc.restaurantDetailFinance.bank_instit = "0010";
   } else if (clc.restaurantDetailFinance.bank_name == "中国银行") {
-    clc.restaurantDetailFinance.bank_instit = 0308;
+    clc.restaurantDetailFinance.bank_instit = "0308";
   } else if (clc.restaurantDetailFinance.bank_name == "中国工商银行") {
-    clc.restaurantDetailFinance.bank_instit = 0307;
+    clc.restaurantDetailFinance.bank_instit = "0307";
   } else if (clc.restaurantDetailFinance.bank_name == "Shinhan Bank Canada") {
-    clc.restaurantDetailFinance.bank_instit = 0355;
+    clc.restaurantDetailFinance.bank_instit = "0355";
   }
   cls.editResDetailFinance(clc.restaurantDetailFinance)
   .then(clc.getResDetailFinance(clc.restaurantDetailFinance))
@@ -401,23 +401,23 @@ clc.getResDetail = function(closeRestaurant){
       clc.newRestaurant.area = 6;
     }
     if (clc.newRestaurant.bank_name == "BMO") {
-      clc.newRestaurant.bank_instit = 0001;
+      clc.newRestaurant.bank_instit = "0001";
     } else if (clc.newRestaurant.bank_name == "Scotiabank") {
-      clc.newRestaurant.bank_instit = 0002;
+      clc.newRestaurant.bank_instit = "0002";
     } else if (clc.newRestaurant.bank_name == "RBC") {
-      clc.newRestaurant.bank_instit = 0003;
+      clc.newRestaurant.bank_instit = "0003";
     } else if (clc.newRestaurant.bank_name == "TD") {
-      clc.newRestaurant.bank_instit = 0004;
+      clc.newRestaurant.bank_instit = "0004";
     } else if (clc.newRestaurant.bank_name == "National Bank of China") {
-      clc.newRestaurant.bank_instit = 0006;
+      clc.newRestaurant.bank_instit = "0006";
     } else if (clc.newRestaurant.bank_name == "CIBC") {
-      clc.newRestaurant.bank_instit = 0010;
+      clc.newRestaurant.bank_instit = "0010";
     } else if (clc.newRestaurant.bank_name == "中国银行") {
-      clc.newRestaurant.bank_instit = 0308;
+      clc.newRestaurant.bank_instit = "0308";
     } else if (clc.newRestaurant.bank_name == "中国工商银行") {
-      clc.newRestaurant.bank_instit = 0307;
+      clc.newRestaurant.bank_instit = "0307";
     } else if (clc.newRestaurant.bank_name == "Shinhan Bank Canada") {
-      clc.newRestaurant.bank_instit = 0355;
+      clc.newRestaurant.bank_instit = "0355";
     }
    clc.newRestaurant.logo_id = parseInt(clc.newRestaurant.logo_id,10);
    clc.newRestaurant.rate = parseInt(clc.newRestaurant.rate,10);
@@ -509,31 +509,31 @@ clc.getResDetail = function(closeRestaurant){
   ];
   clc.bankOptions = [{
     "bankName": "BMO",
-    "bankCode": 0001
+    "bankCode": "0001"
   }, {
     "bankName": "Scotiabank",
-    "bankCode": 0002
+    "bankCode": "0002"
   }, {
     "bankName": "RBC",
-    "bankCode": 0003
+    "bankCode": "0003"
   }, {
     "bankName": "TD",
-    "bankCode": 0004
+    "bankCode": "0004"
   }, {
     "bankName": "CIBC",
-    "bankCode": 0010
+    "bankCode": "0010"
   }, {
     "bankName": "National Bank of China",
-    "bankCode": 0006
+    "bankCode": "0006"
   }, {
     "bankName": "中国银行",
-    "bankCode": 0308
+    "bankCode": "0308"
   }, {
     "bankName": "中国工商银行",
-    "bankCode": 0307
+    "bankCode": "0307"
   },{
     "bankName": "Shinhan Bank Canada",
-    "bankCode": 0355
+    "bankCode": "0355"
   },{
     "bankName":''
   }

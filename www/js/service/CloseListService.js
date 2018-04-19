@@ -207,6 +207,7 @@ angular.module('MetronicApp')
             "iv_bname": restaurantDetailFinance.bname,
             "iv_owner": restaurantDetailFinance.owner,
             "iv_email": restaurantDetailFinance.email,
+            "iv_bank_transit":restaurantDetailFinance.bank_transit,
             "iv_bank_name": restaurantDetailFinance.bank_name,
             "iv_bank_instit": restaurantDetailFinance.bank_instit,
             "iv_bank_account": restaurantDetailFinance.bank_account,
