@@ -118,6 +118,22 @@ angular.module('MetronicApp')
       deliver.orders = [];
       deliver.alert = 0;
     })
+    _.forEach(lo_fdata.confirm_order,function (order,key) {
+      var rr_action = parseFloat(order.rraction)
+      function timeConverter(rr_action){
+        var a = new Date(rr_action * 1000);
+        var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes(); 
+        var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+        var time =  hour + ':' + min + ':' + sec ;
+        return time;
+      }
+      order.rraction = timeConverter(rr_action);
+    })
     _.forEach(lo_fdata.delivering_order, function (order, key) {
       var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
         return deliver.driver_id == order.driver_id;

@@ -844,7 +844,7 @@
               <div class="row"style="margin-left: 0px;margin-right: -5px;">
 
                 <div class="col-md-2 nonepadding">
-                  时间
+                  下单时间
                 </div>
                 <div class="col-md-5 nonepadding">
                   {{order.created}}
@@ -854,6 +854,21 @@
                    data-ng-click="dc.openOrderChange(order.oid,4,order.c_addr)">
                  订单详情 <i class=" icon-note"></i>
                  </div>
+			  </div>
+			  <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                <div class="col-md-2 nonepadding">
+                  接单时间
+                </div>
+                <div class="col-md-5 nonepadding">
+                  {{order.rraction}}
+				</div>
+				<div class="col-md-2 nonepadding">
+					准备时间
+				  </div>
+				  <div class="col-md-2 nonepadding">
+					{{order.pptime}}min			 
+				 </div>
               </div>
 							<div class="row"style="margin-left: 0px;margin-right: -5px;">
 
