@@ -105,6 +105,7 @@ angular.module('MetronicApp')
      var deferred = $q.defer();
        // successCallback
          var successCallback = (response)=>{
+                     alert("修改成功");
           console.log(response)
        deferred.resolve(response)
          }
@@ -112,6 +113,7 @@ angular.module('MetronicApp')
 
          //errorCallback
          var errorCallback = (response)=>{
+                     alert("修改失败,请联系Sam");
        deferred.reject(response)
          }
          $http({
@@ -131,10 +133,12 @@ angular.module('MetronicApp')
   function addCloseRestaurant(newCloseRestaurant){
    var deferred = $q.defer();
         var successCallback =function(response){
+                    alert("添加成功");
           console.log(response);
       deferred.resolve(response);
     };
         var errorCallback = function(response){
+                    alert("添加失败,请联系Sam");
       deferred.reject(response);
     };
 
@@ -191,10 +195,12 @@ angular.module('MetronicApp')
   function editResDetailFinance(restaurantDetailFinance){
    var deferred = $q.defer();
         var successCallback =function(response){
+          alert("修改成功");
           console.log(response)
       deferred.resolve(response)
         }
         var errorCallback = function(response){
+          alert("修改失败,请联系Sam");
       deferred.reject(response)
         }
 
@@ -241,10 +247,12 @@ angular.module('MetronicApp')
   function addLateNight(lateNightinfo){
    var deferred = $q.defer();
         var successCallback =function(response){
+                    alert("添加成功");
           console.log(response)
       deferred.resolve(response)
         }
         var errorCallback = function(response){
+                    alert("添加失败,请联系Sam");
       deferred.reject(response)
         }
 
@@ -263,10 +271,12 @@ angular.module('MetronicApp')
   function editLateNight(lateNightinfo){
    var deferred = $q.defer();
         var successCallback =function(response){
+                    alert("修改成功");
           console.log(response)
       deferred.resolve(response)
         }
         var errorCallback = function(response){
+                    alert("修改失败,请联系Sam");
       deferred.reject(response)
         }
 
@@ -287,10 +297,12 @@ angular.module('MetronicApp')
   function editResDetail(restaurantDetail){
     var deferred = $q.defer();
          var successCallback =function(response){
+                     alert("修改成功");
            console.log(response)
        deferred.resolve(response)
          }
          var errorCallback = function(response){
+                     alert("修改失败,请联系Sam");
        deferred.reject(response)
          }
 
@@ -321,10 +333,12 @@ angular.module('MetronicApp')
    function addNewRestaurant(newRestaurant){
      var deferred = $q.defer();
           var successCallback =function(response){
+                      alert("添加成功");
             console.log(response)
         deferred.resolve(response)
           }
           var errorCallback = function(response){
+                      alert("添加失败,请联系Sam");
         deferred.reject(response)
           }
 

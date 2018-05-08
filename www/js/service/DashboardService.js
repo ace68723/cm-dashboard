@@ -119,6 +119,23 @@ angular.module('MetronicApp')
       deliver.alert = 0;
     })
     _.forEach(lo_fdata.confirm_order,function (order,key) {
+      console.log(order.rraction)
+      if(order.pptime == '< 10') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 600;  
+      } else if (order.pptime == '20') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 1200;
+      } else if (order.pptime == '30') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 1800;
+      } else if (order.pptime == '> 40') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 2400;
+      } else {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 2100;
+      }
       var rr_action = parseFloat(order.rraction)
       function timeConverter(rr_action){
         var a = new Date(rr_action * 1000);
@@ -146,6 +163,36 @@ angular.module('MetronicApp')
           lo_fdata.delivers[deliver_index].alert += 1
         }
       }
+      if(order.pptime == '< 10') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 600;  
+      } else if (order.pptime == '20') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 1200;
+      } else if (order.pptime == '30') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 1800;
+      } else if (order.pptime == '> 40') {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 2400;
+      } else {
+        order.rraction = parseInt(order.rraction, 10);
+        order.rraction = order.rraction + 2100;
+      }
+      var rr_action = parseFloat(order.rraction)
+      function timeConverter(rr_action){
+        var a = new Date(rr_action * 1000);
+        var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes(); 
+        var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+        var time =  hour + ':' + min + ':' + sec ;
+        return time;
+      }
+      order.rraction = timeConverter(rr_action);
     })
   };
 
