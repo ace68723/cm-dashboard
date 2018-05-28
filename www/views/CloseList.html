@@ -519,8 +519,8 @@
            <th style = "text-align: center">CANCEL</th>
           </tr>
           <tr ng-repeat="(id, lateNightinfo) in clc.newLateNightInfo">
-             <td><input type="text" size = '10' ng-model = "lateNightinfo.etime"></td>
              <td><input type="text" size = '10' ng-model = "lateNightinfo.stime"></td>
+             <td><input type="text" size = '10' ng-model = "lateNightinfo.etime"></td>
              <td><input type="text" size = '10' ng-model = "lateNightinfo.weekday"> </td>
              <td>
                <button ng-click = "clc.addLateNight(lateNightinfo)"

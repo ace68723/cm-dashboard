@@ -286,7 +286,7 @@ angular.module('MetronicApp')
           data: {
             "iv_id": lateNightinfo.id,
             "iv_rid":lateNightinfo.rid,
-            "iv_weekday":lateNightinfo.weekday,
+            "iv_weekday":parseInt(lateNightinfo.weekday, 10),
             "iv_stime": lateNightinfo.stime,
             "iv_etime": lateNightinfo.etime
                 }
