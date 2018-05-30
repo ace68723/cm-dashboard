@@ -82,11 +82,15 @@ angular.module('MetronicApp')
     lo_fdata.confirm_order = [];
     lo_fdata.delivering_order = [];
     lo_fdata.complete_order = [];
-
+    
     _.forEach( lo_data.orders, function(order, key) {
       switch(order.status) {
         case '0':
-          lo_fdata.new_order.push(order)
+           if(order.p_channel == '10' && !order.p_status) {
+            lo_fdata.new_user_order.push(order)
+           } else if (!order.p_status||order.p_status == '20') {
+            lo_fdata.new_order.push(order)
+           } 
           break;
         case '60':
            lo_fdata.change_addr_order.push(order)
@@ -114,10 +118,29 @@ angular.module('MetronicApp')
           break;
       }
     });
+    _.forEach(lo_data.orders,function (order,key) {
+      if(!order.p_status && order.p_channel == '0') {
+        order.p_status = '非在线支付';
+      } else if (order.p_status == '20') {
+        order.p_status = '支付成功';
+      } else if (order.p_status == '30') {
+        order.p_status = '支付失败';
+      } else if(order.p_channel == '10' && !order.p_status){
+        order.p_status = '正在支付'
+      }
+    })
+    _.forEach(lo_data.orders,function (order,key) {
+      if(order.p_channel == '0') {
+        order.p_channel = '到付';
+      } else if (order.p_channel == '10') {
+        order.p_channel = '支付宝';
+      }
+    })
     _.forEach(lo_fdata.delivers,function (deliver,key) {
       deliver.orders = [];
       deliver.alert = 0;
     })
+
     _.forEach(lo_fdata.confirm_order,function (order,key) {
       console.log(order.rraction)
       if(order.pptime == '< 10') {
