@@ -59,6 +59,11 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
     }
     function search_orderDetial (argument) {
       console.log(data)
+      if(data.payment_channel == "0") {
+        popUpCtrl.payment_channel = '到付';
+      } else if (data.payment_channel == '1') {
+        popUpCtrl.payment_channel = '支付宝';
+      }
         popUpCtrl.oid     = data.oid;
         popUpCtrl.cell    = data.cell;
         popUpCtrl.r_call  = data.r_call;
@@ -71,6 +76,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.created = data.created;
         popUpCtrl.deliver = data.driver_name;
         popUpCtrl.driver_cell = data.driver_cell;
+        
     }
     $scope.ok = function()
     {

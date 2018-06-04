@@ -273,12 +273,15 @@ angular.module('MetronicApp')
         const delivery = response.data.eo_order.delivery;
         const rr = response.data.eo_order.rr;
         const user =  response.data.eo_order.user;
+
         const serach_order = {
           "oid": oid,
           "status": order.status,
           "dltype": "送餐",
           "channel": order.channel,
           "status_txt": order.status_txt,
+          "payment_channel":order.payment_channel,
+          "payment_status":order.payment_status,
           "dlexp": order.dlexp,
           "total": order.total,
           "created": order.created,
