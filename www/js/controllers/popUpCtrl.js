@@ -61,7 +61,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
       console.log(data)
       if(data.payment_channel == "0") {
         popUpCtrl.payment_channel = '到付';
-      } else if (data.payment_channel == '1') {
+      } else if (data.payment_channel == '10') {
         popUpCtrl.payment_channel = '支付宝';
       }
         popUpCtrl.oid     = data.oid;
