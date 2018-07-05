@@ -86,9 +86,9 @@ angular.module('MetronicApp')
     _.forEach( lo_data.orders, function(order, key) {
       switch(order.status) {
         case '0':
-           if(order.p_channel == '10' && !order.p_status) {
+           if( order.p_channel != '0' && !order.p_status) {
             lo_fdata.new_user_order.push(order)
-           } else if (!order.p_status||order.p_status == '20') {
+           } else if (!order.p_status || order.p_status == '20') {
             lo_fdata.new_order.push(order)
            } 
           break;
@@ -134,6 +134,12 @@ angular.module('MetronicApp')
         order.p_channel = '到付';
       } else if (order.p_channel == '10') {
         order.p_channel = '支付宝';
+      } else if (order.p_channel == '1') {
+        order.p_channel = 'Debit/Credit';
+      } else if (order.p_channel == '30') {
+        order.p_channel = 'Apple Pay';
+      } else if (order.p_channel == '20') {
+        order.p_channel = '微信支付';
       }
     })
     _.forEach(lo_fdata.delivers,function (deliver,key) {

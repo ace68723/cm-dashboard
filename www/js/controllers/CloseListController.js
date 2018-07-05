@@ -389,16 +389,16 @@ clc.getResDetail = function(closeRestaurant){
     if (clc.newRestaurant.area == "SC") {
       clc.newRestaurant.area = 1;
     } else if (clc.newRestaurant.area == "DT") {
-      clc.newRestaurant.area = 3;
+      clc.newRestaurant.area = 6;
     } else if (clc.newRestaurant.area == "NY") {
       clc.newRestaurant.area = 2;
       console.log(clc.newRestaurant.area);
     } else if (clc.newRestaurant.area == "MI") {
-      clc.newRestaurant.area = 4;
+      clc.newRestaurant.area = 10;
     } else if (clc.newRestaurant.area == "MH") {
-      clc.newRestaurant.area = 5;
+      clc.newRestaurant.area = 4;
     } else if (clc.newRestaurant.area == "RH") {
-      clc.newRestaurant.area = 6;
+      clc.newRestaurant.area = 3;
     }
     if (clc.newRestaurant.bank_name == "BMO") {
       clc.newRestaurant.bank_instit = "0001";
