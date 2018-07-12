@@ -168,7 +168,7 @@
 									   {{order.dltype}}
 								   </a>
 							   </div>
-							   <div ng-if="order.p_channel == '支付宝'" class="actions">
+							   <div ng-if="order.p_channel != '到付'" class="actions">
 								<a class="btn btn-circle btn-default "style="font-size: 12px;"data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)">
 									{{order.dltype}}
 								</a>
