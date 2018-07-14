@@ -125,7 +125,7 @@ angular.module('MetronicApp')
         order.p_status = '支付成功';
       } else if (order.p_status == '30') {
         order.p_status = '支付失败';
-      } else if(order.p_channel == '10' && !order.p_status){
+      } else if(order.p_channel != '0' && !order.p_status){
         order.p_status = '正在支付'
       }
     })

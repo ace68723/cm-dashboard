@@ -60,9 +60,24 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
     function search_orderDetial (argument) {
       console.log(data)
       if(data.payment_channel == "0") {
-        popUpCtrl.payment_channel = '到付';
+        data.payment_channel = '到付';
       } else if (data.payment_channel == '10') {
-        popUpCtrl.payment_channel = '支付宝';
+        data.payment_channel = '支付宝';
+      } else if (data.payment_channel == '1') {
+        data.payment_channel = 'Debit/Credit';
+      } else if (data.payment_channel == '30') {
+        data.payment_channel = 'Apple Pay';
+      } else if (data.payment_channel == '20') {
+        data.payment_channel = '微信支付';
+      }
+      if(!data.payment_status && data.p_channel == '0') {
+        data.payment_status = '非在线支付';
+      } else if (data.payment_status == '20') {
+        data.payment_status = '支付成功';
+      } else if (data.payment_status == '30') {
+        data.payment_status = '支付失败';
+      } else if(data.p_channel != '0' && !data.payment_status){
+        data.payment_status = '正在支付'
       }
         popUpCtrl.oid     = data.oid;
         popUpCtrl.cell    = data.cell;
@@ -76,7 +91,8 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.created = data.created;
         popUpCtrl.deliver = data.driver_name;
         popUpCtrl.driver_cell = data.driver_cell;
-        
+        popUpCtrl.payment_channel = data.payment_channel;
+        popUpCtrl.payment_status = data.payment_status;
     }
     $scope.ok = function()
     {
