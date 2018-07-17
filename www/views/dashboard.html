@@ -168,7 +168,12 @@
 									   {{order.dltype}}
 								   </a>
 							   </div>
-							   <div ng-if="order.p_channel != '到付'" class="actions">
+							   <div ng-if="order.p_channel !== '到付' && order.p_status == '支付成功'" class="actions">
+								<a class="btn btn-circle btn-default "style="font-size: 12px;"data-ng-click="dc.openOrderChange(order.oid,1,order.c_addr)">
+									{{order.dltype}}
+								</a>
+							</div>
+							   <div ng-if="order.p_channel != '到付'&& order.p_status == '正在支付'" class="actions">
 								<a class="btn btn-circle btn-default "style="font-size: 12px;"data-ng-click="dc.openOrderChange(order.oid,3,order.c_addr)">
 									{{order.dltype}}
 								</a>
