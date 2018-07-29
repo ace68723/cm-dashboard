@@ -86,11 +86,15 @@ angular.module('MetronicApp')
     _.forEach( lo_data.orders, function(order, key) {
       switch(order.status) {
         case '0':
-           if( order.p_channel != '0' && !order.p_status) {
-            lo_fdata.new_user_order.push(order)
-           } else if (!order.p_status || order.p_status == '20') {
-            lo_fdata.new_order.push(order)
-           } 
+           if(order.p_channel != '0') {
+             if(order.p_status == '20') {
+              lo_fdata.new_order.push(order);
+             } else {
+              lo_fdata.new_user_order.push(order);
+             } 
+           } else {
+            lo_fdata.new_order.push(order);
+           }
           break;
         case '60':
            lo_fdata.change_addr_order.push(order)
@@ -124,9 +128,9 @@ angular.module('MetronicApp')
       } else if (order.p_status == '20') {
         order.p_status = '支付成功';
       } else if (order.p_status == '30') {
-        order.p_status = '支付失败';
+        order.p_status = '已退款';
       } else if(order.p_channel != '0' && !order.p_status){
-        order.p_status = '正在支付'
+        order.p_status = '未完成支付'
       }
     })
     _.forEach(lo_data.orders,function (order,key) {

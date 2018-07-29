@@ -75,9 +75,9 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
       } else if (data.payment_status == '20') {
         data.payment_status = '支付成功';
       } else if (data.payment_status == '30') {
-        data.payment_status = '支付失败';
+        data.payment_status = '已退款';
       } else if(data.p_channel != '0' && !data.payment_status){
-        data.payment_status = '正在支付'
+        data.payment_status = '未完成支付'
       }
         popUpCtrl.oid     = data.oid;
         popUpCtrl.cell    = data.cell;
