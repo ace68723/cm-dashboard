@@ -139,7 +139,9 @@
   display: inline-block;
   box-sizing: border-box;
 }
-
+.redfornow{
+  color:#FD0A0A;
+}
 .icon-search{
   content: url(../views/icon/search.png);
   padding: 0 0 5px 7px;

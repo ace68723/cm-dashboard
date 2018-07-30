@@ -72,7 +72,7 @@
                     {{puc.channel}}
                 </div>
             </div>
-            <div class="row"style="margin-left: 0px;margin-right: -5px;">
+            <div ng-class="{'redfornow': order.p_status == '未完成支付'}" class="row"style="margin-left: 0px;margin-right: -5px;">
 
                 <div class="col-md-2 nonepadding">
                     商家电话
