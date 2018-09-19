@@ -98,6 +98,14 @@ function($rootScope, $scope, $http, closeListService,$q) {
     });
 
   }
+  clc.deleteLateNight = function(lateNightinfo) {
+    cls.deleteLateNight(lateNightinfo)
+    .then(clc.getLateNight(lateNightinfo))
+    .catch((error)=>{
+      console.log(error);
+    });
+
+  }
 //夜宵结束
 
 //财务

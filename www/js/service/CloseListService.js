@@ -293,7 +293,29 @@ angular.module('MetronicApp')
         }).then(successCallback, errorCallback);
    return deferred.promise
   }
-
+  function deleteLateNight(lateNightinfo){
+    var deferred = $q.defer();
+         var successCallback =function(response){
+                     alert("删除成功");
+           console.log(response)
+       deferred.resolve(response)
+         }
+         var errorCallback = function(response){
+                     alert("删除失败,请联系Sam");
+       deferred.reject(response)
+         }
+ 
+         $http({
+           method: 'PUT',
+           url: API3_URL+"delete_rr_open",
+           data: {
+             "iv_id": lateNightinfo.id,
+             "iv_rid":lateNightinfo.rid,
+             "iv_weekday":parseInt(lateNightinfo.weekday, 10)
+                 }
+         }).then(successCallback, errorCallback);
+    return deferred.promise
+   }
   function editResDetail(restaurantDetail){
     var deferred = $q.defer();
          var successCallback =function(response){
@@ -390,7 +412,8 @@ angular.module('MetronicApp')
       getResDetailFinance: getResDetailFinance,
       editResDetail: editResDetail,
       addNewRestaurant: addNewRestaurant,
-      editResDetailFinance: editResDetailFinance
+      editResDetailFinance: editResDetailFinance,
+      deleteLateNight: deleteLateNight
     })
 
 

@@ -41,7 +41,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         console.log("data:",data);
 
         popUpCtrl.url= $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/"+
-            "directions?"+"&key=AIzaSyByXgKTkpmXMPmodZjyeHJbHe6R0JdcdeY" +
+            "directions?"+"&key=AIzaSyAebSIU_NMnEfc6lH5CmlyZLlOaddbbX_w" +
             "&origin="+ lv_r_lat + ',+' + lv_r_lng +
             "&destination=" + lv_c_lat + ',+' + lv_c_lng +
             "&mode=driving"+
