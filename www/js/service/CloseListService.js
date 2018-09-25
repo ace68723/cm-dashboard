@@ -368,6 +368,8 @@ angular.module('MetronicApp')
             method: 'POST',
             url: API3_URL+"add_rr_detail",
             data: {
+              "iv_username":newRestaurant.username,
+              "iv_password":newRestaurant.password,
              "iv_name": newRestaurant.name,
              "iv_desc": newRestaurant.desc,
              "iv_area": newRestaurant.area,

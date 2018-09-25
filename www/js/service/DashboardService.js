@@ -164,10 +164,10 @@ angular.module('MetronicApp')
         order.rraction = order.rraction + 1800;
       } else if (order.pptime == '> 40') {
         order.rraction = parseInt(order.rraction, 10);
-        order.rraction = order.rraction + 2400;
+        order.rraction = order.rraction + 2700;
       } else {
         order.rraction = parseInt(order.rraction, 10);
-        order.rraction = order.rraction + 2100;
+        order.rraction = order.rraction + 1500;
       }
       var rr_action = parseFloat(order.rraction)
       function timeConverter(rr_action){

@@ -390,7 +390,9 @@ clc.getResDetail = function(closeRestaurant){
     "bank_account":"",
     "comment":"",
     "pay_method":"",
-    "pay_cycle":"0"
+    "pay_cycle":"0",
+    "username":"",
+    "password":""
 };
   clc.addNewRestaurant = function(){
     console.log(clc.newRestaurant.area);
