@@ -367,6 +367,9 @@ angular.module('MetronicApp')
           $http({
             method: 'POST',
             url: API3_URL+"add_rr_detail",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'},
             data: {
               "iv_username":newRestaurant.username,
               "iv_password":newRestaurant.password,
@@ -387,7 +390,6 @@ angular.module('MetronicApp')
              "iv_rate":newRestaurant.rate,
              "iv_fbid": newRestaurant.fbid,
              "iv_bname":newRestaurant.bname,
-             "iv_owner":newRestaurant.owner,
              "iv_email":newRestaurant.email,
              "iv_bank_name":newRestaurant.bank_name,
              "iv_bank_transit": newRestaurant.bank_transit,
