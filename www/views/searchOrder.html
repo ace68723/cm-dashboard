@@ -46,7 +46,7 @@
                     总价
                 </div>
                 <div class="col-md-5 nonepadding">
-                    {{puc.total | currency}}
+                    {{puc.charge_total | currency}}
                 </div>
                 <div class="col-md-2 nonepadding">
                     运费
@@ -54,6 +54,17 @@
                 <div class="col-md-2 nonepadding">
                     {{puc.dlexp | currency}}
                 </div>
+
+            </div>
+            <div class="row"style="margin-left: 0px;margin-right: -5px;">
+
+                <div class="col-md-2 nonepadding">
+                    付款
+                </div>
+                <div class="col-md-5 nonepadding">
+                    {{puc.settle_type}}
+                </div>
+               
 
             </div>
 

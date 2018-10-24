@@ -58,7 +58,7 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.url= $sce.trustAsResourceUrl("https://www.chanmao.ca/monitor/#/" + port + "/"+ oid);
     }
     function search_orderDetial (argument) {
-      console.log(data)
+      console.log(argument);
       if(data.payment_channel == "0") {
         data.payment_channel = '到付';
       } else if (data.payment_channel == '10') {
@@ -79,6 +79,11 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
       } else if(data.p_channel != '0' && !data.payment_status){
         data.payment_status = '未完成支付'
       }
+      if(data.settle_type == '1') {
+        data.settle_type = '需要垫付';
+      } else if (data.settle_type == '2') {
+        data.settle_type = '无需垫付';
+      }
         popUpCtrl.oid     = data.oid;
         popUpCtrl.cell    = data.cell;
         popUpCtrl.r_call  = data.r_call;
@@ -87,6 +92,8 @@ angular.module('MetronicApp').controller('popUpCtrl', function($scope,$sce,$moda
         popUpCtrl.total   = data.total;
         popUpCtrl.dlexp   = data.dlexp;
         popUpCtrl.status_txt  = data.status_txt;
+        popUpCtrl.settle_type  = data.settle_type;
+        popUpCtrl.charge_total  = data.charge_total;
         popUpCtrl.channel = data.channel;
         popUpCtrl.created = data.created;
         popUpCtrl.deliver = data.driver_name;

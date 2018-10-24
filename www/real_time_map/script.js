@@ -12,14 +12,14 @@ angular.module('appMaps', ['uiGmapgoogle-maps'])
     $scope.refresh = function () {
         var markers     = [];
         var restaurant  = [];
-        $http.get('https://www.chanmao.ca/index.php?r=MobAly10/DriverLoc',{
-           headers:{
-             Authortoken:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMDYxMSIsImV4cGlyZWQiOjE1MTkyNDMyMDAsImxhc3Rsb2dpbiI6MTUxMzIxMTc3M30.EuptXmt9F6lJNM2Oin7qXkz3kbgoiCaJzK2SDQVG1bw'
-           }
-        }).
-          success(function(data, status, headers, config) {
+        //$http.get('https://www.chanmao.ca/index.php?r=MobAly10/DriverLoc',
+        //  { headers:{ Authortoken:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxMDYxMSIsImV4cGlyZWQiOjE1MTkyNDMyMDAsImxhc3Rsb2dpbiI6MTUxMzIxMTc3M30.EuptXmt9F6lJNM2Oin7qXkz3kbgoiCaJzK2SDQVG1bw'} }
+        $http.post('https://butlerpanda.com/api/v1/schedule/get_drivers', {},
+          { headers:{ 'Auth-Token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJyb2xlIjo5OTksInVzZXJuYW1lIjoibWNmYWRtaW4yIiwiZXhwaXJlIjoxNTIzOTc0OTYxfQ.QQwx9A4XH4E6SbRQ7X-gw_QZ0yLh6HSKmAdGtDaGt6w', 'Content-Type':'application/json'} }
+        ).success(function(data, status, headers, config) {
 
-            _.forEach(data.drivers, function(driver, key) {
+            //_.forEach(data.drivers, function(driver, key) {
+            _.forEach(data.ev_data, function(driver, key) {
               var point = {};
               point.latitude    = driver.lat;
               point.longitude   = driver.lng;

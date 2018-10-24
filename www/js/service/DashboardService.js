@@ -132,6 +132,7 @@ angular.module('MetronicApp')
       } else if(order.p_channel != '0' && !order.p_status){
         order.p_status = '未完成支付'
       }
+      order.dlexp = parseInt(order.dlexp / 1.13, 10);
     })
     _.forEach(lo_data.orders,function (order,key) {
       if(order.p_channel == '0') {
@@ -145,6 +146,11 @@ angular.module('MetronicApp')
       } else if (order.p_channel == '20') {
         order.p_channel = '微信支付';
       }
+      if(order.settle_type == '1') {
+        order.settle_type = '需要垫付';
+      } else if (order.settle_type == '2') {
+        order.settle_type = '无需垫付';
+      }
     })
     _.forEach(lo_fdata.delivers,function (deliver,key) {
       deliver.orders = [];
@@ -152,7 +158,6 @@ angular.module('MetronicApp')
     })
 
     _.forEach(lo_fdata.confirm_order,function (order,key) {
-      console.log(order.rraction)
       if(order.pptime == '< 10') {
         order.rraction = parseInt(order.rraction, 10);
         order.rraction = order.rraction + 600;  
@@ -273,6 +278,7 @@ angular.module('MetronicApp')
       url: API_URL+'MobMonitor/OrderDetailInt',
       data:{oid:oid}
     }).then(function successCallback(response) {
+      console.log(response)
       console.log(response.data.eo_order)
       if(!response.data.eo_order){
         deferred.reject(response)
@@ -290,10 +296,14 @@ angular.module('MetronicApp')
           "dltype": "送餐",
           "channel": order.channel,
           "status_txt": order.status_txt,
+          "charge_total": order.charge_total,
+          "settle_type": order.settle_type,
           "payment_channel":order.payment_channel,
           "payment_status":order.payment_status,
           "dlexp": order.dlexp,
           "total": order.total,
+          "charge_total": order.charge_total,
+          "settle_type": order.settle_type,
           "created": order.created,
           "cell": user.tel,
           "c_addr": user.addr,
