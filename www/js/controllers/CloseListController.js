@@ -143,6 +143,8 @@ clc.editResDetailFinance = function(){
     clc.restaurantDetailFinance.bank_instit = "0307";
   } else if (clc.restaurantDetailFinance.bank_name == "Shinhan Bank Canada") {
     clc.restaurantDetailFinance.bank_instit = "0355";
+  } else if (clc.restaurantDetailFinance.bank_name == "Meridian") {
+    clc.restaurantDetailFinance.bank_instit = "0837";
   }
   cls.editResDetailFinance(clc.restaurantDetailFinance)
   .then(clc.getResDetailFinance(clc.restaurantDetailFinance))
@@ -428,6 +430,8 @@ clc.getResDetail = function(closeRestaurant){
       clc.newRestaurant.bank_instit = "0307";
     } else if (clc.newRestaurant.bank_name == "Shinhan Bank Canada") {
       clc.newRestaurant.bank_instit = "0355";
+    }else if (clc.newRestaurant.bank_name == "Meridian") {
+      clc.newRestaurant.bank_instit = "0837";
     }
    clc.newRestaurant.logo_id = parseInt(clc.newRestaurant.logo_id,10);
    clc.newRestaurant.rate = parseInt(clc.newRestaurant.rate,10);
@@ -544,6 +548,9 @@ clc.getResDetail = function(closeRestaurant){
   },{
     "bankName": "Shinhan Bank Canada",
     "bankCode": "0355"
+  },{
+    "bankName":'Meridian',
+    "bankCode": "0837"
   },{
     "bankName":''
   }

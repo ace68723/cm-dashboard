@@ -189,6 +189,9 @@ angular.module('MetronicApp')
       }
       order.rraction = timeConverter(rr_action);
     })
+    lo_fdata.confirm_order.sort(function(a, b) {
+      return a.rraction - b.rraction;
+    });
     _.forEach(lo_fdata.delivering_order, function (order, key) {
       var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
         return deliver.driver_id == order.driver_id;
