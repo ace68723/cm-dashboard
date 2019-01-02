@@ -15,13 +15,18 @@
       <br>
       <div class="table">
         <table class="res-table" cellspacing="0" cellpadding="0" style = "font-family : Myriad Pro" >
-          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'}" class="btn dark btn-outline">Scarborough</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Scarborough'};" class="btn dark btn-outline">Scarborough</button>
           <button type="button"  ng-click="areaSelect = {area: 'Markham'}"  class="btn red-mint btn-outline">Markham</button>
           <button type="button"  ng-click="areaSelect = {area: 'North York'}"  class="btn blue-hoki btn-outline">North York</button>
-          <button type="button"  ng-click="areaSelect = {area: '旺角'}"  class="btn blue-hoki btn-outline">旺角</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Don Mills'}"  class="btn blue-hoki btn-outline">Don Mills</button>
           <button type="button"  ng-click="areaSelect = {area: 'Richmond Hill'}" class="btn green-haze btn-outline">Richmond Hill</button>
-          <button type="button"  ng-click="areaSelect = {area: 'Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
+          <button type="button"  ng-click="areaSelect = {area: 'GTA Downtown'}"  class="btn yellow-mint btn-outline">Downtown</button>
           <button type="button"  ng-click="areaSelect = {area: 'Mississauga'}"  class="btn purple-sharp btn-outline">Mississauga</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Montreal Downtown'}"  class="btn purple-sharp btn-outline">Montreal Downtown</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Verdun'}"  class="btn purple-sharp btn-outline">Verdun</button>
+          <button type="button"  ng-click="areaSelect = {area: 'Chinatown'}"  class="btn purple-sharp btn-outline">Chinatown</button>
+          <button type="button"  ng-click="areaSelect = {area: '南岸'}"  class="btn purple-sharp btn-outline">南岸</button>
+          <button type="button"  ng-click="areaSelect = {area: '小红商铺'}"  class="btn purple-sharp btn-outline">小红商铺</button>
           <button type="button"  ng-click="areaSelect = '';closeSelect = ''; clc.clearSearch()"  class="btn grey-mint btn-outline">All</button>
           <button type="button" ng-click="closeSelect = {status: 1}"  class="btn default btn-outline">Closed</button>
           <image  ng-if = "role == 'SETTLE'" type="image" class="add_new" src="./views/icon/icon-schedule.png"
@@ -352,9 +357,13 @@
           </td>
         </tr>
         <tr>
-          <td style="width:150px">餐馆介绍</td>
-          <td colspan="3">
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.desc" style = "border-radius: 10px;">
+          <td style="width:150px">餐馆省份</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.province" style = "border-radius: 10px;" placeholder="1 = ON / 4 = QC">
+          </td>
+          <td style="width:150px">省份缩写</td>
+          <td>
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.prvn" style = "border-radius: 10px;"placeholder="ON / QC">
           </td>
         </tr>
         <tr>
@@ -396,23 +405,9 @@
           
         </tr>
         <tr>
-          <td style="width:150px">餐馆LOGO ID</td>
-          <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.logo_id" style = "border-radius: 10px;">
-          </td>
           <td style="width:150px">banner图片ID</td>
-          <td>
+          <td colspan="3">
             <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.mob_banner" style = "border-radius: 10px;">
-          </td>
-        </tr>
-        <tr>
-          <td>老板UID</td>
-          <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.owner" style = "border-radius: 10px;">
-          </td>
-          <td>餐馆状态</td>
-          <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.status" style = "border-radius: 10px;">
           </td>
         </tr>
         <tr>
@@ -448,19 +443,14 @@
         <tr>
           <td>付款方式</td>
           <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.pay_method" style = "border-radius: 10px;">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.pay_method" style = "border-radius: 10px;" placeholder="0 = cheque / 1 = PAD">
           </td>
-          <td>付款周期</td>
+          <td>是否需要垫付</td>
           <td>
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.pay_cycle" style = "border-radius: 10px;">
+            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.settle_type" style = "border-radius: 10px;" placeholder="1 = 司机付款取餐 / 2 = 不付款">
           </td>
         </tr>
-        <tr>
-          <td style="width:150px">备注</td>
-          <td colspan="3">
-            <input type="text"  class="form-control date-set end-time2" ng-model = "clc.newRestaurant.comment" size = '20' style = "border-radius: 10px;">
-          </td>
-        </tr>
+  
       </table>
       <button ng-click = "clc.addNewRestaurant()"
       class="btn btn-circle red btn-outline">

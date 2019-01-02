@@ -136,7 +136,7 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
       for (i = dsc.length; i < dsc.thisWeekSchedules.length; i++) {
         if (dsc.thisWeekSchedules[i].zone == "SC") {
           dsc.thisWeekSchedules[i].zone = 1;
-        } else if (dsc.thisWeekSchedules[i].zone == "DT") {
+        } else if (dsc.thisWeekSchedules[i].zone == "GTA DT") {
           dsc.thisWeekSchedules[i].zone = 3;
         } else if (dsc.thisWeekSchedules[i].zone == "NY") {
           dsc.thisWeekSchedules[i].zone = 2;
@@ -146,6 +146,18 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
           dsc.thisWeekSchedules[i].zone = 5;
         } else if (dsc.thisWeekSchedules[i].zone == "RH") {
           dsc.thisWeekSchedules[i].zone = 6;
+        } else if (dsc.thisWeekSchedules[i].zone == "DM") {
+          dsc.thisWeekSchedules[i].zone = 7;
+        } else if (dsc.thisWeekSchedules[i].zone == "MTL DT") {
+          dsc.thisWeekSchedules[i].zone = 11;
+        } else if (dsc.thisWeekSchedules[i].zone == "南岸") {
+          dsc.thisWeekSchedules[i].zone = 12;
+        } else if (dsc.thisWeekSchedules[i].zone == "Verdun") {
+          dsc.thisWeekSchedules[i].zone = 13;
+        } else if (dsc.thisWeekSchedules[i].zone == "Chinatown") {
+          dsc.thisWeekSchedules[i].zone = 14;
+        } else if (dsc.thisWeekSchedules[i].zone == "小红商铺") {
+          dsc.thisWeekSchedules[i].zone = 15;
         }
         dss.addDriverSchedule(dsc.thisWeekSchedules[i])
           .then(dsc.length = dsc.thisWeekSchedules.length)
@@ -157,11 +169,11 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
     }
     dsc.addOnClickNextWeek = function() {
       for (i = dsc.length2; i < dsc.nextWeekSchedules.length; i++) {
-        if (dsc.nextWeekSchedules[i].zone == "SC/MH") {
+        if (dsc.nextWeekSchedules[i].zone == "SC") {
           dsc.nextWeekSchedules[i].zone = 1;
-        } else if (dsc.nextWeekSchedules[i].zone == "DT") {
+        } else if (dsc.nextWeekSchedules[i].zone == "GTA DT") {
           dsc.nextWeekSchedules[i].zone = 3;
-        } else if (dsc.nextWeekSchedules[i].zone == "NY/RH") {
+        } else if (dsc.nextWeekSchedules[i].zone == "NY") {
           dsc.nextWeekSchedules[i].zone = 2;
         } else if (dsc.nextWeekSchedules[i].zone == "MI") {
           dsc.nextWeekSchedules[i].zone = 4;
@@ -169,6 +181,18 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
           dsc.nextWeekSchedules[i].zone = 5;
         } else if (dsc.nextWeekSchedules[i].zone == "RH") {
           dsc.nextWeekSchedules[i].zone = 6;
+        } else if (dsc.nextWeekSchedules[i].zone == "DM") {
+          dsc.nextWeekSchedules[i].zone = 7;
+        } else if (dsc.nextWeekSchedules[i].zone == "MTL DT") {
+          dsc.nextWeekSchedules[i].zone = 11;
+        } else if (dsc.nextWeekSchedules[i].zone == "南岸") {
+          dsc.nextWeekSchedules[i].zone = 12;
+        } else if (dsc.nextWeekSchedules[i].zone == "Verdun") {
+          dsc.nextWeekSchedules[i].zone = 13;
+        } else if (dsc.nextWeekSchedules[i].zone == "Chinatown") {
+          dsc.nextWeekSchedules[i].zone = 14;
+        } else if (dsc.nextWeekSchedules[i].zone == "小红商铺") {
+          dsc.nextWeekSchedules[i].zone = 15;
         }
         dss.addDriverSchedule(dsc.nextWeekSchedules[i])
           .then(dsc.length2 = dsc.nextWeekSchedules.length)
@@ -317,7 +341,7 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
         name: "NY",
         zone: 2
       }, {
-        name: "DT",
+        name: "GTA DT",
         zone: 3
       }, {
         name: "MI",
@@ -330,12 +354,36 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
       {
         name: "RH",
         zone: 6
-      }
+      },
+      {
+        name: "DM",
+        zone: 7
+      },
+      {
+        name: "MTL DT",
+        zone: 11
+      },
+      {
+        name: "南岸",
+        zone: 12
+      }, 
+      {
+        name: "Verdun",
+        zone: 13
+      },
+      {
+        name: "Chinatown",
+        zone: 14
+      },
+      {
+        name: "小红商铺",
+        zone: 15
+      },
     ];
     dsc.convertZone = function(driver) {
       if (driver.zone == "SC") {
         driver.zone = 1;
-      } else if (driver.zone == "DT") {
+      } else if (driver.zone == "GTA DT") {
         driver.zone = 3;
       } else if (driver.zone == "NY") {
         driver.zone = 2;
@@ -345,6 +393,18 @@ angular.module('MetronicApp').controller('driverScheduleController', ['$rootScop
         driver.zone = 5;
       } else if (driver.zone == "RH") {
         driver.zone = 6;
+      } else if (driver.zone == "DM") {
+        driver.zone = 7;
+      } else if (driver.zone == "MTL DT") {
+        driver.zone = 11;
+      } else if (driver.zone == "南岸") {
+        driver.zone = 12;
+      } else if (driver.zone == "Verdun") {
+        driver.zone = 13;
+      } else if (driver.zone == "Chinatown") {
+        driver.zone = 14;
+      } else if (driver.zone == "小红商铺") {
+        driver.zone = 15;
       }
     };
     dsc.SearchOptions = [{

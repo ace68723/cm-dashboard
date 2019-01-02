@@ -156,7 +156,9 @@ angular.module('MetronicApp')
       deliver.orders = [];
       deliver.alert = 0;
     })
-
+    lo_fdata.confirm_order.sort(function(a, b) {
+      return (b.rraction - a.rraction);
+    });
     _.forEach(lo_fdata.confirm_order,function (order,key) {
       if(order.pptime == '< 10') {
         order.rraction = parseInt(order.rraction, 10);
@@ -189,9 +191,7 @@ angular.module('MetronicApp')
       }
       order.rraction = timeConverter(rr_action);
     })
-    lo_fdata.confirm_order.sort(function(a, b) {
-      return a.rraction - b.rraction;
-    });
+
     _.forEach(lo_fdata.delivering_order, function (order, key) {
       var deliver_index = _.findIndex(lo_fdata.delivers, function(deliver) {
         return deliver.driver_id == order.driver_id;
@@ -242,10 +242,15 @@ angular.module('MetronicApp')
 
      var successCallback = function(response){
        const data = response.data;
+       console.log(data);
         if(data.ev_role == 3){
           var role = "SETTLE"
        deferred.resolve(role)
-        }else{
+        }else if (data.ev_role == 4){
+          var role = "XIAOMING"
+          deferred.resolve(role)
+       deferred.reject(role)
+        } else {
           var role = "OTHER"
        deferred.reject(role)
         }
@@ -306,7 +311,6 @@ angular.module('MetronicApp')
           "dlexp": order.dlexp,
           "total": order.total,
           "charge_total": order.charge_total,
-          "settle_type": order.settle_type,
           "created": order.created,
           "cell": user.tel,
           "c_addr": user.addr,

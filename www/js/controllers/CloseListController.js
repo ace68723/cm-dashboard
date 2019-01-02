@@ -175,6 +175,8 @@ clc.getResDetail = function(closeRestaurant){
             clc.restaurantDetail.zone =  "MH";
           } else if (clc.restaurantDetail.area == 3) {
             clc.restaurantDetail.zone ="RH" ;
+          } else if (clc.restaurantDetail.area == 7) {
+            clc.restaurantDetail.zone ="DM" ;
           }
         });
       })
@@ -198,6 +200,8 @@ clc.getResDetail = function(closeRestaurant){
       clc.restaurantDetail.area = 4;
     } else if (clc.restaurantDetail.area == "RH") {
       clc.restaurantDetail.area = 3;
+    } else if (clc.restaurantDetail.area == "DM") {
+      clc.restaurantDetail.area = 7;
     }
     cls.editResDetail(clc.restaurantDetail)
     .then(clc.getResDetail(clc.restaurantDetail))
@@ -374,8 +378,9 @@ clc.getResDetail = function(closeRestaurant){
     "postal": "",
     "tel1": "",
     "tel2": "",
-    "province": "1",
-    "prvn": "ON",
+    "province": "",
+    "settle_type": "",
+    "prvn": "",
     "addr": "",
     "apt_no": "",
     "start_amount": 0,
@@ -397,20 +402,30 @@ clc.getResDetail = function(closeRestaurant){
     "password":""
 };
   clc.addNewRestaurant = function(){
-    console.log(clc.newRestaurant.area);
     if (clc.newRestaurant.area == "SC") {
       clc.newRestaurant.area = 1;
     } else if (clc.newRestaurant.area == "DT") {
       clc.newRestaurant.area = 6;
     } else if (clc.newRestaurant.area == "NY") {
       clc.newRestaurant.area = 2;
-      console.log(clc.newRestaurant.area);
     } else if (clc.newRestaurant.area == "MI") {
       clc.newRestaurant.area = 10;
     } else if (clc.newRestaurant.area == "MH") {
       clc.newRestaurant.area = 4;
     } else if (clc.newRestaurant.area == "RH") {
       clc.newRestaurant.area = 3;
+    } else if (clc.newRestaurant.area == "MTL DT") {
+      clc.newRestaurant.area = 101;
+    } else if (clc.newRestaurant.area == "南岸") {
+      clc.newRestaurant.area = 102;
+    } else if (clc.newRestaurant.area == "Verdun") {
+      clc.newRestaurant.area = 103;
+    } else if (clc.newRestaurant.area == "Chinatown") {
+      clc.newRestaurant.area = 104;
+    } else if (clc.newRestaurant.area == "小红商铺") {
+      clc.newRestaurant.area = 105;
+    } else if (clc.newRestaurant.area == "DM") {
+      clc.newRestaurant.area = 7;
     }
     if (clc.newRestaurant.bank_name == "BMO") {
       clc.newRestaurant.bank_instit = "0001";
@@ -430,9 +445,9 @@ clc.getResDetail = function(closeRestaurant){
       clc.newRestaurant.bank_instit = "0307";
     } else if (clc.newRestaurant.bank_name == "Shinhan Bank Canada") {
       clc.newRestaurant.bank_instit = "0355";
-    }else if (clc.newRestaurant.bank_name == "Meridian") {
+    } else if (clc.newRestaurant.bank_name == "Meridian") {
       clc.newRestaurant.bank_instit = "0837";
-    }
+    } 
    clc.newRestaurant.logo_id = parseInt(clc.newRestaurant.logo_id,10);
    clc.newRestaurant.rate = parseInt(clc.newRestaurant.rate,10);
    clc.newRestaurant.status = parseInt(clc.newRestaurant.status,10);
@@ -578,12 +593,36 @@ clc.getResDetail = function(closeRestaurant){
       zone: 4
     },
     {
+      name: "DM",
+      zone: 12
+    },
+    {
       name: "MH",
       zone: 5
     },
     {
       name: "RH",
       zone: 6
+    },
+    {
+      name: "MTL DT",
+      zone: 7
+    },
+    {
+      name: "南岸",
+      zone: 8
+    },
+    {
+      name: "Verdun",
+      zone: 9
+    },
+    {
+      name: "Chinatown",
+      zone: 10
+    },
+    {
+      name: "小红商铺",
+      zone: 11
     }
   ];
 // basic function end

@@ -23,6 +23,9 @@ angular.module('MetronicApp')
              var restaurantListData = data.ea_data;
             _.forEach(restaurantListData, function(restaurant, id) {
                var data = {};
+               if(restaurant.area == 'Downtown') {
+                 restaurant.area = 'GTA Downtown'
+               }
                data.tel2 = restaurant.tel2;
                data.rid = restaurant.rid;
                data.name = restaurant.name;
@@ -380,6 +383,7 @@ angular.module('MetronicApp')
              "iv_postal": newRestaurant.postal,
              "iv_tel1": newRestaurant.tel1,
              "iv_tel2": newRestaurant.tel2,
+             "iv_settle_type":parseFloat(newRestaurant.settle_type),
              "iv_province": newRestaurant.province,
              "iv_prvn": newRestaurant.prvn,
              "iv_addr": newRestaurant.addr,
