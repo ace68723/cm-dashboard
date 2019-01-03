@@ -374,6 +374,7 @@ clc.getResDetail = function(closeRestaurant){
     "name": "",
     "desc": "",
     "area": "",
+    "appid":1,
     "logo_id": "000",
     "postal": "",
     "tel1": "",
@@ -416,16 +417,22 @@ clc.getResDetail = function(closeRestaurant){
       clc.newRestaurant.area = 3;
     } else if (clc.newRestaurant.area == "MTL DT") {
       clc.newRestaurant.area = 101;
+      clc.newRestaurant.appid = 2;
     } else if (clc.newRestaurant.area == "南岸") {
       clc.newRestaurant.area = 102;
+      clc.newRestaurant.appid = 2;
     } else if (clc.newRestaurant.area == "Verdun") {
       clc.newRestaurant.area = 103;
+      clc.newRestaurant.appid = 2;
     } else if (clc.newRestaurant.area == "Chinatown") {
       clc.newRestaurant.area = 104;
+      clc.newRestaurant.appid = 2;
     } else if (clc.newRestaurant.area == "小红商铺") {
       clc.newRestaurant.area = 105;
+      clc.newRestaurant.appid = 2;
     } else if (clc.newRestaurant.area == "DM") {
       clc.newRestaurant.area = 7;
+      clc.newRestaurant.appid = 2;
     }
     if (clc.newRestaurant.bank_name == "BMO") {
       clc.newRestaurant.bank_instit = "0001";

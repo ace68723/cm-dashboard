@@ -376,6 +376,7 @@ angular.module('MetronicApp')
             data: {
               "iv_username":newRestaurant.username,
               "iv_password":newRestaurant.password,
+              "iv_appid":newRestaurant.appid,
              "iv_name": newRestaurant.name,
              "iv_desc": newRestaurant.desc,
              "iv_area": newRestaurant.area,
